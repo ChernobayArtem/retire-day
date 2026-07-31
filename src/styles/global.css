@@ -1,0 +1,32 @@
+:root {
+  color-scheme: light;
+  --ink: #241a22;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Lock the document: the home screen is a single non-scrolling app surface.
+   Only the day sheet scrolls, via its own overflow container. */
+html,
+body,
+#root {
+  height: 100%;
+  touch-action: pan-x pan-y;
+}
+
+html,
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: #fff;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

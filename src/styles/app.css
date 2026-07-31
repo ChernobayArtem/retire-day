@@ -1,0 +1,1929 @@
+/* Design tokens taken straight from the Figma frame. */
+:root {
+  --red: #ff5e61;
+  --ink: #241a22;
+  --muted: #8b7f86;
+  --grey: #c8c8c8;
+  --grey-num: #8a8a8a;
+  --line: #f1edf2;
+  --cell-past: #ffedee;
+  --cell-future: #f4f4f4;
+  --green: #abf394;
+}
+
+body {
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
+  color: var(--ink);
+}
+
+.home,
+.gate {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* Fills exactly one screen and never scrolls. */
+.home {
+  height: 100dvh;
+  overflow: hidden;
+  padding-top: calc(env(safe-area-inset-top) + 10px);
+}
+
+.gate {
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+/* ---------- progress bar ---------- */
+.pb {
+  padding: 0 13px;
+}
+.pb__labels {
+  position: relative;
+  height: 20px;
+}
+.pb__label {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  white-space: nowrap;
+}
+.pb__label--flip {
+  transform: translateX(-100%);
+  flex-direction: row-reverse;
+}
+.pb__elbow {
+  width: 15px;
+  height: 9px;
+  border-left: 1px solid var(--grey);
+  border-top: 1px solid var(--grey);
+  border-top-left-radius: 3px;
+}
+.pb__label--flip .pb__elbow {
+  transform: scaleX(-1);
+}
+.pb__pct {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--grey);
+  line-height: 12px;
+}
+
+.pb__row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 2px;
+}
+.pb__cap {
+  flex: 0 0 auto;
+  font-size: 12px;
+  line-height: 1;
+}
+.pb__orchid {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 12px;
+  aspect-ratio: 1;
+  height: auto;
+  color: var(--grey);
+}
+.pb__orchid--on {
+  color: var(--red);
+}
+
+/* ---------- two stat columns ---------- */
+.stats {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 43% 57%;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stat {
+  padding: 14px 8px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.stat--archive {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 0;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  background: #fff;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+.stat--archive:active {
+  background: #fff8f8;
+  transform: scale(0.985);
+}
+.stat--archive:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: -3px;
+}
+.stat--left {
+  border-right: 1px solid var(--line);
+  color: var(--red);
+}
+.stat--right {
+  color: var(--grey);
+}
+.stat__num {
+  font-size: 60px;
+  line-height: 72px;
+  letter-spacing: -1px;
+}
+.stat--left .stat__num {
+  font-weight: 900;
+}
+.stat--right .stat__num {
+  font-weight: 400;
+}
+.stat__cap {
+  font-size: 19px;
+  line-height: 19px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.stat__arrow {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: var(--cell-past);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+/* ---------- calendar ---------- */
+.calbox {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.calbox__title {
+  margin: 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+  text-transform: capitalize;
+}
+.cal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cal__weekdays,
+.cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.cal__wd {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07px;
+  color: var(--muted);
+}
+
+.cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 4px;
+  background: var(--cell-future);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 8px 8px;
+  font-family: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.12s ease;
+}
+.cell:active {
+  transform: scale(0.94);
+}
+.cell--empty {
+  background: transparent;
+  cursor: default;
+}
+.cell__num {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07px;
+  color: var(--grey-num);
+}
+.cell__mark {
+  font-size: 20px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cell__icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: block;
+  /* brand tiles are square, but a wordmark like Lamoda is 28x22 — contain keeps
+     it from being squashed into the square */
+  object-fit: contain;
+}
+
+/* past — soft pink, dimmed mark */
+.cell--past {
+  background: var(--cell-past);
+}
+.cell--past .cell__num {
+  color: var(--red);
+}
+.cell--past .cell__mark {
+  opacity: 0.5;
+}
+
+/* today — white with a red ring */
+.cell--today {
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--red);
+}
+.cell--today .cell__num {
+  color: var(--red);
+}
+
+/* opened days keep the pink tint even before they are in the past */
+.cell--opened:not(.cell--today) {
+  background: var(--cell-past);
+}
+.cell--opened:not(.cell--today) .cell__num {
+  color: var(--red);
+}
+
+/* ---------- bottom scene ---------- */
+.scene-stage {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 150px;
+  overflow: hidden;
+}
+.scn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* Video/image scenes fill the stage like the SVG "xMidYMax slice" scenes. */
+.scn-media {
+  object-fit: cover;
+  object-position: center bottom;
+}
+/* Respect reduced motion: kill every scene animation. */
+@media (prefers-reduced-motion: reduce) {
+  .scene-stage * {
+    animation: none !important;
+  }
+}
+
+/* ---------- test bar ---------- */
+.testbar {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom) + 8px);
+  transform: translateX(-50%);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 8px;
+  box-shadow: 0 8px 22px -12px rgba(0, 0, 0, 0.35);
+}
+.testbar__date {
+  min-width: 42px;
+  text-align: center;
+  color: var(--ink);
+}
+.testbar button {
+  font: inherit;
+  border: none;
+  background: var(--cell-past);
+  color: var(--red);
+  border-radius: 999px;
+  padding: 4px 9px;
+  cursor: pointer;
+}
+
+/* ---------- archive of opened surprises ---------- */
+.archive {
+  position: fixed;
+  inset: 0 auto 0 50%;
+  z-index: 30;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #f8f6f8;
+  color: var(--ink);
+  animation: archive-in 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.archive:focus {
+  outline: none;
+}
+.archive__header {
+  flex: none;
+  padding: calc(env(safe-area-inset-top) + 10px) 16px 18px;
+  background: #fff;
+}
+.archive__back {
+  min-height: 44px;
+  margin: 0 0 10px -6px;
+  padding: 0 8px 0 4px;
+  border: 0;
+  background: none;
+  color: #0213ff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 650;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.archive__back:active {
+  opacity: 0.55;
+}
+.archive__back-arrow {
+  font-size: 31px;
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+.archive__title {
+  margin: 0;
+  color: #353535;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.8px;
+}
+.archive__subtitle {
+  max-width: 360px;
+  margin: 9px 0 0;
+  color: #777077;
+  font-size: 16px;
+  line-height: 1.35;
+}
+.archive__tabs {
+  flex: none;
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.archive__tabs::-webkit-scrollbar {
+  display: none;
+}
+.archive__tab {
+  flex: none;
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid #e8e3e7;
+  border-radius: 999px;
+  background: #fff;
+  color: #665e64;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  opacity: 0.68;
+  transition: opacity 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.archive__tab:active {
+  transform: scale(0.97);
+}
+.archive__tab:focus {
+  outline: none;
+}
+.archive__tab:focus-visible {
+  outline: 2px solid rgba(214, 71, 71, 0.34);
+  outline-offset: 2px;
+}
+.archive__tab.is-active {
+  border-color: #d64747;
+  background: #fff;
+  color: #3d353b;
+  opacity: 1;
+}
+.archive__tab-count {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #f1edf1;
+  color: #847b82;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+}
+.archive__tab.is-active .archive__tab-count {
+  background: var(--cell-past);
+  color: #d64747;
+}
+.archive__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 14px 16px calc(env(safe-area-inset-bottom) + 24px);
+}
+.archive__list {
+  display: grid;
+  gap: 12px;
+}
+.archive-card {
+  position: relative;
+  overflow: hidden;
+  padding: 17px;
+  border: 1px solid #eee9ed;
+  border-radius: 19px;
+  background: #fff;
+  box-shadow: 0 8px 24px -20px rgba(47, 28, 40, 0.5);
+}
+.archive-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--card-accent, var(--red));
+}
+.archive-card__meta {
+  margin-bottom: 12px;
+  color: #aaa2a8;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.archive-card__title {
+  margin: 0;
+  color: #2c262b;
+  font-size: 21px;
+  font-weight: 780;
+  line-height: 1.2;
+}
+.archive-card__text {
+  margin: 9px 0 0;
+  color: #6e676c;
+  font-size: 15px;
+  line-height: 1.42;
+  white-space: pre-line;
+}
+.archive-card__text--clamped {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+.archive-card__hint {
+  margin: 4px 0 0;
+  color: #898087;
+  font-size: 14px;
+  line-height: 1.3;
+}
+.archive-card__open,
+.archive-card__copy {
+  min-height: 44px;
+  border-radius: 13px;
+  border: 0;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+.archive-card__open {
+  width: 100%;
+  height: 51px;
+  margin-top: 15px;
+  padding: 0 14px;
+  border: 1px solid #eaeaea;
+  border-radius: 14px;
+  background: #fff;
+  color: #202020;
+  font-weight: 500;
+}
+.archive-card__open span {
+  font-size: 22px;
+  line-height: 1;
+}
+.archive-card__open--secondary {
+  margin-top: 0;
+  background: #fff;
+  color: #202020;
+}
+.archive-card__open:active,
+.archive-card__copy:active,
+.archive-card__icon-btn:active {
+  transform: scale(0.97);
+}
+.archive-card__actions {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.archive-card__actions .archive-card__open,
+.archive-card__actions .archive-card__copy {
+  min-width: 0;
+  padding-inline: 8px;
+  white-space: nowrap;
+}
+.archive-card__copy {
+  padding: 0 12px;
+  background: #f0f1ff;
+  color: #0213ff;
+}
+.archive-card__coupon-head,
+.archive-card__cert-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.archive-card__cert-head {
+  width: 100%;
+}
+.archive-card__cert-head .archive-card__title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.archive-card__emoji {
+  flex: none;
+  font-size: 40px;
+  line-height: 1;
+}
+.archive-card__brand {
+  flex: none;
+  width: 96px;
+  height: 34px;
+  margin-left: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  object-position: right center;
+}
+.archive-card__codes {
+  margin-top: 13px;
+  display: grid;
+  gap: 8px;
+}
+.archive-card__code-row {
+  min-width: 0;
+  min-height: 48px;
+  padding: 8px 9px 8px 12px;
+  border-radius: 12px;
+  background: #f8f5f7;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.archive-card__code {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #332d31;
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+.archive-card__code-label {
+  color: #847b82;
+  font-weight: 600;
+  user-select: none;
+}
+.archive-card__icon-btn {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 11px;
+  background: #fff;
+  color: #0213ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.archive-card__video-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.archive-card__play {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  padding-left: 3px;
+  border-radius: 50%;
+  background: #2b2229;
+  color: #fff;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.archive__empty {
+  min-height: 330px;
+  padding: 48px 28px;
+  color: #847b82;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.archive__empty-mark {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: #f0ebef;
+  color: var(--red);
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.archive__empty h2 {
+  margin: 0;
+  color: #4c444a;
+  font-size: 21px;
+}
+.archive__empty p {
+  max-width: 280px;
+  margin: 7px 0 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+@keyframes archive-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive {
+    animation: none;
+  }
+}
+
+/* ---------- gate ---------- */
+.gate {
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: calc(env(safe-area-inset-top) + 28px) 24px calc(env(safe-area-inset-bottom) + 28px);
+}
+.gate__brand {
+  flex: 0 0 auto;
+  width: 158px;
+  height: 104px;
+  overflow: hidden;
+  background: #fff;
+  pointer-events: none;
+}
+.gate__brand-image {
+  display: block;
+  width: 202px;
+  max-width: none;
+  transform: translate(-29px, -53px);
+}
+.gate__card {
+  width: 100%;
+  text-align: center;
+}
+.gate__title {
+  font-size: 24px;
+  font-weight: 900;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+.gate__sub {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 20px;
+}
+.gate__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gate__input {
+  font: inherit;
+  font-size: 17px;
+  text-align: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--line);
+  background: #fbf9fa;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.gate__input:focus {
+  border-color: var(--red);
+}
+.gate__input--error {
+  border-color: var(--red);
+  animation: shake 0.35s;
+}
+.gate__btn {
+  font: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  background: var(--red);
+}
+.gate__btn:disabled {
+  opacity: 0.45;
+}
+.gate__err {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 14px;
+  margin: 14px 0 0;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px); }
+  75% { transform: translateX(7px); }
+}
+
+/* ---------- day sheet: drops from the top, one height for every day ---------- */
+.sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 26, 34, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 50;
+  animation: fade 0.2s ease;
+}
+.sheet {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  /* Same height on every day. 92dvh rather than 90 buys back some of the ~90px
+     Safari's address bar takes from a standalone PWA; together with the compact
+     rules below the tallest days fit there without the header scrolling. */
+  height: min(92dvh, 812px);
+  background: #fff;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  animation: dropdown 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+.day {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.day__top {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: calc(env(safe-area-inset-top) + 20px) 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.day__title {
+  margin: 4px 0 0;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.05;
+  color: #353535;
+}
+.rule {
+  height: 1px;
+  border: 0;
+  background: var(--line);
+  margin: 0 -16px;
+}
+.day__wish {
+  margin: 0;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #6c6c6c;
+  white-space: pre-line;
+}
+
+/* meme band: photo runs along the bottom line; bubble to the left */
+.day__band {
+  flex: none;
+  position: relative;
+  min-height: 178px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.day__band--nomeme {
+  min-height: 0;
+}
+/* no caption → no bubble, so the meme sits in the middle instead of the corner */
+.day__band--center .meme__photo {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* photo pinned bottom-right; bubble sits to its left with a left inset */
+.meme__photo {
+  position: absolute;
+  right: 8px;
+  bottom: 0;
+  /* follows the band so it shrinks with it on short screens */
+  height: 100%;
+  max-height: 178px;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+  pointer-events: none;
+}
+.meme__bubble {
+  position: absolute;
+  left: auto;
+  right: var(--meme-bubble-right, 187px);
+  bottom: 64px;
+  width: max-content;
+  max-width: min(185px, calc(100% - var(--meme-bubble-right, 187px) - 16px));
+  background: #269dfd;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.28;
+  letter-spacing: 0.2px;
+  padding: 9px 14px;
+  border-radius: 18px;
+  white-space: pre-line;
+}
+/* iMessage-style reaction pinned to the bubble's top-left corner */
+.meme__reaction {
+  position: absolute;
+  left: -13px;
+  top: -19px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #269dfd;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+/* the little trailing dot, like the real thing */
+.meme__reaction::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  bottom: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #269dfd;
+  border: 2px solid #fff;
+}
+/* triangle tail on the bottom-right, pointing at the man */
+.meme__bubble::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  bottom: 9px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 11px solid #269dfd;
+}
+
+/* Keep each compact bubble the same distance from the left edge of its
+   right-aligned cutout. Values account for the source image aspect ratios. */
+.sheet--day1 .meme__bubble {
+  --meme-bubble-right: 160px;
+}
+.sheet--day2 .meme__bubble {
+  --meme-bubble-right: 164px;
+}
+.sheet--day4 .meme__bubble {
+  --meme-bubble-right: 152px;
+}
+.sheet--day5 .meme__bubble,
+.sheet--day13 .meme__bubble,
+.sheet--day19 .meme__bubble {
+  --meme-bubble-right: 149px;
+}
+.sheet--day14 .meme__bubble {
+  --meme-bubble-right: 179px;
+}
+.sheet--day8 .meme__bubble {
+  --meme-bubble-right: 205px;
+}
+.sheet--day16 .meme__bubble {
+  --meme-bubble-right: 216px;
+}
+.sheet--day10 .meme__bubble {
+  --meme-bubble-right: 217px;
+}
+.sheet--day12 .meme__bubble {
+  --meme-bubble-right: 156px;
+}
+.sheet--day24 .meme__bubble {
+  --meme-bubble-right: 175px;
+}
+.sheet--day21 .meme__bubble {
+  --meme-bubble-right: 200px;
+}
+.sheet--day22 .meme__bubble {
+  --meme-bubble-right: 227px;
+}
+
+/* Day 28 has the long approval line from the final mockup. Keep the shared
+   sheet layout, but give its bubble two readable lines and match the supplied
+   transparent cutout instead of stretching it to the generic meme height. */
+.sheet--day28 .meme__photo {
+  right: 16px;
+  height: 149px;
+  max-height: 149px;
+}
+.sheet--day28 .meme__bubble {
+  left: 46px;
+  right: auto;
+  bottom: 64px;
+  max-width: 263px;
+  letter-spacing: 0;
+}
+.sheet--day28 .day__wish {
+  white-space: pre-line;
+}
+
+/* Days 21–22 reuse the shared compliment/coupon layouts, with only the
+   dimensions and line breaks from their supplied 430×780 mockups. */
+.sheet--day21 .mcard--compliment {
+  min-height: 260px;
+  padding: 28px 24px;
+  white-space: pre-line;
+}
+.sheet--day21 .day__wish,
+.sheet--day21 .meme__bubble {
+  white-space: pre-line;
+}
+.sheet--day21 .meme__photo,
+.sheet--day22 .meme__photo {
+  height: 149px;
+  max-height: 149px;
+}
+.sheet--day21 .meme__photo {
+  right: 16px;
+}
+.sheet--day22 .meme__photo {
+  right: 18px;
+}
+.sheet--day21 .meme__photo.encimg-loading {
+  width: 155px;
+  height: 149px;
+}
+.sheet--day22 .meme__photo.encimg-loading {
+  width: 180px;
+  height: 149px;
+}
+.sheet--day22 .cpn {
+  min-height: 260px;
+}
+.sheet--day22 .cpn__emoji {
+  right: 24px;
+  bottom: 24px;
+  font-size: 105px;
+}
+.sheet--day23 .meme__bubble {
+  max-width: none;
+}
+
+/* The long Wildberries gift code on day 11 stays on one line. */
+.sheet--day11 .cert__row--big .cert__code {
+  font-size: 27px;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+/* locked day */
+/* title then note, same as an open day — the cat fills the space below */
+.day__top--locked {
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+/* A locked day follows the normal sheet layout: title, note, the cat where a
+   meme would go, and only "Закрыть шторку" below, stretched across. */
+.day__peek {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  /* 354x322 from the mockup, shrinking proportionally on narrower screens */
+  width: min(354px, 100%);
+  aspect-ratio: 354 / 322;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom;
+  pointer-events: none;
+}
+/* the cat is taller than a meme, so the band grows to fit it */
+.day__band--locked {
+  min-height: 322px;
+}
+
+/* date sits at the bottom of the band, on the line, left-aligned */
+.day__date {
+  position: relative;
+  z-index: 2;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--grey);
+  margin-bottom: 4px;
+}
+/* foot: the line + nav buttons, 16px all around */
+.day__foot {
+  flex: none;
+  padding: 0 16px 16px;
+}
+.day__foot .rule {
+  margin: 0 -16px 16px;
+}
+.day__nav {
+  display: flex;
+  gap: 12px;
+}
+.day__btn {
+  flex: 1 1 0;
+  height: 51px;
+  border-radius: 14px;
+  border: 1px solid #eaeaea;
+  background: #fff;
+  color: #202020;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.day__btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.day__btn--prev:disabled {
+  background: #f5f5f5;
+  color: #9e9e9e;
+  border-color: transparent;
+  cursor: default;
+}
+.day__chev {
+  font-size: 22px;
+  line-height: 0.5;
+}
+.day__x {
+  font-size: 13px;
+}
+
+/* media blocks */
+.mcard {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+}
+.mcard--compliment {
+  border: 1px solid #d64747;
+  padding: 28px 24px;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #262626;
+  font-size: 14px;
+  line-height: 1.6;
+  background: #fff;
+}
+.mcard--collage {
+  position: relative;
+  display: block;
+  aspect-ratio: 398 / 259;
+  cursor: pointer;
+}
+.mcard--collage img,
+.mcard--collage .mcard__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.mcard--collage .encimg-loading {
+  width: 100%;
+  height: 100%;
+}
+
+/* placeholder shown while an encrypted image decrypts */
+.encimg-loading {
+  display: block;
+  background: linear-gradient(110deg, #f0edf1 24%, #faf8fa 42%, #f0edf1 60%);
+  background-size: 240% 100%;
+  animation: encimg-shimmer 1.15s ease-in-out infinite;
+}
+.encimg-ready {
+  animation: encimg-reveal 0.18s ease-out both;
+}
+@keyframes encimg-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+@keyframes encimg-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.meme__photo.encimg-loading {
+  width: 132px;
+  height: 178px;
+  border-radius: 12px;
+}
+
+/* splash while the vault is being opened */
+.splash {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.splash__spinner {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--line);
+  border-top-color: var(--red);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.mcard__expand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.3);
+}
+.mcard--emoji {
+  font-size: 64px;
+  text-align: center;
+  padding: 24px 0;
+}
+
+/* booking: the venue card carries the logo, the details sit on top of it */
+.book {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 398 / 260;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+.book__background,
+.book__card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.book__background {
+  object-fit: cover;
+}
+.book__card {
+  object-fit: contain;
+}
+/* video note: poster with a play badge; the clip loads only on tap */
+.vid {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 398 / 260;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--cell-future);
+  display: block;
+}
+.vid--button {
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+/* The banner is light and the play badge is dark, so they blur together.
+   Dimming the poster — a touch more towards the middle — makes the badge read
+   instantly. Only on the preview; the playing video is left alone. */
+.vid--button::after,
+.vid--pending::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(circle at 50% 50%, rgba(20, 18, 24, 0.42) 0%, rgba(20, 18, 24, 0.26) 46%, rgba(20, 18, 24, 0.18) 100%);
+  pointer-events: none;
+}
+.vid__poster,
+.vid__player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vid__player {
+  background: #000;
+  object-fit: contain;
+}
+.vid__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2; /* above the dimming overlay */
+  transform: translate(-50%, -50%);
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.32);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.vid__pending {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 14px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.58);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.2;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.vid__pending-icon {
+  flex: none;
+  font-size: 24px;
+  line-height: 1;
+}
+.vid--button:active .vid__play {
+  transform: translate(-50%, -50%) scale(0.94);
+}
+.vid__loading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vid__spinner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* certificate: brand banner + one or more copyable codes */
+.cert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+.cert__banner {
+  width: 100%;
+  aspect-ratio: 398 / 200;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--cell-future);
+}
+.cert__bannerimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cert__codes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+}
+.cert__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+}
+.cert__code {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  color: #272727;
+  user-select: all;
+  text-align: center;
+  word-break: break-word;
+}
+.cert__row--big .cert__code {
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+.cert__label {
+  user-select: none;
+}
+.cert__copy {
+  position: relative;
+  flex: none;
+  border: none;
+  background: none;
+  color: #0213ff;
+  cursor: pointer;
+  display: flex;
+  padding: 2px;
+}
+.cert__copy:active {
+  opacity: 0.6;
+}
+.copy-icon {
+  display: block;
+  flex: none;
+}
+.cert__tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: #202020;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 8px;
+  pointer-events: none;
+  animation: fade 0.15s ease;
+}
+.cert__tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #202020;
+}
+
+.mcert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.mcert__banner {
+  width: 100%;
+  aspect-ratio: 398 / 200;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.mcert__banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.mcert__coderow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mcert__code {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #272727;
+  user-select: all;
+}
+.mcert__copy {
+  position: relative;
+  border: none;
+  background: none;
+  color: #0213ff;
+  cursor: pointer;
+  display: flex;
+  padding: 2px;
+}
+/* small tooltip above the copy icon */
+.mcert__tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: #202020;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 8px;
+  pointer-events: none;
+  animation: fade 0.15s ease;
+}
+.mcert__tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #202020;
+}
+
+/* photo carousel: centred card is larger, neighbours peek at the edges */
+.carou {
+  position: relative;
+  width: 100%;
+}
+/*
+ * Every card keeps the SAME layout box (202x270) and only scales visually.
+ * Animating width/height instead would change the track's height mid-scroll and
+ * shove everything below it up and down.
+ */
+.carou__track {
+  display: flex;
+  align-items: center;
+  /* fixed: 270 card + 2x8 padding, so the track never reflows */
+  height: 286px;
+  gap: 0;
+  /* neighbours peek in from both sides */
+  padding: 8px calc(50% - 101px);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.carou__track::-webkit-scrollbar {
+  display: none;
+}
+.carou__item {
+  flex: none;
+  width: 202px;
+  height: 270px;
+  /* pulls the shrunken neighbours back to a ~17px visual gap */
+  margin-inline: -2px;
+  padding: 0;
+  border: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  background: var(--cell-future);
+  scroll-snap-align: center;
+  cursor: pointer;
+  transform: scale(0.797);
+  transition: transform 0.24s ease;
+}
+.carou__item.is-active {
+  transform: scale(1);
+}
+.carou__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carou__placeholder {
+  background: #f0edf1;
+}
+.carou__expand {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.carou__dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+.carou__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e0dce1;
+  transition: background 0.2s ease;
+}
+.carou__dot.is-active {
+  background: var(--red);
+}
+
+/* coupon card (Figma: dashed voucher with a big emoji in the corner) */
+.cpn {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  padding: 24px;
+  border-radius: 16px;
+  outline: 1px dashed #d64747;
+  outline-offset: -1px;
+  background: rgba(255, 94, 97, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+}
+.cpn__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.cpn__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.16;
+  color: #272727;
+}
+.cpn__desc {
+  margin: 0;
+  /* keeps the copy clear of the oversized emoji in the bottom-right */
+  padding-right: 92px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #606060;
+}
+.cpn__copy {
+  position: relative;
+  z-index: 2;
+  align-self: flex-start;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 19px;
+  font-weight: 590;
+  color: #0213ff;
+  font-family: inherit;
+}
+.cpn__copy:active {
+  opacity: 0.6;
+}
+.cpn__emoji {
+  position: absolute;
+  right: 24px;
+  bottom: 16px;
+  font-size: 96px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* legacy coupon + compliments (days not yet redesigned) */
+.coupon {
+  width: 100%;
+  background: var(--cell-past);
+  border: 2px dashed var(--red);
+  border-radius: 16px;
+  padding: 18px 20px;
+  text-align: center;
+}
+.coupon__label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+.coupon__action {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.coupon__note {
+  font-size: 14px;
+  color: #6c5563;
+  margin-top: 8px;
+}
+.compliments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.compliments__item {
+  background: var(--cell-past);
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3d2f38;
+  text-align: center;
+}
+
+/* fullscreen image viewer */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fade 0.18s ease;
+}
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes dropdown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+/* One-shot celebration when the final day opens for the first time. */
+.day29-confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+}
+.day29-confetti__flash {
+  position: absolute;
+  left: 50%;
+  bottom: -26%;
+  width: min(120vw, 720px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 232, 148, 0.48), rgba(255, 255, 255, 0) 64%);
+  transform: translateX(-50%);
+  animation: day29-confetti-flash 0.8s ease-out both;
+}
+.day29-confetti__piece {
+  position: absolute;
+  left: var(--confetti-start-x);
+  bottom: -20px;
+  width: var(--confetti-width);
+  height: var(--confetti-height);
+  border-radius: 1.5px;
+  background: var(--confetti-color);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  will-change: transform, opacity;
+  animation: day29-confetti-pop var(--confetti-duration) cubic-bezier(0.2, 0.72, 0.28, 1)
+    var(--confetti-delay) both;
+}
+.day29-confetti__piece--round {
+  border-radius: 50%;
+}
+@keyframes day29-confetti-pop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.25) rotate(0deg);
+  }
+  7% { opacity: 1; }
+  48% {
+    opacity: 1;
+    transform: translate3d(var(--confetti-travel), var(--confetti-peak), 0) scale(1)
+      rotate(var(--confetti-mid-rotation));
+  }
+  82% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--confetti-end-x), 64px, 0) scale(0.82)
+      rotate(var(--confetti-rotation));
+  }
+}
+@keyframes day29-confetti-flash {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.35); }
+  34% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) scale(1.18); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet,
+  .sheet-overlay,
+  .lightbox,
+  .gate__input--error,
+  .encimg-loading,
+  .encimg-ready {
+    animation: none;
+  }
+  .carou__item {
+    transition: none;
+  }
+  .day29-confetti {
+    display: none;
+  }
+}
+
+/*
+ * Short viewport — Safari with its address bar showing, where a standalone PWA
+ * would have ~90px more. Tighten the paddings and the meme band so the tallest
+ * days (the coupons) still fit without the header scrolling.
+ */
+@media (max-height: 780px) {
+  .day__top {
+    padding-top: calc(env(safe-area-inset-top) + 12px);
+    gap: 12px;
+  }
+  .day__title {
+    font-size: 34px;
+  }
+  .day__band {
+    min-height: 112px;
+  }
+  .day__band--locked {
+    min-height: 230px;
+  }
+  .cpn {
+    min-height: 214px;
+    padding: 20px;
+  }
+  .sheet--day22 .cpn {
+    min-height: 260px;
+    padding: 24px;
+  }
+  .cert {
+    gap: 10px;
+  }
+  /* the carousel keeps its own fixed track height, so shrink it too */
+  .carou__track {
+    height: 198px;
+    padding-inline: calc(50% - 70px);
+  }
+  .carou__item {
+    width: 140px;
+    height: 186px;
+  }
+  .carou__dots {
+    margin-top: 8px;
+  }
+  .cpn__body,
+  .cpn {
+    gap: 16px;
+  }
+  .sheet--day22 .cpn,
+  .sheet--day22 .cpn__body {
+    gap: 24px;
+  }
+  .day__foot {
+    padding-bottom: 12px;
+  }
+  .day__foot .rule {
+    margin-bottom: 12px;
+  }
+}

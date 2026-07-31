@@ -1,0 +1,20 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+out
+
+# Design source inputs — originals stay local; only optimized copies in public/ ship
+/days/
+/элементы из фигмы/
+
+# Plaintext content + passwords — only the encrypted vault (public/vault) ships
+/secret/
+
+# Внутренний бриф — не публикуем
+/CODEX_BRIEF.md
+
+# Подготовленные плейнтекст-медиа для шифрования — не публикуем
+/media-src/

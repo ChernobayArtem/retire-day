@@ -1,0 +1,26 @@
+function legacyCopy(text: string): boolean {
+  try {
+    const ta = document.createElement('textarea')
+    ta.value = text
+    ta.setAttribute('readonly', '')
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0'
+    document.body.appendChild(ta)
+    ta.select()
+    ta.setSelectionRange(0, text.length)
+    const ok = document.execCommand('copy')
+    document.body.removeChild(ta)
+    return ok
+  } catch {
+    return false
+  }
+}
+
+/** Один путь копирования для шторок и архива, включая fallback для iOS PWA. */
+export async function copyText(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text)
+    return true
+  } catch {
+    return legacyCopy(text)
+  }
+}
