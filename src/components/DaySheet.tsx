@@ -11,7 +11,7 @@ import CertCard from './CertCard'
 import PhotoCarousel from './PhotoCarousel'
 import VideoCard from './VideoCard'
 import BookingCard from './BookingCard'
-import Day29Confetti from './Day29Confetti'
+import ConfettiBurst from './Day29Confetti'
 import { trackGoal } from '../lib/analytics'
 
 interface Active {
@@ -27,7 +27,7 @@ interface Props {
 }
 
 const BASE = import.meta.env.BASE_URL
-const DAY29_CONFETTI_KEY = 'retire-day:day29-confetti:v1'
+const DAY28_CONFETTI_KEY = 'retire-day:day28-confetti:v1'
 const asset = (p: string) => `${BASE}${p}`
 
 function ddmm(day: number): string {
@@ -38,34 +38,34 @@ function ddmm(day: number): string {
 
 export default function DaySheet({ active, analyticsEnabled, testMode, onClose, onNav }: Props) {
   const [lightbox, setLightbox] = useState<string | null>(null)
-  const [showDay29Confetti, setShowDay29Confetti] = useState(false)
-  const day29ConfettiChecked = useRef(false)
+  const [showDay28Confetti, setShowDay28Confetti] = useState(false)
+  const day28ConfettiChecked = useRef(false)
   const lightboxUrl = useMedia(lightbox)
 
   useEffect(() => {
-    if (active?.day !== 29 || active.locked) {
-      setShowDay29Confetti(false)
+    if (active?.day !== 28 || active.locked) {
+      setShowDay28Confetti(false)
       return
     }
-    if (day29ConfettiChecked.current) return
+    if (day28ConfettiChecked.current) return
 
-    day29ConfettiChecked.current = true
+    day28ConfettiChecked.current = true
     if (!testMode) {
       try {
-        if (localStorage.getItem(DAY29_CONFETTI_KEY)) return
-        localStorage.setItem(DAY29_CONFETTI_KEY, '1')
+        if (localStorage.getItem(DAY28_CONFETTI_KEY)) return
+        localStorage.setItem(DAY28_CONFETTI_KEY, '1')
       } catch {
         // In private mode the in-memory ref still prevents repeats this session.
       }
     }
-    setShowDay29Confetti(true)
+    setShowDay28Confetti(true)
   }, [active?.day, active?.locked, testMode])
 
   useEffect(() => {
-    if (!showDay29Confetti) return
-    const timer = window.setTimeout(() => setShowDay29Confetti(false), 3400)
+    if (!showDay28Confetti) return
+    const timer = window.setTimeout(() => setShowDay28Confetti(false), 3400)
     return () => window.clearTimeout(timer)
-  }, [showDay29Confetti])
+  }, [showDay28Confetti])
 
   if (!active) return null
   const def = dayByNumber(active.day)
@@ -172,7 +172,7 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
         </div>
       )}
 
-      {showDay29Confetti && <Day29Confetti />}
+      {showDay28Confetti && <ConfettiBurst />}
     </div>
   )
 }
