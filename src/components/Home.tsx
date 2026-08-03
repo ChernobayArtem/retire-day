@@ -7,7 +7,7 @@ import {
   diffDays,
   dayDate,
   isAfterTarget,
-  newChapterDay,
+  newChapterPeriod,
 } from '../lib/dates'
 import { MONTH_TITLE, START_DAY, TOTAL_DAYS } from '../config'
 import { useStore, markOpened, resetProgress } from '../lib/store'
@@ -73,7 +73,7 @@ export default function Home({ testMode, dateOverride }: Props) {
 
   const left = Math.max(0, daysUntilTarget(now))
   const postFinale = isAfterTarget(now)
-  const chapterDay = newChapterDay(now)
+  const chapterPeriod = newChapterPeriod(now)
   // "Day N of 29" — 0 before August, 29 on the finish line.
   const passed = Math.max(0, Math.min(diffDays(dayDate(START_DAY), now) + 1, TOTAL_DAYS))
   const warmDay = Math.max(START_DAY, Math.min(TOTAL_DAYS, passed || START_DAY))
@@ -191,7 +191,7 @@ export default function Home({ testMode, dateOverride }: Props) {
           {postFinale ? (
             <PostFinale
               ref={archiveTriggerRef}
-              chapterDay={chapterDay}
+              period={chapterPeriod}
               onRandom={openRandomSurprise}
               onArchive={openArchive}
             />

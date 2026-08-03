@@ -1,58 +1,56 @@
 import { forwardRef } from 'react'
-import ProgressBar from './ProgressBar'
+import type { NewChapterPeriod } from '../lib/dates'
 
 interface Props {
-  chapterDay: number
+  period: NewChapterPeriod
   onRandom: () => void
   onArchive: () => void
 }
 
 const PostFinale = forwardRef<HTMLButtonElement, Props>(function PostFinale(
-  { chapterDay, onRandom, onArchive },
+  { period, onRandom, onArchive },
   archiveButtonRef,
 ) {
   return (
     <section className="post-finale" aria-labelledby="post-finale-title">
-      <ProgressBar passed={29} />
-
       <div className="post-finale__content">
-        <h1 className="post-finale__title" id="post-finale-title">
-          Ты официально
-          <br />
-          в декрете <span aria-hidden="true">❤️</span>
-        </h1>
-
-        <div className="post-finale__counter" aria-label={`${chapterDay}-й день новой главы`}>
-          <strong>{chapterDay}-й день</strong>
-          <span>новой главы</span>
-          <small>с 30 августа</small>
+        <div className="post-finale__hero">
+          <h1 className="post-finale__title" id="post-finale-title">
+            Ты официально
+            <br />
+            в декрете <span aria-hidden="true">❤️</span>
+          </h1>
+          <p className="post-finale__period">{period.label}</p>
+          <p className="post-finale__since">с 30 августа 2026</p>
         </div>
 
-        <p className="post-finale__text">
-          Отсчёт закончился,
-          <br />
-          но все сюрпризы остались здесь.
-        </p>
-
-        <div className="post-finale__actions">
-          <button className="post-finale__action" onClick={onRandom}>
-            <span className="post-finale__action-icon" aria-hidden="true">✦</span>
-            Случайный сюрприз
-          </button>
-          <button
-            ref={archiveButtonRef}
-            className="post-finale__action"
-            onClick={onArchive}
-          >
-            <span className="post-finale__action-icon post-finale__action-icon--grid" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <i />
-            </span>
-            Все воспоминания
-          </button>
-        </div>
+        <section className="post-finale__memories" aria-labelledby="post-finale-memories-title">
+          <h2 id="post-finale-memories-title">29 сюрпризов — всегда рядом</h2>
+          <p>Можно открыть любой ещё раз или доверить выбор случаю.</p>
+          <div className="post-finale__actions">
+            <button className="day__btn post-finale__action" onClick={onRandom}>
+              <span className="post-finale__action-content">
+                <span className="post-finale__action-icon" aria-hidden="true">✦</span>
+                <span>Случайный сюрприз</span>
+              </span>
+            </button>
+            <button
+              ref={archiveButtonRef}
+              className="day__btn post-finale__action"
+              onClick={onArchive}
+            >
+              <span className="post-finale__action-content">
+                <span className="post-finale__action-icon post-finale__action-icon--grid" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span>Все воспоминания</span>
+              </span>
+            </button>
+          </div>
+        </section>
       </div>
 
       <DawnScene />
@@ -88,13 +86,6 @@ function DawnScene() {
         </defs>
 
         <rect width="430" height="280" fill="url(#finale-sky)" />
-
-        <g className="finale-scene__sparkles">
-          <path d="M54 73v12M48 79h12" />
-          <path d="M359 54v10M354 59h10" />
-          <circle cx="92" cy="47" r="2.5" />
-          <circle cx="337" cy="96" r="2" />
-        </g>
 
         <g transform="translate(33 112)">
           <g className="finale-scene__cloud finale-scene__cloud--left">

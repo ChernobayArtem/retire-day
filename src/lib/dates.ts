@@ -33,9 +33,73 @@ export function isAfterTarget(now: Date): boolean {
   return daysUntilTarget(now) < 0
 }
 
-/** Aug 30 is day 1 of the new chapter, continuing across month/year boundaries. */
-export function newChapterDay(now: Date): number {
-  return Math.max(1, diffDays(dayDate(TARGET_DAY + 1), now) + 1)
+export interface NewChapterPeriod {
+  label: string
+}
+
+function pluralRu(value: number, one: string, few: string, many: string): string {
+  const mod100 = Math.abs(value) % 100
+  if (mod100 >= 11 && mod100 <= 14) return many
+  const mod10 = mod100 % 10
+  if (mod10 === 1) return one
+  if (mod10 >= 2 && mod10 <= 4) return few
+  return many
+}
+
+function monthAnniversary(start: Date, offset: number): Date {
+  const monthIndex = start.getMonth() + offset
+  const year = start.getFullYear() + Math.floor(monthIndex / 12)
+  const month = ((monthIndex % 12) + 12) % 12
+  const lastDay = new Date(year, month + 1, 0).getDate()
+  return new Date(year, month, Math.min(start.getDate(), lastDay))
+}
+
+function completedCalendarMonths(start: Date, now: Date): number {
+  let months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    now.getMonth() -
+    start.getMonth()
+  if (months > 0 && now < monthAnniversary(start, months)) months -= 1
+  return Math.max(0, months)
+}
+
+/**
+ * A long-lived, human scale for the epilogue. The UI starts in days, then
+ * switches to weeks, calendar months, and finally years + months, so it never
+ * ends up shouting something like "1999-й день".
+ */
+export function newChapterPeriod(now: Date): NewChapterPeriod {
+  const start = dayDate(TARGET_DAY + 1)
+  const elapsedDays = Math.max(0, diffDays(start, now))
+
+  if (elapsedDays === 0) return { label: 'Новая глава началась сегодня' }
+  if (elapsedDays < 7) {
+    return {
+      label: `Уже ${elapsedDays} ${pluralRu(elapsedDays, 'день', 'дня', 'дней')} новой главы`,
+    }
+  }
+
+  const months = completedCalendarMonths(start, now)
+  if (months === 0) {
+    const weeks = Math.max(1, Math.floor(elapsedDays / 7))
+    return {
+      label: `Уже ${weeks} ${pluralRu(weeks, 'неделя', 'недели', 'недель')} новой главы`,
+    }
+  }
+
+  if (months < 12) {
+    return {
+      label: `Уже ${months} ${pluralRu(months, 'месяц', 'месяца', 'месяцев')} новой главы`,
+    }
+  }
+
+  const years = Math.floor(months / 12)
+  const remainingMonths = months % 12
+  const yearsText = `${years} ${pluralRu(years, 'год', 'года', 'лет')}`
+  const monthsText = remainingMonths
+    ? ` и ${remainingMonths} ${pluralRu(remainingMonths, 'месяц', 'месяца', 'месяцев')}`
+    : ''
+  return { label: `Уже ${yearsText}${monthsText} новой главы` }
 }
 
 export function isBeforeStart(now: Date): boolean {

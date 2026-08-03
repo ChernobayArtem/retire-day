@@ -393,21 +393,20 @@ body {
   overflow: hidden;
   background: #fff;
 }
-.post-finale > .pb {
-  flex: none;
-}
 .post-finale__content {
   position: relative;
   z-index: 2;
   flex: none;
-  padding: 13px 16px 0;
+  padding: 20px 16px 0;
+}
+.post-finale__hero {
   text-align: center;
 }
 .post-finale__title {
   max-width: 398px;
   margin: 0 auto;
   color: #353535;
-  font-size: clamp(32px, 8.5vw, 40px);
+  font-size: clamp(34px, 8.8vw, 40px);
   font-weight: 800;
   line-height: 1.06;
   letter-spacing: -0.8px;
@@ -417,97 +416,91 @@ body {
   font-size: 0.82em;
   transform: translateY(-1px);
 }
-.post-finale__counter {
-  margin-top: 13px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.post-finale__counter strong {
-  color: var(--red);
-  font-size: clamp(44px, 12vw, 57px);
-  font-weight: 900;
-  line-height: 0.98;
-  letter-spacing: -1.4px;
-}
-.post-finale__counter span {
-  margin-top: 4px;
+.post-finale__period {
+  max-width: 398px;
+  margin: 12px auto 0;
   color: #3e383c;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.3;
 }
-.post-finale__counter small {
-  margin-top: 5px;
+.post-finale__since {
+  margin: 3px 0 0;
   color: #aaa3a8;
   font-size: 13px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.35;
 }
-.post-finale__text {
-  margin: 13px auto 0;
+.post-finale__memories {
+  max-width: 398px;
+  margin: 28px auto 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #faf8fa;
+  text-align: left;
+}
+.post-finale__memories h2 {
+  margin: 0;
+  color: #353035;
+  font-size: 21px;
+  font-weight: 750;
+  line-height: 1.24;
+}
+.post-finale__memories > p {
+  margin: 6px 0 0;
   color: #777077;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
-  line-height: 1.32;
+  line-height: 1.35;
 }
 .post-finale__actions {
-  max-width: 398px;
-  margin: 15px auto 0;
+  margin-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
-.post-finale__action {
+.post-finale .post-finale__action {
+  width: 100%;
+  flex: none;
   min-width: 0;
-  height: 51px;
-  padding: 0 9px;
-  border: 1px solid #eaeaea;
-  border-radius: 14px;
-  background: #fff;
-  color: #202020;
-  font: inherit;
-  font-size: 13.5px;
-  font-weight: 600;
-  line-height: 1.12;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  cursor: pointer;
+  padding: 0 8px;
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 8px 22px -20px rgba(66, 37, 52, 0.55);
-  transition: transform 0.12s ease, background 0.15s ease;
-}
-.post-finale__action:active {
-  background: #fff8f8;
-  transform: scale(0.97);
 }
 .post-finale__action:focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 2px;
 }
+.post-finale__action-content {
+  width: max-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
 .post-finale__action-icon {
   flex: none;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--cell-past);
   color: var(--red);
-  font-size: 17px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
 }
 .post-finale__action-icon--grid {
-  padding: 7px;
-  display: grid;
-  grid-template-columns: repeat(2, 4px);
-  grid-template-rows: repeat(2, 4px);
+  grid-template-columns: repeat(2, 3px);
+  grid-template-rows: repeat(2, 3px);
   place-content: center;
-  gap: 3px;
+  gap: 2px;
 }
 .post-finale__action-icon--grid i {
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   border-radius: 1px;
   background: currentColor;
 }
@@ -531,9 +524,7 @@ body {
 .finale-scene__sun-rise,
 .finale-scene__rays,
 .finale-scene__sun,
-.finale-scene__cloud,
-.finale-scene__plant,
-.finale-scene__sparkles {
+.finale-scene__cloud {
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -549,26 +540,11 @@ body {
 .finale-scene__heart {
   fill: rgba(255, 255, 255, 0.76);
 }
-.finale-scene__sparkles {
-  fill: #ffbd74;
-  stroke: #ffbd74;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  animation: finale-sparkle 4.8s ease-in-out infinite;
-}
 .finale-scene__cloud--left {
   animation: finale-cloud-left 19s ease-in-out infinite;
 }
 .finale-scene__cloud--right {
   animation: finale-cloud-right 24s ease-in-out infinite;
-}
-.finale-scene__plant--left {
-  transform-origin: 100% 100%;
-  animation: finale-plant-left 7s ease-in-out infinite;
-}
-.finale-scene__plant--right {
-  transform-origin: 0 100%;
-  animation: finale-plant-right 8s ease-in-out -2s infinite;
 }
 
 @keyframes finale-sun-rise {
@@ -596,51 +572,45 @@ body {
   0%, 100% { transform: translateX(14px); }
   50% { transform: translateX(-18px); }
 }
-@keyframes finale-plant-left {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2.5deg); }
-}
-@keyframes finale-plant-right {
-  0%, 100% { transform: rotate(2deg); }
-  50% { transform: rotate(-2.5deg); }
-}
-@keyframes finale-sparkle {
-  0%, 100% { opacity: 0.45; }
-  50% { opacity: 1; }
-}
-
 @media (max-height: 700px) {
   .post-finale__content {
-    padding-top: 8px;
+    padding-top: 12px;
   }
-  .post-finale__counter {
-    margin-top: 9px;
+  .post-finale__title {
+    font-size: 31px;
   }
-  .post-finale__text {
-    margin-top: 9px;
-    font-size: 15px;
+  .post-finale__period {
+    margin-top: 8px;
+    font-size: 16px;
+  }
+  .post-finale__memories {
+    margin-top: 16px;
+    padding: 14px;
+  }
+  .post-finale__memories h2 {
+    font-size: 19px;
+  }
+  .post-finale__memories > p {
+    font-size: 14px;
   }
   .post-finale__actions {
     margin-top: 11px;
   }
-  .post-finale__action {
+  .post-finale .post-finale__action {
     height: 47px;
+    font-size: 14px;
   }
   .finale-scene {
-    min-height: 150px;
+    min-height: 135px;
   }
 }
 
-@media (max-width: 370px) {
-  .post-finale__action {
-    padding-inline: 6px;
-    gap: 5px;
-    font-size: 12px;
+@media (max-width: 420px) {
+  .post-finale__actions {
+    grid-template-columns: 1fr;
   }
-  .post-finale__action-icon {
-    width: 23px;
-    height: 23px;
-    line-height: 23px;
+  .post-finale .post-finale__action {
+    font-size: 15px;
   }
 }
 
