@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useVault, resume } from './lib/vault'
-import { trackAppOpen, trackView } from './lib/analytics'
+import { identifyAudience, trackAppOpen, trackView } from './lib/analytics'
 import Gate from './components/Gate'
 import Home from './components/Home'
 import Splash from './components/Splash'
@@ -19,6 +19,9 @@ export default function App() {
 
   useEffect(() => {
     if (status === 'locked') trackView('login', 'Вход')
+    if (status === 'ready' && role) {
+      identifyAudience(role === 'live' ? 'primary' : 'tester')
+    }
     if (status === 'ready' && role === 'live') {
       trackView('calendar', 'Календарь')
       trackAppOpen()

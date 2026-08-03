@@ -13,6 +13,7 @@ export type AnalyticsGoal =
   | 'certificate_copy'
 
 export type AnalyticsParams = Record<string, string | number | boolean>
+export type AnalyticsAudience = 'primary' | 'tester'
 
 type YmFunction = {
   (...args: unknown[]): void
@@ -30,6 +31,7 @@ declare global {
 let enabled = false
 let lastVirtualUrl: string | null = null
 let appOpenTracked = false
+let identifiedAudience: AnalyticsAudience | null = null
 
 function isProductionSite(): boolean {
   return (
@@ -98,6 +100,18 @@ export function trackAppOpen(): void {
   if (appOpenTracked) return
   appOpenTracked = true
   trackGoal('app_open', { display_mode: displayMode() })
+}
+
+/**
+ * Attach an anonymous account-role label to Metrika's browser ClientID.
+ * No names, passwords or personal content are transmitted. The label lets the
+ * owner separate the primary app audience from development/test traffic.
+ */
+export function identifyAudience(audience: AnalyticsAudience): void {
+  if (!enabled || !window.ym || identifiedAudience === audience) return
+
+  window.ym(COUNTER_ID, 'userParams', { app_audience: audience })
+  identifiedAudience = audience
 }
 
 /** Report a safe virtual SPA screen. No surprise titles or personal text. */
