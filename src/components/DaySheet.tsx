@@ -13,6 +13,7 @@ import VideoCard from './VideoCard'
 import BookingCard from './BookingCard'
 import ConfettiBurst from './Day29Confetti'
 import { trackGoal } from '../lib/analytics'
+import { recordJourneyInteraction } from '../lib/journey'
 
 interface Active {
   day: number
@@ -186,7 +187,10 @@ interface MediaProps {
 
 function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
   function expand(src: string) {
-    if (analyticsEnabled) trackGoal('photo_open', { day: def.day })
+    if (analyticsEnabled) {
+      trackGoal('photo_open', { day: def.day })
+      recordJourneyInteraction('photo', def.day)
+    }
     onExpand(src)
   }
 

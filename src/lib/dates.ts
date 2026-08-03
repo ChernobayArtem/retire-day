@@ -28,6 +28,16 @@ export function daysUntilTarget(now: Date): number {
   return diffDays(now, dayDate(TARGET_DAY))
 }
 
+/** The finale itself stays on Aug 29; the epilogue starts the next day. */
+export function isAfterTarget(now: Date): boolean {
+  return daysUntilTarget(now) < 0
+}
+
+/** Aug 30 is day 1 of the new chapter, continuing across month/year boundaries. */
+export function newChapterDay(now: Date): number {
+  return Math.max(1, diffDays(dayDate(TARGET_DAY + 1), now) + 1)
+}
+
 export function isBeforeStart(now: Date): boolean {
   return diffDays(dayDate(START_DAY), now) < 0
 }

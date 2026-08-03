@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useMedia } from '../lib/useMedia'
 import { trackGoal } from '../lib/analytics'
+import { recordJourneyInteraction } from '../lib/journey'
 
 interface Props {
   day: number
@@ -22,7 +23,10 @@ export default function VideoCard({ day, analyticsEnabled, src, poster }: Props)
   const videoUrl = useMedia(started && src ? src : null)
 
   function startVideo() {
-    if (analyticsEnabled) trackGoal('video_play', { day })
+    if (analyticsEnabled) {
+      trackGoal('video_play', { day })
+      recordJourneyInteraction('video', day)
+    }
     setStarted(true)
   }
 

@@ -12,6 +12,7 @@ import { useVault } from '../lib/vault'
 import { couponMessage, normaliseCoupon } from './CouponCard'
 import CopyIcon from './CopyIcon'
 import { trackGoal, trackView } from '../lib/analytics'
+import { recordJourneyInteraction } from '../lib/journey'
 
 interface Props {
   now: Date
@@ -133,6 +134,7 @@ export default function SurpriseArchive({
         source: 'archive',
         ...(meta.codeIndex === undefined ? {} : { code_index: meta.codeIndex }),
       })
+      recordJourneyInteraction(meta.kind === 'certificate' ? 'certificate' : 'coupon', meta.day)
     }
     setCopiedKey(key)
     window.setTimeout(() => setCopiedKey((current) => (current === key ? null : current)), 1800)

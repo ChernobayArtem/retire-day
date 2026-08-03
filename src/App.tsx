@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useVault, resume } from './lib/vault'
 import { identifyAudience, trackAppOpen, trackView } from './lib/analytics'
+import { getNow, isAfterTarget } from './lib/dates'
+import { recordJourneyAppOpen } from './lib/journey'
 import Gate from './components/Gate'
 import Home from './components/Home'
 import Splash from './components/Splash'
@@ -23,8 +25,26 @@ export default function App() {
       identifyAudience(role === 'live' ? 'primary' : 'tester')
     }
     if (status === 'ready' && role === 'live') {
-      trackView('calendar', 'Календарь')
+      const now = getNow(null)
+      const postFinale = isAfterTarget(now)
+      trackView(postFinale ? 'new-chapter' : 'calendar', postFinale ? 'Новая глава' : 'Календарь')
       trackAppOpen()
+    }
+  }, [role, status])
+
+  useEffect(() => {
+    if (status !== 'ready' || role !== 'live') return
+
+    function recordVisibleLaunch() {
+      if (document.visibilityState === 'visible') recordJourneyAppOpen(getNow(null))
+    }
+
+    recordVisibleLaunch()
+    window.addEventListener('pageshow', recordVisibleLaunch)
+    document.addEventListener('visibilitychange', recordVisibleLaunch)
+    return () => {
+      window.removeEventListener('pageshow', recordVisibleLaunch)
+      document.removeEventListener('visibilitychange', recordVisibleLaunch)
     }
   }, [role, status])
 

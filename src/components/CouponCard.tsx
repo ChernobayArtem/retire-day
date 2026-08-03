@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { keepRussianShortWords } from '../lib/typography'
 import CopyIcon from './CopyIcon'
 import { trackGoal } from '../lib/analytics'
+import { recordJourneyInteraction } from '../lib/journey'
 
 export interface CouponData {
   title?: string
@@ -52,7 +53,10 @@ export default function CouponCard({
   async function handleCopy() {
     const ok = await onCopy(couponMessage(coupon, emoji))
     if (!ok) return
-    if (analyticsEnabled) trackGoal('coupon_copy', { day, source: 'sheet' })
+    if (analyticsEnabled) {
+      trackGoal('coupon_copy', { day, source: 'sheet' })
+      recordJourneyInteraction('coupon', day)
+    }
     setCopied(true)
     setTimeout(() => setCopied(false), 1800)
   }

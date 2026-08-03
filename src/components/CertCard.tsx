@@ -3,6 +3,7 @@ import type { CertCode } from '../content/days'
 import CopyIcon from './CopyIcon'
 import EncImg from './EncImg'
 import { trackGoal } from '../lib/analytics'
+import { recordJourneyInteraction } from '../lib/journey'
 
 interface Props {
   day: number
@@ -62,6 +63,7 @@ function CodeRow({
     if (!(await onCopy(code.value))) return
     if (analyticsEnabled) {
       trackGoal('certificate_copy', { day, source: 'sheet', code_index: codeIndex })
+      recordJourneyInteraction('certificate', day)
     }
     setCopied(true)
     setTimeout(() => setCopied(false), 1600)

@@ -1,13 +1,28 @@
 import { useEffect, useRef, useState } from 'react'
 import type { DayDef } from '../content/days'
-import { getNow, daysUntilTarget, stateForDay, diffDays, dayDate } from '../lib/dates'
+import {
+  getNow,
+  daysUntilTarget,
+  stateForDay,
+  diffDays,
+  dayDate,
+  isAfterTarget,
+  newChapterDay,
+} from '../lib/dates'
 import { MONTH_TITLE, START_DAY, TOTAL_DAYS } from '../config'
 import { useStore, markOpened, resetProgress } from '../lib/store'
 import { dayByNumber, logout, mediaUrl } from '../lib/vault'
 import { categoryForDay } from '../lib/dayCategories'
 import { trackGoal, trackView } from '../lib/analytics'
+import {
+  recordJourneyArchiveOpen,
+  recordJourneyDayOpen,
+  seedJourneyOpenedDays,
+  type JourneyDaySource,
+} from '../lib/journey'
 import Calendar from './Calendar'
 import DaySheet from './DaySheet'
+import PostFinale from './PostFinale'
 import ProgressBar from './ProgressBar'
 import SceneStage from './SceneStage'
 import SurpriseArchive from './SurpriseArchive'
@@ -54,8 +69,11 @@ export default function Home({ testMode, dateOverride }: Props) {
   const [active, setActive] = useState<Active | null>(null)
   const [archiveOpen, setArchiveOpen] = useState(false)
   const archiveTriggerRef = useRef<HTMLButtonElement>(null)
+  const lastRandomDayRef = useRef<number | null>(null)
 
   const left = Math.max(0, daysUntilTarget(now))
+  const postFinale = isAfterTarget(now)
+  const chapterDay = newChapterDay(now)
   // "Day N of 29" — 0 before August, 29 on the finish line.
   const passed = Math.max(0, Math.min(diffDays(dayDate(START_DAY), now) + 1, TOTAL_DAYS))
   const warmDay = Math.max(START_DAY, Math.min(TOTAL_DAYS, passed || START_DAY))
@@ -66,13 +84,17 @@ export default function Home({ testMode, dateOverride }: Props) {
     let midnightTimer = 0
 
     function refreshDate() {
+      const wallClockNow = new Date()
       const current = getNow(null)
       setRealNow(current)
 
       window.clearTimeout(midnightTimer)
-      const nextMidnight = new Date(current)
+      const nextMidnight = new Date(wallClockNow)
       nextMidnight.setHours(24, 0, 1, 0)
-      midnightTimer = window.setTimeout(refreshDate, nextMidnight.getTime() - current.getTime())
+      midnightTimer = window.setTimeout(
+        refreshDate,
+        Math.max(1000, nextMidnight.getTime() - wallClockNow.getTime()),
+      )
     }
 
     function handleVisibilityChange() {
@@ -101,12 +123,22 @@ export default function Home({ testMode, dateOverride }: Props) {
     return () => window.clearTimeout(timer)
   }, [warmDay])
 
-  function handleOpen(day: number, source: 'calendar' | 'archive' | 'previous' = 'calendar') {
-    const locked = stateForDay(day, now) === 'future' && !testMode
+  useEffect(() => {
+    if (!testMode) seedJourneyOpenedDays(opened)
+  }, [opened, testMode])
+
+  useEffect(() => {
+    if (!testMode && postFinale) trackView('new-chapter', 'Новая глава')
+  }, [postFinale, testMode])
+
+  function handleOpen(day: number, source: JourneyDaySource = 'calendar') {
+    const dayState = stateForDay(day, now)
+    const locked = dayState === 'future' && !testMode
     setActive({ day, locked })
     if (!locked) {
       markOpened(day)
       if (!testMode) {
+        recordJourneyDayOpen(day, dayState === 'today', source)
         const def = dayByNumber(day)
         trackGoal('day_open', {
           day,
@@ -119,65 +151,92 @@ export default function Home({ testMode, dateOverride }: Props) {
   }
 
   function openArchive() {
-    if (!testMode) trackGoal('archive_open')
+    if (!testMode) {
+      trackGoal('archive_open', { source: postFinale ? 'new_chapter' : 'calendar' })
+      recordJourneyArchiveOpen()
+    }
     setArchiveOpen(true)
   }
 
   function closeArchive() {
     setArchiveOpen(false)
-    if (!testMode) trackView('calendar', 'Календарь')
+    if (!testMode) {
+      trackView(postFinale ? 'new-chapter' : 'calendar', postFinale ? 'Новая глава' : 'Календарь')
+    }
     window.requestAnimationFrame(() => archiveTriggerRef.current?.focus({ preventScroll: true }))
   }
 
   function closeDay() {
     setActive(null)
     if (!testMode) {
-      trackView(archiveOpen ? 'archive' : 'calendar', archiveOpen ? 'Архив' : 'Календарь')
+      const slug = archiveOpen ? 'archive' : postFinale ? 'new-chapter' : 'calendar'
+      const title = archiveOpen ? 'Архив' : postFinale ? 'Новая глава' : 'Календарь'
+      trackView(slug, title)
     }
+  }
+
+  function openRandomSurprise() {
+    let day = Math.floor(Math.random() * TOTAL_DAYS) + START_DAY
+    if (TOTAL_DAYS > 1 && day === lastRandomDayRef.current) {
+      day = (day % TOTAL_DAYS) + START_DAY
+    }
+    lastRandomDayRef.current = day
+    handleOpen(day, 'post_finale_random')
   }
 
   return (
     <div className="home">
       {!archiveOpen && (
         <>
-          <ProgressBar passed={passed} />
-
-          <div className="stats">
-            <button
+          {postFinale ? (
+            <PostFinale
               ref={archiveTriggerRef}
-              className="stat stat--left stat--archive"
-              onClick={openArchive}
-              aria-label={
-                left > 0
-                  ? `${left} дн. осталось — открыть все сюрпризы`
-                  : 'Свобода! Открыть все сюрпризы'
-              }
-            >
-              <div className="stat__num">{left}</div>
-              <div className="stat__cap">
-                {left > 0 ? 'дн. осталось' : 'свобода!'}
-                <span className="stat__arrow" aria-hidden="true">›</span>
-              </div>
-            </button>
-            <div className="stat stat--right">
-              <div className="stat__num">
-                {pad2(now.getDate())}.{pad2(now.getMonth() + 1)}
-              </div>
-              <div className="stat__cap">сегодня</div>
-            </div>
-          </div>
-
-          <section className="calbox">
-            <h1 className="calbox__title">{MONTH_TITLE}</h1>
-            <Calendar
-              now={now}
-              opened={opened}
-              testMode={testMode}
-              onOpen={(day) => handleOpen(day, 'calendar')}
+              chapterDay={chapterDay}
+              onRandom={openRandomSurprise}
+              onArchive={openArchive}
             />
-          </section>
+          ) : (
+            <>
+              <ProgressBar passed={passed} />
 
-          <SceneStage day={active?.day ?? (passed || 1)} />
+              <div className="stats">
+                <button
+                  ref={archiveTriggerRef}
+                  className="stat stat--left stat--archive"
+                  onClick={openArchive}
+                  aria-label={
+                    left > 0
+                      ? `${left} дн. осталось — открыть все сюрпризы`
+                      : 'Свобода! Открыть все сюрпризы'
+                  }
+                >
+                  <div className="stat__num">{left}</div>
+                  <div className="stat__cap">
+                    {left > 0 ? 'дн. осталось' : 'свобода!'}
+                    <span className="stat__arrow" aria-hidden="true">›</span>
+                  </div>
+                </button>
+                <div className="stat stat--right">
+                  <div className="stat__num">
+                    {pad2(now.getDate())}.{pad2(now.getMonth() + 1)}
+                  </div>
+                  <div className="stat__cap">сегодня</div>
+                </div>
+              </div>
+
+              <section className="calbox">
+                <h1 className="calbox__title">{MONTH_TITLE}</h1>
+                <Calendar
+                  now={now}
+                  opened={opened}
+                  testMode={testMode}
+                  onOpen={(day) => handleOpen(day, 'calendar')}
+                />
+              </section>
+
+              <SceneStage day={active?.day ?? (passed || 1)} />
+            </>
+          )}
 
           {testMode && (
             <div className="testbar">
