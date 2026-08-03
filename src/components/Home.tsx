@@ -251,6 +251,15 @@ export default function Home({ testMode, dateOverride }: Props) {
               </button>
               <button onClick={() => resetProgress()}>сброс</button>
               <button onClick={() => logout()}>выход</button>
+              <button
+                onClick={() => {
+                  const url = new URL(window.location.href)
+                  url.searchParams.set('ui-kit', '1')
+                  window.location.assign(url.toString())
+                }}
+              >
+                UI kit
+              </button>
             </div>
           )}
         </>

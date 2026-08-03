@@ -14,6 +14,7 @@ import BookingCard from './BookingCard'
 import ConfettiBurst from './Day29Confetti'
 import { trackGoal } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
+import { Divider, Icons, SheetFooter } from '../ui'
 
 interface Active {
   day: number
@@ -101,7 +102,7 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
                 onCopyText={copyText}
                 onExpand={setLightbox}
               />
-              <hr className="rule" />
+              <Divider className="rule" />
               {(def.wish || def.message) && (
                 <p className="day__wish">
                   {keepRussianShortWords(def.wish ?? def.message ?? '')}
@@ -139,24 +140,14 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
           </div>
 
           <div className="day__foot">
-            <hr className="rule" />
-            <div className="day__nav">
-              {/* закрытый день листать некуда — остаётся одна кнопка во всю ширину */}
-              {!locked && (
-                <button
-                  className="day__btn day__btn--prev"
-                  disabled={!canPrev}
-                  onClick={() => canPrev && onNav(active.day - 1)}
-                >
-                  <span className="day__chev" aria-hidden="true">‹</span>
-                  Предыдущий день
-                </button>
-              )}
-              <button className="day__btn day__btn--close" onClick={onClose}>
-                <span className="day__x" aria-hidden="true">✕</span>
-                Закрыть шторку
-              </button>
-            </div>
+            <Divider className="rule" />
+            {/* Закрытый день листать некуда — остаётся одна кнопка во всю ширину. */}
+            <SheetFooter
+              showPrevious={!locked}
+              previousDisabled={!canPrev}
+              onPrevious={() => canPrev && onNav(active.day - 1)}
+              onClose={onClose}
+            />
           </div>
         </div>
       </div>
@@ -206,7 +197,7 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
       <button className="mcard mcard--collage" onClick={() => expand(def.collage!)}>
         <EncImg className="mcard__img" path={def.collage} alt="Наш коллаж" />
         <span className="mcard__expand" aria-hidden="true">
-          <ExpandIcon />
+          <Icons.Expand size={16} />
         </span>
       </button>
     )
@@ -272,7 +263,7 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
         <button className="mcard mcard--collage" onClick={() => expand(def.photos![0])}>
           <EncImg className="mcard__img" path={def.photos[0]} />
           <span className="mcard__expand" aria-hidden="true">
-            <ExpandIcon />
+            <Icons.Expand size={16} />
           </span>
         </button>
       )
@@ -291,12 +282,4 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
     )
   }
   return <div className="mcard mcard--emoji">{def.emoji}</div>
-}
-
-function ExpandIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#202020" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-    </svg>
-  )
 }

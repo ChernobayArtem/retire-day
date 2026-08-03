@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { useVault, resume } from './lib/vault'
 import { identifyAudience, trackAppOpen, trackView } from './lib/analytics'
 import { getNow, isAfterTarget } from './lib/dates'
@@ -6,6 +6,8 @@ import { recordJourneyAppOpen } from './lib/journey'
 import Gate from './components/Gate'
 import Home from './components/Home'
 import Splash from './components/Splash'
+
+const UIKitShowcase = lazy(() => import('./ui/UIKitShowcase'))
 
 let resumeStarted = false
 
@@ -52,6 +54,15 @@ export default function App() {
   if (status === 'locked') return <Gate />
 
   const testMode = role === 'test'
-  const dateOverride = testMode ? new URLSearchParams(window.location.search).get('date') : null
+  const query = new URLSearchParams(window.location.search)
+  if (testMode && query.get('ui-kit') === '1') {
+    return (
+      <Suspense fallback={<Splash />}>
+        <UIKitShowcase />
+      </Suspense>
+    )
+  }
+
+  const dateOverride = testMode ? query.get('date') : null
   return <Home testMode={testMode} dateOverride={dateOverride} />
 }

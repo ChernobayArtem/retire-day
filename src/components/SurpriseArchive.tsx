@@ -10,9 +10,20 @@ import { copyText } from '../lib/clipboard'
 import { keepRussianShortWords } from '../lib/typography'
 import { useVault } from '../lib/vault'
 import { couponMessage, normaliseCoupon } from './CouponCard'
-import CopyIcon from './CopyIcon'
 import { trackGoal, trackView } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
+import {
+  Badge,
+  Button,
+  CopyAction,
+  CopyIcon,
+  EmptyState,
+  IconButton,
+  Icons,
+  Surface,
+  Tab,
+  TabsList,
+} from '../ui'
 
 interface Props {
   now: Date
@@ -151,10 +162,15 @@ export default function SurpriseArchive({
       aria-hidden={obscured || undefined}
     >
       <header className="archive__header">
-        <button className="archive__back" onClick={onBack}>
-          <span className="archive__back-arrow" aria-hidden="true">‹</span>
+        <Button
+          className="archive__back"
+          variant="link"
+          size="sm"
+          leadingIcon={<Icons.ArrowLeft />}
+          onClick={onBack}
+        >
           Назад
-        </button>
+        </Button>
         <h1 className="archive__title" id="archive-title">Все твои сюрпризы</h1>
         <p className="archive__subtitle">
           {keepRussianShortWords('Здесь собрано всё, что уже открылось в календаре')}
@@ -162,30 +178,42 @@ export default function SurpriseArchive({
       </header>
 
       {visibleCategories.length > 0 && (
-        <div className="archive__tabs" role="group" aria-label="Категории сюрпризов">
+        <TabsList className="archive__tabs" aria-label="Категории сюрпризов">
           {visibleCategories.map((category) => {
             const active = selected === category.id
             return (
-              <button
+              <Tab
                 key={category.id}
-                className={'archive__tab' + (active ? ' is-active' : '')}
-                aria-pressed={active}
+                id={`archive-tab-${category.id}`}
+                className="archive__tab"
+                selected={active}
+                aria-controls="archive-panel"
+                icon={category.icon ? <span>{category.icon}</span> : undefined}
+                badge={
+                  <Badge variant={active ? 'accent' : 'neutral'}>
+                    {counts[category.id]}
+                  </Badge>
+                }
                 onClick={() => choose(category.id)}
               >
-                {category.icon && <span aria-hidden="true">{category.icon}</span>}
-                <span>{category.label}</span>
-                <span className="archive__tab-count">{counts[category.id]}</span>
-              </button>
+                {category.label}
+              </Tab>
             )
           })}
-        </div>
+        </TabsList>
       )}
 
       <div
+        id="archive-panel"
         className="archive__body"
         ref={bodyRef}
-        role="region"
-        aria-label={ARCHIVE_CATEGORIES.find((category) => category.id === selected)?.label}
+        role={visibleCategories.length > 0 ? 'tabpanel' : 'region'}
+        aria-labelledby={visibleCategories.length > 0 ? `archive-tab-${selected}` : undefined}
+        aria-label={
+          visibleCategories.length > 0
+            ? ARCHIVE_CATEGORIES.find((category) => category.id === selected)?.label
+            : 'Открытые сюрпризы'
+        }
       >
         {selectedItems.length > 0 ? (
           <div className="archive__list">
@@ -201,13 +229,14 @@ export default function SurpriseArchive({
             ))}
           </div>
         ) : (
-          <div className="archive__empty">
-            <div className="archive__empty-mark" aria-hidden="true">✦</div>
-            <h2>Пока здесь пусто</h2>
-            <p>
-              {keepRussianShortWords('Когда наступит нужный день, сюрприз появится здесь.')}
-            </p>
-          </div>
+          <EmptyState
+            className="archive__empty"
+            icon={<Icons.Sparkle />}
+            title="Пока здесь пусто"
+            description={keepRussianShortWords(
+              'Когда наступит нужный день, сюрприз появится здесь.',
+            )}
+          />
         )}
       </div>
     </section>
@@ -232,7 +261,12 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
   const codes = certCodes(def)
 
   return (
-    <article className={`archive-card archive-card--${category}`} style={style}>
+    <Surface
+      as="article"
+      variant="raised"
+      className={`archive-card archive-card--${category}`}
+      style={style}
+    >
       <div className="archive-card__meta">
         <span>{ddmm(def.day)}</span>
         <span>день {def.day}</span>
@@ -283,8 +317,10 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
                     {code.label && <span className="archive-card__code-label">{code.label} </span>}
                     {code.value}
                   </div>
-                  <button
-                    className="archive-card__icon-btn"
+                  <IconButton
+                    className="archive-card__icon-action"
+                    size="sm"
+                    variant="ghost"
                     onClick={() =>
                       onCopy(key, code.value, {
                         day: def.day,
@@ -293,9 +329,8 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
                       })
                     }
                     aria-label={`Скопировать ${code.label ?? 'код'}`}
-                  >
-                    {copiedKey === key ? <CheckIcon /> : <CopyIcon />}
-                  </button>
+                    icon={copiedKey === key ? <Icons.Check /> : <CopyIcon />}
+                  />
                 </div>
               )
             })}
@@ -316,8 +351,11 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
           </div>
           <p className="archive-card__text">{keepRussianShortWords(coupon.desc)}</p>
           <div className="archive-card__actions">
-            <button
+            <CopyAction
               className="archive-card__copy"
+              copied={copiedKey === `${def.day}-coupon`}
+              variant="action"
+              fullWidth
               onClick={() =>
                 onCopy(
                   `${def.day}-coupon`,
@@ -325,13 +363,15 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
                   { day: def.day, kind: 'coupon' },
                 )
               }
+            />
+            <Button
+              className="archive-card__open archive-card__open--inline"
+              variant="outline"
+              fullWidth
+              onClick={onOpen}
             >
-              {copiedKey === `${def.day}-coupon` ? 'Скопировано' : 'Скопировать'}
-              {copiedKey === `${def.day}-coupon` ? <CheckIcon /> : <CopyIcon />}
-            </button>
-            <button className="archive-card__open archive-card__open--secondary" onClick={onOpen}>
               Открыть день
-            </button>
+            </Button>
           </div>
         </>
       )}
@@ -369,33 +409,20 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
           />
         </>
       )}
-    </article>
+    </Surface>
   )
 }
 
 function ArchiveOpenButton({ label, onClick }: { label: string; onClick: () => void }) {
   return (
-    <button className="archive-card__open" onClick={onClick}>
-      {label}
-      <span aria-hidden="true">›</span>
-    </button>
-  )
-}
-
-function CheckIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
+    <Button
+      className="archive-card__open"
+      variant="outline"
+      trailingIcon={<Icons.ChevronRight />}
+      fullWidth
+      onClick={onClick}
     >
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
+      {label}
+    </Button>
   )
 }

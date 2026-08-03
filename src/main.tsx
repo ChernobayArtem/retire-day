@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { registerSW } from 'virtual:pwa-register'
 import App from './App'
 import { initAnalytics } from './lib/analytics'
+import './ui/tokens.css'
 import './styles/global.css'
 import './styles/app.css'
+import './ui/ui.css'
 
 type LegacyOrientationWindow = Window & { orientation?: number }
 type LockableScreenOrientation = ScreenOrientation & {

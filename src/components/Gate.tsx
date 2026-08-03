@@ -3,6 +3,7 @@ import { keepRussianShortWords } from '../lib/typography'
 import gateLogo from '../assets/gate-logo.png'
 import { unlock } from '../lib/vault'
 import { trackGoal } from '../lib/analytics'
+import { Button, TextField } from '../ui'
 
 export default function Gate() {
   const [value, setValue] = useState('')
@@ -33,8 +34,12 @@ export default function Gate() {
         <h1 className="gate__title">{keepRussianShortWords('Только для киселечка')}</h1>
         <p className="gate__sub">Введи секретное слово 🤫</p>
         <form className="gate__form" onSubmit={submit}>
-          <input
-            className={'gate__input ym-disable-keys ym-disable-clickmap' + (error ? ' gate__input--error' : '')}
+          <TextField
+            className={error ? 'gate__field gate__field--error' : 'gate__field'}
+            inputClassName="gate__input ym-disable-keys ym-disable-clickmap"
+            aria-label="Секретное слово"
+            aria-invalid={error || undefined}
+            aria-describedby={error ? 'gate-error' : undefined}
             value={value}
             onChange={(e) => {
               setValue(e.target.value)
@@ -46,12 +51,20 @@ export default function Gate() {
             autoCorrect="off"
             autoComplete="off"
             spellCheck={false}
+            fullWidth
           />
-          <button className="gate__btn" disabled={busy || !value.trim()}>
-            {busy ? 'Открываю…' : 'Войти'}
-          </button>
+          <Button
+            className="gate__submit"
+            type="submit"
+            variant="primary"
+            fullWidth
+            loading={busy}
+            disabled={!value.trim()}
+          >
+            Войти
+          </Button>
         </form>
-        {error && <p className="gate__err">Не-а, попробуй ещё 😼</p>}
+        {error && <p className="gate__err" id="gate-error">Не-а, попробуй ещё 😼</p>}
       </div>
     </div>
   )

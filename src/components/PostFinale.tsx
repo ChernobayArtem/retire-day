@@ -1,5 +1,6 @@
 import { forwardRef } from 'react'
 import type { NewChapterPeriod } from '../lib/dates'
+import { Button, Icons, Surface } from '../ui'
 
 interface Props {
   period: NewChapterPeriod
@@ -24,33 +25,36 @@ const PostFinale = forwardRef<HTMLButtonElement, Props>(function PostFinale(
           <p className="post-finale__since">с 30 августа 2026</p>
         </div>
 
-        <section className="post-finale__memories" aria-labelledby="post-finale-memories-title">
+        <Surface
+          as="section"
+          className="post-finale__memories"
+          variant="subtle"
+          aria-labelledby="post-finale-memories-title"
+        >
           <h2 id="post-finale-memories-title">29 сюрпризов — всегда рядом</h2>
           <p>Можно открыть любой ещё раз или доверить выбор случаю.</p>
           <div className="post-finale__actions">
-            <button className="day__btn post-finale__action" onClick={onRandom}>
-              <span className="post-finale__action-content">
-                <span className="post-finale__action-icon" aria-hidden="true">✦</span>
-                <span>Случайный сюрприз</span>
-              </span>
-            </button>
-            <button
+            <Button
+              className="post-finale__action"
+              variant="outline"
+              leadingIcon={<Icons.Sparkle />}
+              fullWidth
+              onClick={onRandom}
+            >
+              Случайный сюрприз
+            </Button>
+            <Button
               ref={archiveButtonRef}
-              className="day__btn post-finale__action"
+              className="post-finale__action"
+              variant="outline"
+              leadingIcon={<Icons.Grid />}
+              fullWidth
               onClick={onArchive}
             >
-              <span className="post-finale__action-content">
-                <span className="post-finale__action-icon post-finale__action-icon--grid" aria-hidden="true">
-                  <i />
-                  <i />
-                  <i />
-                  <i />
-                </span>
-                <span>Все воспоминания</span>
-              </span>
-            </button>
+              Все воспоминания
+            </Button>
           </div>
-        </section>
+        </Surface>
       </div>
 
       <DawnScene />

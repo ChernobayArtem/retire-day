@@ -1,8 +1,3 @@
-:root {
-  color-scheme: light;
-  --ink: #241a22;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -24,9 +19,9 @@ body {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  background: #fff;
-  color: var(--ink);
+  font-family: var(--ui-font-sans);
+  background: var(--ui-color-bg);
+  color: var(--ui-color-text);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

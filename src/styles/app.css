@@ -1,22 +1,3 @@
-/* Design tokens taken straight from the Figma frame. */
-:root {
-  --red: #ff5e61;
-  --ink: #241a22;
-  --muted: #8b7f86;
-  --grey: #c8c8c8;
-  --grey-num: #8a8a8a;
-  --line: #f1edf2;
-  --cell-past: #ffedee;
-  --cell-future: #f4f4f4;
-  --green: #abf394;
-}
-
-body {
-  background: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
-  color: var(--ink);
-}
-
 /*
  * The Web App Manifest asks the OS for portrait mode, and supported Android
  * PWAs lock there natively. iOS does not honour that lock consistently, so a
@@ -26,7 +7,7 @@ body {
 .orientation-guard {
   position: fixed;
   inset: 0;
-  z-index: 2147483647;
+  z-index: var(--ui-z-guard);
   min-height: 100dvh;
   padding: calc(env(safe-area-inset-top) + 24px) 32px calc(env(safe-area-inset-bottom) + 24px);
   display: flex;
@@ -90,11 +71,11 @@ body {
 .home,
 .gate {
   width: 100%;
-  max-width: 480px;
+  max-width: var(--ui-layout-app-max);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--ui-color-surface);
 }
 
 /* Fills exactly one screen and never scrolls. */
@@ -391,21 +372,21 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #fff;
+  background: var(--ui-color-surface);
 }
 .post-finale__content {
   position: relative;
-  z-index: 2;
+  z-index: var(--ui-z-content);
   flex: none;
-  padding: 20px 16px 0;
+  padding: 20px var(--ui-layout-gutter) 0;
 }
 .post-finale__hero {
   text-align: center;
 }
 .post-finale__title {
-  max-width: 398px;
+  max-width: var(--ui-layout-content-max);
   margin: 0 auto;
-  color: #353535;
+  color: var(--ui-color-text-strong);
   font-size: clamp(34px, 8.8vw, 40px);
   font-weight: 800;
   line-height: 1.06;
@@ -417,7 +398,7 @@ body {
   transform: translateY(-1px);
 }
 .post-finale__period {
-  max-width: 398px;
+  max-width: var(--ui-layout-content-max);
   margin: 12px auto 0;
   color: #3e383c;
   font-size: 17px;
@@ -432,12 +413,8 @@ body {
   line-height: 1.35;
 }
 .post-finale__memories {
-  max-width: 398px;
+  max-width: var(--ui-layout-content-max);
   margin: 28px auto 0;
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: #faf8fa;
   text-align: left;
 }
 .post-finale__memories h2 {
@@ -460,49 +437,8 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
-.post-finale .post-finale__action {
-  width: 100%;
-  flex: none;
+.post-finale__action {
   min-width: 0;
-  padding: 0 8px;
-  -webkit-tap-highlight-color: transparent;
-}
-.post-finale__action:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 2px;
-}
-.post-finale__action-content {
-  width: max-content;
-  max-width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-.post-finale__action-icon {
-  flex: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--cell-past);
-  color: var(--red);
-  font-size: 14px;
-  line-height: 1;
-  display: grid;
-  place-items: center;
-}
-.post-finale__action-icon--grid {
-  grid-template-columns: repeat(2, 3px);
-  grid-template-rows: repeat(2, 3px);
-  place-content: center;
-  gap: 2px;
-}
-.post-finale__action-icon--grid i {
-  width: 3px;
-  height: 3px;
-  border-radius: 1px;
-  background: currentColor;
 }
 
 .finale-scene {
@@ -583,7 +519,7 @@ body {
     margin-top: 8px;
     font-size: 16px;
   }
-  .post-finale__memories {
+  .post-finale__memories.ui-surface {
     margin-top: 16px;
     padding: 14px;
   }
@@ -596,21 +532,14 @@ body {
   .post-finale__actions {
     margin-top: 11px;
   }
-  .post-finale .post-finale__action {
-    height: 47px;
-    font-size: 14px;
-  }
   .finale-scene {
     min-height: 135px;
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 440px) {
   .post-finale__actions {
     grid-template-columns: 1fr;
-  }
-  .post-finale .post-finale__action {
-    font-size: 15px;
   }
 }
 
@@ -626,7 +555,7 @@ body {
   left: 50%;
   bottom: calc(env(safe-area-inset-bottom) + 8px);
   transform: translateX(-50%);
-  z-index: 20;
+  z-index: var(--ui-z-floating);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -658,16 +587,16 @@ body {
 .archive {
   position: fixed;
   inset: 0 auto 0 50%;
-  z-index: 30;
+  z-index: var(--ui-z-dialog);
   transform: translateX(-50%);
   width: 100%;
-  max-width: 480px;
+  max-width: var(--ui-layout-app-max);
   height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #f8f6f8;
-  color: var(--ink);
+  background: var(--ui-color-surface-muted);
+  color: var(--ui-color-text);
   animation: archive-in 0.26s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .archive:focus {
@@ -676,32 +605,10 @@ body {
 .archive__header {
   flex: none;
   padding: calc(env(safe-area-inset-top) + 10px) 16px 18px;
-  background: #fff;
+  background: var(--ui-color-surface);
 }
 .archive__back {
-  min-height: 44px;
   margin: 0 0 10px -6px;
-  padding: 0 8px 0 4px;
-  border: 0;
-  background: none;
-  color: #0213ff;
-  font: inherit;
-  font-size: 16px;
-  font-weight: 650;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.archive__back:active {
-  opacity: 0.55;
-}
-.archive__back-arrow {
-  font-size: 31px;
-  font-weight: 400;
-  line-height: 1;
-  transform: translateY(-1px);
 }
 .archive__title {
   margin: 0;
@@ -720,72 +627,10 @@ body {
 }
 .archive__tabs {
   flex: none;
-  display: flex;
-  gap: 8px;
   padding: 12px 16px;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  background: #fff;
+  background: var(--ui-color-surface);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-}
-.archive__tabs::-webkit-scrollbar {
-  display: none;
-}
-.archive__tab {
-  flex: none;
-  min-height: 44px;
-  padding: 0 13px;
-  border: 1px solid #e8e3e7;
-  border-radius: 999px;
-  background: #fff;
-  color: #665e64;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 650;
-  line-height: 1;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  opacity: 0.68;
-  transition: opacity 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.archive__tab:active {
-  transform: scale(0.97);
-}
-.archive__tab:focus {
-  outline: none;
-}
-.archive__tab:focus-visible {
-  outline: 2px solid rgba(214, 71, 71, 0.34);
-  outline-offset: 2px;
-}
-.archive__tab.is-active {
-  border-color: #d64747;
-  background: #fff;
-  color: #3d353b;
-  opacity: 1;
-}
-.archive__tab-count {
-  min-width: 20px;
-  height: 20px;
-  padding: 0 6px;
-  border-radius: 999px;
-  background: #f1edf1;
-  color: #847b82;
-  font-size: 11px;
-  font-weight: 800;
-  line-height: 20px;
-  text-align: center;
-}
-.archive__tab.is-active .archive__tab-count {
-  background: var(--cell-past);
-  color: #d64747;
 }
 .archive__body {
   flex: 1 1 auto;
@@ -802,11 +647,6 @@ body {
 .archive-card {
   position: relative;
   overflow: hidden;
-  padding: 17px;
-  border: 1px solid #eee9ed;
-  border-radius: 19px;
-  background: #fff;
-  box-shadow: 0 8px 24px -20px rgba(47, 28, 40, 0.5);
 }
 .archive-card::before {
   content: '';
@@ -852,45 +692,8 @@ body {
   font-size: 14px;
   line-height: 1.3;
 }
-.archive-card__open,
-.archive-card__copy {
-  min-height: 44px;
-  border-radius: 13px;
-  border: 0;
-  font: inherit;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  -webkit-tap-highlight-color: transparent;
-}
 .archive-card__open {
-  width: 100%;
-  height: 51px;
   margin-top: 15px;
-  padding: 0 14px;
-  border: 1px solid #eaeaea;
-  border-radius: 14px;
-  background: #fff;
-  color: #202020;
-  font-weight: 500;
-}
-.archive-card__open span {
-  font-size: 22px;
-  line-height: 1;
-}
-.archive-card__open--secondary {
-  margin-top: 0;
-  background: #fff;
-  color: #202020;
-}
-.archive-card__open:active,
-.archive-card__copy:active,
-.archive-card__icon-btn:active {
-  transform: scale(0.97);
 }
 .archive-card__actions {
   margin-top: 15px;
@@ -898,16 +701,8 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
-.archive-card__actions .archive-card__open,
-.archive-card__actions .archive-card__copy {
-  min-width: 0;
-  padding-inline: 8px;
-  white-space: nowrap;
-}
-.archive-card__copy {
-  padding: 0 12px;
-  background: #f0f1ff;
-  color: #0213ff;
+.archive-card__open--inline {
+  margin-top: 0;
 }
 .archive-card__coupon-head,
 .archive-card__cert-head {
@@ -967,19 +762,9 @@ body {
   font-weight: 600;
   user-select: none;
 }
-.archive-card__icon-btn {
-  flex: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 0;
-  border-radius: 11px;
+.archive-card__icon-action.ui-icon-button {
   background: #fff;
-  color: #0213ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  color: var(--ui-color-action);
 }
 .archive-card__video-head {
   display: flex;
@@ -999,38 +784,14 @@ body {
   align-items: center;
   justify-content: center;
 }
-.archive__empty {
+.archive__empty.ui-empty-state {
   min-height: 330px;
-  padding: 48px 28px;
-  color: #847b82;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
-.archive__empty-mark {
-  width: 58px;
-  height: 58px;
-  margin-bottom: 16px;
-  border-radius: 50%;
-  background: #f0ebef;
-  color: var(--red);
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.archive__empty h2 {
-  margin: 0;
-  color: #4c444a;
-  font-size: 21px;
-}
-.archive__empty p {
-  max-width: 280px;
-  margin: 7px 0 0;
-  font-size: 15px;
-  line-height: 1.4;
+
+@media (max-width: 420px) {
+  .archive-card__actions {
+    grid-template-columns: 1fr;
+  }
 }
 @keyframes archive-in {
   from {
@@ -1091,36 +852,11 @@ body {
   gap: 10px;
 }
 .gate__input {
-  font: inherit;
-  font-size: 17px;
   text-align: center;
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 2px solid var(--line);
-  background: #fbf9fa;
-  outline: none;
-  transition: border-color 0.15s ease;
 }
-.gate__input:focus {
-  border-color: var(--red);
-}
-.gate__input--error {
+.gate__field--error .ui-text-field__control {
   border-color: var(--red);
   animation: shake 0.35s;
-}
-.gate__btn {
-  font: inherit;
-  font-size: 17px;
-  font-weight: 800;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  padding: 14px;
-  cursor: pointer;
-  background: var(--red);
-}
-.gate__btn:disabled {
-  opacity: 0.45;
 }
 .gate__err {
   color: var(--red);
@@ -1144,20 +880,20 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  z-index: 50;
+  z-index: var(--ui-z-sheet);
   animation: fade 0.2s ease;
 }
 .sheet {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: var(--ui-layout-app-max);
   /* Same height on every day. 92dvh rather than 90 buys back some of the ~90px
      Safari's address bar takes from a standalone PWA; together with the compact
      rules below the tallest days fit there without the header scrolling. */
   height: min(92dvh, 812px);
-  background: #fff;
-  border-radius: 0 0 24px 24px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  background: var(--ui-color-surface);
+  border-radius: 0 0 var(--ui-radius-sheet) var(--ui-radius-sheet);
+  box-shadow: var(--ui-shadow-sheet);
   animation: dropdown 0.34s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
 }
@@ -1185,10 +921,9 @@ body {
   line-height: 1.05;
   color: #353535;
 }
-.rule {
-  height: 1px;
-  border: 0;
-  background: var(--line);
+.rule.ui-divider {
+  flex: none;
+  width: calc(100% + 32px);
   margin: 0 -16px;
 }
 .day__wish {
@@ -1443,42 +1178,6 @@ body {
 .day__foot .rule {
   margin: 0 -16px 16px;
 }
-.day__nav {
-  display: flex;
-  gap: 12px;
-}
-.day__btn {
-  flex: 1 1 0;
-  height: 51px;
-  border-radius: 14px;
-  border: 1px solid #eaeaea;
-  background: #fff;
-  color: #202020;
-  font-size: 15px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-}
-.day__btn:active:not(:disabled) {
-  transform: scale(0.97);
-}
-.day__btn--prev:disabled {
-  background: #f5f5f5;
-  color: #9e9e9e;
-  border-color: transparent;
-  cursor: default;
-}
-.day__chev {
-  font-size: 22px;
-  line-height: 0.5;
-}
-.day__x {
-  font-size: 13px;
-}
-
 /* media blocks */
 .mcard {
   width: 100%;
@@ -1558,9 +1257,9 @@ body {
   border-radius: 50%;
   border: 3px solid var(--line);
   border-top-color: var(--red);
-  animation: spin 0.8s linear infinite;
+  animation: splash-spin 0.8s linear infinite;
 }
-@keyframes spin {
+@keyframes splash-spin {
   to {
     transform: rotate(360deg);
   }
@@ -1709,9 +1408,9 @@ body {
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.45);
   border-top-color: #fff;
-  animation: spin 0.8s linear infinite;
+  animation: video-spin 0.8s linear infinite;
 }
-@keyframes spin {
+@keyframes video-spin {
   to {
     transform: rotate(360deg);
   }
@@ -1768,22 +1467,10 @@ body {
 .cert__label {
   user-select: none;
 }
-.cert__copy {
+.cert__copy.ui-icon-button {
   position: relative;
   flex: none;
-  border: none;
-  background: none;
-  color: #0213ff;
-  cursor: pointer;
-  display: flex;
-  padding: 2px;
-}
-.cert__copy:active {
-  opacity: 0.6;
-}
-.copy-icon {
-  display: block;
-  flex: none;
+  color: var(--ui-color-action);
 }
 .cert__tip {
   position: absolute;
@@ -1801,71 +1488,6 @@ body {
   animation: fade 0.15s ease;
 }
 .cert__tip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: #202020;
-}
-
-.mcert {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-.mcert__banner {
-  width: 100%;
-  aspect-ratio: 398 / 200;
-  border-radius: 16px;
-  overflow: hidden;
-}
-.mcert__banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.mcert__coderow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.mcert__code {
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 0.5px;
-  color: #272727;
-  user-select: all;
-}
-.mcert__copy {
-  position: relative;
-  border: none;
-  background: none;
-  color: #0213ff;
-  cursor: pointer;
-  display: flex;
-  padding: 2px;
-}
-/* small tooltip above the copy icon */
-.mcert__tip {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  background: #202020;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 5px 9px;
-  border-radius: 8px;
-  pointer-events: none;
-  animation: fade 0.15s ease;
-}
-.mcert__tip::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -1930,20 +1552,13 @@ body {
 .carou__placeholder {
   background: #f0edf1;
 }
-.carou__expand {
+.carou__expand.ui-icon-button {
   position: absolute;
-  top: -30px;
-  right: 0;
+  top: -40px;
+  right: -10px;
   z-index: 3;
-  width: 24px;
-  height: 24px;
-  padding: 0;
   border: 0;
-  background: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  background: transparent;
 }
 .carou__dots {
   display: flex;
@@ -1999,24 +1614,15 @@ body {
   line-height: 1.25;
   color: #606060;
 }
-.cpn__copy {
+.cpn__copy.ui-button {
   position: relative;
   z-index: 2;
   align-self: flex-start;
-  border: 0;
-  background: none;
+  height: auto;
+  min-height: 44px;
   padding: 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   font-size: 19px;
-  font-weight: 590;
-  color: #0213ff;
-  font-family: inherit;
-}
-.cpn__copy:active {
-  opacity: 0.6;
+  font-weight: 600;
 }
 .cpn__emoji {
   position: absolute;
@@ -2075,7 +1681,7 @@ body {
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: var(--ui-z-lightbox);
   background: rgba(0, 0, 0, 0.92);
   display: flex;
   align-items: center;
@@ -2103,7 +1709,7 @@ body {
 .day29-confetti {
   position: fixed;
   inset: 0;
-  z-index: 70;
+  z-index: var(--ui-z-celebration);
   overflow: hidden;
   pointer-events: none;
   contain: layout paint;
@@ -2163,7 +1769,7 @@ body {
   .sheet,
   .sheet-overlay,
   .lightbox,
-  .gate__input--error,
+  .gate__field--error .ui-text-field__control,
   .encimg-loading,
   .encimg-ready {
     animation: none;

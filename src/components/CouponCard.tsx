@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { keepRussianShortWords } from '../lib/typography'
-import CopyIcon from './CopyIcon'
 import { trackGoal } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
+import { CopyAction } from '../ui'
 
 export interface CouponData {
   title?: string
@@ -67,21 +67,16 @@ export default function CouponCard({
         <h3 className="cpn__title">{keepRussianShortWords(title)}</h3>
         <p className="cpn__desc">{keepRussianShortWords(desc)}</p>
       </div>
-      <button className="cpn__copy" onClick={handleCopy}>
-        {copied ? 'Скопировано' : 'Скопировать'}
-        {copied ? <CheckIcon /> : <CopyIcon />}
-      </button>
+      <CopyAction
+        className="cpn__copy"
+        copied={copied}
+        variant="link"
+        size="sm"
+        onClick={handleCopy}
+      />
       <div className="cpn__emoji" aria-hidden="true">
         {emoji}
       </div>
     </div>
-  )
-}
-
-function CheckIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
   )
 }

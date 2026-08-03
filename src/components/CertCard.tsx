@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import type { CertCode } from '../content/days'
-import CopyIcon from './CopyIcon'
 import EncImg from './EncImg'
 import { trackGoal } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
+import { CopyIcon, IconButton, Icons } from '../ui'
 
 interface Props {
   day: number
@@ -75,22 +75,19 @@ function CodeRow({
         {code.label && <span className="cert__label">{code.label} </span>}
         {code.value}
       </span>
-      <button
+      <IconButton
         className="cert__copy"
+        variant="ghost"
+        size="sm"
         onClick={handleCopy}
         aria-label={`Скопировать ${code.label ?? 'код'}`}
-      >
-        {copied ? <CheckIcon /> : <CopyIcon />}
-        {copied && <span className="cert__tip">скопировано</span>}
-      </button>
+        icon={
+          <>
+            {copied ? <Icons.Check /> : <CopyIcon />}
+            {copied && <span className="cert__tip">скопировано</span>}
+          </>
+        }
+      />
     </div>
-  )
-}
-
-function CheckIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
   )
 }

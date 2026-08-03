@@ -1,0 +1,181 @@
+:root {
+  color-scheme: light;
+
+  /* Primitive colors */
+  --ui-color-white: #ffffff;
+  --ui-color-black: #000000;
+
+  --ui-color-rose-50: #fff8f8;
+  --ui-color-rose-100: #ffedee;
+  --ui-color-rose-200: #ffd0dc;
+  --ui-color-rose-300: #ff9cba;
+  --ui-color-rose-500: #ff5e61;
+  --ui-color-rose-600: #d64747;
+
+  --ui-color-blue-50: #f0f1ff;
+  --ui-color-blue-500: #269dfd;
+  --ui-color-blue-600: #0213ff;
+  --ui-color-green-300: #abf394;
+
+  --ui-color-neutral-50: #faf8fa;
+  --ui-color-neutral-100: #f8f6f8;
+  --ui-color-neutral-150: #f5f5f5;
+  --ui-color-neutral-200: #f1edf2;
+  --ui-color-neutral-250: #eaeaea;
+  --ui-color-neutral-300: #e0dce1;
+  --ui-color-neutral-400: #c8c8c8;
+  --ui-color-neutral-500: #aaa3a8;
+  --ui-color-neutral-600: #8b7f86;
+  --ui-color-neutral-650: #777077;
+  --ui-color-neutral-700: #606060;
+  --ui-color-neutral-800: #353535;
+  --ui-color-neutral-850: #272727;
+  --ui-color-neutral-900: #241a22;
+
+  /* Semantic colors */
+  --ui-color-bg: var(--ui-color-white);
+  --ui-color-surface: var(--ui-color-white);
+  --ui-color-surface-subtle: var(--ui-color-neutral-50);
+  --ui-color-surface-muted: var(--ui-color-neutral-100);
+  --ui-color-text: var(--ui-color-neutral-900);
+  --ui-color-text-strong: var(--ui-color-neutral-800);
+  --ui-color-text-secondary: var(--ui-color-neutral-650);
+  --ui-color-text-muted: var(--ui-color-neutral-600);
+  --ui-color-text-disabled: var(--ui-color-neutral-400);
+  --ui-color-text-inverse: var(--ui-color-white);
+  --ui-color-action: var(--ui-color-blue-600);
+  --ui-color-action-soft: var(--ui-color-blue-50);
+  --ui-color-link: var(--ui-color-action);
+  --ui-color-border: var(--ui-color-neutral-250);
+  --ui-color-border-subtle: var(--ui-color-neutral-200);
+  --ui-color-border-strong: var(--ui-color-neutral-300);
+  --ui-color-border-accent: var(--ui-color-rose-600);
+  --ui-color-accent: var(--ui-color-rose-500);
+  --ui-color-accent-hover: var(--ui-color-rose-600);
+  --ui-color-accent-soft: var(--ui-color-rose-100);
+  --ui-color-disabled-bg: var(--ui-color-neutral-150);
+  --ui-color-disabled-text: #9e9e9e;
+  --ui-color-overlay: rgba(36, 26, 34, 0.4);
+  --ui-color-focus-ring: rgba(255, 94, 97, 0.3);
+
+  /* Four-point spacing scale */
+  --ui-space-0: 0;
+  --ui-space-0-5: 2px;
+  --ui-space-1: 4px;
+  --ui-space-1-5: 6px;
+  --ui-space-2: 8px;
+  --ui-space-2-5: 10px;
+  --ui-space-3: 12px;
+  --ui-space-3-5: 14px;
+  --ui-space-4: 16px;
+  --ui-space-4-5: 18px;
+  --ui-space-5: 20px;
+  --ui-space-6: 24px;
+  --ui-space-7: 28px;
+  --ui-space-8: 32px;
+  --ui-space-10: 40px;
+  --ui-space-12: 48px;
+  --ui-space-16: 64px;
+
+  /* Shape */
+  --ui-radius-xs: 4px;
+  --ui-radius-sm: 8px;
+  --ui-radius-md: 12px;
+  --ui-radius-control: 14px;
+  --ui-radius-lg: 16px;
+  --ui-radius-xl: 20px;
+  --ui-radius-sheet: 24px;
+  --ui-radius-pill: 999px;
+  --ui-radius-round: 50%;
+
+  /* Elevation */
+  --ui-shadow-sm: 0 4px 10px -4px rgba(36, 26, 34, 0.18);
+  --ui-shadow-md: 0 8px 24px -20px rgba(47, 28, 40, 0.5);
+  --ui-shadow-lg: 0 12px 28px -17px rgba(96, 42, 65, 0.55);
+  --ui-shadow-sheet: 0 10px 22px rgba(0, 0, 0, 0.08);
+  --ui-shadow-focus: 0 0 0 3px var(--ui-color-focus-ring);
+
+  /* App layout */
+  --ui-layout-app-max: 480px;
+  --ui-layout-content-max: 398px;
+  --ui-layout-gutter: 16px;
+  --ui-layout-control-sm: 44px;
+  --ui-layout-control-md: 51px;
+  --ui-safe-top: env(safe-area-inset-top, 0px);
+  --ui-safe-right: env(safe-area-inset-right, 0px);
+  --ui-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ui-safe-left: env(safe-area-inset-left, 0px);
+
+  /* Layering */
+  --ui-z-base: 0;
+  --ui-z-content: 2;
+  --ui-z-floating: 20;
+  --ui-z-dialog: 30;
+  --ui-z-sheet: 50;
+  --ui-z-lightbox: 60;
+  --ui-z-celebration: 70;
+  --ui-z-showcase: 100;
+  --ui-z-guard: 2147483647;
+
+  /* Typography */
+  --ui-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Segoe UI", system-ui, sans-serif;
+  --ui-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Segoe UI", system-ui, sans-serif;
+
+  --ui-font-size-caption: 12px;
+  --ui-font-size-footnote: 13px;
+  --ui-font-size-label: 14px;
+  --ui-font-size-body: 15px;
+  --ui-font-size-body-lg: 16px;
+  --ui-font-size-subtitle: 17px;
+  --ui-font-size-heading: 21px;
+  --ui-font-size-title: 24px;
+  --ui-font-size-display: 34px;
+  --ui-font-size-hero: 40px;
+
+  --ui-font-weight-regular: 400;
+  --ui-font-weight-medium: 500;
+  --ui-font-weight-semibold: 600;
+  --ui-font-weight-bold: 700;
+  --ui-font-weight-heavy: 800;
+  --ui-font-weight-black: 900;
+
+  --ui-line-height-none: 1;
+  --ui-line-height-tight: 1.08;
+  --ui-line-height-heading: 1.2;
+  --ui-line-height-body: 1.4;
+  --ui-line-height-relaxed: 1.6;
+
+  --ui-letter-spacing-tight: -0.8px;
+  --ui-letter-spacing-normal: 0;
+  --ui-letter-spacing-label: 0.2px;
+
+  /* Motion */
+  --ui-duration-fast: 120ms;
+  --ui-duration-normal: 180ms;
+  --ui-duration-slow: 260ms;
+  --ui-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ui-ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ui-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ui-ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1);
+
+  /* Component contracts */
+  --ui-button-height-sm: var(--ui-layout-control-sm);
+  --ui-button-height-md: var(--ui-layout-control-md);
+  --ui-button-radius: var(--ui-radius-control);
+  --ui-button-icon-size: 18px;
+  --ui-button-icon-gap: var(--ui-space-2);
+  --ui-icon-button-size-sm: var(--ui-layout-control-sm);
+  --ui-icon-button-size-md: var(--ui-layout-control-md);
+  --ui-field-height: var(--ui-layout-control-md);
+
+  /* Compatibility aliases for the existing application. */
+  --red: var(--ui-color-accent);
+  --ink: var(--ui-color-text);
+  --muted: var(--ui-color-text-muted);
+  --grey: var(--ui-color-neutral-400);
+  --grey-num: #8a8a8a;
+  --line: var(--ui-color-border-subtle);
+  --cell-past: var(--ui-color-accent-soft);
+  --cell-future: #f4f4f4;
+  --green: var(--ui-color-green-300);
+}

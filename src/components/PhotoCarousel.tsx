@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import EncImg from './EncImg'
+import { IconButton, Icons } from '../ui'
 
 interface Props {
   /** Пути внутри vault, например 'days/10/1.jpg'. */
@@ -46,13 +47,14 @@ export default function PhotoCarousel({ photos, onExpand }: Props) {
 
   return (
     <div className="carou">
-      <button
+      <IconButton
         className="carou__expand"
+        variant="ghost"
+        size="sm"
         onClick={() => onExpand(photos[active])}
         aria-label="Открыть фото"
-      >
-        <ExpandIcon />
-      </button>
+        icon={<Icons.Expand size={16} />}
+      />
       <div className="carou__track" ref={trackRef} onScroll={sync}>
         {photos.map((p, i) => (
           <button
@@ -74,13 +76,5 @@ export default function PhotoCarousel({ photos, onExpand }: Props) {
         ))}
       </div>
     </div>
-  )
-}
-
-function ExpandIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#202020" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-    </svg>
   )
 }
