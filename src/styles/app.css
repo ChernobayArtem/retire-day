@@ -1687,13 +1687,69 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
   animation: fade 0.18s ease;
 }
-.lightbox img {
+.lightbox__image {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   border-radius: 12px;
+  cursor: zoom-in;
+  will-change: transform;
+  transform-origin: center;
+  transition: transform var(--ui-duration-normal) var(--ui-ease-standard);
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+.lightbox.is-interacting .lightbox__image {
+  cursor: grabbing;
+  transition: none;
+}
+.lightbox__close.ui-icon-button {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 14px);
+  right: calc(env(safe-area-inset-right) + 14px);
+  z-index: 2;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.42);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox__hint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom) + 18px);
+  z-index: 2;
+  max-width: calc(100% - 40px);
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--ui-radius-pill);
+  background: rgba(0, 0, 0, 0.48);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+  pointer-events: none;
+  transform: translateX(-50%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox__spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: video-spin 0.8s linear infinite;
 }
 
 @keyframes fade {
@@ -1769,12 +1825,16 @@
   .sheet,
   .sheet-overlay,
   .lightbox,
+  .lightbox__spinner,
   .gate__field--error .ui-text-field__control,
   .encimg-loading,
   .encimg-ready {
     animation: none;
   }
   .carou__item {
+    transition: none;
+  }
+  .lightbox__image {
     transition: none;
   }
   .day29-confetti {

@@ -12,6 +12,7 @@ import PhotoCarousel from './PhotoCarousel'
 import VideoCard from './VideoCard'
 import BookingCard from './BookingCard'
 import ConfettiBurst from './Day29Confetti'
+import ZoomableLightbox from './ZoomableLightbox'
 import { trackGoal } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
 import { Divider, Icons, SheetFooter } from '../ui'
@@ -153,15 +154,7 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
       </div>
 
       {lightbox && (
-        <div
-          className="lightbox"
-          onClick={(e) => {
-            e.stopPropagation()
-            setLightbox(null)
-          }}
-        >
-          {lightboxUrl && <img src={lightboxUrl} alt="" />}
-        </div>
+        <ZoomableLightbox src={lightboxUrl} onClose={() => setLightbox(null)} />
       )}
 
       {showDay28Confetti && <ConfettiBurst />}
