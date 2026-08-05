@@ -7,10 +7,14 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from 'react'
 import { IconButton, Icons } from '../ui'
+import { downloadMedia } from '../lib/download'
+import { cachedMediaBlob } from '../lib/vault'
 
 interface Props {
   src: string | null
   alt?: string
+  sourcePath: string
+  downloadName: string
   onClose: () => void
 }
 
@@ -58,7 +62,13 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value))
 }
 
-export default function ZoomableLightbox({ src, alt = 'Фотография', onClose }: Props) {
+export default function ZoomableLightbox({
+  src,
+  alt = 'Фотография',
+  sourcePath,
+  downloadName,
+  onClose,
+}: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const pointersRef = useRef(new Map<number, Point>())
@@ -74,6 +84,7 @@ export default function ZoomableLightbox({ src, alt = 'Фотография', on
   const suppressCloseUntilRef = useRef(0)
   const onCloseRef = useRef(onClose)
   const previousFocusRef = useRef<HTMLElement | null>(null)
+  const downloadButtonRef = useRef<HTMLButtonElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const [transform, setTransformState] = useState<Transform>(RESET_TRANSFORM)
   const [interacting, setInteracting] = useState(false)
@@ -135,8 +146,16 @@ export default function ZoomableLightbox({ src, alt = 'Фотография', on
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') onCloseRef.current()
       if (event.key === 'Tab') {
+        const controls = [downloadButtonRef.current, closeButtonRef.current].filter(
+          (control): control is HTMLButtonElement => Boolean(control && !control.disabled),
+        )
+        if (controls.length === 0) return
         event.preventDefault()
-        closeButtonRef.current?.focus({ preventScroll: true })
+        const current = controls.indexOf(document.activeElement as HTMLButtonElement)
+        const next = event.shiftKey
+          ? (current <= 0 ? controls.length : current) - 1
+          : (current + 1) % controls.length
+        controls[next].focus({ preventScroll: true })
       }
     }
     closeButtonRef.current?.focus({ preventScroll: true })
@@ -328,6 +347,19 @@ export default function ZoomableLightbox({ src, alt = 'Фотография', on
       }}
       onDoubleClick={handleDoubleClick}
     >
+      <IconButton
+        ref={downloadButtonRef}
+        className="lightbox__download"
+        variant="ghost"
+        aria-label="Скачать фотографию"
+        icon={<Icons.Download />}
+        disabled={!src}
+        onPointerDown={(event) => event.stopPropagation()}
+        onClick={(event) => {
+          event.stopPropagation()
+          if (src) downloadMedia(src, downloadName, cachedMediaBlob(sourcePath))
+        }}
+      />
       <IconButton
         ref={closeButtonRef}
         className="lightbox__close"

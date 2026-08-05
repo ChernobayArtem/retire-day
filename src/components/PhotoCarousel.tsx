@@ -5,7 +5,7 @@ import { IconButton, Icons } from '../ui'
 interface Props {
   /** Пути внутри vault, например 'days/10/1.jpg'. */
   photos: string[]
-  onExpand: (path: string) => void
+  onExpand: (path: string, index: number) => void
 }
 
 /**
@@ -51,7 +51,7 @@ export default function PhotoCarousel({ photos, onExpand }: Props) {
         className="carou__expand"
         variant="ghost"
         size="sm"
-        onClick={() => onExpand(photos[active])}
+        onClick={() => onExpand(photos[active], active)}
         aria-label="Открыть фото"
         icon={<Icons.Expand size={16} />}
       />
@@ -60,7 +60,7 @@ export default function PhotoCarousel({ photos, onExpand }: Props) {
           <button
             key={p}
             className={'carou__item' + (i === active ? ' is-active' : '')}
-            onClick={() => onExpand(p)}
+            onClick={() => onExpand(p, i)}
           >
             {Math.abs(i - active) <= 1 ? (
               <EncImg className="carou__img" path={p} />

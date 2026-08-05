@@ -15,6 +15,7 @@ import ConfettiBurst from './Day29Confetti'
 import ZoomableLightbox from './ZoomableLightbox'
 import { trackGoal } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
+import { mediaDownloadName } from '../lib/download'
 import { Divider, Icons, SheetFooter } from '../ui'
 
 interface Active {
@@ -29,6 +30,11 @@ interface Props {
   onNav: (day: number) => void
 }
 
+interface LightboxMedia {
+  path: string
+  downloadName: string
+}
+
 const BASE = import.meta.env.BASE_URL
 const DAY28_CONFETTI_KEY = 'retire-day:day28-confetti:v1'
 const asset = (p: string) => `${BASE}${p}`
@@ -40,10 +46,14 @@ function ddmm(day: number): string {
 }
 
 export default function DaySheet({ active, analyticsEnabled, testMode, onClose, onNav }: Props) {
-  const [lightbox, setLightbox] = useState<string | null>(null)
+  const [lightbox, setLightbox] = useState<LightboxMedia | null>(null)
   const [showDay28Confetti, setShowDay28Confetti] = useState(false)
   const day28ConfettiChecked = useRef(false)
-  const lightboxUrl = useMedia(lightbox)
+  const lightboxUrl = useMedia(lightbox?.path)
+
+  useEffect(() => {
+    setLightbox(null)
+  }, [active?.day])
 
   useEffect(() => {
     if (active?.day !== 28 || active.locked) {
@@ -101,7 +111,7 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
                 def={def}
                 analyticsEnabled={analyticsEnabled}
                 onCopyText={copyText}
-                onExpand={setLightbox}
+                onExpand={(path, downloadName) => setLightbox({ path, downloadName })}
               />
               <Divider className="rule" />
               {(def.wish || def.message) && (
@@ -154,7 +164,12 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
       </div>
 
       {lightbox && (
-        <ZoomableLightbox src={lightboxUrl} onClose={() => setLightbox(null)} />
+        <ZoomableLightbox
+          src={lightboxUrl}
+          sourcePath={lightbox.path}
+          downloadName={lightbox.downloadName}
+          onClose={() => setLightbox(null)}
+        />
       )}
 
       {showDay28Confetti && <ConfettiBurst />}
@@ -166,16 +181,16 @@ interface MediaProps {
   def: DayDef
   analyticsEnabled: boolean
   onCopyText: (text: string) => Promise<boolean>
-  onExpand: (src: string) => void
+  onExpand: (src: string, downloadName: string) => void
 }
 
 function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
-  function expand(src: string) {
+  function expand(src: string, baseName: string) {
     if (analyticsEnabled) {
       trackGoal('photo_open', { day: def.day })
       recordJourneyInteraction('photo', def.day)
     }
-    onExpand(src)
+    onExpand(src, mediaDownloadName(baseName, src))
   }
 
   if (def.compliment) {
@@ -187,7 +202,10 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
   }
   if (def.collage) {
     return (
-      <button className="mcard mcard--collage" onClick={() => expand(def.collage!)}>
+      <button
+        className="mcard mcard--collage"
+        onClick={() => expand(def.collage!, `Коллаж-${def.day}`)}
+      >
         <EncImg className="mcard__img" path={def.collage} alt="Наш коллаж" />
         <span className="mcard__expand" aria-hidden="true">
           <Icons.Expand size={16} />
@@ -198,6 +216,7 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
   if (def.video) {
     return (
       <VideoCard
+        key={`${def.day}:${def.video.src ?? 'pending'}`}
         day={def.day}
         analyticsEnabled={analyticsEnabled}
         src={def.video.src}
@@ -253,7 +272,10 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
     // `photos` — полные пути внутри vault, как и `collage`.
     if (def.photos.length === 1) {
       return (
-        <button className="mcard mcard--collage" onClick={() => expand(def.photos![0])}>
+        <button
+          className="mcard mcard--collage"
+          onClick={() => expand(def.photos![0], `Фото-${def.day}`)}
+        >
           <EncImg className="mcard__img" path={def.photos[0]} />
           <span className="mcard__expand" aria-hidden="true">
             <Icons.Expand size={16} />
@@ -261,7 +283,12 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
         </button>
       )
     }
-    return <PhotoCarousel photos={def.photos} onExpand={expand} />
+    return (
+      <PhotoCarousel
+        photos={def.photos}
+        onExpand={(path, index) => expand(path, `Фото-${def.day}-${index + 1}`)}
+      />
+    )
   }
   if (def.compliments) {
     return (

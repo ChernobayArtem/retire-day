@@ -25,7 +25,12 @@ interface VaultState {
 let state: VaultState = { status: 'loading', role: null, days: null }
 let manifest: Manifest | null = null
 let cek: CryptoKey | null = null
-const mediaCache = new Map<string, string>()
+interface CachedMedia {
+  url: string
+  blob: Blob
+}
+
+const mediaCache = new Map<string, CachedMedia>()
 const mediaPending = new Map<string, Promise<string>>()
 
 const listeners = new Set<() => void>()
@@ -132,7 +137,7 @@ export async function resume(): Promise<void> {
 
 export function logout() {
   cek = null
-  mediaCache.forEach((u) => URL.revokeObjectURL(u))
+  mediaCache.forEach(({ url }) => URL.revokeObjectURL(url))
   mediaCache.clear()
   mediaPending.clear()
   try {
@@ -162,17 +167,26 @@ export async function mediaUrl(pathRel: string): Promise<string> {
   const entry = m.media[pathRel]
   if (!entry) return `${BASE}${pathRel}`
   const cached = mediaCache.get(pathRel)
-  if (cached) return cached
+  if (cached) return cached.url
   const pending = mediaPending.get(pathRel)
   if (pending) return pending
   const p = (async () => {
-    if (!cek) throw new Error('vault locked')
+    const sessionKey = cek
+    if (!sessionKey) throw new Error('vault locked')
     const response = await fetch(`${BASE}vault/media/${entry.file}`, { cache: 'force-cache' })
     if (!response.ok) throw new Error(`media request failed: ${response.status}`)
     const ct = await response.arrayBuffer()
-    const plain = await subtle().decrypt({ name: 'AES-GCM', iv: b64ToBytes(entry.iv) }, cek, ct)
-    const url = URL.createObjectURL(new Blob([plain], { type: mimeFor(pathRel) }))
-    mediaCache.set(pathRel, url)
+    const plain = await subtle().decrypt(
+      { name: 'AES-GCM', iv: b64ToBytes(entry.iv) },
+      sessionKey,
+      ct,
+    )
+    // A logout or account switch while a large video is decrypting must not
+    // repopulate the plaintext cache after it has just been cleared.
+    if (cek !== sessionKey) throw new Error('vault session changed')
+    const blob = new Blob([plain], { type: mimeFor(pathRel) })
+    const url = URL.createObjectURL(blob)
+    mediaCache.set(pathRel, { url, blob })
     return url
   })()
   mediaPending.set(pathRel, p)
@@ -185,6 +199,11 @@ export async function mediaUrl(pathRel: string): Promise<string> {
     // promise returned by finally() itself.
   })
   return p
+}
+
+/** Return only media already decrypted in this unlocked session. */
+export function cachedMediaBlob(pathRel: string): Blob | null {
+  return mediaCache.get(pathRel)?.blob ?? null
 }
 
 export function dayByNumber(day: number): DayDef | undefined {

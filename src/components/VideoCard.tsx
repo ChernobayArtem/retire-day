@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useMedia } from '../lib/useMedia'
 import { trackGoal } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
+import { mediaDownloadName } from '../lib/download'
+import VideoLightbox from './VideoLightbox'
 
 interface Props {
   day: number
@@ -11,23 +13,20 @@ interface Props {
 }
 
 /**
- * Постер с кнопкой play; сам ролик (несколько мегабайт) расшифровывается
- * только по тапу, а не при открытии дня.
- *
- * У <video> намеренно нет `playsinline`: на iPhone такой ролик уходит в
- * системный полноэкранный плеер — привычные controls, свайп-закрытие, AirPlay.
+ * Постер с кнопкой play; сам ролик расшифровывается только после открытия.
+ * Собственный полноэкранный слой оставляет доступными «Скачать» и «Закрыть».
  */
 export default function VideoCard({ day, analyticsEnabled, src, poster }: Props) {
-  const [started, setStarted] = useState(false)
+  const [opened, setOpened] = useState(false)
   const posterUrl = useMedia(poster)
-  const videoUrl = useMedia(started && src ? src : null)
+  const videoUrl = useMedia(opened && src ? src : null)
 
   function startVideo() {
     if (analyticsEnabled) {
       trackGoal('video_play', { day })
       recordJourneyInteraction('video', day)
     }
-    setStarted(true)
+    setOpened(true)
   }
 
   if (!src) {
@@ -46,8 +45,8 @@ export default function VideoCard({ day, analyticsEnabled, src, poster }: Props)
     )
   }
 
-  if (!started) {
-    return (
+  return (
+    <>
       <button className="vid vid--button" onClick={startVideo} aria-label="Смотреть видео">
         {posterUrl ? (
           <img className="vid__poster" src={posterUrl} alt="" />
@@ -58,50 +57,17 @@ export default function VideoCard({ day, analyticsEnabled, src, poster }: Props)
           <PlayIcon />
         </span>
       </button>
-    )
-  }
-
-  return (
-    <div className="vid">
-      {videoUrl ? (
-        <video
-          className="vid__player"
+      {opened && (
+        <VideoLightbox
           src={videoUrl}
-          poster={posterUrl ?? undefined}
-          controls
-          autoPlay
-          preload="auto"
-          onCanPlay={(e) => void openPlayer(e.currentTarget)}
+          poster={posterUrl}
+          sourcePath={src}
+          downloadName={mediaDownloadName(`Видео-${day}`, src)}
+          onClose={() => setOpened(false)}
         />
-      ) : (
-        <div className="vid__poster vid__loading">
-          {posterUrl && <img className="vid__poster" src={posterUrl} alt="" />}
-          <span className="vid__spinner" aria-hidden="true" />
-        </div>
       )}
-    </div>
+    </>
   )
-}
-
-/**
- * Открыть системный плеер. На iPhone за это отвечает нестандартный
- * `webkitEnterFullscreen` — без него ролик в standalone-PWA может остаться
- * играть внутри карточки, а вертикальное видео там выглядит крошечным.
- */
-async function openPlayer(el: HTMLVideoElement) {
-  if (el.dataset.opened) return // onCanPlay стреляет не один раз
-  el.dataset.opened = '1'
-  try {
-    await el.play()
-  } catch {
-    /* автостарт не дали — остаются controls */
-  }
-  const ios = el as HTMLVideoElement & { webkitEnterFullscreen?: () => void }
-  try {
-    ios.webkitEnterFullscreen?.()
-  } catch {
-    /* не в фокусе или уже полноэкранно */
-  }
 }
 
 /** Треугольник play в системном стиле iOS. */

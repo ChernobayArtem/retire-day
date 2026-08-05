@@ -19,6 +19,7 @@ export {
   ChevronLeft,
   ChevronRight,
   Close,
+  Download,
   Expand,
   Grid,
   Icons,
