@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { downloadMedia } from '../lib/download'
 import { cachedMediaBlob } from '../lib/vault'
 import { IconButton, Icons } from '../ui'
@@ -68,7 +69,7 @@ export default function VideoLightbox({
     }
   }, [])
 
-  return (
+  return createPortal(
     <div
       className="video-lightbox"
       role="dialog"
@@ -121,6 +122,7 @@ export default function VideoLightbox({
           <span className="video-lightbox__spinner" role="status" aria-label="Видео загружается" />
         </div>
       )}
-    </div>
+    </div>,
+    document.body,
   )
 }
