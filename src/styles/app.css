@@ -27,7 +27,7 @@
   margin-bottom: 10px;
   border: 3px solid var(--color-semantic-border-brand);
   border-radius: 12px;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   box-shadow: var(--ui-shadow-lg);
   animation: orientation-turn 1.7s cubic-bezier(0.34, 1.3, 0.64, 1) infinite;
 }
@@ -75,7 +75,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
 }
 
 /* Fills exactly one screen and never scrolls. */
@@ -114,8 +114,8 @@
 .pb__elbow {
   width: 15px;
   height: 9px;
-  border-left: 1px solid var(--color-semantic-shape-progress-inactive);
-  border-top: 1px solid var(--color-semantic-shape-progress-inactive);
+  border-left: 1px solid var(--color-semantic-border-progress-connector);
+  border-top: 1px solid var(--color-semantic-border-progress-connector);
   border-top-left-radius: 3px;
 }
 .pb__label--flip .pb__elbow {
@@ -124,7 +124,7 @@
 .pb__pct {
   font-size: 11px;
   font-weight: 600;
-  color: var(--color-semantic-shape-progress-inactive);
+  color: var(--color-semantic-text-progress-label);
   line-height: 12px;
 }
 
@@ -145,10 +145,10 @@
   max-width: 12px;
   aspect-ratio: 1;
   height: auto;
-  color: var(--color-semantic-shape-progress-inactive);
+  color: var(--color-semantic-icon-progress-inactive);
 }
 .pb__orchid--on {
-  color: var(--color-semantic-shape-progress-active);
+  color: var(--color-semantic-icon-progress-active);
 }
 
 /* ---------- two stat columns ---------- */
@@ -174,7 +174,7 @@
   border-top: 0;
   border-bottom: 0;
   border-left: 0;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   font: inherit;
   cursor: pointer;
   -webkit-tap-highlight-color: var(--color-semantic-background-transparent);
@@ -218,7 +218,7 @@
   width: 21px;
   height: 21px;
   border-radius: 50%;
-  background: var(--color-semantic-shape-calendar-past);
+  background: var(--color-semantic-background-archive-navigation);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -266,7 +266,7 @@
   aspect-ratio: 1 / 1;
   border: none;
   border-radius: 4px;
-  background: var(--color-semantic-shape-calendar-future);
+  background: var(--color-semantic-background-calendar-future);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -312,7 +312,7 @@
 
 /* past — soft pink, dimmed mark */
 .cell--past {
-  background: var(--color-semantic-shape-calendar-past);
+  background: var(--color-semantic-background-calendar-past);
 }
 .cell--past .cell__num {
   color: var(--color-semantic-text-brand-default);
@@ -323,7 +323,7 @@
 
 /* today — white with a red ring */
 .cell--today {
-  background: var(--color-semantic-shape-calendar-today);
+  background: var(--color-semantic-background-calendar-today);
   box-shadow: inset 0 0 0 2px var(--color-semantic-border-brand);
 }
 .cell--today .cell__num {
@@ -332,7 +332,7 @@
 
 /* opened days keep the pink tint even before they are in the past */
 .cell--opened:not(.cell--today) {
-  background: var(--color-semantic-shape-calendar-past);
+  background: var(--color-semantic-background-calendar-past);
 }
 .cell--opened:not(.cell--today) .cell__num {
   color: var(--color-semantic-text-brand-default);
@@ -372,7 +372,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
 }
 .post-finale__content {
   position: relative;
@@ -566,7 +566,7 @@
   border: 1px solid var(--color-semantic-border-subtle);
   border-radius: 999px;
   padding: 5px 8px;
-  box-shadow: 0 8px 22px -12px var(--color-semantic-shadow-neutral-35);
+  box-shadow: 0 8px 22px -12px var(--color-semantic-shadow-test-toolbar);
 }
 .testbar__date {
   min-width: 42px;
@@ -576,7 +576,7 @@
 .testbar button {
   font: inherit;
   border: none;
-  background: var(--color-semantic-shape-calendar-past);
+  background: var(--color-semantic-background-test-control);
   color: var(--color-semantic-text-brand-default);
   border-radius: 999px;
   padding: 4px 9px;
@@ -595,7 +595,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: var(--color-semantic-background-surface-muted);
+  background: var(--color-semantic-background-surface-level-2);
   color: var(--color-semantic-text-main-primary);
   animation: archive-in 0.26s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -605,7 +605,7 @@
 .archive__header {
   flex: none;
   padding: calc(env(safe-area-inset-top) + 10px) 16px 18px;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
 }
 .archive__back {
   margin: 0 0 10px -6px;
@@ -628,7 +628,7 @@
 .archive__tabs {
   flex: none;
   padding: 12px 16px;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   border-top: 1px solid var(--color-semantic-border-subtle);
   border-bottom: 1px solid var(--color-semantic-border-subtle);
 }
@@ -653,7 +653,7 @@
   position: absolute;
   inset: 0 0 auto;
   height: 3px;
-  background: var(--card-accent, var(--color-semantic-shape-progress-active));
+  background: var(--card-accent, var(--color-semantic-shape-archive-accent-default));
 }
 .archive-card__meta {
   margin-bottom: 12px;
@@ -742,7 +742,7 @@
   min-height: 48px;
   padding: 8px 9px 8px 12px;
   border-radius: 12px;
-  background: var(--color-semantic-background-surface-warm);
+  background: var(--color-semantic-background-surface-level-3);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -764,7 +764,7 @@
 }
 .archive-card__icon-action.ui-icon-button {
   background: var(--color-semantic-button-outline-background);
-  color: var(--color-semantic-button-action-text);
+  color: var(--color-semantic-button-action-foreground);
 }
 .archive-card__video-head {
   display: flex;
@@ -822,7 +822,7 @@
   width: 158px;
   height: 104px;
   overflow: hidden;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   pointer-events: none;
 }
 .gate__brand-image {
@@ -891,7 +891,7 @@
      Safari's address bar takes from a standalone PWA; together with the compact
      rules below the tallest days fit there without the header scrolling. */
   height: min(92dvh, 812px);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   border-radius: 0 0 var(--ui-radius-sheet) var(--ui-radius-sheet);
   box-shadow: var(--ui-shadow-sheet);
   animation: dropdown 0.34s cubic-bezier(0.22, 1, 0.36, 1);
@@ -975,7 +975,7 @@
   bottom: 64px;
   width: max-content;
   max-width: min(185px, calc(100% - var(--meme-bubble-right, 187px) - 16px));
-  background: var(--color-semantic-shape-message-background);
+  background: var(--color-semantic-background-message-default);
   color: var(--color-semantic-text-inverse-primary);
   font-size: 15px;
   line-height: 1.28;
@@ -992,8 +992,8 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--color-semantic-shape-message-background);
-  border: 2px solid var(--color-semantic-border-inverse-strong);
+  background: var(--color-semantic-background-message-default);
+  border: 2px solid var(--color-semantic-border-message-reaction);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1009,8 +1009,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-semantic-shape-message-background);
-  border: 2px solid var(--color-semantic-border-inverse-strong);
+  background: var(--color-semantic-background-message-default);
+  border: 2px solid var(--color-semantic-border-message-reaction);
 }
 /* triangle tail on the bottom-right, pointing at the man */
 .meme__bubble::after {
@@ -1022,7 +1022,7 @@
   height: 0;
   border-top: 6px solid var(--color-semantic-border-transparent);
   border-bottom: 9px solid var(--color-semantic-border-transparent);
-  border-left: 11px solid var(--color-semantic-shape-message-background);
+  border-left: 11px solid var(--color-semantic-shape-message-tail);
 }
 
 /* Keep each compact bubble the same distance from the left edge of its
@@ -1199,7 +1199,7 @@
   color: var(--color-semantic-text-content-primary);
   font-size: 14px;
   line-height: 1.6;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
 }
 .mcard--collage {
   position: relative;
@@ -1224,9 +1224,9 @@
   display: block;
   background: linear-gradient(
     110deg,
-    var(--color-semantic-shape-skeleton-base) 24%,
-    var(--color-semantic-shape-skeleton-highlight) 42%,
-    var(--color-semantic-shape-skeleton-base) 60%
+    var(--color-semantic-background-skeleton-base) 24%,
+    var(--color-semantic-background-skeleton-highlight) 42%,
+    var(--color-semantic-background-skeleton-base) 60%
   );
   background-size: 240% 100%;
   animation: encimg-shimmer 1.15s ease-in-out infinite;
@@ -1254,7 +1254,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
 }
 .splash__spinner {
   width: 34px;
@@ -1280,7 +1280,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px -4px var(--color-semantic-shadow-neutral-30);
+  box-shadow: 0 4px 10px -4px var(--color-semantic-shadow-media-expand);
 }
 .mcard--emoji {
   font-size: 64px;
@@ -1318,7 +1318,7 @@
   aspect-ratio: 398 / 260;
   border-radius: 16px;
   overflow: hidden;
-  background: var(--color-semantic-shape-calendar-future);
+  background: var(--color-semantic-background-media-placeholder);
   display: block;
 }
 .vid--button {
@@ -1364,8 +1364,8 @@
   height: 92px;
   border-radius: 50%;
   background: var(--color-semantic-overlay-play);
-  border: 2px solid var(--color-semantic-border-inverse-control);
-  box-shadow: 0 4px 18px var(--color-semantic-shadow-neutral-32);
+  border: 2px solid var(--color-semantic-border-video-play);
+  box-shadow: 0 4px 18px var(--color-semantic-shadow-video-play);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   display: flex;
@@ -1382,10 +1382,10 @@
   width: max-content;
   max-width: calc(100% - 32px);
   padding: 14px 20px;
-  border: 1px solid var(--color-semantic-border-inverse-45);
+  border: 1px solid var(--color-semantic-border-video-pending);
   border-radius: 18px;
   background: var(--color-semantic-overlay-control-strong);
-  box-shadow: 0 4px 18px var(--color-semantic-shadow-neutral-28);
+  box-shadow: 0 4px 18px var(--color-semantic-shadow-video-pending);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   color: var(--color-semantic-text-inverse-primary);
@@ -1416,8 +1416,8 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 3px solid var(--color-semantic-border-inverse-45);
-  border-top-color: var(--color-semantic-border-inverse-strong);
+  border: 3px solid var(--color-semantic-border-preview-loader-track);
+  border-top-color: var(--color-semantic-border-loader-indicator);
   animation: video-spin 0.8s linear infinite;
 }
 @keyframes video-spin {
@@ -1439,7 +1439,7 @@
   aspect-ratio: 398 / 200;
   border-radius: 16px;
   overflow: hidden;
-  background: var(--color-semantic-shape-calendar-future);
+  background: var(--color-semantic-background-media-placeholder);
 }
 .cert__bannerimg {
   width: 100%;
@@ -1480,7 +1480,7 @@
 .cert__copy.ui-icon-button {
   position: relative;
   flex: none;
-  color: var(--color-semantic-button-action-text);
+  color: var(--color-semantic-button-action-foreground);
 }
 .cert__tip {
   position: absolute;
@@ -1504,7 +1504,7 @@
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid var(--color-semantic-border-transparent);
-  border-top-color: var(--color-semantic-background-tooltip);
+  border-top-color: var(--color-semantic-shape-tooltip-pointer);
 }
 
 /* photo carousel: centred card is larger, neighbours peek at the edges */
@@ -1544,7 +1544,7 @@
   border: 0;
   border-radius: 15px;
   overflow: hidden;
-  background: var(--color-semantic-shape-calendar-future);
+  background: var(--color-semantic-background-media-placeholder);
   scroll-snap-align: center;
   cursor: pointer;
   transform: scale(0.797);
@@ -1560,7 +1560,7 @@
   display: block;
 }
 .carou__placeholder {
-  background: var(--color-semantic-shape-skeleton-base);
+  background: var(--color-semantic-background-skeleton-base);
 }
 .carou__expand.ui-icon-button {
   position: absolute;
@@ -1580,11 +1580,11 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--color-semantic-border-strong);
+  background: var(--color-semantic-shape-carousel-indicator-inactive);
   transition: background 0.2s ease;
 }
 .carou__dot.is-active {
-  background: var(--color-semantic-shape-progress-active);
+  background: var(--color-semantic-shape-carousel-indicator-active);
 }
 
 /* coupon card (Figma: dashed voucher with a big emoji in the corner) */
@@ -1647,7 +1647,7 @@
 /* legacy coupon + compliments (days not yet redesigned) */
 .coupon {
   width: 100%;
-  background: var(--color-semantic-shape-calendar-past);
+  background: var(--color-semantic-background-coupon-legacy);
   border: 2px dashed var(--color-semantic-border-brand);
   border-radius: 16px;
   padding: 18px 20px;
@@ -1678,7 +1678,7 @@
   width: 100%;
 }
 .compliments__item {
-  background: var(--color-semantic-shape-calendar-past);
+  background: var(--color-semantic-background-compliment-legacy);
   border-radius: 14px;
   padding: 13px 16px;
   font-size: 16px;
@@ -1725,7 +1725,7 @@
   top: calc(env(safe-area-inset-top) + 14px);
   right: calc(env(safe-area-inset-right) + 14px);
   z-index: 2;
-  border-color: var(--color-semantic-border-inverse-subtle);
+  border-color: var(--color-semantic-border-overlay-control);
   background: var(--color-semantic-overlay-control);
   color: var(--color-semantic-icon-inverse-primary);
   backdrop-filter: blur(8px);
@@ -1736,7 +1736,7 @@
   top: calc(env(safe-area-inset-top) + 14px);
   left: calc(env(safe-area-inset-left) + 14px);
   z-index: 2;
-  border-color: var(--color-semantic-border-inverse-subtle);
+  border-color: var(--color-semantic-border-overlay-control);
   background: var(--color-semantic-overlay-control);
   color: var(--color-semantic-icon-inverse-primary);
   backdrop-filter: blur(8px);
@@ -1790,8 +1790,8 @@
   position: absolute;
   width: 34px;
   height: 34px;
-  border: 3px solid var(--color-semantic-border-inverse-medium);
-  border-top-color: var(--color-semantic-border-inverse-strong);
+  border: 3px solid var(--color-semantic-border-loader-track);
+  border-top-color: var(--color-semantic-border-loader-indicator);
   border-radius: 50%;
   animation: video-spin 0.8s linear infinite;
 }
@@ -1800,7 +1800,7 @@
   position: absolute;
   top: calc(env(safe-area-inset-top) + 14px);
   z-index: 2;
-  border-color: var(--color-semantic-border-inverse-subtle);
+  border-color: var(--color-semantic-border-overlay-control);
   background: var(--color-semantic-overlay-control);
   color: var(--color-semantic-icon-inverse-primary);
   backdrop-filter: blur(8px);
@@ -1820,7 +1820,7 @@
   max-width: calc(100% - 40px);
   margin: 0;
   padding: 8px 12px;
-  border: 1px solid var(--color-semantic-border-inverse-faint);
+  border: 1px solid var(--color-semantic-border-overlay-hint);
   border-radius: var(--ui-radius-pill);
   background: var(--color-semantic-overlay-hint);
   color: var(--color-semantic-text-inverse-primary);
@@ -1837,8 +1837,8 @@
 .lightbox__spinner {
   width: 34px;
   height: 34px;
-  border: 3px solid var(--color-semantic-border-inverse-medium);
-  border-top-color: var(--color-semantic-border-inverse-strong);
+  border: 3px solid var(--color-semantic-border-loader-track);
+  border-top-color: var(--color-semantic-border-loader-indicator);
   border-radius: 50%;
   animation: video-spin 0.8s linear infinite;
 }
@@ -1870,8 +1870,8 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    var(--color-semantic-effect-sun-glow),
-    var(--color-semantic-effect-transparent-white) 64%
+    var(--color-semantic-gradient-sun-glow),
+    var(--color-semantic-gradient-transparent-white) 64%
   );
   transform: translateX(-50%);
   animation: day29-confetti-flash 0.8s ease-out both;
@@ -1884,7 +1884,7 @@
   height: var(--confetti-height);
   border-radius: 1.5px;
   background: var(--confetti-color);
-  box-shadow: 0 1px 1px var(--color-semantic-shadow-neutral-8);
+  box-shadow: 0 1px 1px var(--color-semantic-shadow-finale-ray);
   will-change: transform, opacity;
   animation: day29-confetti-pop var(--confetti-duration) cubic-bezier(0.2, 0.72, 0.28, 1)
     var(--confetti-delay) both;

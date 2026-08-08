@@ -2,6 +2,14 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { extname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { FIGMA_COLOR_SCOPES } from '../design-tokens/color-contract.mjs'
+import {
+  buildColorTokenModel,
+  generatedColorFiles,
+  renderColorSystemGuide,
+  serializeColorTokenModel,
+} from './color-token-model.mjs'
+
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const primitiveFile = 'src/ui/tokens/color-primitives.css'
 const aliasFiles = [
@@ -309,11 +317,7 @@ function auditLayerConsumption() {
       const allowedIllustration =
         isIllustrationConsumer(file) &&
         reference.name.startsWith('--color-alias-illustration-')
-      const allowedDayAccent =
-        file === 'secret/content.mjs' &&
-        reference.name.startsWith('--color-alias-day-accent-')
-
-      if (!allowedIllustration && !allowedDayAccent) {
+      if (!allowedIllustration) {
         addIssue(
           'token layer',
           file,
@@ -381,10 +385,124 @@ function auditReferences() {
   }
 }
 
+function auditFigmaMetadata() {
+  let model
+  try {
+    model = buildColorTokenModel(projectRoot)
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    addIssue('figma metadata', semanticFile, 0, message)
+    return
+  }
+
+  const allowedScopes = new Set(Object.values(FIGMA_COLOR_SCOPES))
+  for (const collection of model.collections) {
+    for (const variable of collection.variables) {
+      if (!variable.description || variable.description.trim().length < 60) {
+        addIssue(
+          'figma metadata',
+          variable.source,
+          0,
+          `${variable.cssName} needs a clear description of at least 60 characters.`,
+        )
+      }
+
+      if (variable.codeSyntax?.WEB !== `var(${variable.cssName})`) {
+        addIssue(
+          'figma metadata',
+          variable.source,
+          0,
+          `${variable.cssName} must expose WEB code syntax as var(${variable.cssName}).`,
+        )
+      }
+
+      for (const scope of variable.scopes) {
+        if (!allowedScopes.has(scope)) {
+          addIssue(
+            'figma metadata',
+            variable.source,
+            0,
+            `${variable.cssName} uses unsupported Figma scope ${scope}.`,
+          )
+        }
+      }
+
+      if (
+        variable.scopes.includes(FIGMA_COLOR_SCOPES.ALL_SCOPES) &&
+        variable.scopes.length !== 1
+      ) {
+        addIssue(
+          'figma metadata',
+          variable.source,
+          0,
+          `${variable.cssName}: ALL_SCOPES must be exclusive.`,
+        )
+      }
+
+      const individualFillScopes = [
+        FIGMA_COLOR_SCOPES.FRAME_FILL,
+        FIGMA_COLOR_SCOPES.SHAPE_FILL,
+        FIGMA_COLOR_SCOPES.TEXT_FILL,
+      ]
+      if (
+        variable.scopes.includes(FIGMA_COLOR_SCOPES.ALL_FILLS) &&
+        individualFillScopes.some((scope) => variable.scopes.includes(scope))
+      ) {
+        addIssue(
+          'figma metadata',
+          variable.source,
+          0,
+          `${variable.cssName}: ALL_FILLS cannot be combined with Frame, Shape, or Text fill.`,
+        )
+      }
+
+      if (variable.layer !== 'semantic') {
+        if (variable.scopes.length > 0 || !variable.hiddenFromPublishing) {
+          addIssue(
+            'figma metadata',
+            variable.source,
+            0,
+            `${variable.cssName} is internal and must have scopes: [] plus hiddenFromPublishing: true.`,
+          )
+        }
+      } else if (!variable.hiddenFromPublishing && variable.scopes.length === 0) {
+        addIssue(
+          'figma metadata',
+          variable.source,
+          0,
+          `${variable.cssName} is public but hidden from every Figma property picker.`,
+        )
+      }
+    }
+  }
+
+  const expectedOutputs = [
+    [generatedColorFiles.figma, serializeColorTokenModel(model)],
+    [generatedColorFiles.guide, renderColorSystemGuide(model)],
+  ]
+  for (const [file, expected] of expectedOutputs) {
+    const absolutePath = join(projectRoot, file)
+    if (!existsSync(absolutePath)) {
+      addIssue('figma metadata', file, 0, `Run npm run tokens:colors to generate ${file}.`)
+      continue
+    }
+    const actual = readFileSync(absolutePath, 'utf8')
+    if (actual !== expected) {
+      addIssue(
+        'figma metadata',
+        file,
+        0,
+        `${file} is stale. Run npm run tokens:colors and commit the result.`,
+      )
+    }
+  }
+}
+
 for (const [file, content] of fileContents) auditRawColorLiterals(file, content)
 auditTokenHierarchy()
 auditLayerConsumption()
 auditReferences()
+auditFigmaMetadata()
 
 issues.sort(
   (a, b) =>

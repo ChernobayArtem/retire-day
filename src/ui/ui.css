@@ -19,7 +19,7 @@
   border: 1px solid var(--color-semantic-button-outline-border);
   border-radius: var(--ui-button-radius);
   background: var(--color-semantic-button-outline-background);
-  color: var(--color-semantic-button-outline-text);
+  color: var(--color-semantic-button-outline-foreground);
   font-size: var(--ui-font-size-body);
   font-weight: var(--ui-font-weight-medium);
   line-height: var(--ui-line-height-none);
@@ -60,38 +60,38 @@
 .ui-button--outline {
   border-color: var(--color-semantic-button-outline-border);
   background: var(--color-semantic-button-outline-background);
-  color: var(--color-semantic-button-outline-text);
+  color: var(--color-semantic-button-outline-foreground);
 }
 
 .ui-button--primary {
-  border-color: var(--color-semantic-button-primary-background);
+  border-color: var(--color-semantic-button-primary-border);
   background: var(--color-semantic-button-primary-background);
-  color: var(--color-semantic-button-primary-text);
+  color: var(--color-semantic-button-primary-foreground);
   font-weight: var(--ui-font-weight-bold);
 }
 
 .ui-button--soft {
   border-color: var(--color-semantic-border-transparent);
   background: var(--color-semantic-button-soft-background);
-  color: var(--color-semantic-button-soft-text);
+  color: var(--color-semantic-button-soft-foreground);
 }
 
 .ui-button--action {
   border-color: var(--color-semantic-border-transparent);
   background: var(--color-semantic-button-action-background);
-  color: var(--color-semantic-button-action-text);
+  color: var(--color-semantic-button-action-foreground);
 }
 
 .ui-button--ghost {
   border-color: var(--color-semantic-border-transparent);
   background: var(--color-semantic-background-transparent);
-  color: var(--color-semantic-text-main-primary);
+  color: var(--color-semantic-button-ghost-foreground);
 }
 
 .ui-button--link {
   border-color: var(--color-semantic-border-transparent);
   background: var(--color-semantic-background-transparent);
-  color: var(--color-semantic-text-link-default);
+  color: var(--color-semantic-button-link-foreground);
   font-weight: var(--ui-font-weight-semibold);
 }
 
@@ -179,7 +179,7 @@
 .ui-icon-button[aria-disabled="true"]:not([aria-busy="true"]) {
   border-color: var(--color-semantic-border-transparent);
   background: var(--color-semantic-button-disabled-background);
-  color: var(--color-semantic-button-disabled-text);
+  color: var(--color-semantic-button-disabled-foreground);
   cursor: default;
 }
 
@@ -192,7 +192,7 @@
 
   .ui-button--primary:not(:disabled):not([aria-disabled="true"]):hover,
   .ui-icon-button--primary:not(:disabled):not([aria-disabled="true"]):hover {
-    border-color: var(--color-semantic-button-primary-background-hover);
+    border-color: var(--color-semantic-button-primary-border-hover);
     background: var(--color-semantic-button-primary-background-hover);
   }
 
@@ -222,7 +222,7 @@
   padding: 0;
   border: 1px solid var(--color-semantic-border-default);
   border-radius: var(--ui-radius-control);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   color: var(--color-semantic-icon-main-primary);
   display: inline-grid;
   place-items: center;
@@ -248,11 +248,11 @@
 
 .ui-icon-button--outline {
   border-color: var(--color-semantic-border-default);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
 }
 
 .ui-icon-button--primary {
-  border-color: var(--color-semantic-button-primary-background);
+  border-color: var(--color-semantic-button-primary-border);
   background: var(--color-semantic-button-primary-background);
   color: var(--color-semantic-icon-inverse-primary);
 }
@@ -266,7 +266,7 @@
 .ui-icon-button--action {
   border-color: var(--color-semantic-border-transparent);
   background: var(--color-semantic-button-action-background);
-  color: var(--color-semantic-button-action-text);
+  color: var(--color-semantic-button-action-foreground);
 }
 
 .ui-icon-button--ghost {
@@ -311,7 +311,7 @@
   padding: 0 var(--ui-space-4);
   border: 2px solid var(--color-semantic-border-subtle);
   border-radius: var(--ui-radius-md);
-  background: var(--color-semantic-background-surface-subtle);
+  background: var(--color-semantic-background-surface-level-1);
   display: flex;
   align-items: center;
   gap: var(--ui-space-2);
@@ -323,7 +323,7 @@
 
 .ui-text-field__control:focus-within {
   border-color: var(--color-semantic-border-brand);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   box-shadow: var(--ui-shadow-focus);
 }
 
@@ -350,7 +350,7 @@
   flex: 0 0 auto;
   width: 20px;
   height: 20px;
-  color: var(--color-semantic-text-main-muted);
+  color: var(--color-semantic-icon-field-muted);
   display: inline-grid;
   place-items: center;
 }
@@ -388,7 +388,7 @@
 
 .ui-text-field--disabled .ui-text-field__input,
 .ui-text-field__input:disabled {
-  color: var(--color-semantic-button-disabled-text);
+  color: var(--color-semantic-button-disabled-foreground);
   cursor: not-allowed;
 }
 
@@ -397,29 +397,29 @@
   padding: var(--ui-space-4-5);
   border: 1px solid var(--color-semantic-border-transparent);
   border-radius: var(--ui-radius-xl);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   color: var(--color-semantic-text-main-primary);
 }
 
 .ui-surface--plain {
   border-color: var(--color-semantic-border-transparent);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
 }
 
 .ui-surface--subtle {
   border-color: var(--color-semantic-border-subtle);
-  background: var(--color-semantic-background-surface-subtle);
+  background: var(--color-semantic-background-surface-level-1);
 }
 
 .ui-surface--raised {
   border-color: var(--color-semantic-border-subtle);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   box-shadow: var(--ui-shadow-md);
 }
 
 .ui-surface--outlined {
   border-color: var(--color-semantic-border-brand-strong);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
 }
 
 .ui-divider {
@@ -427,7 +427,7 @@
   height: 1px;
   margin: 0;
   border: 0;
-  background: var(--color-semantic-border-subtle);
+  background: var(--color-semantic-shape-divider);
 }
 
 .ui-divider--vertical {
@@ -472,7 +472,7 @@
   height: 58px;
   margin-bottom: var(--ui-space-4);
   border-radius: var(--ui-radius-round);
-  background: var(--color-semantic-background-surface-muted);
+  background: var(--color-semantic-background-surface-level-2);
   color: var(--color-semantic-icon-brand-default);
   display: grid;
   place-items: center;
@@ -539,7 +539,7 @@
   padding: 0 13px;
   border: 1px solid var(--color-semantic-border-default);
   border-radius: var(--ui-radius-pill);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   color: var(--color-semantic-text-main-secondary);
   font-size: var(--ui-font-size-label);
   font-weight: var(--ui-font-weight-semibold);
@@ -597,7 +597,7 @@
   height: 20px;
   padding: 0 var(--ui-space-1-5);
   border-radius: var(--ui-radius-pill);
-  background: var(--color-semantic-background-surface-muted);
+  background: var(--color-semantic-background-surface-level-2);
   color: var(--color-semantic-text-main-muted);
   font-family: var(--ui-font-sans);
   font-size: 11px;
@@ -608,7 +608,7 @@
 }
 
 .ui-badge--neutral {
-  background: var(--color-semantic-background-surface-muted);
+  background: var(--color-semantic-background-surface-level-2);
   color: var(--color-semantic-text-main-muted);
 }
 
@@ -709,7 +709,7 @@
     calc(var(--ui-safe-bottom) + var(--ui-space-8));
   overflow-y: auto;
   overscroll-behavior-y: contain;
-  background: var(--color-semantic-background-surface-muted);
+  background: var(--color-semantic-background-surface-level-2);
   color: var(--color-semantic-text-main-primary);
   font-family: var(--ui-font-sans);
   transform: translateX(-50%);
@@ -751,7 +751,7 @@
   padding: var(--ui-space-4);
   border: 1px solid var(--color-semantic-border-subtle);
   border-radius: var(--ui-radius-xl);
-  background: var(--color-semantic-background-surface-default);
+  background: var(--color-semantic-background-surface-level-0);
   box-shadow: var(--ui-shadow-md);
 }
 

@@ -2,9 +2,11 @@
 
 ## Source of truth
 
-The production code is the source of truth for the UI kit. Tokens live in
-`src/ui/tokens.css`, component styles in `src/ui/ui.css`, and public React
-exports in `src/ui/index.ts`.
+The production code is the source of truth for the UI kit. Color values live in
+`src/ui/tokens/color-*.css`, their descriptions and Figma scopes in
+`design-tokens/color-contract.mjs`, the remaining foundations in
+`src/ui/tokens/foundations.css`, component styles in `src/ui/ui.css`, and public
+React exports in `src/ui/index.ts`.
 
 Figma will mirror this system later. Until its variables and components are
 checked against the app, a difference between Figma and code is resolved in
@@ -18,39 +20,35 @@ data, dates, categories, encryption, PWA caching, or surprise content.
 
 ## Layers
 
-The system has three layers:
+The color system has three layers:
 
-1. **Primitive tokens** are raw values: palette, spacing, radii, type scale,
-   shadows, layout sizes, and motion.
-2. **Semantic tokens** express intent: surface, text, border, accent, link,
-   disabled, and overlay.
-3. **Components** own their geometry and interaction states. Screens compose
+1. **Primitive color tokens** are raw palette values and are never consumed by
+   product UI.
+2. **Alias color tokens** map raw values to intermediate product decisions and
+   provide one place to change related semantic roles.
+3. **Semantic color tokens** express exact intent and property scope: text,
+   icon, frame background, stroke, shape, overlay, or effect.
+4. **Components** own their geometry and interaction states. Screens compose
    components; they do not recreate their padding, icon gap, focus ring, or
    disabled treatment.
 
-Use semantic tokens in product UI. Primitive tokens are for defining semantic
-tokens and for exceptional illustration work, not for choosing a new shade in
-each screen.
+Use semantic tokens in product UI. Primitives and aliases are hidden internal
+collections. Code-authored scenes have a separate internal illustration alias
+layer and must not leak those colors into product components.
 
 ## Tokens
 
 ### Colour
 
-Palette primitives use the `--ui-color-*` prefix: white, black, rose, red,
-blue, green, and neutral scales. Product components should use these semantic
-tokens instead:
+The complete palette, meaning of every color, surface hierarchy, Figma scope
+matrix, and all semantic variables are documented in
+[`docs/COLOR_SYSTEM.md`](COLOR_SYSTEM.md). The machine-readable Figma mirror is
+`design-tokens/generated/color-variables.figma.json`.
 
-| Intent | Tokens |
-| --- | --- |
-| Page and surfaces | `--ui-color-bg`, `--ui-color-surface`, `--ui-color-surface-subtle`, `--ui-color-surface-muted` |
-| Text | `--ui-color-text`, `--ui-color-text-strong`, `--ui-color-text-secondary`, `--ui-color-text-muted`, `--ui-color-text-disabled`, `--ui-color-text-inverse` |
-| Borders | `--ui-color-border`, `--ui-color-border-subtle`, `--ui-color-border-strong`, `--ui-color-border-accent` |
-| Actions | `--ui-color-accent`, `--ui-color-accent-hover`, `--ui-color-accent-soft`, `--ui-color-action`, `--ui-color-action-soft`, `--ui-color-link` |
-| States | `--ui-color-disabled-bg`, `--ui-color-disabled-text`, `--ui-color-overlay` |
-
-Legacy variables such as `--red`, `--ink`, `--muted`, `--grey`, and `--line`
-remain compatibility aliases while existing screens are migrated. They are not
-the API for new components.
+The public contract is `--color-semantic-*`. A new semantic variable is not
+valid until it has an explicit description and an exact Figma scope. Build
+validation rejects direct colors, layer violations, missing descriptions,
+invalid scopes, and a stale Figma export.
 
 ### Spacing and layout
 
@@ -228,8 +226,10 @@ only when no consumer remains.
 The transfer is a controlled mirror, not a redesign:
 
 1. Freeze and tag a known code version.
-2. Create Figma variable collections for primitives and semantics using the same
-   names and values. Keep component-only values separate.
+2. Import the three collections from
+   `design-tokens/generated/color-variables.figma.json`. Preserve each
+   variable's `description`, `scopes`, and `hiddenFromPublishing` values exactly;
+   primitives and aliases stay hidden, semantic variables are public.
 3. Create text styles from the code roles and verify the actual iOS/system font
    metrics on representative screens.
 4. Create components whose variants match React props: button variant/size and

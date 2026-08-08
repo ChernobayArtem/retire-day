@@ -3,7 +3,6 @@
   --color-alias-primary-default: var(--color-primitive-mauve-1000);
   --color-alias-primary-strong: var(--color-primitive-neutral-957);
   --color-alias-primary-heading: var(--color-primitive-neutral-783);
-  --color-alias-primary-soft: var(--color-primitive-mauve-750);
   --color-alias-primary-display: var(--color-primitive-neutral-739);
   --color-alias-primary-warm: var(--color-primitive-neutral-826);
   --color-alias-primary-card: var(--color-primitive-mauve-875);
@@ -28,7 +27,6 @@
 
   /* Inverse */
   --color-alias-inverse-default: var(--color-primitive-neutral-0);
-  --color-alias-inverse-subtle: var(--color-primitive-alpha-neutral-0-76);
 
   /* Brand */
   --color-alias-brand-default: var(--color-primitive-red-938);
@@ -78,23 +76,21 @@
   --color-alias-action-default: var(--color-primitive-blue-931);
   --color-alias-action-subtle: var(--color-primitive-blue-153);
   --color-alias-action-hover: var(--color-primitive-blue-222);
-  --color-alias-information-default: var(--color-primitive-blue-722);
 
   /* Status */
   --color-alias-danger-default: var(--color-primitive-red-1000);
   --color-alias-danger-subtle: var(--color-primitive-alpha-red-938-10);
-  --color-alias-success-default: var(--color-primitive-green-231);
 
   /* Disabled */
   --color-alias-disabled-background: var(--color-primitive-neutral-43);
   --color-alias-disabled-foreground: var(--color-primitive-neutral-304);
 
   /* Surface */
-  --color-alias-surface-page: var(--color-primitive-neutral-0);
-  --color-alias-surface-default: var(--color-primitive-neutral-0);
-  --color-alias-surface-subtle: var(--color-primitive-mauve-0);
-  --color-alias-surface-muted: var(--color-primitive-mauve-63);
-  --color-alias-surface-warm: var(--color-primitive-mauve-125);
+  --color-alias-surface-canvas: var(--color-primitive-neutral-0);
+  --color-alias-surface-level-0: var(--color-primitive-neutral-0);
+  --color-alias-surface-level-1: var(--color-primitive-mauve-0);
+  --color-alias-surface-level-2: var(--color-primitive-mauve-63);
+  --color-alias-surface-level-3: var(--color-primitive-mauve-125);
   --color-alias-surface-inverse: var(--color-primitive-mauve-938);
   --color-alias-surface-skeleton: var(--color-primitive-mauve-250);
   --color-alias-surface-skeleton-highlight: var(--color-primitive-mauve-0);
@@ -102,7 +98,6 @@
   --color-alias-surface-calendar-past: var(--color-primitive-red-63);
   --color-alias-surface-progress-track: var(--color-primitive-neutral-174);
   --color-alias-surface-media: var(--color-primitive-neutral-1000);
-  --color-alias-surface-media-control: var(--color-primitive-mauve-938);
   --color-alias-surface-message: var(--color-primitive-blue-722);
   --color-alias-surface-tooltip: var(--color-primitive-neutral-957);
 
@@ -147,6 +142,6 @@
   --color-alias-shadow-neutral-35: var(--color-primitive-alpha-neutral-1000-35);
 
   /* Decorative effects */
-  --color-alias-effect-sun-glow: var(--color-primitive-alpha-yellow-909-48);
-  --color-alias-effect-transparent-white: var(--color-primitive-alpha-neutral-0-0);
+  --color-alias-gradient-sun-glow: var(--color-primitive-alpha-yellow-909-48);
+  --color-alias-gradient-transparent-white: var(--color-primitive-alpha-neutral-0-0);
 }
