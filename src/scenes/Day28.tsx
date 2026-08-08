@@ -22,27 +22,27 @@ export default function Day28() {
         @keyframes s28pop{0%,2%{transform:scale(1) rotate(0)}7%{transform:scale(1.12) rotate(-3deg)}24%,100%{transform:scale(1) rotate(0)}}
         @keyframes s28burst{0%,3%,100%{transform:scale(.3);opacity:0}7%{opacity:.85}28%{transform:scale(1.2);opacity:0}}
       `}</style>
-      <rect width="430" height="260" fill="#fff7fb" />
-      <ellipse cx="215" cy="244" rx="90" ry="8" fill="#f4e6ee" />
-      <g className="burst" fill="none" stroke="#ffd45e" strokeWidth="3" strokeLinecap="round">
+      <rect width="430" height="260" fill="var(--color-alias-illustration-rose-32)" />
+      <ellipse cx="215" cy="244" rx="90" ry="8" fill="var(--color-alias-illustration-rose-129)" />
+      <g className="burst" fill="none" stroke="var(--color-alias-illustration-orange-263)" strokeWidth="3" strokeLinecap="round">
         <path d="M215 204 L215 178 M208 206 L194 184 M222 206 L236 184" />
       </g>
-      <Confetti tx={-92} peak={-40} color="#ff6f91" shape="sq" />
-      <Confetti tx={-64} peak={-78} color="#ffd45e" shape="tr" />
-      <Confetti tx={-36} peak={-96} color="#7ac2ff" shape="rc" />
-      <Confetti tx={-12} peak={-108} color="#8CDb6f" shape="ci" />
-      <Confetti tx={16} peak={-104} color="#b8a4ff" shape="sq" />
-      <Confetti tx={40} peak={-92} color="#ff9ec4" shape="tr" />
-      <Confetti tx={66} peak={-70} color="#ffb15e" shape="rc" />
-      <Confetti tx={92} peak={-44} color="#5cc4c4" shape="ci" />
-      <Confetti tx={-78} peak={-64} color="#7ac2ff" shape="ci" />
-      <Confetti tx={78} peak={-58} color="#ff6f91" shape="rc" />
+      <Confetti tx={-92} peak={-40} color="var(--color-alias-illustration-red-750)" shape="sq" />
+      <Confetti tx={-64} peak={-78} color="var(--color-alias-illustration-orange-263)" shape="tr" />
+      <Confetti tx={-36} peak={-96} color="var(--color-alias-illustration-blue-569)" shape="rc" />
+      <Confetti tx={-12} peak={-108} color="var(--color-alias-illustration-green-513)" shape="ci" />
+      <Confetti tx={16} peak={-104} color="var(--color-alias-illustration-indigo-250)" shape="sq" />
+      <Confetti tx={40} peak={-92} color="var(--color-alias-illustration-rose-419)" shape="tr" />
+      <Confetti tx={66} peak={-70} color="var(--color-alias-illustration-orange-526)" shape="rc" />
+      <Confetti tx={92} peak={-44} color="var(--color-alias-illustration-teal-1000)" shape="ci" />
+      <Confetti tx={-78} peak={-64} color="var(--color-alias-illustration-blue-569)" shape="ci" />
+      <Confetti tx={78} peak={-58} color="var(--color-alias-illustration-red-750)" shape="rc" />
       {/* хлопушка */}
       <g transform="translate(0 -5) scale(1.12 1.12)" transform-origin="215 250">
         <g className="popper">
-          <path d="M215 210 L196 250 L234 250 Z" fill="#ff8f6e" />
-          <path d="M215 210 L205 250 L225 250 Z" fill="#ff7a5e" opacity="0.6" />
-          <ellipse cx="215" cy="210" rx="13" ry="4" fill="#ffd45e" />
+          <path d="M215 210 L196 250 L234 250 Z" fill="var(--color-alias-illustration-orange-754)" />
+          <path d="M215 210 L205 250 L225 250 Z" fill="var(--color-alias-illustration-red-688)" opacity="0.6" />
+          <ellipse cx="215" cy="210" rx="13" ry="4" fill="var(--color-alias-illustration-orange-263)" />
         </g>
       </g>
     </svg>

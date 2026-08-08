@@ -4,7 +4,7 @@ function Leaf({ x, color, dur, delay }: { x: number; color: string; dur: string;
     <g transform={`translate(${x} 60)`}>
       <g className="leaf" style={{ animationDuration: dur, animationDelay: delay }}>
         <path d="M0 -12 C 10 -8 10 8 0 12 C -10 8 -10 -8 0 -12 Z" fill={color} />
-        <path d="M0 -10 L0 10" stroke="rgba(0,0,0,0.12)" strokeWidth="1.4" />
+        <path d="M0 -10 L0 10" stroke="var(--color-alias-illustration-alpha-neutral-1000-12)" strokeWidth="1.4" />
       </g>
     </g>
   )
@@ -27,17 +27,17 @@ export default function Day25() {
         }
         @keyframes s25wind{0%,100%{stroke-dashoffset:30;opacity:.12}50%{stroke-dashoffset:-28;opacity:.42}}
       `}</style>
-      <rect width="430" height="260" fill="#fff6ec" />
-      <g className="wind" fill="none" stroke="#e8b982" strokeWidth="2" strokeDasharray="10 9" strokeLinecap="round">
+      <rect width="430" height="260" fill="var(--color-alias-illustration-orange-18)" />
+      <g className="wind" fill="none" stroke="var(--color-alias-illustration-orange-544)" strokeWidth="2" strokeDasharray="10 9" strokeLinecap="round">
         <path d="M92 112 Q 160 82 228 112" /><path d="M210 170 Q 270 145 332 170" />
       </g>
-      <Leaf x={110} color="#ff9e5e" dur="10s" delay="0s" />
-      <Leaf x={190} color="#ffbf5e" dur="11s" delay="-3s" />
-      <Leaf x={250} color="#ff7a5e" dur="9.5s" delay="-6s" />
-      <Leaf x={310} color="#e6944a" dur="10.5s" delay="-1.5s" />
-      <Leaf x={155} color="#ffd06e" dur="11.5s" delay="-8s" />
-      <path d="M0 246 Q 215 236 430 246 L430 260 L0 260 Z" fill="#f7e6d1" />
-      <g opacity=".8"><ellipse cx="176" cy="242" rx="15" ry="5" fill="#ffb15e" transform="rotate(10 176 242)" /><ellipse cx="248" cy="244" rx="14" ry="5" fill="#e6944a" transform="rotate(-12 248 244)" /></g>
+      <Leaf x={110} color="var(--color-alias-illustration-orange-702)" dur="10s" delay="0s" />
+      <Leaf x={190} color="var(--color-alias-illustration-orange-439)" dur="11s" delay="-3s" />
+      <Leaf x={250} color="var(--color-alias-illustration-red-688)" dur="9.5s" delay="-6s" />
+      <Leaf x={310} color="var(--color-alias-illustration-orange-842)" dur="10.5s" delay="-1.5s" />
+      <Leaf x={155} color="var(--color-alias-illustration-orange-316)" dur="11.5s" delay="-8s" />
+      <path d="M0 246 Q 215 236 430 246 L430 260 L0 260 Z" fill="var(--color-alias-illustration-orange-140)" />
+      <g opacity=".8"><ellipse cx="176" cy="242" rx="15" ry="5" fill="var(--color-alias-illustration-orange-526)" transform="rotate(10 176 242)" /><ellipse cx="248" cy="244" rx="14" ry="5" fill="var(--color-alias-illustration-orange-842)" transform="rotate(-12 248 244)" /></g>
     </svg>
   )
 }

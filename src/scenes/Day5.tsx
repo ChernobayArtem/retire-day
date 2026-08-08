@@ -4,7 +4,7 @@ function Bfly({ color }: { color: string }) {
     <g className="bfly">
       <path className="wingL" d="M0 0 C -18 -14 -22 6 -4 8 C -13 12 -15 22 0 14 Z" fill={color} />
       <path className="wingR" d="M0 0 C 18 -14 22 6 4 8 C 13 12 15 22 0 14 Z" fill={color} />
-      <ellipse cx="0" cy="7" rx="2" ry="8" fill="#4a3540" />
+      <ellipse cx="0" cy="7" rx="2" ry="8" fill="var(--color-alias-illustration-mauve-625)" />
     </g>
   )
 }
@@ -28,13 +28,13 @@ export default function Day5() {
         @keyframes s5m2{0%,100%{transform:translate(314px,66px)}30%{transform:translate(270px,102px)}60%{transform:translate(298px,50px)}}
         @keyframes s5dot{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:.8;transform:translateY(-8px)}}
       `}</style>
-      <path d="M0 150 L40 160 L86 150 L140 162 L200 150 L260 160 L320 150 L380 162 L430 152 V260 H0 Z" fill="#ABF394" />
-      <g className="fl a1"><path d="M80 222 V148" stroke="#74AA63" strokeWidth="4" /><circle cx="80" cy="143" r="15" fill="#ff9ec4" /><circle cx="80" cy="143" r="5" fill="#ffd45e" /></g>
-      <g className="fl a2"><path d="M215 226 V148" stroke="#74AA63" strokeWidth="4" /><circle cx="215" cy="143" r="15" fill="#ffd18c" /><circle cx="215" cy="143" r="5" fill="#ff9ec4" /></g>
-      <g className="fl a3"><path d="M345 222 V148" stroke="#74AA63" strokeWidth="4" /><circle cx="345" cy="143" r="15" fill="#b8a4ff" /><circle cx="345" cy="143" r="5" fill="#ffd45e" /></g>
-      <g className="dot" fill="#fff3a5"><circle cx="130" cy="122" r="2" /><circle cx="286" cy="132" r="2.4" /></g>
-      <g className="b1"><Bfly color="#ff7aa8" /></g>
-      <g className="b2"><Bfly color="#7ac2ff" /></g>
+      <path d="M0 150 L40 160 L86 150 L140 162 L200 150 L260 160 L320 150 L380 162 L430 152 V260 H0 Z" fill="var(--color-alias-illustration-green-231)" />
+      <g className="fl a1"><path d="M80 222 V148" stroke="var(--color-alias-illustration-green-872)" strokeWidth="4" /><circle cx="80" cy="143" r="15" fill="var(--color-alias-illustration-rose-419)" /><circle cx="80" cy="143" r="5" fill="var(--color-alias-illustration-orange-263)" /></g>
+      <g className="fl a2"><path d="M215 226 V148" stroke="var(--color-alias-illustration-green-872)" strokeWidth="4" /><circle cx="215" cy="143" r="15" fill="var(--color-alias-illustration-orange-281)" /><circle cx="215" cy="143" r="5" fill="var(--color-alias-illustration-rose-419)" /></g>
+      <g className="fl a3"><path d="M345 222 V148" stroke="var(--color-alias-illustration-green-872)" strokeWidth="4" /><circle cx="345" cy="143" r="15" fill="var(--color-alias-illustration-indigo-250)" /><circle cx="345" cy="143" r="5" fill="var(--color-alias-illustration-orange-263)" /></g>
+      <g className="dot" fill="var(--color-alias-illustration-yellow-545)"><circle cx="130" cy="122" r="2" /><circle cx="286" cy="132" r="2.4" /></g>
+      <g className="b1"><Bfly color="var(--color-alias-illustration-rose-613)" /></g>
+      <g className="b2"><Bfly color="var(--color-alias-illustration-blue-569)" /></g>
     </svg>
   )
 }

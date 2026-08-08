@@ -2,10 +2,10 @@
 function Balloon({ cx, cy, color, cls }: { cx: number; cy: number; color: string; cls: string }) {
   return (
     <g className={'balloon ' + cls}>
-      <path d={`M210 236 Q ${(cx + 210) / 2 + 8} ${(cy + 236) / 2} ${cx} ${cy + 26}`} stroke="#c9b8a0" strokeWidth="1.5" fill="none" />
+      <path d={`M210 236 Q ${(cx + 210) / 2 + 8} ${(cy + 236) / 2} ${cx} ${cy + 26}`} stroke="var(--color-alias-illustration-brown-333)" strokeWidth="1.5" fill="none" />
       <ellipse cx={cx} cy={cy} rx="20" ry="24" fill={color} />
       <path d={`M${cx - 4} ${cy + 23} l4 6 4 -6 z`} fill={color} />
-      <ellipse cx={cx - 6} cy={cy - 8} rx="5" ry="7" fill="#ffffff" opacity="0.5" />
+      <ellipse cx={cx - 6} cy={cy - 8} rx="5" ry="7" fill="var(--color-alias-illustration-neutral-0)" opacity="0.5" />
     </g>
   )
 }
@@ -24,14 +24,14 @@ export default function Day17() {
         @keyframes s17cloud{0%,100%{transform:translateX(-12px)}50%{transform:translateX(14px)}}
         @keyframes s17weight{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
       `}</style>
-      <rect width="430" height="260" fill="#f4f9f4" />
-      <g className="cloud" fill="#ffffff" opacity=".8"><ellipse cx="306" cy="86" rx="28" ry="10" /><circle cx="291" cy="83" r="10" /><circle cx="320" cy="81" r="13" /></g>
-      <path d="M0 240 Q 215 232 430 240 L430 260 L0 260 Z" fill="#cfeccb" />
-      <Balloon cx={168} cy={124} color="#ff9ec4" cls="b1" />
-      <Balloon cx={252} cy={128} color="#7ac2ff" cls="b2" />
-      <Balloon cx={210} cy={104} color="#ffd18c" cls="b3" />
-      <Balloon cx={198} cy={152} color="#b8a4ff" cls="b4" />
-      <g className="weight"><ellipse cx="210" cy="238" rx="16" ry="7" fill="#c7a77f" /><circle cx="210" cy="234" r="4" fill="#a98a63" /></g>
+      <rect width="430" height="260" fill="var(--color-alias-illustration-green-0)" />
+      <g className="cloud" fill="var(--color-alias-illustration-neutral-0)" opacity=".8"><ellipse cx="306" cy="86" rx="28" ry="10" /><circle cx="291" cy="83" r="10" /><circle cx="320" cy="81" r="13" /></g>
+      <path d="M0 240 Q 215 232 430 240 L430 260 L0 260 Z" fill="var(--color-alias-illustration-green-179)" />
+      <Balloon cx={168} cy={124} color="var(--color-alias-illustration-rose-419)" cls="b1" />
+      <Balloon cx={252} cy={128} color="var(--color-alias-illustration-blue-569)" cls="b2" />
+      <Balloon cx={210} cy={104} color="var(--color-alias-illustration-orange-281)" cls="b3" />
+      <Balloon cx={198} cy={152} color="var(--color-alias-illustration-indigo-250)" cls="b4" />
+      <g className="weight"><ellipse cx="210" cy="238" rx="16" ry="7" fill="var(--color-alias-illustration-orange-807)" /><circle cx="210" cy="234" r="4" fill="var(--color-alias-illustration-brown-556)" /></g>
     </svg>
   )
 }

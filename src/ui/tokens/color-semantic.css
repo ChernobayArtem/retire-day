@@ -1,0 +1,137 @@
+:root {
+  /* text / main */
+  --color-semantic-text-main-primary: var(--color-alias-primary-default);
+  --color-semantic-text-main-strong: var(--color-alias-primary-strong);
+  --color-semantic-text-main-heading: var(--color-alias-primary-heading);
+  --color-semantic-text-main-soft: var(--color-alias-primary-soft);
+  --color-semantic-text-main-display: var(--color-alias-primary-display);
+  --color-semantic-text-main-warm-heading: var(--color-alias-primary-warm);
+  --color-semantic-text-card-title: var(--color-alias-primary-card);
+  --color-semantic-text-code-primary: var(--color-alias-primary-code);
+  --color-semantic-text-content-primary: var(--color-alias-primary-content);
+  --color-semantic-text-control-primary: var(--color-alias-primary-control);
+  --color-semantic-text-warm-content: var(--color-alias-primary-warm-content);
+  --color-semantic-text-main-secondary: var(--color-alias-secondary-default);
+  --color-semantic-text-main-secondary-strong: var(--color-alias-secondary-strong);
+  --color-semantic-text-main-muted: var(--color-alias-secondary-medium);
+  --color-semantic-text-main-caption: var(--color-alias-secondary-muted);
+  --color-semantic-text-main-subtle: var(--color-alias-secondary-subtle);
+  --color-semantic-text-main-faint: var(--color-alias-secondary-faint);
+  --color-semantic-text-main-disabled: var(--color-alias-secondary-faint);
+  --color-semantic-text-calendar-number: var(--color-alias-secondary-number);
+  --color-semantic-text-card-secondary: var(--color-alias-secondary-card);
+  --color-semantic-text-card-meta: var(--color-alias-secondary-meta);
+  --color-semantic-text-code-label: var(--color-alias-secondary-label);
+  --color-semantic-text-warm-secondary: var(--color-alias-secondary-warm);
+  --color-semantic-text-content-secondary: var(--color-alias-secondary-content);
+
+  /* text / inverse, link and status */
+  --color-semantic-text-inverse-primary: var(--color-alias-inverse-default);
+  --color-semantic-text-link-default: var(--color-alias-action-default);
+  --color-semantic-text-brand-default: var(--color-alias-brand-default);
+  --color-semantic-text-danger-default: var(--color-alias-danger-default);
+
+  /* icon */
+  --color-semantic-icon-main-primary: var(--color-alias-primary-default);
+  --color-semantic-icon-main-strong: var(--color-alias-primary-strong);
+  --color-semantic-icon-main-secondary: var(--color-alias-secondary-default);
+  --color-semantic-icon-inverse-primary: var(--color-alias-inverse-default);
+  --color-semantic-icon-link-default: var(--color-alias-action-default);
+  --color-semantic-icon-brand-default: var(--color-alias-brand-default);
+  --color-semantic-icon-danger-default: var(--color-alias-danger-default);
+  --color-semantic-icon-disabled: var(--color-alias-disabled-foreground);
+
+  /* background */
+  --color-semantic-background-canvas: var(--color-alias-surface-page);
+  --color-semantic-background-brand-page: var(--color-alias-brand-page);
+  --color-semantic-background-surface-default: var(--color-alias-surface-default);
+  --color-semantic-background-surface-subtle: var(--color-alias-surface-subtle);
+  --color-semantic-background-surface-muted: var(--color-alias-surface-muted);
+  --color-semantic-background-surface-warm: var(--color-alias-surface-warm);
+  --color-semantic-background-brand-subtle: var(--color-alias-brand-subtle);
+  --color-semantic-background-brand-faint: var(--color-alias-brand-faint);
+  --color-semantic-background-information-default: var(--color-alias-information-default);
+  --color-semantic-background-danger-subtle: var(--color-alias-danger-subtle);
+  --color-semantic-background-media-default: var(--color-alias-surface-media);
+  --color-semantic-background-media-control: var(--color-alias-surface-media-control);
+  --color-semantic-background-surface-inverse: var(--color-alias-surface-inverse);
+  --color-semantic-background-tooltip: var(--color-alias-surface-tooltip);
+  --color-semantic-background-platform-theme: var(--color-alias-platform-theme);
+  --color-semantic-background-platform-launch: var(--color-alias-platform-background);
+  --color-semantic-background-transparent: var(--color-alias-border-transparent);
+
+  /* border */
+  --color-semantic-border-default: var(--color-alias-border-default);
+  --color-semantic-border-subtle: var(--color-alias-border-subtle);
+  --color-semantic-border-strong: var(--color-alias-border-strong);
+  --color-semantic-border-brand: var(--color-alias-border-brand);
+  --color-semantic-border-brand-strong: var(--color-alias-border-brand-strong);
+  --color-semantic-border-danger: var(--color-alias-danger-default);
+  --color-semantic-border-inverse-faint: var(--color-alias-border-inverse-faint);
+  --color-semantic-border-inverse-subtle: var(--color-alias-border-inverse-subtle);
+  --color-semantic-border-inverse-medium: var(--color-alias-border-inverse-medium);
+  --color-semantic-border-inverse-strong: var(--color-alias-border-inverse-strong);
+  --color-semantic-border-inverse-control: var(--color-alias-border-inverse-control);
+  --color-semantic-border-inverse-45: var(--color-alias-border-inverse-45);
+  --color-semantic-border-transparent: var(--color-alias-border-transparent);
+  --color-semantic-border-focus: var(--color-alias-focus-default);
+
+  /* button */
+  --color-semantic-button-outline-background: var(--color-alias-surface-default);
+  --color-semantic-button-outline-background-hover: var(--color-alias-surface-subtle);
+  --color-semantic-button-outline-border: var(--color-alias-border-default);
+  --color-semantic-button-outline-border-hover: var(--color-alias-border-strong);
+  --color-semantic-button-outline-text: var(--color-alias-primary-strong);
+  --color-semantic-button-primary-background: var(--color-alias-brand-default);
+  --color-semantic-button-primary-background-hover: var(--color-alias-brand-strong);
+  --color-semantic-button-primary-text: var(--color-alias-inverse-default);
+  --color-semantic-button-soft-background: var(--color-alias-brand-subtle);
+  --color-semantic-button-soft-background-hover: var(--color-alias-brand-soft);
+  --color-semantic-button-soft-text: var(--color-alias-brand-strong);
+  --color-semantic-button-action-background: var(--color-alias-action-subtle);
+  --color-semantic-button-action-background-hover: var(--color-alias-action-hover);
+  --color-semantic-button-action-text: var(--color-alias-action-default);
+  --color-semantic-button-ghost-background: var(--color-alias-surface-muted);
+  --color-semantic-button-disabled-background: var(--color-alias-disabled-background);
+  --color-semantic-button-disabled-text: var(--color-alias-disabled-foreground);
+
+  /* shape */
+  --color-semantic-shape-calendar-past: var(--color-alias-surface-calendar-past);
+  --color-semantic-shape-calendar-future: var(--color-alias-surface-calendar-future);
+  --color-semantic-shape-calendar-today: var(--color-alias-surface-default);
+  --color-semantic-shape-progress-active: var(--color-alias-brand-default);
+  --color-semantic-shape-progress-inactive: var(--color-alias-surface-progress-track);
+  --color-semantic-shape-skeleton-base: var(--color-alias-surface-skeleton);
+  --color-semantic-shape-skeleton-highlight: var(--color-alias-surface-skeleton-highlight);
+  --color-semantic-shape-message-background: var(--color-alias-surface-message);
+  --color-semantic-shape-brand-soft: var(--color-alias-brand-medium);
+  --color-semantic-shape-finale-heart: var(--color-alias-overlay-inverse-subtle);
+
+  /* overlay */
+  --color-semantic-overlay-sheet: var(--color-alias-overlay-sheet);
+  --color-semantic-overlay-media-soft: var(--color-alias-overlay-media-soft);
+  --color-semantic-overlay-media-medium: var(--color-alias-overlay-media-medium);
+  --color-semantic-overlay-media-strong: var(--color-alias-overlay-media-strong);
+  --color-semantic-overlay-control: var(--color-alias-overlay-black-42);
+  --color-semantic-overlay-hint: var(--color-alias-overlay-black-48);
+  --color-semantic-overlay-play: var(--color-alias-overlay-black-55);
+  --color-semantic-overlay-control-strong: var(--color-alias-overlay-black-58);
+  --color-semantic-overlay-lightbox: var(--color-alias-overlay-lightbox);
+  --color-semantic-overlay-video: var(--color-alias-overlay-video);
+  --color-semantic-overlay-glass: var(--color-alias-overlay-glass-92);
+  --color-semantic-overlay-glass-strong: var(--color-alias-overlay-glass-94);
+
+  /* shadow */
+  --color-semantic-shadow-soft: var(--color-alias-shadow-soft);
+  --color-semantic-shadow-medium: var(--color-alias-shadow-medium);
+  --color-semantic-shadow-strong: var(--color-alias-shadow-strong);
+  --color-semantic-shadow-neutral-8: var(--color-alias-shadow-neutral-8);
+  --color-semantic-shadow-neutral-28: var(--color-alias-shadow-neutral-28);
+  --color-semantic-shadow-neutral-30: var(--color-alias-shadow-neutral-30);
+  --color-semantic-shadow-neutral-32: var(--color-alias-shadow-neutral-32);
+  --color-semantic-shadow-neutral-35: var(--color-alias-shadow-neutral-35);
+
+  /* effect */
+  --color-semantic-effect-sun-glow: var(--color-alias-effect-sun-glow);
+  --color-semantic-effect-transparent-white: var(--color-alias-effect-transparent-white);
+}

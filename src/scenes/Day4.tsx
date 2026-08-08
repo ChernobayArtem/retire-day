@@ -14,26 +14,26 @@ export default function Day4() {
       `}</style>
       <defs>
         <linearGradient id="s4sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#ffffff" />
-          <stop offset="1" stopColor="#d6ecff" />
+          <stop offset="0" stopColor="var(--color-alias-illustration-neutral-0)" />
+          <stop offset="1" stopColor="var(--color-alias-illustration-blue-208)" />
         </linearGradient>
       </defs>
       <rect width="430" height="260" fill="url(#s4sky)" />
-      <g className="c1" fill="#ffffff">
+      <g className="c1" fill="var(--color-alias-illustration-neutral-0)">
         <ellipse cx="90" cy="150" rx="34" ry="18" />
         <circle cx="72" cy="146" r="16" />
         <circle cx="104" cy="142" r="20" />
       </g>
-      <g className="c2" fill="#eef6ff">
+      <g className="c2" fill="var(--color-alias-illustration-blue-56)">
         <ellipse cx="320" cy="198" rx="40" ry="20" />
         <circle cx="300" cy="192" r="18" />
         <circle cx="336" cy="190" r="22" />
       </g>
       <g className="plane">
-        <polyline className="trail" points="-58,11 -7,11" stroke="#a9cbe5" strokeWidth="2" strokeDasharray="4 5" fill="none" />
-        <path d="M0 0 L42 11 L0 23 L11 11 Z" fill="#ffffff" stroke="#bfd7e9" strokeWidth="1.4" />
-        <path d="M0 0 L9 11 L0 22 Z" fill="#e9f2fb" />
-        <path d="M10 11 L35 11" stroke="#d6e5f1" strokeWidth="1.2" />
+        <polyline className="trail" points="-58,11 -7,11" stroke="var(--color-alias-illustration-blue-514)" strokeWidth="2" strokeDasharray="4 5" fill="none" />
+        <path d="M0 0 L42 11 L0 23 L11 11 Z" fill="var(--color-alias-illustration-neutral-0)" stroke="var(--color-alias-illustration-blue-403)" strokeWidth="1.4" />
+        <path d="M0 0 L9 11 L0 22 Z" fill="var(--color-alias-illustration-blue-167)" />
+        <path d="M10 11 L35 11" stroke="var(--color-alias-illustration-blue-264)" strokeWidth="1.2" />
       </g>
     </svg>
   )

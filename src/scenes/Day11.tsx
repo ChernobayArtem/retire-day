@@ -7,7 +7,7 @@ function Petal({ x, y, dx, rot, dur, delay }: { x: number; y: number; dx: string
       cy={y}
       rx="7"
       ry="4"
-      fill="#ffb9d4"
+      fill="var(--color-alias-illustration-rose-323)"
       style={{ ['--dx' as string]: dx, ['--rot' as string]: rot, animationDuration: dur, animationDelay: delay }}
     />
   )
@@ -24,15 +24,15 @@ export default function Day11() {
       `}</style>
       <g transform="translate(62 12)">
         <g className="branch">
-          <path d="M0 44 Q 76 56 156 42" stroke="#a9835f" strokeWidth="4" fill="none" strokeLinecap="round" />
-          <path d="M42 49 Q 54 30 72 38" stroke="#a9835f" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <path d="M112 48 Q 126 30 140 34" stroke="#a9835f" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-          <g fill="#ffb9d4">
+          <path d="M0 44 Q 76 56 156 42" stroke="var(--color-alias-illustration-brown-778)" strokeWidth="4" fill="none" strokeLinecap="round" />
+          <path d="M42 49 Q 54 30 72 38" stroke="var(--color-alias-illustration-brown-778)" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M112 48 Q 126 30 140 34" stroke="var(--color-alias-illustration-brown-778)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          <g fill="var(--color-alias-illustration-rose-323)">
             <circle cx="30" cy="48" r="8" /><circle cx="24" cy="42" r="6" /><circle cx="37" cy="42" r="6" />
             <circle cx="76" cy="44" r="8" /><circle cx="70" cy="38" r="6" /><circle cx="83" cy="39" r="6" />
             <circle cx="126" cy="43" r="8" /><circle cx="120" cy="37" r="6" /><circle cx="133" cy="38" r="6" />
           </g>
-          <g fill="#ffd45e"><circle cx="30" cy="48" r="3" /><circle cx="76" cy="44" r="3" /><circle cx="126" cy="43" r="3" /></g>
+          <g fill="var(--color-alias-illustration-orange-263)"><circle cx="30" cy="48" r="3" /><circle cx="76" cy="44" r="3" /><circle cx="126" cy="43" r="3" /></g>
         </g>
       </g>
       <Petal x={102} y={70} dx="34px" rot="220deg" dur="9s" delay="0s" />

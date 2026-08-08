@@ -1,0 +1,152 @@
+:root {
+  /* Primary */
+  --color-alias-primary-default: var(--color-primitive-mauve-1000);
+  --color-alias-primary-strong: var(--color-primitive-neutral-957);
+  --color-alias-primary-heading: var(--color-primitive-neutral-783);
+  --color-alias-primary-soft: var(--color-primitive-mauve-750);
+  --color-alias-primary-display: var(--color-primitive-neutral-739);
+  --color-alias-primary-warm: var(--color-primitive-neutral-826);
+  --color-alias-primary-card: var(--color-primitive-mauve-875);
+  --color-alias-primary-code: var(--color-primitive-mauve-750);
+  --color-alias-primary-content: var(--color-primitive-neutral-913);
+  --color-alias-primary-control: var(--color-primitive-neutral-870);
+  --color-alias-primary-warm-content: var(--color-primitive-mauve-688);
+
+  /* Secondary */
+  --color-alias-secondary-default: var(--color-primitive-neutral-522);
+  --color-alias-secondary-strong: var(--color-primitive-neutral-565);
+  --color-alias-secondary-medium: var(--color-primitive-neutral-435);
+  --color-alias-secondary-muted: var(--color-primitive-neutral-391);
+  --color-alias-secondary-subtle: var(--color-primitive-neutral-217);
+  --color-alias-secondary-faint: var(--color-primitive-neutral-174);
+  --color-alias-secondary-number: var(--color-primitive-neutral-348);
+  --color-alias-secondary-card: var(--color-primitive-neutral-609);
+  --color-alias-secondary-meta: var(--color-primitive-neutral-261);
+  --color-alias-secondary-label: var(--color-primitive-neutral-478);
+  --color-alias-secondary-warm: var(--color-primitive-mauve-500);
+  --color-alias-secondary-content: var(--color-primitive-neutral-696);
+
+  /* Inverse */
+  --color-alias-inverse-default: var(--color-primitive-neutral-0);
+  --color-alias-inverse-subtle: var(--color-primitive-alpha-neutral-0-76);
+
+  /* Brand */
+  --color-alias-brand-default: var(--color-primitive-red-938);
+  --color-alias-brand-strong: var(--color-primitive-red-1000);
+  --color-alias-brand-medium: var(--color-primitive-rose-484);
+  --color-alias-brand-soft: var(--color-primitive-rose-194);
+  --color-alias-brand-subtle: var(--color-primitive-red-63);
+  --color-alias-brand-faint: var(--color-primitive-red-0);
+  --color-alias-brand-page: var(--color-primitive-rose-32);
+
+  /* Platform chrome */
+  --color-alias-platform-theme: var(--color-primitive-rose-613);
+  --color-alias-platform-background: var(--color-primitive-rose-32);
+
+  /* Calendar day accents — content references these stable aliases. */
+  --color-alias-day-accent-01: var(--color-primitive-rose-742);
+  --color-alias-day-accent-02: var(--color-primitive-indigo-250);
+  --color-alias-day-accent-03: var(--color-primitive-blue-792);
+  --color-alias-day-accent-04: var(--color-primitive-orange-509);
+  --color-alias-day-accent-05: var(--color-primitive-purple-1000);
+  --color-alias-day-accent-06: var(--color-primitive-indigo-125);
+  --color-alias-day-accent-07: var(--color-primitive-blue-486);
+  --color-alias-day-accent-08: var(--color-primitive-red-438);
+  --color-alias-day-accent-09: var(--color-primitive-rose-419);
+  --color-alias-day-accent-10: var(--color-primitive-orange-737);
+  --color-alias-day-accent-11: var(--color-primitive-purple-1000);
+  --color-alias-day-accent-12: var(--color-primitive-orange-737);
+  --color-alias-day-accent-13: var(--color-primitive-blue-569);
+  --color-alias-day-accent-14: var(--color-primitive-orange-263);
+  --color-alias-day-accent-15: var(--color-primitive-orange-632);
+  --color-alias-day-accent-16: var(--color-primitive-green-590);
+  --color-alias-day-accent-17: var(--color-primitive-teal-0);
+  --color-alias-day-accent-18: var(--color-primitive-orange-526);
+  --color-alias-day-accent-19: var(--color-primitive-green-385);
+  --color-alias-day-accent-20: var(--color-primitive-blue-528);
+  --color-alias-day-accent-21: var(--color-primitive-rose-613);
+  --color-alias-day-accent-22: var(--color-primitive-red-438);
+  --color-alias-day-accent-23: var(--color-primitive-blue-778);
+  --color-alias-day-accent-24: var(--color-primitive-orange-737);
+  --color-alias-day-accent-25: var(--color-primitive-rose-548);
+  --color-alias-day-accent-26: var(--color-primitive-orange-579);
+  --color-alias-day-accent-27: var(--color-primitive-red-250);
+  --color-alias-day-accent-28: var(--color-primitive-blue-722);
+  --color-alias-day-accent-29: var(--color-primitive-rose-806);
+
+  /* Action and information */
+  --color-alias-action-default: var(--color-primitive-blue-931);
+  --color-alias-action-subtle: var(--color-primitive-blue-153);
+  --color-alias-action-hover: var(--color-primitive-blue-222);
+  --color-alias-information-default: var(--color-primitive-blue-722);
+
+  /* Status */
+  --color-alias-danger-default: var(--color-primitive-red-1000);
+  --color-alias-danger-subtle: var(--color-primitive-alpha-red-938-10);
+  --color-alias-success-default: var(--color-primitive-green-231);
+
+  /* Disabled */
+  --color-alias-disabled-background: var(--color-primitive-neutral-43);
+  --color-alias-disabled-foreground: var(--color-primitive-neutral-304);
+
+  /* Surface */
+  --color-alias-surface-page: var(--color-primitive-neutral-0);
+  --color-alias-surface-default: var(--color-primitive-neutral-0);
+  --color-alias-surface-subtle: var(--color-primitive-mauve-0);
+  --color-alias-surface-muted: var(--color-primitive-mauve-63);
+  --color-alias-surface-warm: var(--color-primitive-mauve-125);
+  --color-alias-surface-inverse: var(--color-primitive-mauve-938);
+  --color-alias-surface-skeleton: var(--color-primitive-mauve-250);
+  --color-alias-surface-skeleton-highlight: var(--color-primitive-mauve-0);
+  --color-alias-surface-calendar-future: var(--color-primitive-neutral-87);
+  --color-alias-surface-calendar-past: var(--color-primitive-red-63);
+  --color-alias-surface-progress-track: var(--color-primitive-neutral-174);
+  --color-alias-surface-media: var(--color-primitive-neutral-1000);
+  --color-alias-surface-media-control: var(--color-primitive-mauve-938);
+  --color-alias-surface-message: var(--color-primitive-blue-722);
+  --color-alias-surface-tooltip: var(--color-primitive-neutral-957);
+
+  /* Border */
+  --color-alias-border-default: var(--color-primitive-neutral-130);
+  --color-alias-border-subtle: var(--color-primitive-mauve-188);
+  --color-alias-border-strong: var(--color-primitive-mauve-313);
+  --color-alias-border-brand: var(--color-primitive-red-938);
+  --color-alias-border-brand-strong: var(--color-primitive-red-1000);
+  --color-alias-border-inverse-faint: var(--color-primitive-alpha-neutral-0-12);
+  --color-alias-border-inverse-subtle: var(--color-primitive-alpha-neutral-0-16);
+  --color-alias-border-inverse-medium: var(--color-primitive-alpha-neutral-0-40);
+  --color-alias-border-inverse-strong: var(--color-primitive-neutral-0);
+  --color-alias-border-inverse-control: var(--color-primitive-alpha-neutral-0-50);
+  --color-alias-border-inverse-45: var(--color-primitive-alpha-neutral-0-45);
+  --color-alias-border-transparent: var(--color-primitive-alpha-neutral-1000-0);
+
+  /* Overlay */
+  --color-alias-overlay-sheet: var(--color-primitive-alpha-mauve-1000-40);
+  --color-alias-overlay-media-soft: var(--color-primitive-alpha-indigo-1000-18);
+  --color-alias-overlay-media-medium: var(--color-primitive-alpha-indigo-1000-26);
+  --color-alias-overlay-media-strong: var(--color-primitive-alpha-indigo-1000-42);
+  --color-alias-overlay-black-42: var(--color-primitive-alpha-neutral-1000-42);
+  --color-alias-overlay-black-48: var(--color-primitive-alpha-neutral-1000-48);
+  --color-alias-overlay-black-55: var(--color-primitive-alpha-neutral-1000-55);
+  --color-alias-overlay-black-58: var(--color-primitive-alpha-neutral-1000-58);
+  --color-alias-overlay-lightbox: var(--color-primitive-alpha-neutral-1000-92);
+  --color-alias-overlay-video: var(--color-primitive-alpha-neutral-1000-96);
+  --color-alias-overlay-glass-92: var(--color-primitive-alpha-neutral-0-92);
+  --color-alias-overlay-glass-94: var(--color-primitive-alpha-neutral-0-94);
+  --color-alias-overlay-inverse-subtle: var(--color-primitive-alpha-neutral-0-76);
+
+  /* Focus and shadow */
+  --color-alias-focus-default: var(--color-primitive-alpha-red-938-30);
+  --color-alias-shadow-soft: var(--color-primitive-alpha-mauve-1000-18);
+  --color-alias-shadow-medium: var(--color-primitive-alpha-rose-1000-50);
+  --color-alias-shadow-strong: var(--color-primitive-alpha-rose-968-55);
+  --color-alias-shadow-neutral-8: var(--color-primitive-alpha-neutral-1000-8);
+  --color-alias-shadow-neutral-28: var(--color-primitive-alpha-neutral-1000-28);
+  --color-alias-shadow-neutral-30: var(--color-primitive-alpha-neutral-1000-30);
+  --color-alias-shadow-neutral-32: var(--color-primitive-alpha-neutral-1000-32);
+  --color-alias-shadow-neutral-35: var(--color-primitive-alpha-neutral-1000-35);
+
+  /* Decorative effects */
+  --color-alias-effect-sun-glow: var(--color-primitive-alpha-yellow-909-48);
+  --color-alias-effect-transparent-white: var(--color-primitive-alpha-neutral-0-0);
+}

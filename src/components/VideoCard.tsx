@@ -73,7 +73,13 @@ export default function VideoCard({ day, analyticsEnabled, src, poster }: Props)
 /** Треугольник play в системном стиле iOS. */
 function PlayIcon() {
   return (
-    <svg viewBox="0 0 24 24" width="40" height="40" fill="#fff" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="40"
+      height="40"
+      fill="var(--color-semantic-icon-inverse-primary)"
+      aria-hidden="true"
+    >
       <path d="M8.5 5.6a1 1 0 0 1 1.53-.85l8.2 5.15a1.3 1.3 0 0 1 0 2.2l-8.2 5.15a1 1 0 0 1-1.53-.85V5.6Z" />
     </svg>
   )

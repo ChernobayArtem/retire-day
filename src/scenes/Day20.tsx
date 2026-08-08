@@ -2,8 +2,8 @@
 function Sail() {
   return (
     <g>
-      <rect x="-4" y="-58" width="8" height="52" rx="3" fill="#f6efe2" stroke="#c9a878" strokeWidth="2" />
-      <line x1="0" y1="-56" x2="0" y2="-8" stroke="#c9a878" strokeWidth="1.5" />
+      <rect x="-4" y="-58" width="8" height="52" rx="3" fill="var(--color-alias-illustration-orange-88)" stroke="var(--color-alias-illustration-orange-772)" strokeWidth="2" />
+      <line x1="0" y1="-56" x2="0" y2="-8" stroke="var(--color-alias-illustration-orange-772)" strokeWidth="1.5" />
     </g>
   )
 }
@@ -25,18 +25,18 @@ export default function Day20() {
         @keyframes s20flower{0%,60%,100%{transform:rotate(-6deg)}80%{transform:rotate(6deg)}}
         @keyframes s20wind{0%,100%{stroke-dashoffset:20;opacity:.18}50%{stroke-dashoffset:-24;opacity:.5}}
       `}</style>
-      <rect width="430" height="260" fill="#eef7fb" />
-      <g className="cloud c1" fill="#ffffff"><ellipse cx="300" cy="70" rx="26" ry="11" /><circle cx="286" cy="66" r="11" /><circle cx="312" cy="64" r="13" /></g>
-      <g className="cloud c2" fill="#ffffff"><ellipse cx="110" cy="98" rx="22" ry="9" /><circle cx="98" cy="94" r="9" /><circle cx="122" cy="93" r="11" /></g>
-      <g className="wind" fill="none" stroke="#b7d5df" strokeWidth="2" strokeDasharray="8 8" strokeLinecap="round">
+      <rect width="430" height="260" fill="var(--color-alias-illustration-blue-42)" />
+      <g className="cloud c1" fill="var(--color-alias-illustration-neutral-0)"><ellipse cx="300" cy="70" rx="26" ry="11" /><circle cx="286" cy="66" r="11" /><circle cx="312" cy="64" r="13" /></g>
+      <g className="cloud c2" fill="var(--color-alias-illustration-neutral-0)"><ellipse cx="110" cy="98" rx="22" ry="9" /><circle cx="98" cy="94" r="9" /><circle cx="122" cy="93" r="11" /></g>
+      <g className="wind" fill="none" stroke="var(--color-alias-illustration-blue-444)" strokeWidth="2" strokeDasharray="8 8" strokeLinecap="round">
         <path d="M92 136 Q 126 124 160 136" /><path d="M274 112 Q 308 100 342 112" />
       </g>
-      <path d="M0 214 Q 215 188 430 214 L430 260 L0 260 Z" fill="#9fdc86" />
+      <path d="M0 214 Q 215 188 430 214 L430 260 L0 260 Z" fill="var(--color-alias-illustration-green-487)" />
       {/* башня */}
-      <path d="M198 232 L232 232 L224 150 L206 150 Z" fill="#e7d9c2" />
-      <path d="M204 150 L226 150 L215 132 Z" fill="#ff8f6e" />
-      <rect x="208" y="207" width="14" height="25" rx="5" fill="#b98b63" />
-      <circle cx="219" cy="220" r="1.5" fill="#f6df9d" />
+      <path d="M198 232 L232 232 L224 150 L206 150 Z" fill="var(--color-alias-illustration-orange-228)" />
+      <path d="M204 150 L226 150 L215 132 Z" fill="var(--color-alias-illustration-orange-754)" />
+      <rect x="208" y="207" width="14" height="25" rx="5" fill="var(--color-alias-illustration-orange-930)" />
+      <circle cx="219" cy="220" r="1.5" fill="var(--color-alias-illustration-orange-175)" />
       {/* лопасти */}
       <g className="sails">
         <g transform="translate(215 148)">
@@ -46,16 +46,16 @@ export default function Day20() {
           <g transform="rotate(270)"><Sail /></g>
         </g>
       </g>
-      <circle cx="215" cy="148" r="6" fill="#c9823f" />
+      <circle cx="215" cy="148" r="6" fill="var(--color-alias-illustration-orange-947)" />
       {/* трава и цветок */}
-      <g fill="#7fc86a">
+      <g fill="var(--color-alias-illustration-green-692)">
         <path className="blade" d="M120 226 q -6 -26 3 -34 q 6 14 2 34 z" />
         <path className="blade bl2" d="M320 220 q 6 -26 -3 -34 q -6 14 0 34 z" />
       </g>
       <g className="flower">
-        <line x1="150" y1="228" x2="150" y2="206" stroke="#6ab058" strokeWidth="3" />
-        <g fill="#ff9ec4"><circle cx="150" cy="200" r="5" /><circle cx="144" cy="204" r="5" /><circle cx="156" cy="204" r="5" /><circle cx="146" cy="196" r="5" /><circle cx="154" cy="196" r="5" /></g>
-        <circle cx="150" cy="200" r="3" fill="#ffd45e" />
+        <line x1="150" y1="228" x2="150" y2="206" stroke="var(--color-alias-illustration-green-846)" strokeWidth="3" />
+        <g fill="var(--color-alias-illustration-rose-419)"><circle cx="150" cy="200" r="5" /><circle cx="144" cy="204" r="5" /><circle cx="156" cy="204" r="5" /><circle cx="146" cy="196" r="5" /><circle cx="154" cy="196" r="5" /></g>
+        <circle cx="150" cy="200" r="3" fill="var(--color-alias-illustration-orange-263)" />
       </g>
     </svg>
   )

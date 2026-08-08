@@ -5,7 +5,7 @@ function Flower({ x, petal, center, className }: { x: number; petal: string; cen
   const petals = [0, 72, 144, 216, 288]
   return (
     <g className={'fl ' + (className ?? '')} style={{ transformOrigin: `${x}px ${base}px` }}>
-      <path className="stem" d={`M${x} ${base} C ${x - 6} ${base - 40}, ${x + 6} ${cy + 50}, ${x} ${cy + 20}`} stroke="#74AA63" strokeWidth="5" fill="none" strokeLinecap="round" />
+      <path className="stem" d={`M${x} ${base} C ${x - 6} ${base - 40}, ${x + 6} ${cy + 50}, ${x} ${cy + 20}`} stroke="var(--color-alias-illustration-green-872)" strokeWidth="5" fill="none" strokeLinecap="round" />
       <g className="petals" style={{ transformOrigin: `${x}px ${cy}px` }}>
         {petals.map((a) => {
           const rad = (a * Math.PI) / 180
@@ -39,15 +39,15 @@ export default function Day2() {
         @keyframes s2pollen{0%{transform:translate(0,0);opacity:0}22%{opacity:.8}55%{transform:translate(5px,-23px);opacity:.65}100%{transform:translate(-4px,-44px);opacity:0}}
         @keyframes s2leaf{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
       `}</style>
-      <path d="M0 150 L40 160 L86 150 L140 162 L200 150 L260 160 L320 150 L380 162 L430 152 V260 H0 Z" fill="#c9f3b8" />
-      <Flower x={92} petal="#ff9ec4" center="#ffd45e" className="f1" />
-      <Flower x={215} petal="#b8a4ff" center="#ffd45e" className="f2" />
-      <Flower x={338} petal="#ffd18c" center="#ff6f91" className="f3" />
-      <g fill="#80bf70">
+      <path d="M0 150 L40 160 L86 150 L140 162 L200 150 L260 160 L320 150 L380 162 L430 152 V260 H0 Z" fill="var(--color-alias-illustration-green-154)" />
+      <Flower x={92} petal="var(--color-alias-illustration-rose-419)" center="var(--color-alias-illustration-orange-263)" className="f1" />
+      <Flower x={215} petal="var(--color-alias-illustration-indigo-250)" center="var(--color-alias-illustration-orange-263)" className="f2" />
+      <Flower x={338} petal="var(--color-alias-illustration-orange-281)" center="var(--color-alias-illustration-red-750)" className="f3" />
+      <g fill="var(--color-alias-illustration-green-769)">
         <path className="leaf" d="M162 224 C 145 217 143 204 160 202 C 169 210 170 219 162 224 Z" />
         <path className="leaf leaf2" d="M274 232 C 290 222 292 210 276 208 C 268 217 267 226 274 232 Z" />
       </g>
-      <g fill="#ffd45e">
+      <g fill="var(--color-alias-illustration-orange-263)">
         <circle className="pollen" cx="92" cy="110" r="2.4" />
         <circle className="pollen pol2" cx="220" cy="112" r="2" />
         <circle className="pollen pol3" cx="332" cy="108" r="2.6" />

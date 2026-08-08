@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-const COLORS = ['#ff5f91', '#ffd45e', '#58b8ff', '#76d36a', '#b69cff', '#ff9364', '#45c7bd']
+const COLORS = ['var(--color-alias-illustration-rose-774)', 'var(--color-alias-illustration-orange-263)', 'var(--color-alias-illustration-blue-653)', 'var(--color-alias-illustration-green-615)', 'var(--color-alias-illustration-indigo-375)', 'var(--color-alias-illustration-orange-719)', 'var(--color-alias-illustration-teal-500)']
 
 const PIECES = Array.from({ length: 64 }, (_, index) => {
   const fromLeft = index % 2 === 0

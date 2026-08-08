@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "encrypt": "node scripts/stage-media.mjs && node scripts/encrypt.mjs",
-    "build": "tsc && vite build",
+    "audit:colors": "node scripts/audit-colors.mjs",
+    "build": "npm run audit:colors && tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "stage": "node scripts/stage-media.mjs"

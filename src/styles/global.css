@@ -20,8 +20,8 @@ body {
 body {
   margin: 0;
   font-family: var(--ui-font-sans);
-  background: var(--ui-color-bg);
-  color: var(--ui-color-text);
+  background: var(--color-semantic-background-canvas);
+  color: var(--color-semantic-text-main-primary);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

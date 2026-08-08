@@ -1,11 +1,43 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { readFileSync } from 'node:fs'
+
+const colorTokenSource = [
+  './src/ui/tokens/color-primitives.css',
+  './src/ui/tokens/color-aliases.css',
+  './src/ui/tokens/color-semantic.css',
+]
+  .map((file) => readFileSync(new URL(file, import.meta.url), 'utf8'))
+  .join('\n')
+
+function resolveColorToken(name: string, seen = new Set<string>()): string {
+  if (seen.has(name)) throw new Error(`Circular color token reference: ${name}`)
+  seen.add(name)
+
+  const match = colorTokenSource.match(new RegExp(`${name}:\\s*([^;]+);`))
+  if (!match) throw new Error(`Missing color token: ${name}`)
+
+  const value = match[1].trim()
+  const reference = value.match(/^var\((--[\w-]+)\)$/)
+  return reference ? resolveColorToken(reference[1], seen) : value
+}
+
+const pwaThemeColor = resolveColorToken('--color-semantic-background-platform-theme')
+const pwaBackgroundColor = resolveColorToken('--color-semantic-background-platform-launch')
+
+const colorTokenHtmlPlugin = {
+  name: 'color-token-html',
+  transformIndexHtml(html: string) {
+    return html.replace('__APP_THEME_COLOR__', pwaThemeColor)
+  },
+}
 
 // GitHub Pages project site: served at /retire-day/
 export default defineConfig({
   base: '/retire-day/',
   plugins: [
+    colorTokenHtmlPlugin,
     react(),
     VitePWA({
       registerType: 'autoUpdate',
@@ -18,8 +50,8 @@ export default defineConfig({
         description: 'Наш отсчёт',
         lang: 'ru',
         dir: 'ltr',
-        theme_color: '#ff7aa8',
-        background_color: '#fff7fb',
+        theme_color: pwaThemeColor,
+        background_color: pwaBackgroundColor,
         display: 'standalone',
         orientation: 'portrait',
         scope: '/retire-day/',

@@ -18,28 +18,28 @@ export default function Day13() {
         @keyframes s13drop{0%,29%{transform:translate(0,0);opacity:0}34%{opacity:.9}54%{transform:translate(6px,64px);opacity:0}100%{opacity:0}}
         @keyframes s13soil{0%,44%,100%{transform:scale(.3);opacity:0}54%{opacity:.5}70%{transform:scale(1.2);opacity:0}}
       `}</style>
-      <ellipse cx="215" cy="234" rx="128" ry="16" fill="#e6c7a6" />
-      <ellipse cx="215" cy="230" rx="96" ry="11" fill="#d8b489" />
-      <ellipse className="soilring" cx="208" cy="231" rx="22" ry="5" fill="none" stroke="#b89570" strokeWidth="1.5" />
+      <ellipse cx="215" cy="234" rx="128" ry="16" fill="var(--color-alias-illustration-orange-421)" />
+      <ellipse cx="215" cy="230" rx="96" ry="11" fill="var(--color-alias-illustration-orange-614)" />
+      <ellipse className="soilring" cx="208" cy="231" rx="22" ry="5" fill="none" stroke="var(--color-alias-illustration-orange-877)" strokeWidth="1.5" />
       {/* росток */}
       <g className="sprout">
-        <path d="M208 232 L208 190" stroke="#5f9e4c" strokeWidth="5" fill="none" strokeLinecap="round" />
-        <g className="leafL"><path d="M208 200 C 190 196 182 204 186 214 C 200 214 208 208 208 200 Z" fill="#8CDb6f" /></g>
-        <g className="leafR"><path d="M208 194 C 226 188 236 196 232 206 C 218 208 208 202 208 194 Z" fill="#74AA63" /></g>
+        <path d="M208 232 L208 190" stroke="var(--color-alias-illustration-green-923)" strokeWidth="5" fill="none" strokeLinecap="round" />
+        <g className="leafL"><path d="M208 200 C 190 196 182 204 186 214 C 200 214 208 208 208 200 Z" fill="var(--color-alias-illustration-green-513)" /></g>
+        <g className="leafR"><path d="M208 194 C 226 188 236 196 232 206 C 218 208 208 202 208 194 Z" fill="var(--color-alias-illustration-green-872)" /></g>
       </g>
       {/* капли */}
-      <g fill="#7ac2ff">
+      <g fill="var(--color-alias-illustration-blue-569)">
         <ellipse className="drop d1" cx="192" cy="158" rx="3" ry="4.5" />
         <ellipse className="drop d2" cx="196" cy="158" rx="3" ry="4.5" />
         <ellipse className="drop d3" cx="188" cy="158" rx="3" ry="4.5" />
       </g>
       {/* лейка */}
       <g className="can">
-        <path d="M108 148 Q 124 128 140 148" fill="none" stroke="#ff9e7a" strokeWidth="6" strokeLinecap="round" />
-        <path d="M96 150 L152 150 L146 192 Q 124 200 102 192 Z" fill="#ff9e7a" />
-        <ellipse cx="124" cy="150" rx="28" ry="6" fill="#ffb79a" />
-        <path d="M150 158 L188 146 L192 154 L154 170 Z" fill="#ff9e7a" />
-        <ellipse cx="189" cy="150" rx="5" ry="7" fill="#ffb79a" transform="rotate(-18 189 150)" />
+        <path d="M108 148 Q 124 128 140 148" fill="none" stroke="var(--color-alias-illustration-orange-667)" strokeWidth="6" strokeLinecap="round" />
+        <path d="M96 150 L152 150 L146 192 Q 124 200 102 192 Z" fill="var(--color-alias-illustration-orange-667)" />
+        <ellipse cx="124" cy="150" rx="28" ry="6" fill="var(--color-alias-illustration-orange-456)" />
+        <path d="M150 158 L188 146 L192 154 L154 170 Z" fill="var(--color-alias-illustration-orange-667)" />
+        <ellipse cx="189" cy="150" rx="5" ry="7" fill="var(--color-alias-illustration-orange-456)" transform="rotate(-18 189 150)" />
       </g>
     </svg>
   )
