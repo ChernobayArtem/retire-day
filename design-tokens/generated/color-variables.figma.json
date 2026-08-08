@@ -961,6 +961,23 @@
           "hiddenFromPublishing": true
         },
         {
+          "cssName": "--color-primitive-blue-729",
+          "collection": "color-primitives",
+          "name": "blue/729",
+          "type": "COLOR",
+          "layer": "primitive",
+          "status": "internal",
+          "source": "src/ui/tokens/color-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--color-primitive-blue-729)"
+          },
+          "value": "#006fc9",
+          "resolvedValue": "#006fc9",
+          "description": "Сырой оттенок палитры blue, шаг 729. Число обозначает позицию внутри этой палитры, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
           "cssName": "--color-primitive-blue-736",
           "collection": "color-primitives",
           "name": "blue/736",
@@ -4310,6 +4327,40 @@
           "hiddenFromPublishing": true
         },
         {
+          "cssName": "--color-primitive-red-954",
+          "collection": "color-primitives",
+          "name": "red/954",
+          "type": "COLOR",
+          "layer": "primitive",
+          "status": "internal",
+          "source": "src/ui/tokens/color-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--color-primitive-red-954)"
+          },
+          "value": "#d64747",
+          "resolvedValue": "#d64747",
+          "description": "Сырой оттенок палитры red, шаг 954. Число обозначает позицию внутри этой палитры, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--color-primitive-red-977",
+          "collection": "color-primitives",
+          "name": "red/977",
+          "type": "COLOR",
+          "layer": "primitive",
+          "status": "internal",
+          "source": "src/ui/tokens/color-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--color-primitive-red-977)"
+          },
+          "value": "#a93235",
+          "resolvedValue": "#a93235",
+          "description": "Сырой оттенок палитры red, шаг 977. Число обозначает позицию внутри этой палитры, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
           "cssName": "--color-primitive-red-1000",
           "collection": "color-primitives",
           "name": "red/1000",
@@ -4320,8 +4371,8 @@
           "codeSyntax": {
             "WEB": "var(--color-primitive-red-1000)"
           },
-          "value": "#d64747",
-          "resolvedValue": "#d64747",
+          "value": "#8f2930",
+          "resolvedValue": "#8f2930",
           "description": "Сырой оттенок палитры red, шаг 1000. Число обозначает позицию внутри этой палитры, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -5619,6 +5670,23 @@
           "hiddenFromPublishing": true
         },
         {
+          "cssName": "--color-primitive-alpha-red-977-70",
+          "collection": "color-primitives",
+          "name": "alpha/red/977/70",
+          "type": "COLOR",
+          "layer": "primitive",
+          "status": "internal",
+          "source": "src/ui/tokens/color-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--color-primitive-alpha-red-977-70)"
+          },
+          "value": "rgba(169, 50, 53, 0.7)",
+          "resolvedValue": "rgba(169, 50, 53, 0.7)",
+          "description": "Сырой оттенок палитры red, шаг 977, непрозрачность 70%. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
           "cssName": "--color-primitive-alpha-rose-1000-50",
           "collection": "color-primitives",
           "name": "alpha/rose/1000/50",
@@ -5965,12 +6033,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-435",
+              "cssName": "--color-primitive-neutral-609",
               "collection": "color-primitives",
-              "name": "neutral/435"
+              "name": "neutral/609"
             }
           },
-          "resolvedValue": "#8b7f86",
+          "resolvedValue": "#6e676c",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/main/muted, icon/field/muted. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -5988,12 +6056,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-391",
+              "cssName": "--color-primitive-neutral-609",
               "collection": "color-primitives",
-              "name": "neutral/391"
+              "name": "neutral/609"
             }
           },
-          "resolvedValue": "#898087",
+          "resolvedValue": "#6e676c",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/main/caption. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -6011,12 +6079,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-217",
+              "cssName": "--color-primitive-neutral-609",
               "collection": "color-primitives",
-              "name": "neutral/217"
+              "name": "neutral/609"
             }
           },
-          "resolvedValue": "#aaa3a8",
+          "resolvedValue": "#6e676c",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/main/subtle. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -6034,13 +6102,13 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-174",
+              "cssName": "--color-primitive-neutral-609",
               "collection": "color-primitives",
-              "name": "neutral/174"
+              "name": "neutral/609"
             }
           },
-          "resolvedValue": "#c8c8c8",
-          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/main/faint, text/main/disabled. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "resolvedValue": "#6e676c",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/main/faint. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -6057,12 +6125,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-348",
+              "cssName": "--color-primitive-neutral-609",
               "collection": "color-primitives",
-              "name": "neutral/348"
+              "name": "neutral/609"
             }
           },
-          "resolvedValue": "#8a8a8a",
+          "resolvedValue": "#6e676c",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/calendar/number. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -6103,12 +6171,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-261",
+              "cssName": "--color-primitive-neutral-609",
               "collection": "color-primitives",
-              "name": "neutral/261"
+              "name": "neutral/609"
             }
           },
-          "resolvedValue": "#aaa2a8",
+          "resolvedValue": "#6e676c",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/card/meta. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -6126,13 +6194,36 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-478",
+              "cssName": "--color-primitive-neutral-609",
               "collection": "color-primitives",
-              "name": "neutral/478"
+              "name": "neutral/609"
             }
           },
-          "resolvedValue": "#847b82",
+          "resolvedValue": "#6e676c",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/code/label. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--color-alias-secondary-progress",
+          "collection": "color-alias",
+          "name": "secondary/progress",
+          "type": "COLOR",
+          "layer": "alias",
+          "status": "internal",
+          "source": "src/ui/tokens/color-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--color-alias-secondary-progress)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--color-primitive-neutral-609",
+              "collection": "color-primitives",
+              "name": "neutral/609"
+            }
+          },
+          "resolvedValue": "#6e676c",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/progress/label, icon/progress/inactive. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -6201,7 +6292,7 @@
             }
           },
           "resolvedValue": "#ffffff",
-          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/inverse/primary, icon/inverse/primary, button/primary/foreground. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/inverse/primary, icon/inverse/primary, button/primary/foreground, shape/orchid/center. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -6224,20 +6315,43 @@
             }
           },
           "resolvedValue": "#ff5e61",
-          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/brand/default, icon/brand/default, icon/progress/active, button/primary/background, button/primary/border, shape/archive/accent/default, shape/carousel/indicator/active. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: shape/archive/accent/default. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-alias-brand-strong",
+          "cssName": "--color-alias-brand-contrast",
           "collection": "color-alias",
-          "name": "brand/strong",
+          "name": "brand/contrast",
           "type": "COLOR",
           "layer": "alias",
           "status": "internal",
           "source": "src/ui/tokens/color-aliases.css",
           "codeSyntax": {
-            "WEB": "var(--color-alias-brand-strong)"
+            "WEB": "var(--color-alias-brand-contrast)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--color-primitive-red-977",
+              "collection": "color-primitives",
+              "name": "red/977"
+            }
+          },
+          "resolvedValue": "#a93235",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/brand/default, icon/brand/default, icon/progress/active, button/primary/background, button/primary/border, button/soft/foreground, shape/carousel/indicator/active. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--color-alias-brand-contrast-strong",
+          "collection": "color-alias",
+          "name": "brand/contrast/strong",
+          "type": "COLOR",
+          "layer": "alias",
+          "status": "internal",
+          "source": "src/ui/tokens/color-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--color-alias-brand-contrast-strong)"
           },
           "value": {
             "alias": {
@@ -6246,8 +6360,8 @@
               "name": "red/1000"
             }
           },
-          "resolvedValue": "#d64747",
-          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: button/primary/background/hover, button/primary/border/hover, button/soft/foreground. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "resolvedValue": "#8f2930",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: button/primary/background/hover, button/primary/border/hover. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -6316,7 +6430,7 @@
             }
           },
           "resolvedValue": "#ffedee",
-          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: button/soft/background. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: background/archive/navigation, background/calendar/past, background/test/control, background/coupon/legacy, background/compliment/legacy, button/soft/background. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -7161,12 +7275,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-1000",
+              "cssName": "--color-primitive-red-977",
               "collection": "color-primitives",
-              "name": "red/1000"
+              "name": "red/977"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#a93235",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/danger/default, icon/danger/default, border/danger. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -7236,7 +7350,7 @@
             }
           },
           "resolvedValue": "#9e9e9e",
-          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: button/disabled/foreground. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/main/disabled, button/disabled/foreground. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -7282,7 +7396,7 @@
             }
           },
           "resolvedValue": "#ffffff",
-          "description": "Surface Level 0. Базовая поверхность карточек, шторок, модальных экранов и обычных панелей поверх canvas. Питает semantic-роли: background/surface/level/0, background/calendar/today, button/outline/background, shape/orchid/center. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "description": "Surface Level 0. Базовая поверхность карточек, шторок, модальных экранов и обычных панелей поверх canvas. Питает semantic-роли: background/surface/level/0, background/calendar/today, button/outline/background. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -7448,29 +7562,6 @@
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-alias-surface-calendar-past",
-          "collection": "color-alias",
-          "name": "surface/calendar/past",
-          "type": "COLOR",
-          "layer": "alias",
-          "status": "internal",
-          "source": "src/ui/tokens/color-aliases.css",
-          "codeSyntax": {
-            "WEB": "var(--color-alias-surface-calendar-past)"
-          },
-          "value": {
-            "alias": {
-              "cssName": "--color-primitive-red-63",
-              "collection": "color-primitives",
-              "name": "red/63"
-            }
-          },
-          "resolvedValue": "#ffedee",
-          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: background/archive/navigation, background/calendar/past, background/test/control, background/coupon/legacy, background/compliment/legacy. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
-          "scopes": [],
-          "hiddenFromPublishing": true
-        },
-        {
           "cssName": "--color-alias-surface-progress-track",
           "collection": "color-alias",
           "name": "surface/progress/track",
@@ -7489,7 +7580,7 @@
             }
           },
           "resolvedValue": "#c8c8c8",
-          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/progress/label, icon/progress/inactive, border/progress/connector. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: border/progress/connector. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -7529,12 +7620,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-blue-722",
+              "cssName": "--color-primitive-blue-729",
               "collection": "color-primitives",
-              "name": "blue/722"
+              "name": "blue/729"
             }
           },
-          "resolvedValue": "#269dfd",
+          "resolvedValue": "#006fc9",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: background/message/default, shape/message/tail. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -7575,12 +7666,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-130",
+              "cssName": "--color-primitive-neutral-348",
               "collection": "color-primitives",
-              "name": "neutral/130"
+              "name": "neutral/348"
             }
           },
-          "resolvedValue": "#eaeaea",
+          "resolvedValue": "#8a8a8a",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: border/default, button/outline/border. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -7621,12 +7712,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-mauve-313",
+              "cssName": "--color-primitive-neutral-348",
               "collection": "color-primitives",
-              "name": "mauve/313"
+              "name": "neutral/348"
             }
           },
-          "resolvedValue": "#e0dce1",
+          "resolvedValue": "#8a8a8a",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: button/outline/border/hover, shape/carousel/indicator/inactive. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -7644,12 +7735,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-938",
+              "cssName": "--color-primitive-red-977",
               "collection": "color-primitives",
-              "name": "red/938"
+              "name": "red/977"
             }
           },
-          "resolvedValue": "#ff5e61",
+          "resolvedValue": "#a93235",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: border/brand. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -7672,7 +7763,7 @@
               "name": "red/1000"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#8f2930",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: border/brand/strong. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -7954,24 +8045,24 @@
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-alias-overlay-black-48",
+          "cssName": "--color-alias-overlay-hint",
           "collection": "color-alias",
-          "name": "overlay/black/48",
+          "name": "overlay/hint",
           "type": "COLOR",
           "layer": "alias",
           "status": "internal",
           "source": "src/ui/tokens/color-aliases.css",
           "codeSyntax": {
-            "WEB": "var(--color-alias-overlay-black-48)"
+            "WEB": "var(--color-alias-overlay-hint)"
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-neutral-1000-48",
+              "cssName": "--color-primitive-alpha-neutral-1000-55",
               "collection": "color-primitives",
-              "name": "alpha/neutral/1000/48"
+              "name": "alpha/neutral/1000/55"
             }
           },
-          "resolvedValue": "rgba(0, 0, 0, 0.48)",
+          "resolvedValue": "rgba(0, 0, 0, 0.55)",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: overlay/hint. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -8150,12 +8241,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-red-938-30",
+              "cssName": "--color-primitive-alpha-red-977-70",
               "collection": "color-primitives",
-              "name": "alpha/red/938/30"
+              "name": "alpha/red/977/70"
             }
           },
-          "resolvedValue": "rgba(255, 94, 97, 0.3)",
+          "resolvedValue": "rgba(169, 50, 53, 0.7)",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: effect/focus/ring. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -14118,7 +14209,7 @@
               "name": "secondary/medium"
             }
           },
-          "resolvedValue": "#8b7f86",
+          "resolvedValue": "#6e676c",
           "description": "Приглушённые описания, пояснения и вспомогательный текст средней важности. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14143,7 +14234,7 @@
               "name": "secondary/muted"
             }
           },
-          "resolvedValue": "#898087",
+          "resolvedValue": "#6e676c",
           "description": "Компактная подпись или hint рядом с карточкой; менее заметна, чем обычный muted-текст. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14168,7 +14259,7 @@
               "name": "secondary/subtle"
             }
           },
-          "resolvedValue": "#aaa3a8",
+          "resolvedValue": "#6e676c",
           "description": "Малозаметный служебный текст, который не должен конкурировать с содержанием. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14193,7 +14284,7 @@
               "name": "secondary/faint"
             }
           },
-          "resolvedValue": "#c8c8c8",
+          "resolvedValue": "#6e676c",
           "description": "Самый слабый читаемый текст: дата, редкая метаинформация или второстепенная отметка. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14213,12 +14304,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-secondary-faint",
+              "cssName": "--color-alias-disabled-foreground",
               "collection": "color-alias",
-              "name": "secondary/faint"
+              "name": "disabled/foreground"
             }
           },
-          "resolvedValue": "#c8c8c8",
+          "resolvedValue": "#9e9e9e",
           "description": "Недоступный текст, placeholder или подпись выключенного состояния. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14238,12 +14329,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-surface-progress-track",
+              "cssName": "--color-alias-secondary-progress",
               "collection": "color-alias",
-              "name": "surface/progress/track"
+              "name": "secondary/progress"
             }
           },
-          "resolvedValue": "#c8c8c8",
+          "resolvedValue": "#6e676c",
           "description": "Процент и числовая подпись неактивной части прогресс-бара. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14268,7 +14359,7 @@
               "name": "secondary/number"
             }
           },
-          "resolvedValue": "#8a8a8a",
+          "resolvedValue": "#6e676c",
           "description": "Номер дня внутри ячейки календаря. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14318,7 +14409,7 @@
               "name": "secondary/meta"
             }
           },
-          "resolvedValue": "#aaa2a8",
+          "resolvedValue": "#6e676c",
           "description": "Дата, категория и другая компактная метаинформация карточки архива. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14343,7 +14434,7 @@
               "name": "secondary/label"
             }
           },
-          "resolvedValue": "#847b82",
+          "resolvedValue": "#6e676c",
           "description": "Короткий label перед значением кода, PIN или CVC. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14438,12 +14529,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-default",
+              "cssName": "--color-alias-brand-contrast",
               "collection": "color-alias",
-              "name": "brand/default"
+              "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#ff5e61",
+          "resolvedValue": "#a93235",
           "description": "Текстовый бренд-акцент: текущая дата, важная отметка или эмоциональный акцент. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14468,7 +14559,7 @@
               "name": "danger/default"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#a93235",
           "description": "Текст ошибки или опасного состояния; не использовать как декоративный красный акцент. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -14540,12 +14631,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-default",
+              "cssName": "--color-alias-brand-contrast",
               "collection": "color-alias",
-              "name": "brand/default"
+              "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#ff5e61",
+          "resolvedValue": "#a93235",
           "description": "Брендовая системная иконка, обозначающая активное или выделенное действие. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "SHAPE_FILL",
@@ -14571,7 +14662,7 @@
               "name": "danger/default"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#a93235",
           "description": "Иконка ошибки или опасного действия. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "SHAPE_FILL",
@@ -14597,7 +14688,7 @@
               "name": "secondary/medium"
             }
           },
-          "resolvedValue": "#8b7f86",
+          "resolvedValue": "#6e676c",
           "description": "Приглушённая leading или trailing иконка текстового поля. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "SHAPE_FILL",
@@ -14618,12 +14709,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-default",
+              "cssName": "--color-alias-brand-contrast",
               "collection": "color-alias",
-              "name": "brand/default"
+              "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#ff5e61",
+          "resolvedValue": "#a93235",
           "description": "Активная орхидея или другой системный маркер пройденной части прогресса. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "SHAPE_FILL",
@@ -14644,12 +14735,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-surface-progress-track",
+              "cssName": "--color-alias-secondary-progress",
               "collection": "color-alias",
-              "name": "surface/progress/track"
+              "name": "secondary/progress"
             }
           },
-          "resolvedValue": "#c8c8c8",
+          "resolvedValue": "#6e676c",
           "description": "Неактивная орхидея или другой системный маркер непройденной части прогресса. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "SHAPE_FILL",
@@ -14970,9 +15061,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-surface-calendar-past",
+              "cssName": "--color-alias-brand-subtle",
               "collection": "color-alias",
-              "name": "surface/calendar/past"
+              "name": "brand/subtle"
             }
           },
           "resolvedValue": "#ffedee",
@@ -14995,9 +15086,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-surface-calendar-past",
+              "cssName": "--color-alias-brand-subtle",
               "collection": "color-alias",
-              "name": "surface/calendar/past"
+              "name": "brand/subtle"
             }
           },
           "resolvedValue": "#ffedee",
@@ -15095,9 +15186,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-surface-calendar-past",
+              "cssName": "--color-alias-brand-subtle",
               "collection": "color-alias",
-              "name": "surface/calendar/past"
+              "name": "brand/subtle"
             }
           },
           "resolvedValue": "#ffedee",
@@ -15120,9 +15211,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-surface-calendar-past",
+              "cssName": "--color-alias-brand-subtle",
               "collection": "color-alias",
-              "name": "surface/calendar/past"
+              "name": "brand/subtle"
             }
           },
           "resolvedValue": "#ffedee",
@@ -15145,9 +15236,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-surface-calendar-past",
+              "cssName": "--color-alias-brand-subtle",
               "collection": "color-alias",
-              "name": "surface/calendar/past"
+              "name": "brand/subtle"
             }
           },
           "resolvedValue": "#ffedee",
@@ -15225,7 +15316,7 @@
               "name": "surface/message"
             }
           },
-          "resolvedValue": "#269dfd",
+          "resolvedValue": "#006fc9",
           "description": "Заливка синего сообщения, реакции и связанных круглых элементов мема. Scope Figma: Frame — переменная показывается только для заливки Frame.",
           "scopes": [
             "FRAME_FILL"
@@ -15296,7 +15387,7 @@
               "name": "border/default"
             }
           },
-          "resolvedValue": "#eaeaea",
+          "resolvedValue": "#8a8a8a",
           "description": "Стандартная нейтральная обводка кнопки, иконки-кнопки или контейнера. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -15346,7 +15437,7 @@
               "name": "border/brand"
             }
           },
-          "resolvedValue": "#ff5e61",
+          "resolvedValue": "#a93235",
           "description": "Брендовая обводка активного, текущего или сфокусированного элемента. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -15371,7 +15462,7 @@
               "name": "border/brand/strong"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#8f2930",
           "description": "Усиленная брендовая обводка выбранного таба или акцентной поверхности. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -15396,7 +15487,7 @@
               "name": "danger/default"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#a93235",
           "description": "Обводка ошибки, опасного состояния или купона с предупреждающим оформлением. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -15721,7 +15812,7 @@
               "name": "border/default"
             }
           },
-          "resolvedValue": "#eaeaea",
+          "resolvedValue": "#8a8a8a",
           "description": "Обычная обводка белой outline-кнопки. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -15746,7 +15837,7 @@
               "name": "border/strong"
             }
           },
-          "resolvedValue": "#e0dce1",
+          "resolvedValue": "#8a8a8a",
           "description": "Усиленная обводка белой outline-кнопки при наведении указателя. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -15793,12 +15884,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-default",
+              "cssName": "--color-alias-brand-contrast",
               "collection": "color-alias",
-              "name": "brand/default"
+              "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#ff5e61",
+          "resolvedValue": "#a93235",
           "description": "Обычный фон главной брендовой кнопки. Scope Figma: Frame — переменная показывается только для заливки Frame.",
           "scopes": [
             "FRAME_FILL"
@@ -15818,12 +15909,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-strong",
+              "cssName": "--color-alias-brand-contrast-strong",
               "collection": "color-alias",
-              "name": "brand/strong"
+              "name": "brand/contrast/strong"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#8f2930",
           "description": "Фон главной брендовой кнопки при наведении указателя. Scope Figma: Frame — переменная показывается только для заливки Frame.",
           "scopes": [
             "FRAME_FILL"
@@ -15843,12 +15934,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-default",
+              "cssName": "--color-alias-brand-contrast",
               "collection": "color-alias",
-              "name": "brand/default"
+              "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#ff5e61",
+          "resolvedValue": "#a93235",
           "description": "Обычная обводка главной брендовой кнопки. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -15868,12 +15959,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-strong",
+              "cssName": "--color-alias-brand-contrast-strong",
               "collection": "color-alias",
-              "name": "brand/strong"
+              "name": "brand/contrast/strong"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#8f2930",
           "description": "Обводка главной брендовой кнопки при наведении указателя. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -15970,12 +16061,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-strong",
+              "cssName": "--color-alias-brand-contrast",
               "collection": "color-alias",
-              "name": "brand/strong"
+              "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#d64747",
+          "resolvedValue": "#a93235",
           "description": "Текст и системная иконка мягкой брендовой кнопки. Scope Figma: Text, Shape и Stroke — единый foreground намеренно окрашивает label, fill-иконку и stroke-иконку внутри одного контрола.",
           "scopes": [
             "TEXT_FILL",
@@ -16255,12 +16346,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-brand-default",
+              "cssName": "--color-alias-brand-contrast",
               "collection": "color-alias",
-              "name": "brand/default"
+              "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#ff5e61",
+          "resolvedValue": "#a93235",
           "description": "Активная точка пагинации фотокарусели. Scope Figma: Shape — переменная показывается только для заливки геометрических форм.",
           "scopes": [
             "SHAPE_FILL"
@@ -16285,7 +16376,7 @@
               "name": "border/strong"
             }
           },
-          "resolvedValue": "#e0dce1",
+          "resolvedValue": "#8a8a8a",
           "description": "Неактивная точка пагинации фотокарусели. Scope Figma: Shape — переменная показывается только для заливки геометрических форм.",
           "scopes": [
             "SHAPE_FILL"
@@ -16310,7 +16401,7 @@
               "name": "surface/message"
             }
           },
-          "resolvedValue": "#269dfd",
+          "resolvedValue": "#006fc9",
           "description": "Треугольный хвост синего пузыря сообщения. Scope Figma: Shape — переменная показывается только для заливки геометрических форм.",
           "scopes": [
             "SHAPE_FILL"
@@ -16405,9 +16496,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-surface-level-0",
+              "cssName": "--color-alias-inverse-default",
               "collection": "color-alias",
-              "name": "surface/level/0"
+              "name": "inverse/default"
             }
           },
           "resolvedValue": "#ffffff",
@@ -17280,12 +17371,12 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-alias-overlay-black-48",
+              "cssName": "--color-alias-overlay-hint",
               "collection": "color-alias",
-              "name": "overlay/black/48"
+              "name": "overlay/hint"
             }
           },
-          "resolvedValue": "rgba(0, 0, 0, 0.48)",
+          "resolvedValue": "rgba(0, 0, 0, 0.55)",
           "description": "Полупрозрачный тёмный фон текстовой подсказки в lightbox. Scope Figma: Frame — переменная показывается только для заливки Frame.",
           "scopes": [
             "FRAME_FILL"
@@ -17735,7 +17826,7 @@
               "name": "focus/default"
             }
           },
-          "resolvedValue": "rgba(255, 94, 97, 0.3)",
+          "resolvedValue": "rgba(169, 50, 53, 0.7)",
           "description": "Цвет внешнего focus ring интерактивного элемента, реализованного через shadow/effect. Scope Figma: Effects — переменная показывается только для цвета тени или другого эффекта.",
           "scopes": [
             "EFFECT_COLOR"

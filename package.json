@@ -7,8 +7,10 @@
     "dev": "vite",
     "encrypt": "node scripts/stage-media.mjs && node scripts/encrypt.mjs",
     "audit:colors": "node scripts/audit-colors.mjs",
+    "audit:contrast": "node scripts/audit-color-contrast.mjs",
+    "audit:contrast:strict": "node scripts/audit-color-contrast.mjs --strict",
     "tokens:colors": "node scripts/export-color-tokens.mjs",
-    "build": "npm run audit:colors && tsc && vite build",
+    "build": "npm run audit:colors && npm run audit:contrast:strict && tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "stage": "node scripts/stage-media.mjs"

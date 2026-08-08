@@ -4,6 +4,8 @@
 
 - Значения цветов: CSS-файлы в `src/ui/tokens/`.
 - Назначение, Figma Scope и публикация: `design-tokens/color-contract.mjs`.
+- Контраст реальных foreground/background пар: `design-tokens/color-contrast-contract.mjs`.
+- Методика и проверенные коэффициенты: `docs/COLOR_CONTRAST.md`.
 - Полный Figma-ready реестр: `design-tokens/generated/color-variables.figma.json`.
 - Продуктовый UI использует только semantic-токены. Primitive и alias всегда служебные.
 - Для Dev Mode каждая переменная хранит WEB code syntax в формате `var(--color-...)`.
@@ -60,28 +62,28 @@
 | `text/warm/content` | `#3d2f38` | `TEXT_FILL` | Текст в тёплом legacy-блоке комплиментов; новые компоненты должны выбрать более общую роль. Scope Figma: Text — переменная показывается только для заливки текста. |
 | `text/main/secondary` | `#777077` | `TEXT_FILL` | Вторичный текст, который поясняет основной контент, но остаётся хорошо читаемым. Scope Figma: Text — переменная показывается только для заливки текста. |
 | `text/main/secondary/strong` | `#6c6c6c` | `TEXT_FILL` | Повышенно-контрастный вторичный текст для важной подписи под заголовком. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/main/muted` | `#8b7f86` | `TEXT_FILL` | Приглушённые описания, пояснения и вспомогательный текст средней важности. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/main/caption` | `#898087` | `TEXT_FILL` | Компактная подпись или hint рядом с карточкой; менее заметна, чем обычный muted-текст. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/main/subtle` | `#aaa3a8` | `TEXT_FILL` | Малозаметный служебный текст, который не должен конкурировать с содержанием. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/main/faint` | `#c8c8c8` | `TEXT_FILL` | Самый слабый читаемый текст: дата, редкая метаинформация или второстепенная отметка. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/main/disabled` | `#c8c8c8` | `TEXT_FILL` | Недоступный текст, placeholder или подпись выключенного состояния. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/progress/label` | `#c8c8c8` | `TEXT_FILL` | Процент и числовая подпись неактивной части прогресс-бара. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/calendar/number` | `#8a8a8a` | `TEXT_FILL` | Номер дня внутри ячейки календаря. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/main/muted` | `#6e676c` | `TEXT_FILL` | Приглушённые описания, пояснения и вспомогательный текст средней важности. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/main/caption` | `#6e676c` | `TEXT_FILL` | Компактная подпись или hint рядом с карточкой; менее заметна, чем обычный muted-текст. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/main/subtle` | `#6e676c` | `TEXT_FILL` | Малозаметный служебный текст, который не должен конкурировать с содержанием. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/main/faint` | `#6e676c` | `TEXT_FILL` | Самый слабый читаемый текст: дата, редкая метаинформация или второстепенная отметка. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/main/disabled` | `#9e9e9e` | `TEXT_FILL` | Недоступный текст, placeholder или подпись выключенного состояния. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/progress/label` | `#6e676c` | `TEXT_FILL` | Процент и числовая подпись неактивной части прогресс-бара. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/calendar/number` | `#6e676c` | `TEXT_FILL` | Номер дня внутри ячейки календаря. Scope Figma: Text — переменная показывается только для заливки текста. |
 | `text/card/secondary` | `#6e676c` | `TEXT_FILL` | Вторичное описание внутри карточки архива. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/card/meta` | `#aaa2a8` | `TEXT_FILL` | Дата, категория и другая компактная метаинформация карточки архива. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/code/label` | `#847b82` | `TEXT_FILL` | Короткий label перед значением кода, PIN или CVC. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/card/meta` | `#6e676c` | `TEXT_FILL` | Дата, категория и другая компактная метаинформация карточки архива. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/code/label` | `#6e676c` | `TEXT_FILL` | Короткий label перед значением кода, PIN или CVC. Scope Figma: Text — переменная показывается только для заливки текста. |
 | `text/warm/secondary` | `#6c5563` | `TEXT_FILL` | Вторичная подпись на тёплом legacy-контенте. Scope Figma: Text — переменная показывается только для заливки текста. |
 | `text/content/secondary` | `#606060` | `TEXT_FILL` | Вторичный текст внутри самостоятельного контентного блока. Scope Figma: Text — переменная показывается только для заливки текста. |
 | `text/inverse/primary` | `#ffffff` | `TEXT_FILL` | Основной светлый текст на тёмной или насыщенной поверхности. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/brand/default` | `#ff5e61` | `TEXT_FILL` | Текстовый бренд-акцент: текущая дата, важная отметка или эмоциональный акцент. Scope Figma: Text — переменная показывается только для заливки текста. |
-| `text/danger/default` | `#d64747` | `TEXT_FILL` | Текст ошибки или опасного состояния; не использовать как декоративный красный акцент. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/brand/default` | `#a93235` | `TEXT_FILL` | Текстовый бренд-акцент: текущая дата, важная отметка или эмоциональный акцент. Scope Figma: Text — переменная показывается только для заливки текста. |
+| `text/danger/default` | `#a93235` | `TEXT_FILL` | Текст ошибки или опасного состояния; не использовать как декоративный красный акцент. Scope Figma: Text — переменная показывается только для заливки текста. |
 | `icon/main/primary` | `#241a22` | `SHAPE_FILL + STROKE_COLOR` | Основная системная иконка на светлой поверхности. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `icon/inverse/primary` | `#ffffff` | `SHAPE_FILL + STROKE_COLOR` | Светлая системная иконка на тёмной, цветной или медиа-поверхности. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `icon/brand/default` | `#ff5e61` | `SHAPE_FILL + STROKE_COLOR` | Брендовая системная иконка, обозначающая активное или выделенное действие. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `icon/danger/default` | `#d64747` | `SHAPE_FILL + STROKE_COLOR` | Иконка ошибки или опасного действия. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `icon/field/muted` | `#8b7f86` | `SHAPE_FILL + STROKE_COLOR` | Приглушённая leading или trailing иконка текстового поля. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `icon/progress/active` | `#ff5e61` | `SHAPE_FILL + STROKE_COLOR` | Активная орхидея или другой системный маркер пройденной части прогресса. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `icon/progress/inactive` | `#c8c8c8` | `SHAPE_FILL + STROKE_COLOR` | Неактивная орхидея или другой системный маркер непройденной части прогресса. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `icon/brand/default` | `#a93235` | `SHAPE_FILL + STROKE_COLOR` | Брендовая системная иконка, обозначающая активное или выделенное действие. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `icon/danger/default` | `#a93235` | `SHAPE_FILL + STROKE_COLOR` | Иконка ошибки или опасного действия. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `icon/field/muted` | `#6e676c` | `SHAPE_FILL + STROKE_COLOR` | Приглушённая leading или trailing иконка текстового поля. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `icon/progress/active` | `#a93235` | `SHAPE_FILL + STROKE_COLOR` | Активная орхидея или другой системный маркер пройденной части прогресса. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `icon/progress/inactive` | `#6e676c` | `SHAPE_FILL + STROKE_COLOR` | Неактивная орхидея или другой системный маркер непройденной части прогресса. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `background/canvas` | `#ffffff` | `FRAME_FILL` | Корневой canvas приложения — самый нижний слой, на котором строится весь экран. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `background/brand/page` | `#fff7fb` | `FRAME_FILL` | Мягкий брендовый фон полноэкранного служебного состояния, например просьбы повернуть устройство. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `background/surface/level/0` | `#ffffff` | `FRAME_FILL` | Surface Level 0: базовые карточки, шторки, модальные экраны и панели поверх canvas. Scope Figma: Frame — переменная показывается только для заливки Frame. |
@@ -104,14 +106,14 @@
 | `background/compliment/legacy` | `#ffedee` | `FRAME_FILL` | Фон старого шаблона списка комплиментов; не применять в новых компонентах. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `background/skeleton/base` | `#f0edf1` | `FRAME_FILL` | Базовый stop shimmer-градиента во время расшифровки или загрузки медиа. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `background/skeleton/highlight` | `#faf8fa` | `FRAME_FILL` | Светлый stop shimmer-градиента во время расшифровки или загрузки медиа. Scope Figma: Frame — переменная показывается только для заливки Frame. |
-| `background/message/default` | `#269dfd` | `FRAME_FILL` | Заливка синего сообщения, реакции и связанных круглых элементов мема. Scope Figma: Frame — переменная показывается только для заливки Frame. |
+| `background/message/default` | `#006fc9` | `FRAME_FILL` | Заливка синего сообщения, реакции и связанных круглых элементов мема. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `background/platform/theme` | `#ff7aa8` | `hidden` | Цвет системного browser/PWA chrome; используется сборкой, а не макетами экранов. Scope Figma отключён: служебная переменная не должна появляться в property picker. |
 | `background/platform/launch` | `#fff7fb` | `hidden` | Фон launch screen PWA; используется manifest и не выбирается для компонентов. Scope Figma отключён: служебная переменная не должна появляться в property picker. |
-| `border/default` | `#eaeaea` | `STROKE_COLOR` | Стандартная нейтральная обводка кнопки, иконки-кнопки или контейнера. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `border/default` | `#8a8a8a` | `STROKE_COLOR` | Стандартная нейтральная обводка кнопки, иконки-кнопки или контейнера. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `border/subtle` | `#f1edf2` | `STROKE_COLOR` | Слабая обводка, разделяющая соседние светлые поверхности. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `border/brand` | `#ff5e61` | `STROKE_COLOR` | Брендовая обводка активного, текущего или сфокусированного элемента. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `border/brand/strong` | `#d64747` | `STROKE_COLOR` | Усиленная брендовая обводка выбранного таба или акцентной поверхности. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `border/danger` | `#d64747` | `STROKE_COLOR` | Обводка ошибки, опасного состояния или купона с предупреждающим оформлением. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `border/brand` | `#a93235` | `STROKE_COLOR` | Брендовая обводка активного, текущего или сфокусированного элемента. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `border/brand/strong` | `#8f2930` | `STROKE_COLOR` | Усиленная брендовая обводка выбранного таба или акцентной поверхности. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `border/danger` | `#a93235` | `STROKE_COLOR` | Обводка ошибки, опасного состояния или купона с предупреждающим оформлением. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `border/transparent` | `rgba(0, 0, 0, 0)` | `STROKE_COLOR` | Прозрачная обводка, сохраняющая размеры и геометрию компонента между состояниями. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `border/progress/connector` | `#c8c8c8` | `STROKE_COLOR` | Линия-коннектор между подписью процента и шкалой прогресса. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `border/overlay/hint` | `rgba(255, 255, 255, 0.12)` | `STROKE_COLOR` | Слабая светлая обводка подсказки поверх затемнённого lightbox. Scope Figma: Stroke — переменная показывается только для обводки. |
@@ -124,17 +126,17 @@
 | `border/preview/loader/track` | `rgba(255, 255, 255, 0.45)` | `STROKE_COLOR` | Трек небольшого loader непосредственно в карточке видеопревью. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `button/outline/background` | `#ffffff` | `FRAME_FILL` | Обычный фон белой outline-кнопки. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `button/outline/background/hover` | `#faf8fa` | `FRAME_FILL` | Фон белой outline-кнопки при наведении указателя. Scope Figma: Frame — переменная показывается только для заливки Frame. |
-| `button/outline/border` | `#eaeaea` | `STROKE_COLOR` | Обычная обводка белой outline-кнопки. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `button/outline/border/hover` | `#e0dce1` | `STROKE_COLOR` | Усиленная обводка белой outline-кнопки при наведении указателя. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `button/outline/border` | `#8a8a8a` | `STROKE_COLOR` | Обычная обводка белой outline-кнопки. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `button/outline/border/hover` | `#8a8a8a` | `STROKE_COLOR` | Усиленная обводка белой outline-кнопки при наведении указателя. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `button/outline/foreground` | `#202020` | `TEXT_FILL + SHAPE_FILL + STROKE_COLOR` | Текст и системная иконка белой outline-кнопки. Scope Figma: Text, Shape и Stroke — единый foreground намеренно окрашивает label, fill-иконку и stroke-иконку внутри одного контрола. |
-| `button/primary/background` | `#ff5e61` | `FRAME_FILL` | Обычный фон главной брендовой кнопки. Scope Figma: Frame — переменная показывается только для заливки Frame. |
-| `button/primary/background/hover` | `#d64747` | `FRAME_FILL` | Фон главной брендовой кнопки при наведении указателя. Scope Figma: Frame — переменная показывается только для заливки Frame. |
-| `button/primary/border` | `#ff5e61` | `STROKE_COLOR` | Обычная обводка главной брендовой кнопки. Scope Figma: Stroke — переменная показывается только для обводки. |
-| `button/primary/border/hover` | `#d64747` | `STROKE_COLOR` | Обводка главной брендовой кнопки при наведении указателя. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `button/primary/background` | `#a93235` | `FRAME_FILL` | Обычный фон главной брендовой кнопки. Scope Figma: Frame — переменная показывается только для заливки Frame. |
+| `button/primary/background/hover` | `#8f2930` | `FRAME_FILL` | Фон главной брендовой кнопки при наведении указателя. Scope Figma: Frame — переменная показывается только для заливки Frame. |
+| `button/primary/border` | `#a93235` | `STROKE_COLOR` | Обычная обводка главной брендовой кнопки. Scope Figma: Stroke — переменная показывается только для обводки. |
+| `button/primary/border/hover` | `#8f2930` | `STROKE_COLOR` | Обводка главной брендовой кнопки при наведении указателя. Scope Figma: Stroke — переменная показывается только для обводки. |
 | `button/primary/foreground` | `#ffffff` | `TEXT_FILL + SHAPE_FILL + STROKE_COLOR` | Текст и системная иконка главной брендовой кнопки. Scope Figma: Text, Shape и Stroke — единый foreground намеренно окрашивает label, fill-иконку и stroke-иконку внутри одного контрола. |
 | `button/soft/background` | `#ffedee` | `FRAME_FILL` | Мягкий брендовый фон вторичной кнопки или badge. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `button/soft/background/hover` | `#ffd0dc` | `FRAME_FILL` | Мягкий брендовый фон вторичной кнопки при наведении указателя. Scope Figma: Frame — переменная показывается только для заливки Frame. |
-| `button/soft/foreground` | `#d64747` | `TEXT_FILL + SHAPE_FILL + STROKE_COLOR` | Текст и системная иконка мягкой брендовой кнопки. Scope Figma: Text, Shape и Stroke — единый foreground намеренно окрашивает label, fill-иконку и stroke-иконку внутри одного контрола. |
+| `button/soft/foreground` | `#a93235` | `TEXT_FILL + SHAPE_FILL + STROKE_COLOR` | Текст и системная иконка мягкой брендовой кнопки. Scope Figma: Text, Shape и Stroke — единый foreground намеренно окрашивает label, fill-иконку и stroke-иконку внутри одного контрола. |
 | `button/action/background` | `#f0f1ff` | `FRAME_FILL` | Мягкий синий фон утилитарного действия, например копирования. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `button/action/background/hover` | `#e4e6ff` | `FRAME_FILL` | Мягкий синий фон утилитарного действия при наведении указателя. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `button/action/foreground` | `#0213ff` | `TEXT_FILL + SHAPE_FILL + STROKE_COLOR` | Текст и системная иконка утилитарного действия, например копирования. Scope Figma: Text, Shape и Stroke — единый foreground намеренно окрашивает label, fill-иконку и stroke-иконку внутри одного контрола. |
@@ -145,9 +147,9 @@
 | `button/disabled/foreground` | `#9e9e9e` | `TEXT_FILL + SHAPE_FILL + STROKE_COLOR` | Текст и системная иконка недоступной кнопки. Scope Figma: Text, Shape и Stroke — единый foreground намеренно окрашивает label, fill-иконку и stroke-иконку внутри одного контрола. |
 | `shape/divider` | `#f1edf2` | `SHAPE_FILL` | Заливка геометрической линии Divider; это shape, а не stroke контейнера. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
 | `shape/archive/accent/default` | `#ff5e61` | `SHAPE_FILL` | Тонкая акцентная плашка в верхней части карточки архива, когда нет индивидуального цвета дня. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
-| `shape/carousel/indicator/active` | `#ff5e61` | `SHAPE_FILL` | Активная точка пагинации фотокарусели. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
-| `shape/carousel/indicator/inactive` | `#e0dce1` | `SHAPE_FILL` | Неактивная точка пагинации фотокарусели. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
-| `shape/message/tail` | `#269dfd` | `SHAPE_FILL` | Треугольный хвост синего пузыря сообщения. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
+| `shape/carousel/indicator/active` | `#a93235` | `SHAPE_FILL` | Активная точка пагинации фотокарусели. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
+| `shape/carousel/indicator/inactive` | `#8a8a8a` | `SHAPE_FILL` | Неактивная точка пагинации фотокарусели. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
+| `shape/message/tail` | `#006fc9` | `SHAPE_FILL` | Треугольный хвост синего пузыря сообщения. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
 | `shape/tooltip/pointer` | `#202020` | `SHAPE_FILL` | Треугольный хвост tooltip, совпадающий с его фоном. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
 | `shape/brand/soft` | `#ff9cba` | `SHAPE_FILL` | Небольшая мягкая брендовая декоративная форма внутри служебной иллюстрации интерфейса. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
 | `shape/finale/heart` | `rgba(255, 255, 255, 0.76)` | `SHAPE_FILL` | Полупрозрачное сердце в финальной сцене приложения. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. |
@@ -186,7 +188,7 @@
 | `overlay/media/medium` | `rgba(20, 18, 24, 0.26)` | `FRAME_FILL` | Средний stop градиента затемнения поверх медиапостера. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `overlay/media/strong` | `rgba(20, 18, 24, 0.42)` | `FRAME_FILL` | Сильный stop градиента затемнения поверх медиапостера. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `overlay/control` | `rgba(0, 0, 0, 0.42)` | `FRAME_FILL` | Полупрозрачный тёмный фон обычного контрола поверх фото или видео. Scope Figma: Frame — переменная показывается только для заливки Frame. |
-| `overlay/hint` | `rgba(0, 0, 0, 0.48)` | `FRAME_FILL` | Полупрозрачный тёмный фон текстовой подсказки в lightbox. Scope Figma: Frame — переменная показывается только для заливки Frame. |
+| `overlay/hint` | `rgba(0, 0, 0, 0.55)` | `FRAME_FILL` | Полупрозрачный тёмный фон текстовой подсказки в lightbox. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `overlay/play` | `rgba(0, 0, 0, 0.55)` | `FRAME_FILL` | Полупрозрачный тёмный круг центральной кнопки запуска видео. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `overlay/control/strong` | `rgba(0, 0, 0, 0.58)` | `FRAME_FILL` | Усиленный тёмный фон важной плашки поверх медиапостера. Scope Figma: Frame — переменная показывается только для заливки Frame. |
 | `overlay/lightbox` | `rgba(0, 0, 0, 0.92)` | `FRAME_FILL` | Почти непрозрачный фон полноэкранного просмотра фотографий. Scope Figma: Frame — переменная показывается только для заливки Frame. |
@@ -204,11 +206,12 @@
 | `shadow/media/expand` | `rgba(0, 0, 0, 0.3)` | `EFFECT_COLOR` | Тень кнопки разворачивания фото или коллажа. Scope Figma: Effects — переменная показывается только для цвета тени или другого эффекта. |
 | `shadow/video/play` | `rgba(0, 0, 0, 0.32)` | `EFFECT_COLOR` | Тень центральной кнопки запуска видео. Scope Figma: Effects — переменная показывается только для цвета тени или другого эффекта. |
 | `shadow/test/toolbar` | `rgba(0, 0, 0, 0.35)` | `EFFECT_COLOR` | Тень внутренней тестовой панели; не использовать в продуктовом UI. Scope Figma: Effects — переменная показывается только для цвета тени или другого эффекта. |
-| `effect/focus/ring` | `rgba(255, 94, 97, 0.3)` | `EFFECT_COLOR` | Цвет внешнего focus ring интерактивного элемента, реализованного через shadow/effect. Scope Figma: Effects — переменная показывается только для цвета тени или другого эффекта. |
+| `effect/focus/ring` | `rgba(169, 50, 53, 0.7)` | `EFFECT_COLOR` | Цвет внешнего focus ring интерактивного элемента, реализованного через shadow/effect. Scope Figma: Effects — переменная показывается только для цвета тени или другого эффекта. |
 
 ## Enforcement
 
 - Новый semantic-токен без явного назначения или Scope ломает `npm run audit:colors`.
+- Недостаточный контраст текста, функциональной иконки, границы или состояния ломает `npm run audit:contrast:strict` и production build.
 - Изменение CSS-токенов без обновления Figma-ready реестра также ломает аудит.
 - Компаниям принадлежат цвета их логотипов; SVG-логотипы не являются палитрой приложения и остаются документированными исключениями.
 - Иллюстрационные aliases скрыты и допустимы только в code-authored artwork/scenes.

@@ -14,14 +14,15 @@
   /* Secondary */
   --color-alias-secondary-default: var(--color-primitive-neutral-522);
   --color-alias-secondary-strong: var(--color-primitive-neutral-565);
-  --color-alias-secondary-medium: var(--color-primitive-neutral-435);
-  --color-alias-secondary-muted: var(--color-primitive-neutral-391);
-  --color-alias-secondary-subtle: var(--color-primitive-neutral-217);
-  --color-alias-secondary-faint: var(--color-primitive-neutral-174);
-  --color-alias-secondary-number: var(--color-primitive-neutral-348);
+  --color-alias-secondary-medium: var(--color-primitive-neutral-609);
+  --color-alias-secondary-muted: var(--color-primitive-neutral-609);
+  --color-alias-secondary-subtle: var(--color-primitive-neutral-609);
+  --color-alias-secondary-faint: var(--color-primitive-neutral-609);
+  --color-alias-secondary-number: var(--color-primitive-neutral-609);
   --color-alias-secondary-card: var(--color-primitive-neutral-609);
-  --color-alias-secondary-meta: var(--color-primitive-neutral-261);
-  --color-alias-secondary-label: var(--color-primitive-neutral-478);
+  --color-alias-secondary-meta: var(--color-primitive-neutral-609);
+  --color-alias-secondary-label: var(--color-primitive-neutral-609);
+  --color-alias-secondary-progress: var(--color-primitive-neutral-609);
   --color-alias-secondary-warm: var(--color-primitive-mauve-500);
   --color-alias-secondary-content: var(--color-primitive-neutral-696);
 
@@ -30,7 +31,8 @@
 
   /* Brand */
   --color-alias-brand-default: var(--color-primitive-red-938);
-  --color-alias-brand-strong: var(--color-primitive-red-1000);
+  --color-alias-brand-contrast: var(--color-primitive-red-977);
+  --color-alias-brand-contrast-strong: var(--color-primitive-red-1000);
   --color-alias-brand-medium: var(--color-primitive-rose-484);
   --color-alias-brand-soft: var(--color-primitive-rose-194);
   --color-alias-brand-subtle: var(--color-primitive-red-63);
@@ -78,7 +80,7 @@
   --color-alias-action-hover: var(--color-primitive-blue-222);
 
   /* Status */
-  --color-alias-danger-default: var(--color-primitive-red-1000);
+  --color-alias-danger-default: var(--color-primitive-red-977);
   --color-alias-danger-subtle: var(--color-primitive-alpha-red-938-10);
 
   /* Disabled */
@@ -95,17 +97,16 @@
   --color-alias-surface-skeleton: var(--color-primitive-mauve-250);
   --color-alias-surface-skeleton-highlight: var(--color-primitive-mauve-0);
   --color-alias-surface-calendar-future: var(--color-primitive-neutral-87);
-  --color-alias-surface-calendar-past: var(--color-primitive-red-63);
   --color-alias-surface-progress-track: var(--color-primitive-neutral-174);
   --color-alias-surface-media: var(--color-primitive-neutral-1000);
-  --color-alias-surface-message: var(--color-primitive-blue-722);
+  --color-alias-surface-message: var(--color-primitive-blue-729);
   --color-alias-surface-tooltip: var(--color-primitive-neutral-957);
 
   /* Border */
-  --color-alias-border-default: var(--color-primitive-neutral-130);
+  --color-alias-border-default: var(--color-primitive-neutral-348);
   --color-alias-border-subtle: var(--color-primitive-mauve-188);
-  --color-alias-border-strong: var(--color-primitive-mauve-313);
-  --color-alias-border-brand: var(--color-primitive-red-938);
+  --color-alias-border-strong: var(--color-primitive-neutral-348);
+  --color-alias-border-brand: var(--color-primitive-red-977);
   --color-alias-border-brand-strong: var(--color-primitive-red-1000);
   --color-alias-border-inverse-faint: var(--color-primitive-alpha-neutral-0-12);
   --color-alias-border-inverse-subtle: var(--color-primitive-alpha-neutral-0-16);
@@ -121,7 +122,7 @@
   --color-alias-overlay-media-medium: var(--color-primitive-alpha-indigo-1000-26);
   --color-alias-overlay-media-strong: var(--color-primitive-alpha-indigo-1000-42);
   --color-alias-overlay-black-42: var(--color-primitive-alpha-neutral-1000-42);
-  --color-alias-overlay-black-48: var(--color-primitive-alpha-neutral-1000-48);
+  --color-alias-overlay-hint: var(--color-primitive-alpha-neutral-1000-55);
   --color-alias-overlay-black-55: var(--color-primitive-alpha-neutral-1000-55);
   --color-alias-overlay-black-58: var(--color-primitive-alpha-neutral-1000-58);
   --color-alias-overlay-lightbox: var(--color-primitive-alpha-neutral-1000-92);
@@ -131,7 +132,7 @@
   --color-alias-overlay-inverse-subtle: var(--color-primitive-alpha-neutral-0-76);
 
   /* Focus and shadow */
-  --color-alias-focus-default: var(--color-primitive-alpha-red-938-30);
+  --color-alias-focus-default: var(--color-primitive-alpha-red-977-70);
   --color-alias-shadow-soft: var(--color-primitive-alpha-mauve-1000-18);
   --color-alias-shadow-medium: var(--color-primitive-alpha-rose-1000-50);
   --color-alias-shadow-strong: var(--color-primitive-alpha-rose-968-55);

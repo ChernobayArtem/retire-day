@@ -309,7 +309,7 @@
 .ui-text-field__control {
   min-height: var(--ui-field-height);
   padding: 0 var(--ui-space-4);
-  border: 2px solid var(--color-semantic-border-subtle);
+  border: 2px solid var(--color-semantic-border-default);
   border-radius: var(--ui-radius-md);
   background: var(--color-semantic-background-surface-level-1);
   display: flex;
@@ -549,12 +549,10 @@
   align-items: center;
   justify-content: center;
   gap: var(--ui-space-1-5);
-  opacity: 0.68;
   cursor: pointer;
   transition:
     color var(--ui-duration-fast) var(--ui-ease-standard),
     border-color var(--ui-duration-fast) var(--ui-ease-standard),
-    opacity var(--ui-duration-fast) var(--ui-ease-standard),
     transform var(--ui-duration-fast) var(--ui-ease-standard);
 }
 
