@@ -17,18 +17,28 @@ exemption. The calculator is `scripts/audit-color-contrast.mjs`.
 
 ## Current result
 
-`npm run audit:contrast:strict` checks 56 real foreground/background pairs.
-All 56 currently meet WCAG 2.2 AA. Five exemption groups are recorded explicitly;
+`npm run audit:contrast:strict` checks 72 real foreground/background pairs.
+All 72 currently meet WCAG 2.2 AA. Nine exemption groups are recorded explicitly;
 nothing is skipped implicitly.
 
-Lowest passing pairs:
+`npm run audit:contrast:coverage` separately discovers semantic foreground,
+icon, boundary and focus roles that are actually consumed by product code. The
+current coverage is 69 roles: 48 required numeric checks, 21 documented
+exemptions and 0 missing roles. This prevents a new role from bypassing the
+contrast contract simply because nobody remembered to add a pair manually.
+
+Selected narrow passing pairs:
 
 | Pair | Ratio | Requirement |
 | --- | ---: | ---: |
 | Lightbox control, white icon over the worst-case translucent background | `3.037:1` | `3:1` |
 | Text-field boundary on level-1 | `3.267:1` | `3:1` |
 | Default outline-control boundary on white | `3.452:1` | `3:1` |
+| Outline-control hover boundary on white | `3.452:1` | `3:1` |
+| Inactive carousel indicator on white | `3.452:1` | `3:1` |
 | Focus ring on white | `3.589:1` | `3:1` |
+| Video play icon over the worst-case translucent background | `4.759:1` | `3:1` |
+| Lightbox hint over the worst-case translucent background | `4.759:1` | `4.5:1` |
 | Soft-button text in hover state | `4.792:1` | `4.5:1` |
 | Inactive tab text on white | `4.807:1` | `4.5:1` |
 | Calendar number on the future-day surface | `4.999:1` | `4.5:1` |
@@ -61,8 +71,12 @@ The following are exempt under WCAG or decorative by construction, and the
 contract describes the reason for each group:
 
 - disabled controls and disabled field content — inactive component exemption;
+- light decorative/redundant boundaries whose structure is already conveyed by spacing, surface or accessible content;
+- media-control rings whose audited dark surface and inverse icon already provide the control boundary;
+- transient loader strokes that do not carry content or identify a control;
 - per-day accent colours — decorative identity with date/category available independently;
 - dividers, progress connector, skeleton shimmer, shadows and gradients — decoration only;
+- decorative interface shapes such as speech-bubble tails, tooltip pointers and artwork fills;
 - empty-state brand icon — `aria-hidden` and duplicated by adjacent copy;
 - photographs, video posters, company logos and code-authored illustrations — artwork; controls above media are audited separately with worst-case backdrops.
 
@@ -73,6 +87,8 @@ Disabled tokens must never be reused for enabled labels or metadata.
 - `npm run audit:contrast` — every non-exempt pair must meet AA.
 - `npm run audit:contrast:strict` — the explicit production alias used by the
   build; it enforces the same complete contract.
+- `npm run audit:contrast:coverage` — proves that every consumed semantic
+  foreground, icon, control-boundary and focus role is required or explicitly exempt.
 - `node scripts/audit-color-contrast.mjs --json` — complete machine-readable
   result with selectors, ratios, requirements, exemptions and actual accessible values.
 

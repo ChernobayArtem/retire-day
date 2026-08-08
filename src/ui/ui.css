@@ -342,7 +342,7 @@
 }
 
 .ui-text-field__input::placeholder {
-  color: var(--color-semantic-text-main-disabled);
+  color: var(--color-semantic-text-main-muted);
   opacity: 1;
 }
 

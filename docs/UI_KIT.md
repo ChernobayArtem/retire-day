@@ -8,10 +8,12 @@ The production code is the source of truth for the UI kit. Color values live in
 `src/ui/tokens/foundations.css`, component styles in `src/ui/ui.css`, and public
 React exports in `src/ui/index.ts`.
 
-Figma will mirror this system later. Until its variables and components are
-checked against the app, a difference between Figma and code is resolved in
-favour of code. Product content must never be copied into the kit to make an
-example look realistic.
+The Figma library now mirrors the color foundations and their documentation.
+Its variables are checked against the generated registry. Production component
+code remains the implemented component contract until each Figma component
+family is explicitly mirrored and approved. Differences are reconciled
+deliberately rather than silently choosing one side. Product content must never
+be copied into the kit to make an example look realistic.
 
 The UI kit may change presentation, but it must not change application state or
 product behaviour. In particular, a UI migration must not rename or reset
@@ -213,17 +215,18 @@ active, focus-visible, disabled, loading, error, and reduced-motion states.
 Then run:
 
 ```bash
-npm run typecheck
-npm run build
+npm run verify:release
+git diff --check
 ```
 
 Screen migrations should be small and reversible: introduce tokens first,
 migrate one component family, compare before/after, and remove legacy styles
 only when no consumer remains.
 
-## Moving the kit to Figma later
+## Maintaining the kit in Figma
 
-The transfer is a controlled mirror, not a redesign:
+The remaining component transfer and every later update are controlled mirrors,
+not detached redesigns:
 
 1. Freeze and tag a known code version.
 2. Import the three collections from
