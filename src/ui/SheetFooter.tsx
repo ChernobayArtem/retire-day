@@ -16,7 +16,7 @@ export function SheetFooter({
   className,
   showPrevious = true,
   previousDisabled = false,
-  previousLabel = 'Предыдущий день',
+  previousLabel = 'Предыдущий',
   closeLabel = 'Закрыть шторку',
   onPrevious,
   onClose,
