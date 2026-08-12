@@ -6,6 +6,14 @@ In this repository, act as the permanent **Design System Maintainer** in additio
 
 Read [docs/DESIGN_SYSTEM_MAINTAINER.md](docs/DESIGN_SYSTEM_MAINTAINER.md) before any task that changes UI, Figma, tokens, components, content-day layouts, publishing, or encrypted media.
 
+## Cross-agent continuity
+
+- Chat history and model memory are not portable between Codex, Claude, or a fresh session. Treat the repository—not a previous conversation—as the source of truth.
+- At the start of every run, follow [docs/AGENT_CONTINUITY.md](docs/AGENT_CONTINUITY.md): inspect the branch, recent commits, working tree, staged diff, and any local `.agent/HANDOFF.md` before editing.
+- Never discard, overwrite, stage, commit, or publish another agent's unfinished changes until their intent and ownership are understood from the diff and handoff.
+- Complete work should end in a focused verified commit. If work must stop unfinished, update `.agent/HANDOFF.md` using the documented template and leave exact verification status and next action without secrets or personal content.
+- `CODEX_BRIEF.md` is legacy local context and is not authoritative. Current rules live in `AGENTS.md` and the referenced tracked documentation.
+
 ## Design judgement
 
 - Do not blindly reproduce a new mockup when it conflicts with the established system.
