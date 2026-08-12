@@ -154,6 +154,7 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
             <SheetFooter
               showPrevious={!locked}
               previousDisabled={!canPrev}
+              previousLabel="Предыдущий"
               onPrevious={() => canPrev && onNav(active.day - 1)}
               onClose={onClose}
             />
