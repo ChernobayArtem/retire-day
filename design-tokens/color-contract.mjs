@@ -45,267 +45,168 @@ export const aliasDescriptionOverrides = Object.freeze({
 })
 
 export const semanticPurpose = Object.freeze({
-  '--color-semantic-text-main-primary':
+  '--color-semantic-text-primary':
     'Основной текст интерфейса, значения полей и обычный читаемый контент.',
-  '--color-semantic-text-main-heading':
-    'Главные заголовки экранов, шторок и крупных смысловых разделов.',
-  '--color-semantic-text-main-display':
-    'Крупный выразительный текст: акцентное число, финальный статус или единственный display-заголовок экрана.',
-  '--color-semantic-text-main-warm-heading':
-    'Заголовок на тёплой личной поверхности или в эмоциональном контентном блоке.',
-  '--color-semantic-text-card-title':
-    'Название карточки открытого сюрприза в архиве.',
-  '--color-semantic-text-code-primary':
-    'Сам код сертификата, купона или другое значение, которое пользователь копирует.',
-  '--color-semantic-text-content-primary':
-    'Основной длинный личный текст внутри контентной карточки.',
-  '--color-semantic-text-control-primary':
-    'Основная подпись компактного интерактивного контрола внутри контента.',
-  '--color-semantic-text-warm-content':
-    'Текст в тёплом legacy-блоке комплиментов; новые компоненты должны выбрать более общую роль.',
-  '--color-semantic-text-main-secondary':
-    'Вторичный текст, который поясняет основной контент, но остаётся хорошо читаемым.',
-  '--color-semantic-text-main-secondary-strong':
-    'Повышенно-контрастный вторичный текст для важной подписи под заголовком.',
-  '--color-semantic-text-main-muted':
-    'Приглушённые описания, пояснения и вспомогательный текст средней важности.',
-  '--color-semantic-text-main-caption':
-    'Компактная подпись или hint рядом с карточкой; менее заметна, чем обычный muted-текст.',
-  '--color-semantic-text-main-subtle':
-    'Малозаметный служебный текст, который не должен конкурировать с содержанием.',
-  '--color-semantic-text-main-faint':
-    'Самый слабый читаемый текст: дата, редкая метаинформация или второстепенная отметка.',
-  '--color-semantic-text-main-disabled':
-    'Недоступный текст, placeholder или подпись выключенного состояния.',
-  '--color-semantic-text-progress-label':
-    'Процент и числовая подпись неактивной части прогресс-бара.',
-  '--color-semantic-text-calendar-number':
-    'Номер дня внутри ячейки календаря.',
-  '--color-semantic-text-card-secondary':
-    'Вторичное описание внутри карточки архива.',
-  '--color-semantic-text-card-meta':
-    'Дата, категория и другая компактная метаинформация карточки архива.',
-  '--color-semantic-text-code-label':
-    'Короткий label перед значением кода, PIN или CVC.',
-  '--color-semantic-text-warm-secondary':
-    'Вторичная подпись на тёплом legacy-контенте.',
-  '--color-semantic-text-content-secondary':
-    'Вторичный текст внутри самостоятельного контентного блока.',
-  '--color-semantic-text-inverse-primary':
-    'Основной светлый текст на тёмной или насыщенной поверхности.',
-  '--color-semantic-text-brand-default':
-    'Текстовый бренд-акцент: текущая дата, важная отметка или эмоциональный акцент.',
-  '--color-semantic-text-danger-default':
-    'Текст ошибки или опасного состояния; не использовать как декоративный красный акцент.',
-
-  '--color-semantic-icon-main-primary':
-    'Основная системная иконка на светлой поверхности.',
-  '--color-semantic-icon-inverse-primary':
-    'Светлая системная иконка на тёмной, цветной или медиа-поверхности.',
-  '--color-semantic-icon-brand-default':
-    'Брендовая системная иконка, обозначающая активное или выделенное действие.',
-  '--color-semantic-icon-danger-default':
-    'Иконка ошибки или опасного действия.',
-  '--color-semantic-icon-field-muted':
-    'Приглушённая leading или trailing иконка текстового поля.',
-  '--color-semantic-icon-progress-active':
-    'Активная орхидея или другой системный маркер пройденной части прогресса.',
-  '--color-semantic-icon-progress-inactive':
-    'Неактивная орхидея или другой системный маркер непройденной части прогресса.',
-
+  '--color-semantic-text-heading':
+    'Заголовки экранов, шторок, карточек и крупных смысловых разделов.',
+  '--color-semantic-text-secondary':
+    'Поясняющий текст средней важности, подписи, даты и метаинформация.',
+  '--color-semantic-text-muted':
+    'Приглушённый вспомогательный текст, который не конкурирует с основным содержанием.',
+  '--color-semantic-text-disabled':
+    'Текст недоступного состояния; не применять для обычного вторичного текста.',
+  '--color-semantic-text-inverse':
+    'Светлый текст на тёмной, цветной или медиа-поверхности.',
+  '--color-semantic-text-brand':
+    'Функциональный брендовый акцент в тексте: активное или текущее состояние.',
+  '--color-semantic-text-action':
+    'Текст утилитарного действия, например копирования или возврата.',
+  '--color-semantic-text-danger':
+    'Текст ошибки или опасного состояния; не использовать декоративно.',
+  '--color-semantic-icon-primary':
+    'Основные системные иконки на светлой поверхности.',
+  '--color-semantic-icon-muted':
+    'Второстепенные иконки и неактивные графические маркеры.',
+  '--color-semantic-icon-inverse':
+    'Светлые системные иконки на тёмной, цветной или медиа-поверхности.',
+  '--color-semantic-icon-brand':
+    'Функциональные брендовые иконки активного или текущего состояния.',
+  '--color-semantic-icon-danger':
+    'Иконки ошибки или потенциально опасного действия.',
   '--color-semantic-background-canvas':
-    'Корневой canvas приложения — самый нижний слой, на котором строится весь экран.',
+    'Корневой canvas приложения; самый нижний фон всего экрана.',
+  '--color-semantic-background-surface-level-0':
+    'Surface Level 0: карточки, шторки, модальные экраны и панели поверх canvas.',
+  '--color-semantic-background-surface-level-1':
+    'Surface Level 1: первый вложенный слой, input или hover светлого контрола.',
+  '--color-semantic-background-surface-level-2':
+    'Surface Level 2: второй вложенный слой, архив, badge или empty state.',
+  '--color-semantic-background-surface-level-3':
+    'Surface Level 3: глубокий inset-слой для строк кодов и плотных локальных групп.',
+  '--color-semantic-background-surface-inverse':
+    'Тёмная инверсная поверхность для светлого foreground и медиа-контекста.',
   '--color-semantic-background-brand-page':
     'Мягкий брендовый фон полноэкранного служебного состояния, например просьбы повернуть устройство.',
-  '--color-semantic-background-surface-level-0':
-    'Surface Level 0: базовые карточки, шторки, модальные экраны и панели поверх canvas.',
-  '--color-semantic-background-surface-level-1':
-    'Surface Level 1: первый вложенный слой, input, subtle-контейнер или hover белого контрола.',
-  '--color-semantic-background-surface-level-2':
-    'Surface Level 2: более заметное отделение — архив, badges, empty state и muted-контролы.',
-  '--color-semantic-background-surface-level-3':
-    'Surface Level 3: самый глубокий тёплый inset-слой для строк кодов и плотных локальных групп.',
+  '--color-semantic-background-brand-subtle':
+    'Мягкая брендовая заливка выбранного или эмоционально выделенного блока.',
   '--color-semantic-background-brand-faint':
-    'Очень слабая брендовая заливка выделенного дня или компактного брендового состояния.',
+    'Едва заметная брендовая заливка компактного текущего состояния.',
   '--color-semantic-background-danger-subtle':
-    'Слабая заливка опасного или предупреждающего блока без потери читаемости контента.',
-  '--color-semantic-background-media-default':
-    'Базовая тёмная поверхность фото- или видеоплеера, видимая вокруг медиа.',
-  '--color-semantic-background-surface-inverse':
-    'Инверсная тёмная поверхность для секции со светлым foreground.',
-  '--color-semantic-background-tooltip':
-    'Фон информационного tooltip; хвост tooltip использует отдельный shape-токен.',
-  '--color-semantic-background-transparent':
-    'Полностью прозрачная заливка интерактивного элемента, сохраняющая его геометрию и hit area.',
-  '--color-semantic-background-archive-navigation':
-    'Заливка круглого индикатора перехода в архив на главном экране.',
-  '--color-semantic-background-calendar-past':
-    'Заливка прошедшего или уже открытого дня календаря.',
-  '--color-semantic-background-calendar-future':
-    'Заливка будущего, ещё не открытого дня календаря.',
-  '--color-semantic-background-calendar-today':
-    'Заливка текущего дня календаря; активность дополнительно обозначается брендовой обводкой.',
+    'Слабая заливка ошибки или предупреждения без потери читаемости.',
+  '--color-semantic-background-media':
+    'Базовая тёмная поверхность вокруг фото или видео.',
   '--color-semantic-background-media-placeholder':
-    'Нейтральная заливка области фото, видео или сертификата до появления медиа.',
-  '--color-semantic-background-test-control':
-    'Фон внутреннего тестового контрола; не является частью публичной дизайн-библиотеки.',
-  '--color-semantic-background-coupon-legacy':
-    'Фон старого шаблона купона; не применять в новых компонентах.',
-  '--color-semantic-background-compliment-legacy':
-    'Фон старого шаблона списка комплиментов; не применять в новых компонентах.',
-  '--color-semantic-background-skeleton-base':
-    'Базовый stop shimmer-градиента во время расшифровки или загрузки медиа.',
-  '--color-semantic-background-skeleton-highlight':
-    'Светлый stop shimmer-градиента во время расшифровки или загрузки медиа.',
-  '--color-semantic-background-message-default':
-    'Заливка синего сообщения, реакции и связанных круглых элементов мема.',
-  '--color-semantic-background-platform-theme':
-    'Цвет системного browser/PWA chrome; используется сборкой, а не макетами экранов.',
-  '--color-semantic-background-platform-launch':
-    'Фон launch screen PWA; используется manifest и не выбирается для компонентов.',
-
+    'Нейтральная область до появления или расшифровки медиа.',
+  '--color-semantic-background-message':
+    'Заливка синего сообщения, его хвоста и связанных реакций.',
+  '--color-semantic-background-skeleton':
+    'Базовая заливка состояния загрузки и skeleton-элемента.',
+  '--color-semantic-background-tooltip':
+    'Фон информационной подсказки поверх интерфейса.',
+  '--color-semantic-background-transparent':
+    'Прозрачная заливка, сохраняющая геометрию и hit area контрола.',
   '--color-semantic-border-default':
-    'Стандартная нейтральная обводка кнопки, иконки-кнопки или контейнера.',
+    'Стандартная функциональная обводка кнопки, поля или контейнера.',
+  '--color-semantic-border-progress-connector':
+    'Линия-коннектор между подписью процента и шкалой прогресса.',
   '--color-semantic-border-subtle':
-    'Слабая обводка, разделяющая соседние светлые поверхности.',
+    'Слабая декоративная граница между соседними светлыми поверхностями.',
   '--color-semantic-border-brand':
     'Брендовая обводка активного, текущего или сфокусированного элемента.',
   '--color-semantic-border-brand-strong':
     'Усиленная брендовая обводка выбранного таба или акцентной поверхности.',
   '--color-semantic-border-danger':
-    'Обводка ошибки, опасного состояния или купона с предупреждающим оформлением.',
+    'Обводка ошибки, опасного состояния или предупреждающей карточки.',
+  '--color-semantic-border-inverse-subtle':
+    'Слабая светлая обводка контрола поверх тёмного медиа.',
+  '--color-semantic-border-inverse-strong':
+    'Контрастная светлая обводка loader или активного медиа-контрола.',
   '--color-semantic-border-transparent':
-    'Прозрачная обводка, сохраняющая размеры и геометрию компонента между состояниями.',
-  '--color-semantic-border-progress-connector':
-    'Линия-коннектор между подписью процента и шкалой прогресса.',
-  '--color-semantic-border-overlay-hint':
-    'Слабая светлая обводка подсказки поверх затемнённого lightbox.',
-  '--color-semantic-border-overlay-control':
-    'Светлая обводка кнопок закрытия и скачивания поверх медиа.',
-  '--color-semantic-border-loader-track':
-    'Полупрозрачный трек полноэкранного loader на тёмном медиа-фоне.',
-  '--color-semantic-border-loader-indicator':
-    'Яркий движущийся сегмент loader на тёмном медиа-фоне.',
-  '--color-semantic-border-message-reaction':
-    'Светлая обводка кругов реакции возле синего пузыря сообщения.',
-  '--color-semantic-border-video-play':
-    'Обводка центральной кнопки запуска видео поверх постера.',
-  '--color-semantic-border-video-pending':
-    'Обводка плашки видео, которое ещё не добавлено.',
-  '--color-semantic-border-preview-loader-track':
-    'Трек небольшого loader непосредственно в карточке видеопревью.',
-
+    'Прозрачная обводка, сохраняющая геометрию между состояниями.',
   '--color-semantic-button-outline-background':
-    'Обычный фон белой outline-кнопки.',
+    'Фон обычной светлой outline-кнопки.',
   '--color-semantic-button-outline-background-hover':
-    'Фон белой outline-кнопки при наведении указателя.',
+    'Фон светлой outline-кнопки при наведении указателя.',
   '--color-semantic-button-outline-border':
-    'Обычная обводка белой outline-кнопки.',
-  '--color-semantic-button-outline-border-hover':
-    'Усиленная обводка белой outline-кнопки при наведении указателя.',
+    'Обводка светлой outline-кнопки во всех обычных состояниях.',
   '--color-semantic-button-outline-foreground':
-    'Текст и системная иконка белой outline-кнопки.',
+    'Текст и системная иконка светлой outline-кнопки.',
   '--color-semantic-button-primary-background':
-    'Обычный фон главной брендовой кнопки.',
+    'Фон главной брендовой кнопки в обычном состоянии.',
   '--color-semantic-button-primary-background-hover':
-    'Фон главной брендовой кнопки при наведении указателя.',
+    'Фон главной брендовой кнопки при hover или pressed.',
   '--color-semantic-button-primary-border':
-    'Обычная обводка главной брендовой кнопки.',
+    'Обводка главной брендовой кнопки в обычном состоянии.',
   '--color-semantic-button-primary-border-hover':
-    'Обводка главной брендовой кнопки при наведении указателя.',
+    'Обводка главной брендовой кнопки при hover или pressed.',
   '--color-semantic-button-primary-foreground':
     'Текст и системная иконка главной брендовой кнопки.',
   '--color-semantic-button-soft-background':
     'Мягкий брендовый фон вторичной кнопки или badge.',
   '--color-semantic-button-soft-background-hover':
-    'Мягкий брендовый фон вторичной кнопки при наведении указателя.',
+    'Мягкий брендовый фон вторичной кнопки при наведении.',
   '--color-semantic-button-soft-foreground':
     'Текст и системная иконка мягкой брендовой кнопки.',
   '--color-semantic-button-action-background':
-    'Мягкий синий фон утилитарного действия, например копирования.',
+    'Мягкий фон утилитарного действия, например копирования.',
   '--color-semantic-button-action-background-hover':
-    'Мягкий синий фон утилитарного действия при наведении указателя.',
+    'Мягкий фон утилитарного действия при наведении.',
   '--color-semantic-button-action-foreground':
-    'Текст и системная иконка утилитарного действия, например копирования.',
-  '--color-semantic-button-ghost-background':
-    'Фон ghost-кнопки при hover; обычное состояние остаётся прозрачным.',
-  '--color-semantic-button-ghost-foreground':
-    'Текст и системная иконка ghost-кнопки.',
-  '--color-semantic-button-link-foreground':
-    'Текст и системная иконка link-кнопки.',
+    'Текст и системная иконка утилитарного действия.',
   '--color-semantic-button-disabled-background':
     'Фон недоступной кнопки или иконки-кнопки.',
   '--color-semantic-button-disabled-foreground':
     'Текст и системная иконка недоступной кнопки.',
-
   '--color-semantic-shape-divider':
-    'Заливка геометрической линии Divider; это shape, а не stroke контейнера.',
-  '--color-semantic-shape-archive-accent-default':
-    'Тонкая акцентная плашка в верхней части карточки архива, когда нет индивидуального цвета дня.',
-  '--color-semantic-shape-carousel-indicator-active':
+    'Заливка геометрической линии Divider; это shape, а не stroke.',
+  '--color-semantic-shape-carousel-active':
     'Активная точка пагинации фотокарусели.',
-  '--color-semantic-shape-carousel-indicator-inactive':
+  '--color-semantic-shape-carousel-inactive':
     'Неактивная точка пагинации фотокарусели.',
   '--color-semantic-shape-message-tail':
     'Треугольный хвост синего пузыря сообщения.',
   '--color-semantic-shape-tooltip-pointer':
     'Треугольный хвост tooltip, совпадающий с его фоном.',
   '--color-semantic-shape-brand-soft':
-    'Небольшая мягкая брендовая декоративная форма внутри служебной иллюстрации интерфейса.',
-  '--color-semantic-shape-finale-heart':
-    'Полупрозрачное сердце в финальной сцене приложения.',
-  '--color-semantic-shape-orchid-center':
-    'Светлая центральная форма системной орхидеи прогресс-бара.',
-
+    'Мягкая брендовая форма внутри служебной иллюстрации интерфейса.',
+  '--color-semantic-content-accent-compliment':
+    'Акцент категории «Комплимент» независимо от номера и длины календаря.',
+  '--color-semantic-content-accent-photos':
+    'Акцент категории «Фотографии» независимо от номера и длины календаря.',
+  '--color-semantic-content-accent-certificate':
+    'Акцент категории «Сертификат» независимо от номера и длины календаря.',
+  '--color-semantic-content-accent-coupon':
+    'Акцент категории «Купон» независимо от номера и длины календаря.',
+  '--color-semantic-content-accent-restaurant':
+    'Акцент категории «Ресторан» независимо от номера и длины календаря.',
+  '--color-semantic-content-accent-video':
+    'Акцент категории «Видео» независимо от номера и длины календаря.',
   '--color-semantic-overlay-sheet':
     'Затемнение основного экрана под открытой шторкой дня.',
   '--color-semantic-overlay-media-soft':
-    'Слабый stop градиента затемнения поверх медиапостера.',
+    'Слабое затемнение поверх медиапостера или фотографии.',
   '--color-semantic-overlay-media-medium':
-    'Средний stop градиента затемнения поверх медиапостера.',
+    'Среднее затемнение между светлым и сильным stop градиента медиапостера.',
   '--color-semantic-overlay-media-strong':
-    'Сильный stop градиента затемнения поверх медиапостера.',
+    'Сильное затемнение поверх медиапостера для читаемого foreground.',
   '--color-semantic-overlay-control':
-    'Полупрозрачный тёмный фон обычного контрола поверх фото или видео.',
-  '--color-semantic-overlay-hint':
-    'Полупрозрачный тёмный фон текстовой подсказки в lightbox.',
-  '--color-semantic-overlay-play':
-    'Полупрозрачный тёмный круг центральной кнопки запуска видео.',
+    'Полупрозрачный тёмный фон контрола поверх фото или видео.',
   '--color-semantic-overlay-control-strong':
-    'Усиленный тёмный фон важной плашки поверх медиапостера.',
-  '--color-semantic-overlay-lightbox':
-    'Почти непрозрачный фон полноэкранного просмотра фотографий.',
-  '--color-semantic-overlay-video':
-    'Почти непрозрачный фон полноэкранного просмотра видео.',
+    'Усиленный тёмный фон важной плашки поверх фото или видео.',
+  '--color-semantic-overlay-fullscreen':
+    'Почти непрозрачный фон полноэкранного просмотра медиа.',
   '--color-semantic-overlay-glass':
     'Светлая стеклянная заливка компактного контрола поверх контента.',
   '--color-semantic-overlay-glass-strong':
-    'Более плотная светлая стеклянная заливка тестовой панели.',
-  '--color-semantic-gradient-sun-glow':
-    'Цветной начальный stop декоративного свечения солнца в финальной сцене.',
-  '--color-semantic-gradient-transparent-white':
-    'Прозрачный конечный stop декоративного свечения солнца в финальной сцене.',
-
+    'Более плотная стеклянная заливка внутренней тестовой панели.',
   '--color-semantic-shadow-soft':
-    'Мягкая тень малой высоты для компактных поверхностей.',
+    'Мягкая тень малой высоты для компактной поверхности.',
   '--color-semantic-shadow-medium':
     'Средняя тень приподнятой карточки или панели.',
   '--color-semantic-shadow-strong':
     'Сильная тень верхнего слоя или выразительной модальной поверхности.',
-  '--color-semantic-shadow-sheet':
-    'Тень нижней шторки дня.',
-  '--color-semantic-shadow-finale-ray':
-    'Лёгкая тень декоративного луча в финальной сцене.',
-  '--color-semantic-shadow-video-pending':
-    'Тень плашки видео, которое ещё не добавлено.',
-  '--color-semantic-shadow-media-expand':
-    'Тень кнопки разворачивания фото или коллажа.',
-  '--color-semantic-shadow-video-play':
-    'Тень центральной кнопки запуска видео.',
-  '--color-semantic-shadow-test-toolbar':
-    'Тень внутренней тестовой панели; не использовать в продуктовом UI.',
   '--color-semantic-effect-focus-ring':
-    'Цвет внешнего focus ring интерактивного элемента, реализованного через shadow/effect.',
+    'Цвет внешнего focus ring интерактивного элемента, реализованного эффектом.',
 })
 
 const TEXT = [FIGMA_COLOR_SCOPES.TEXT_FILL]
@@ -313,8 +214,8 @@ const ICON = [FIGMA_COLOR_SCOPES.SHAPE_FILL, FIGMA_COLOR_SCOPES.STROKE_COLOR]
 const FRAME = [FIGMA_COLOR_SCOPES.FRAME_FILL]
 const STROKE = [FIGMA_COLOR_SCOPES.STROKE_COLOR]
 const FOREGROUND = [
-  FIGMA_COLOR_SCOPES.TEXT_FILL,
   FIGMA_COLOR_SCOPES.SHAPE_FILL,
+  FIGMA_COLOR_SCOPES.TEXT_FILL,
   FIGMA_COLOR_SCOPES.STROKE_COLOR,
 ]
 const SHAPE = [FIGMA_COLOR_SCOPES.SHAPE_FILL]
@@ -332,6 +233,7 @@ export function semanticScopes(cssName) {
     if (cssName.endsWith('-foreground')) return FOREGROUND
   }
   if (cssName.startsWith('--color-semantic-shape-')) return SHAPE
+  if (cssName.startsWith('--color-semantic-content-accent-')) return SHAPE
   if (cssName.startsWith('--color-semantic-overlay-')) return FRAME
   if (cssName.startsWith('--color-semantic-gradient-')) return SHAPE
   if (
@@ -344,9 +246,5 @@ export function semanticScopes(cssName) {
 }
 
 export function semanticHiddenFromPublishing(cssName) {
-  return (
-    cssName.startsWith('--color-semantic-background-platform-') ||
-    cssName === '--color-semantic-background-test-control' ||
-    cssName === '--color-semantic-shadow-test-toolbar'
-  )
+  return false
 }

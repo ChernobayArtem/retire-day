@@ -12,12 +12,16 @@ import {
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const primitiveFile = 'src/ui/tokens/color-primitives.css'
+const primitiveFiles = [
+  primitiveFile,
+  'src/ui/tokens/color-illustration-primitives.css',
+]
 const aliasFiles = [
   'src/ui/tokens/color-aliases.css',
   'src/ui/tokens/color-illustration-aliases.css',
 ]
 const semanticFile = 'src/ui/tokens/color-semantic.css'
-const tokenFiles = new Set([primitiveFile, ...aliasFiles, semanticFile])
+const tokenFiles = new Set([...primitiveFiles, ...aliasFiles, semanticFile])
 
 // These files are original company marks. Their official brand colors are assets,
 // not application palette values, so they intentionally stay outside our tokens.
@@ -133,7 +137,7 @@ function matchesOf(content, pattern) {
 }
 
 function auditRawColorLiterals(file, content) {
-  if (file === primitiveFile) return
+  if (primitiveFiles.includes(file)) return
 
   for (const match of matchesOf(
     content,
@@ -199,14 +203,15 @@ function parseVarReferences(content) {
 }
 
 function auditTokenHierarchy() {
-  const primitives = parseDeclarations(primitiveFile)
-  const primitiveContent = fileContents.get(primitiveFile) ?? ''
+  const primitives = primitiveFiles.flatMap((file) =>
+    parseDeclarations(file).map((declaration) => ({ ...declaration, file })),
+  )
 
   for (const declaration of primitives) {
     if (!declaration.name.startsWith('--color-primitive-')) {
       addIssue(
         'token hierarchy',
-        primitiveFile,
+        declaration.file,
         declaration.index,
         `${declaration.name} must use the --color-primitive- prefix.`,
       )
@@ -214,20 +219,23 @@ function auditTokenHierarchy() {
     if (/var\(/.test(declaration.value)) {
       addIssue(
         'token hierarchy',
-        primitiveFile,
+        declaration.file,
         declaration.index,
         `${declaration.name} must hold a literal color, not another token.`,
       )
     }
   }
 
-  for (const reference of parseVarReferences(primitiveContent)) {
-    addIssue(
-      'token hierarchy',
-      primitiveFile,
-      reference.index,
-      `Primitive tokens cannot reference ${reference.name}.`,
-    )
+  for (const file of primitiveFiles) {
+    const primitiveContent = fileContents.get(file) ?? ''
+    for (const reference of parseVarReferences(primitiveContent)) {
+      addIssue(
+        'token hierarchy',
+        file,
+        reference.index,
+        `Primitive tokens cannot reference ${reference.name}.`,
+      )
+    }
   }
 
   for (const file of aliasFiles) {
@@ -373,7 +381,10 @@ function auditReferences() {
 
   for (const [file, content] of fileContents) {
     for (const reference of parseVarReferences(content)) {
-      if (!definitions.has(reference.name)) {
+      const legacyDayAccent =
+        file === 'secret/content.mjs' &&
+        /^--color-semantic-shape-day-accent-\d{2}$/.test(reference.name)
+      if (!definitions.has(reference.name) && !legacyDayAccent) {
         addIssue(
           'undefined variable',
           file,

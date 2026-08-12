@@ -21,7 +21,7 @@ body {
   margin: 0;
   font-family: var(--ui-font-sans);
   background: var(--color-semantic-background-canvas);
-  color: var(--color-semantic-text-main-primary);
+  color: var(--color-semantic-text-primary);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

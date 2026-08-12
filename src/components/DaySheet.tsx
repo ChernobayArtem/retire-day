@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { DayDef } from '../content/days'
 import { dayByNumber } from '../lib/vault'
 import { dayDate } from '../lib/dates'
@@ -82,7 +82,6 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
 
   if (!active) return null
   const def = dayByNumber(active.day)
-  const style = def ? ({ '--accent': def.accent } as CSSProperties) : undefined
   const canPrev = active.day > 1
   const locked = active.locked || !def
   const showMeme = !active.locked && !!def?.meme
@@ -91,7 +90,6 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
     <div className="sheet-overlay" onClick={onClose}>
       <div
         className={`sheet sheet--day${active.day}`}
-        style={style}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="day">

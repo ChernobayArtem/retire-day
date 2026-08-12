@@ -74,7 +74,7 @@ contract describes the reason for each group:
 - light decorative/redundant boundaries whose structure is already conveyed by spacing, surface or accessible content;
 - media-control rings whose audited dark surface and inverse icon already provide the control boundary;
 - transient loader strokes that do not carry content or identify a control;
-- per-day accent colours — decorative identity with date/category available independently;
+- category accent colours — decorative identity with the category label available independently;
 - dividers, progress connector, skeleton shimmer, shadows and gradients — decoration only;
 - decorative interface shapes such as speech-bubble tails, tooltip pointers and artwork fills;
 - empty-state brand icon — `aria-hidden` and duplicated by adjacent copy;

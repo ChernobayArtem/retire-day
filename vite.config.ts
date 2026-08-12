@@ -23,8 +23,8 @@ function resolveColorToken(name: string, seen = new Set<string>()): string {
   return reference ? resolveColorToken(reference[1], seen) : value
 }
 
-const pwaThemeColor = resolveColorToken('--color-semantic-background-platform-theme')
-const pwaBackgroundColor = resolveColorToken('--color-semantic-background-platform-launch')
+const pwaThemeColor = resolveColorToken('--color-alias-platform-theme')
+const pwaBackgroundColor = resolveColorToken('--color-alias-platform-background')
 
 const colorTokenHtmlPlugin = {
   name: 'color-token-html',

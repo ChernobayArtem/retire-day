@@ -170,14 +170,20 @@ function exemptionAllowsLocation(exemption, location) {
 
 const results = [...consumers.entries()]
   .map(([token, consumer]) => {
-    const exemption = exemptionEntries.find(
-      (entry) =>
-        exemptionPatternMatches(token, entry.pattern) &&
-        consumer.locations.every((location) => exemptionAllowsLocation(entry, location)),
+    const matchingExemptions = exemptionEntries.filter((entry) =>
+      exemptionPatternMatches(token, entry.pattern),
     )
+    const exemptionIds = new Set()
+    const allLocationsExempt = consumer.locations.every((location) => {
+      const exemption = matchingExemptions.find((entry) =>
+        exemptionAllowsLocation(entry, location),
+      )
+      if (exemption) exemptionIds.add(exemption.id)
+      return Boolean(exemption)
+    })
     const status = requiredTokens.has(token)
       ? 'required'
-      : exemption
+      : allLocationsExempt
         ? 'exempt'
         : 'missing'
 
@@ -185,7 +191,7 @@ const results = [...consumers.entries()]
       token,
       category: consumer.category,
       status,
-      exemption: exemption?.id ?? null,
+      exemption: exemptionIds.size ? [...exemptionIds].sort().join(', ') : null,
       locations: consumer.locations,
     }
   })

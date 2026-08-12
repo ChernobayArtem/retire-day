@@ -46,6 +46,21 @@ export function categoryForDay(def: DayDef): ArchiveCategory {
   return 'compliment'
 }
 
+const CATEGORY_ACCENTS: Record<ArchiveCategory, string> = {
+  compliment: 'var(--color-semantic-content-accent-compliment)',
+  photos: 'var(--color-semantic-content-accent-photos)',
+  cert: 'var(--color-semantic-content-accent-certificate)',
+  coupon: 'var(--color-semantic-content-accent-coupon)',
+  restaurant: 'var(--color-semantic-content-accent-restaurant)',
+  video: 'var(--color-semantic-content-accent-video)',
+}
+
+/** Один цвет обозначает тип содержимого, а не порядковый номер дня. Поэтому
+ * система одинаково работает для календаря любой длины. */
+export function categoryAccent(def: DayDef): string {
+  return CATEGORY_ACCENTS[categoryForDay(def)]
+}
+
 /** Общие категории в календаре имеют одну узнаваемую иконку. Сертификат
  *  продолжает использовать логотип бренда, а при его отсутствии — emoji дня. */
 export function calendarEmoji(def?: DayDef): string {

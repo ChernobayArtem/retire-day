@@ -24,8 +24,15 @@ const PIECES = Array.from({ length: 64 }, (_, index) => {
 })
 
 export default function Day29Confetti() {
+  const rootStyle = {
+    '--confetti-flash-color': 'var(--color-alias-illustration-confetti-flash)',
+    '--confetti-flash-transparent':
+      'var(--color-alias-illustration-confetti-flash-transparent)',
+    '--confetti-shadow-color': 'var(--color-alias-illustration-confetti-shadow)',
+  } as CSSProperties
+
   return (
-    <div className="day29-confetti" aria-hidden="true">
+    <div className="day29-confetti" aria-hidden="true" style={rootStyle}>
       <span className="day29-confetti__flash" />
       {PIECES.map((piece, index) => {
         const style = {

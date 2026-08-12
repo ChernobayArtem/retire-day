@@ -124,6 +124,7 @@ function DawnScene() {
             <circle className="finale-scene__sun" r="42" fill="url(#finale-sun)" />
             <path
               className="finale-scene__heart"
+              fill="var(--color-alias-illustration-finale-heart)"
               d="M0 13C-18 2-21-10-12-16-5-21 0-15 0-10c0-5 5-11 12-6 9 6 6 18-12 29Z"
             />
           </g>

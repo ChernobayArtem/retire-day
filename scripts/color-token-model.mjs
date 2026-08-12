@@ -13,7 +13,6 @@ import {
 export const colorTokenFiles = Object.freeze({
   primitives: 'src/ui/tokens/color-primitives.css',
   aliases: 'src/ui/tokens/color-aliases.css',
-  illustrationAliases: 'src/ui/tokens/color-illustration-aliases.css',
   semantic: 'src/ui/tokens/color-semantic.css',
 })
 
@@ -91,17 +90,7 @@ function primitiveDescription(cssName) {
   return `Сырой оттенок палитры ${family}, шаг ${step}. Число обозначает позицию внутри этой палитры, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
 }
 
-function illustrationDescription(cssName) {
-  const name = cssName.replace('--color-alias-illustration-', '').replaceAll('-', '/')
-  return `Внутренний цвет кодовой иллюстрации ${name}. Допустим только внутри сцен, SVG-заливок, strokes и gradient stops; не использовать в продуктовом UI. Scope Figma отключён, переменная скрыта из публикации.`
-}
-
 function aliasDescription(cssName, semanticConsumers) {
-  const day = cssName.match(/^--color-alias-day-accent-(\d{2})$/)?.[1]
-  if (day) {
-    return `Уникальный декоративный акцент дня ${day}. Только цветовой маркер конкретного дня; не обозначает категорию, статус или важность. Применяется через semantic shape/day/accent/${day}; напрямую не использовать. Scope Figma отключён.`
-  }
-
   const override = aliasDescriptionOverrides[cssName]
   const consumerText = semanticConsumers.length
     ? ` Питает semantic-роли: ${semanticConsumers.map(compactSemanticName).join(', ')}.`
@@ -126,10 +115,7 @@ function semanticScopeDescription(scopes) {
 }
 
 function semanticDescription(cssName, scopes) {
-  const day = cssName.match(/^--color-semantic-shape-day-accent-(\d{2})$/)?.[1]
-  const purpose = day
-    ? `Уникальный декоративный акцент календарного дня ${day}. Использовать только как индивидуальный цветовой маркер дня; он не сообщает категорию, статус или важность.`
-    : semanticPurpose[cssName]
+  const purpose = semanticPurpose[cssName]
 
   if (!purpose) throw new Error(`Missing explicit semantic description for ${cssName}`)
   return `${purpose} ${semanticScopeDescription(scopes)}`
@@ -195,9 +181,7 @@ export function buildColorTokenModel(projectRoot) {
     const description =
       layer === 'primitive'
         ? primitiveDescription(cssName)
-        : layer === 'illustration-alias'
-          ? illustrationDescription(cssName)
-          : layer === 'alias'
+        : layer === 'alias'
             ? aliasDescription(cssName, semanticConsumersByAlias.get(cssName) ?? [])
             : semanticDescription(cssName, scopes)
 
@@ -369,7 +353,7 @@ export function renderColorSystemGuide(model) {
     '- Недостаточный контраст текста, функциональной иконки, границы или состояния ломает `npm run audit:contrast:strict` и production build.',
     '- Изменение CSS-токенов без обновления Figma-ready реестра также ломает аудит.',
     '- Компаниям принадлежат цвета их логотипов; SVG-логотипы не являются палитрой приложения и остаются документированными исключениями.',
-    '- Иллюстрационные aliases скрыты и допустимы только в code-authored artwork/scenes.',
+    '- Технические цвета иллюстраций хранятся отдельно в коде, проходят аудит и намеренно не попадают в дизайнерскую палитру Figma.',
   ]
 
   return `${lines.join('\n')}\n`

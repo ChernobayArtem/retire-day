@@ -1,97 +1,60 @@
 :root {
-  /* Text fills */
-  --color-semantic-text-main-primary: var(--color-alias-primary-default);
-  --color-semantic-text-main-heading: var(--color-alias-primary-heading);
-  --color-semantic-text-main-display: var(--color-alias-primary-display);
-  --color-semantic-text-main-warm-heading: var(--color-alias-primary-warm);
-  --color-semantic-text-card-title: var(--color-alias-primary-card);
-  --color-semantic-text-code-primary: var(--color-alias-primary-code);
-  --color-semantic-text-content-primary: var(--color-alias-primary-content);
-  --color-semantic-text-control-primary: var(--color-alias-primary-control);
-  --color-semantic-text-warm-content: var(--color-alias-primary-warm-content);
-  --color-semantic-text-main-secondary: var(--color-alias-secondary-default);
-  --color-semantic-text-main-secondary-strong: var(--color-alias-secondary-strong);
-  --color-semantic-text-main-muted: var(--color-alias-secondary-medium);
-  --color-semantic-text-main-caption: var(--color-alias-secondary-muted);
-  --color-semantic-text-main-subtle: var(--color-alias-secondary-subtle);
-  --color-semantic-text-main-faint: var(--color-alias-secondary-faint);
-  --color-semantic-text-main-disabled: var(--color-alias-disabled-foreground);
-  --color-semantic-text-progress-label: var(--color-alias-secondary-progress);
-  --color-semantic-text-calendar-number: var(--color-alias-secondary-number);
-  --color-semantic-text-card-secondary: var(--color-alias-secondary-card);
-  --color-semantic-text-card-meta: var(--color-alias-secondary-meta);
-  --color-semantic-text-code-label: var(--color-alias-secondary-label);
-  --color-semantic-text-warm-secondary: var(--color-alias-secondary-warm);
-  --color-semantic-text-content-secondary: var(--color-alias-secondary-content);
-  --color-semantic-text-inverse-primary: var(--color-alias-inverse-default);
-  --color-semantic-text-brand-default: var(--color-alias-brand-contrast);
-  --color-semantic-text-danger-default: var(--color-alias-danger-default);
+  /* Text */
+  --color-semantic-text-primary: var(--color-alias-primary-default);
+  --color-semantic-text-heading: var(--color-alias-primary-heading);
+  --color-semantic-text-secondary: var(--color-alias-secondary-default);
+  --color-semantic-text-muted: var(--color-alias-secondary-default);
+  --color-semantic-text-disabled: var(--color-alias-disabled-foreground);
+  --color-semantic-text-inverse: var(--color-alias-inverse-default);
+  --color-semantic-text-brand: var(--color-alias-brand-contrast);
+  --color-semantic-text-action: var(--color-alias-action-default);
+  --color-semantic-text-danger: var(--color-alias-danger-default);
 
-  /* Icon fills and strokes */
-  --color-semantic-icon-main-primary: var(--color-alias-primary-default);
-  --color-semantic-icon-inverse-primary: var(--color-alias-inverse-default);
-  --color-semantic-icon-brand-default: var(--color-alias-brand-contrast);
-  --color-semantic-icon-danger-default: var(--color-alias-danger-default);
-  --color-semantic-icon-field-muted: var(--color-alias-secondary-medium);
-  --color-semantic-icon-progress-active: var(--color-alias-brand-contrast);
-  --color-semantic-icon-progress-inactive: var(--color-alias-secondary-progress);
+  /* Icons */
+  --color-semantic-icon-primary: var(--color-alias-primary-default);
+  --color-semantic-icon-muted: var(--color-alias-secondary-default);
+  --color-semantic-icon-inverse: var(--color-alias-inverse-default);
+  --color-semantic-icon-brand: var(--color-alias-brand-contrast);
+  --color-semantic-icon-danger: var(--color-alias-danger-default);
 
-  /* Frame fills and component surfaces */
+  /* Backgrounds and surfaces */
   --color-semantic-background-canvas: var(--color-alias-surface-canvas);
-  --color-semantic-background-brand-page: var(--color-alias-brand-page);
   --color-semantic-background-surface-level-0: var(--color-alias-surface-level-0);
   --color-semantic-background-surface-level-1: var(--color-alias-surface-level-1);
   --color-semantic-background-surface-level-2: var(--color-alias-surface-level-2);
   --color-semantic-background-surface-level-3: var(--color-alias-surface-level-3);
+  --color-semantic-background-surface-inverse: var(--color-alias-surface-inverse);
+  --color-semantic-background-brand-page: var(--color-alias-brand-page);
+  --color-semantic-background-brand-subtle: var(--color-alias-brand-subtle);
   --color-semantic-background-brand-faint: var(--color-alias-brand-faint);
   --color-semantic-background-danger-subtle: var(--color-alias-danger-subtle);
-  --color-semantic-background-media-default: var(--color-alias-surface-media);
-  --color-semantic-background-surface-inverse: var(--color-alias-surface-inverse);
+  --color-semantic-background-media: var(--color-alias-surface-media);
+  --color-semantic-background-media-placeholder: var(--color-alias-surface-media-placeholder);
+  --color-semantic-background-message: var(--color-alias-surface-message);
+  --color-semantic-background-skeleton: var(--color-alias-surface-skeleton);
   --color-semantic-background-tooltip: var(--color-alias-surface-tooltip);
   --color-semantic-background-transparent: var(--color-alias-border-transparent);
-  --color-semantic-background-archive-navigation: var(--color-alias-brand-subtle);
-  --color-semantic-background-calendar-past: var(--color-alias-brand-subtle);
-  --color-semantic-background-calendar-future: var(--color-alias-surface-calendar-future);
-  --color-semantic-background-calendar-today: var(--color-alias-surface-level-0);
-  --color-semantic-background-media-placeholder: var(--color-alias-surface-calendar-future);
-  --color-semantic-background-test-control: var(--color-alias-brand-subtle);
-  --color-semantic-background-coupon-legacy: var(--color-alias-brand-subtle);
-  --color-semantic-background-compliment-legacy: var(--color-alias-brand-subtle);
-  --color-semantic-background-skeleton-base: var(--color-alias-surface-skeleton);
-  --color-semantic-background-skeleton-highlight: var(--color-alias-surface-skeleton-highlight);
-  --color-semantic-background-message-default: var(--color-alias-surface-message);
 
-  /* Platform-only colors are exported for parity but hidden from Figma pickers. */
-  --color-semantic-background-platform-theme: var(--color-alias-platform-theme);
-  --color-semantic-background-platform-launch: var(--color-alias-platform-background);
-
-  /* Stroke colors */
+  /* Borders */
   --color-semantic-border-default: var(--color-alias-border-default);
+  --color-semantic-border-progress-connector: var(--color-alias-border-muted);
   --color-semantic-border-subtle: var(--color-alias-border-subtle);
   --color-semantic-border-brand: var(--color-alias-border-brand);
   --color-semantic-border-brand-strong: var(--color-alias-border-brand-strong);
   --color-semantic-border-danger: var(--color-alias-danger-default);
+  --color-semantic-border-inverse-subtle: var(--color-alias-border-inverse-subtle);
+  --color-semantic-border-inverse-strong: var(--color-alias-border-inverse-strong);
   --color-semantic-border-transparent: var(--color-alias-border-transparent);
-  --color-semantic-border-progress-connector: var(--color-alias-surface-progress-track);
-  --color-semantic-border-overlay-hint: var(--color-alias-border-inverse-faint);
-  --color-semantic-border-overlay-control: var(--color-alias-border-inverse-subtle);
-  --color-semantic-border-loader-track: var(--color-alias-border-inverse-medium);
-  --color-semantic-border-loader-indicator: var(--color-alias-border-inverse-strong);
-  --color-semantic-border-message-reaction: var(--color-alias-border-inverse-strong);
-  --color-semantic-border-video-play: var(--color-alias-border-inverse-control);
-  --color-semantic-border-video-pending: var(--color-alias-border-inverse-45);
-  --color-semantic-border-preview-loader-track: var(--color-alias-border-inverse-45);
 
-  /* Button colors */
+  /* Buttons */
   --color-semantic-button-outline-background: var(--color-alias-surface-level-0);
   --color-semantic-button-outline-background-hover: var(--color-alias-surface-level-1);
   --color-semantic-button-outline-border: var(--color-alias-border-default);
-  --color-semantic-button-outline-border-hover: var(--color-alias-border-strong);
-  --color-semantic-button-outline-foreground: var(--color-alias-primary-strong);
+  --color-semantic-button-outline-foreground: var(--color-alias-primary-default);
   --color-semantic-button-primary-background: var(--color-alias-brand-contrast);
-  --color-semantic-button-primary-background-hover: var(--color-alias-brand-contrast-strong);
+  --color-semantic-button-primary-background-hover: var(--color-alias-brand-strong);
   --color-semantic-button-primary-border: var(--color-alias-brand-contrast);
-  --color-semantic-button-primary-border-hover: var(--color-alias-brand-contrast-strong);
+  --color-semantic-button-primary-border-hover: var(--color-alias-brand-strong);
   --color-semantic-button-primary-foreground: var(--color-alias-inverse-default);
   --color-semantic-button-soft-background: var(--color-alias-brand-subtle);
   --color-semantic-button-soft-background-hover: var(--color-alias-brand-soft);
@@ -99,79 +62,39 @@
   --color-semantic-button-action-background: var(--color-alias-action-subtle);
   --color-semantic-button-action-background-hover: var(--color-alias-action-hover);
   --color-semantic-button-action-foreground: var(--color-alias-action-default);
-  --color-semantic-button-ghost-background: var(--color-alias-surface-level-2);
-  --color-semantic-button-ghost-foreground: var(--color-alias-primary-default);
-  --color-semantic-button-link-foreground: var(--color-alias-action-default);
   --color-semantic-button-disabled-background: var(--color-alias-disabled-background);
   --color-semantic-button-disabled-foreground: var(--color-alias-disabled-foreground);
 
-  /* Shape fills */
+  /* Shapes */
   --color-semantic-shape-divider: var(--color-alias-border-subtle);
-  --color-semantic-shape-archive-accent-default: var(--color-alias-brand-default);
-  --color-semantic-shape-carousel-indicator-active: var(--color-alias-brand-contrast);
-  --color-semantic-shape-carousel-indicator-inactive: var(--color-alias-border-strong);
+  --color-semantic-shape-carousel-active: var(--color-alias-brand-contrast);
+  --color-semantic-shape-carousel-inactive: var(--color-alias-border-default);
   --color-semantic-shape-message-tail: var(--color-alias-surface-message);
   --color-semantic-shape-tooltip-pointer: var(--color-alias-surface-tooltip);
   --color-semantic-shape-brand-soft: var(--color-alias-brand-medium);
-  --color-semantic-shape-finale-heart: var(--color-alias-overlay-inverse-subtle);
-  --color-semantic-shape-orchid-center: var(--color-alias-inverse-default);
 
-  /* Unique day markers: decorative identity only, never status or category. */
-  --color-semantic-shape-day-accent-01: var(--color-alias-day-accent-01);
-  --color-semantic-shape-day-accent-02: var(--color-alias-day-accent-02);
-  --color-semantic-shape-day-accent-03: var(--color-alias-day-accent-03);
-  --color-semantic-shape-day-accent-04: var(--color-alias-day-accent-04);
-  --color-semantic-shape-day-accent-05: var(--color-alias-day-accent-05);
-  --color-semantic-shape-day-accent-06: var(--color-alias-day-accent-06);
-  --color-semantic-shape-day-accent-07: var(--color-alias-day-accent-07);
-  --color-semantic-shape-day-accent-08: var(--color-alias-day-accent-08);
-  --color-semantic-shape-day-accent-09: var(--color-alias-day-accent-09);
-  --color-semantic-shape-day-accent-10: var(--color-alias-day-accent-10);
-  --color-semantic-shape-day-accent-11: var(--color-alias-day-accent-11);
-  --color-semantic-shape-day-accent-12: var(--color-alias-day-accent-12);
-  --color-semantic-shape-day-accent-13: var(--color-alias-day-accent-13);
-  --color-semantic-shape-day-accent-14: var(--color-alias-day-accent-14);
-  --color-semantic-shape-day-accent-15: var(--color-alias-day-accent-15);
-  --color-semantic-shape-day-accent-16: var(--color-alias-day-accent-16);
-  --color-semantic-shape-day-accent-17: var(--color-alias-day-accent-17);
-  --color-semantic-shape-day-accent-18: var(--color-alias-day-accent-18);
-  --color-semantic-shape-day-accent-19: var(--color-alias-day-accent-19);
-  --color-semantic-shape-day-accent-20: var(--color-alias-day-accent-20);
-  --color-semantic-shape-day-accent-21: var(--color-alias-day-accent-21);
-  --color-semantic-shape-day-accent-22: var(--color-alias-day-accent-22);
-  --color-semantic-shape-day-accent-23: var(--color-alias-day-accent-23);
-  --color-semantic-shape-day-accent-24: var(--color-alias-day-accent-24);
-  --color-semantic-shape-day-accent-25: var(--color-alias-day-accent-25);
-  --color-semantic-shape-day-accent-26: var(--color-alias-day-accent-26);
-  --color-semantic-shape-day-accent-27: var(--color-alias-day-accent-27);
-  --color-semantic-shape-day-accent-28: var(--color-alias-day-accent-28);
-  --color-semantic-shape-day-accent-29: var(--color-alias-day-accent-29);
+  /* Content category accents */
+  --color-semantic-content-accent-compliment: var(--color-alias-content-compliment);
+  --color-semantic-content-accent-photos: var(--color-alias-content-photos);
+  --color-semantic-content-accent-certificate: var(--color-alias-content-certificate);
+  --color-semantic-content-accent-coupon: var(--color-alias-content-coupon);
+  --color-semantic-content-accent-restaurant: var(--color-alias-content-restaurant);
+  --color-semantic-content-accent-video: var(--color-alias-content-video);
 
-  /* Translucent frame fills and gradient stops */
+  /* Overlays */
   --color-semantic-overlay-sheet: var(--color-alias-overlay-sheet);
   --color-semantic-overlay-media-soft: var(--color-alias-overlay-media-soft);
   --color-semantic-overlay-media-medium: var(--color-alias-overlay-media-medium);
   --color-semantic-overlay-media-strong: var(--color-alias-overlay-media-strong);
-  --color-semantic-overlay-control: var(--color-alias-overlay-black-42);
-  --color-semantic-overlay-hint: var(--color-alias-overlay-hint);
-  --color-semantic-overlay-play: var(--color-alias-overlay-black-55);
-  --color-semantic-overlay-control-strong: var(--color-alias-overlay-black-58);
-  --color-semantic-overlay-lightbox: var(--color-alias-overlay-lightbox);
-  --color-semantic-overlay-video: var(--color-alias-overlay-video);
-  --color-semantic-overlay-glass: var(--color-alias-overlay-glass-92);
-  --color-semantic-overlay-glass-strong: var(--color-alias-overlay-glass-94);
-  --color-semantic-gradient-sun-glow: var(--color-alias-gradient-sun-glow);
-  --color-semantic-gradient-transparent-white: var(--color-alias-gradient-transparent-white);
+  --color-semantic-overlay-control: var(--color-alias-overlay-control);
+  --color-semantic-overlay-control-strong: var(--color-alias-overlay-control-strong);
+  --color-semantic-overlay-fullscreen: var(--color-alias-overlay-fullscreen);
+  --color-semantic-overlay-glass: var(--color-alias-overlay-glass);
+  --color-semantic-overlay-glass-strong: var(--color-alias-overlay-glass-strong);
 
-  /* Effect colors */
+  /* Effects */
   --color-semantic-shadow-soft: var(--color-alias-shadow-soft);
   --color-semantic-shadow-medium: var(--color-alias-shadow-medium);
   --color-semantic-shadow-strong: var(--color-alias-shadow-strong);
-  --color-semantic-shadow-sheet: var(--color-alias-shadow-neutral-8);
-  --color-semantic-shadow-finale-ray: var(--color-alias-shadow-neutral-8);
-  --color-semantic-shadow-video-pending: var(--color-alias-shadow-neutral-28);
-  --color-semantic-shadow-media-expand: var(--color-alias-shadow-neutral-30);
-  --color-semantic-shadow-video-play: var(--color-alias-shadow-neutral-32);
-  --color-semantic-shadow-test-toolbar: var(--color-alias-shadow-neutral-35);
   --color-semantic-effect-focus-ring: var(--color-alias-focus-default);
 }

@@ -236,4 +236,8 @@
   --color-alias-illustration-yellow-727: var(--color-primitive-yellow-727);
   --color-alias-illustration-yellow-818: var(--color-primitive-yellow-818);
   --color-alias-illustration-yellow-91: var(--color-primitive-yellow-91);
+  --color-alias-illustration-finale-heart: var(--color-primitive-alpha-neutral-0-76);
+  --color-alias-illustration-confetti-flash: var(--color-primitive-alpha-yellow-909-48);
+  --color-alias-illustration-confetti-flash-transparent: var(--color-primitive-alpha-neutral-0-0);
+  --color-alias-illustration-confetti-shadow: var(--color-primitive-alpha-neutral-1000-8);
 }

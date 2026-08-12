@@ -35,7 +35,7 @@
   --ui-shadow-sm: 0 4px 10px -4px var(--color-semantic-shadow-soft);
   --ui-shadow-md: 0 8px 24px -20px var(--color-semantic-shadow-medium);
   --ui-shadow-lg: 0 12px 28px -17px var(--color-semantic-shadow-strong);
-  --ui-shadow-sheet: 0 10px 22px var(--color-semantic-shadow-sheet);
+  --ui-shadow-sheet: 0 10px 22px var(--color-semantic-shadow-soft);
   --ui-shadow-focus: 0 0 0 3px var(--color-semantic-effect-focus-ring);
 
   /* App layout */

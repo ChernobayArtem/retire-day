@@ -3,6 +3,7 @@ import type { CertCode, DayDef } from '../content/days'
 import { dayDate, stateForDay } from '../lib/dates'
 import {
   ARCHIVE_CATEGORIES,
+  categoryAccent,
   categoryForDay,
   type ArchiveCategory,
 } from '../lib/dayCategories'
@@ -256,7 +257,7 @@ interface CardProps {
 }
 
 function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
-  const style = { '--card-accent': def.accent } as CSSProperties
+  const style = { '--card-accent': categoryAccent(def) } as CSSProperties
   const coupon = def.coupon ? normaliseCoupon(def.coupon) : null
   const codes = certCodes(def)
 
