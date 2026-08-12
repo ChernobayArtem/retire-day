@@ -1,75 +1,75 @@
 :root {
   /* Core foreground */
-  --color-alias-primary-default: var(--color-primitive-mauve-1000);
-  --color-alias-primary-heading: var(--color-primitive-neutral-783);
-  --color-alias-secondary-default: var(--color-primitive-neutral-609);
+  --color-alias-primary-default: var(--color-primitive-mauve-950);
+  --color-alias-primary-heading: var(--color-primitive-neutral-800);
+  --color-alias-secondary-default: var(--color-primitive-neutral-600);
   --color-alias-inverse-default: var(--color-primitive-neutral-0);
 
   /* Brand, action and status */
-  --color-alias-brand-contrast: var(--color-primitive-red-977);
-  --color-alias-brand-strong: var(--color-primitive-red-1000);
-  --color-alias-brand-soft: var(--color-primitive-rose-194);
-  --color-alias-brand-medium: var(--color-primitive-rose-484);
-  --color-alias-brand-subtle: var(--color-primitive-red-63);
-  --color-alias-brand-faint: var(--color-primitive-red-0);
-  --color-alias-brand-page: var(--color-primitive-rose-32);
-  --color-alias-action-default: var(--color-primitive-blue-931);
-  --color-alias-action-subtle: var(--color-primitive-blue-153);
-  --color-alias-action-hover: var(--color-primitive-blue-222);
-  --color-alias-danger-default: var(--color-primitive-red-977);
-  --color-alias-danger-subtle: var(--color-primitive-alpha-red-938-10);
-  --color-alias-disabled-background: var(--color-primitive-neutral-43);
-  --color-alias-disabled-foreground: var(--color-primitive-neutral-304);
+  --color-alias-brand-contrast: var(--color-primitive-red-700);
+  --color-alias-brand-strong: var(--color-primitive-red-800);
+  --color-alias-brand-soft: var(--color-primitive-rose-100);
+  --color-alias-brand-medium: var(--color-primitive-rose-300);
+  --color-alias-brand-subtle: var(--color-primitive-red-100);
+  --color-alias-brand-faint: var(--color-primitive-red-50);
+  --color-alias-brand-page: var(--color-primitive-rose-50);
+  --color-alias-action-default: var(--color-primitive-blue-900);
+  --color-alias-action-subtle: var(--color-primitive-blue-50);
+  --color-alias-action-hover: var(--color-primitive-blue-100);
+  --color-alias-danger-default: var(--color-primitive-red-700);
+  --color-alias-danger-subtle: var(--color-primitive-alpha-red-10);
+  --color-alias-disabled-background: var(--color-primitive-neutral-50);
+  --color-alias-disabled-foreground: var(--color-primitive-neutral-400);
 
   /* Reusable content accents — independent of calendar length. */
-  --color-alias-content-compliment: var(--color-primitive-rose-742);
-  --color-alias-content-photos: var(--color-primitive-blue-569);
-  --color-alias-content-certificate: var(--color-primitive-purple-1000);
-  --color-alias-content-coupon: var(--color-primitive-orange-737);
-  --color-alias-content-restaurant: var(--color-primitive-green-590);
-  --color-alias-content-video: var(--color-primitive-blue-722);
+  --color-alias-content-compliment: var(--color-primitive-rose-500);
+  --color-alias-content-photos: var(--color-primitive-blue-300);
+  --color-alias-content-certificate: var(--color-primitive-purple-500);
+  --color-alias-content-coupon: var(--color-primitive-orange-500);
+  --color-alias-content-restaurant: var(--color-primitive-green-500);
+  --color-alias-content-video: var(--color-primitive-blue-500);
 
   /* Surface hierarchy */
   --color-alias-surface-canvas: var(--color-primitive-neutral-0);
   --color-alias-surface-level-0: var(--color-primitive-neutral-0);
-  --color-alias-surface-level-1: var(--color-primitive-mauve-0);
-  --color-alias-surface-level-2: var(--color-primitive-mauve-63);
-  --color-alias-surface-level-3: var(--color-primitive-mauve-125);
-  --color-alias-surface-inverse: var(--color-primitive-mauve-938);
+  --color-alias-surface-level-1: var(--color-primitive-mauve-50);
+  --color-alias-surface-level-2: var(--color-primitive-mauve-100);
+  --color-alias-surface-level-3: var(--color-primitive-mauve-200);
+  --color-alias-surface-inverse: var(--color-primitive-mauve-900);
   --color-alias-surface-media: var(--color-primitive-neutral-1000);
-  --color-alias-surface-media-placeholder: var(--color-primitive-neutral-87);
-  --color-alias-surface-message: var(--color-primitive-blue-729);
-  --color-alias-surface-skeleton: var(--color-primitive-mauve-250);
-  --color-alias-surface-tooltip: var(--color-primitive-neutral-957);
+  --color-alias-surface-media-placeholder: var(--color-primitive-neutral-100);
+  --color-alias-surface-message: var(--color-primitive-blue-700);
+  --color-alias-surface-skeleton: var(--color-primitive-mauve-400);
+  --color-alias-surface-tooltip: var(--color-primitive-neutral-900);
 
   /* Borders */
-  --color-alias-border-default: var(--color-primitive-neutral-348);
-  --color-alias-border-muted: var(--color-primitive-neutral-174);
-  --color-alias-border-subtle: var(--color-primitive-mauve-188);
-  --color-alias-border-brand: var(--color-primitive-red-977);
-  --color-alias-border-brand-strong: var(--color-primitive-red-1000);
-  --color-alias-border-inverse-subtle: var(--color-primitive-alpha-neutral-0-40);
+  --color-alias-border-default: var(--color-primitive-neutral-500);
+  --color-alias-border-muted: var(--color-primitive-neutral-300);
+  --color-alias-border-subtle: var(--color-primitive-mauve-300);
+  --color-alias-border-brand: var(--color-primitive-red-700);
+  --color-alias-border-brand-strong: var(--color-primitive-red-800);
+  --color-alias-border-inverse-subtle: var(--color-primitive-alpha-white-40);
   --color-alias-border-inverse-strong: var(--color-primitive-neutral-0);
-  --color-alias-border-transparent: var(--color-primitive-alpha-neutral-1000-0);
+  --color-alias-border-transparent: var(--color-primitive-alpha-black-0);
 
   /* Overlays */
-  --color-alias-overlay-sheet: var(--color-primitive-alpha-mauve-1000-40);
-  --color-alias-overlay-media-soft: var(--color-primitive-alpha-indigo-1000-18);
-  --color-alias-overlay-media-medium: var(--color-primitive-alpha-indigo-1000-26);
-  --color-alias-overlay-media-strong: var(--color-primitive-alpha-indigo-1000-42);
-  --color-alias-overlay-control: var(--color-primitive-alpha-neutral-1000-55);
-  --color-alias-overlay-control-strong: var(--color-primitive-alpha-neutral-1000-58);
-  --color-alias-overlay-fullscreen: var(--color-primitive-alpha-neutral-1000-92);
-  --color-alias-overlay-glass: var(--color-primitive-alpha-neutral-0-92);
-  --color-alias-overlay-glass-strong: var(--color-primitive-alpha-neutral-0-94);
+  --color-alias-overlay-sheet: var(--color-primitive-alpha-mauve-40);
+  --color-alias-overlay-media-soft: var(--color-primitive-alpha-indigo-18);
+  --color-alias-overlay-media-medium: var(--color-primitive-alpha-indigo-26);
+  --color-alias-overlay-media-strong: var(--color-primitive-alpha-indigo-42);
+  --color-alias-overlay-control: var(--color-primitive-alpha-black-55);
+  --color-alias-overlay-control-strong: var(--color-primitive-alpha-black-58);
+  --color-alias-overlay-fullscreen: var(--color-primitive-alpha-black-92);
+  --color-alias-overlay-glass: var(--color-primitive-alpha-white-92);
+  --color-alias-overlay-glass-strong: var(--color-primitive-alpha-white-94);
 
   /* Focus and elevation */
-  --color-alias-focus-default: var(--color-primitive-alpha-red-977-70);
-  --color-alias-shadow-soft: var(--color-primitive-alpha-mauve-1000-18);
-  --color-alias-shadow-medium: var(--color-primitive-alpha-rose-1000-50);
-  --color-alias-shadow-strong: var(--color-primitive-alpha-rose-968-55);
+  --color-alias-focus-default: var(--color-primitive-alpha-red-70);
+  --color-alias-shadow-soft: var(--color-primitive-alpha-mauve-18);
+  --color-alias-shadow-medium: var(--color-primitive-alpha-rose-50);
+  --color-alias-shadow-strong: var(--color-primitive-alpha-rose-55);
 
   /* Build-time platform colors. Internal and not published in Figma. */
-  --color-alias-platform-theme: var(--color-primitive-rose-613);
-  --color-alias-platform-background: var(--color-primitive-rose-32);
+  --color-alias-platform-theme: var(--color-primitive-rose-400);
+  --color-alias-platform-background: var(--color-primitive-rose-50);
 }

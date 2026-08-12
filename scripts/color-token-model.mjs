@@ -78,16 +78,16 @@ function compactSemanticName(cssName) {
 }
 
 function primitiveDescription(cssName) {
-  const alphaMatch = cssName.match(/^--color-primitive-alpha-([a-z]+)-(\d+)-(\d+)$/)
+  const alphaMatch = cssName.match(/^--color-primitive-alpha-([a-z]+)-(\d+)$/)
   if (alphaMatch) {
-    const [, family, step, opacity] = alphaMatch
-    return `Сырой оттенок палитры ${family}, шаг ${step}, непрозрачность ${opacity}%. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
+    const [, family, opacity] = alphaMatch
+    return `Прозрачный примитив ${family} с непрозрачностью ${opacity}%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
   }
 
   const match = cssName.match(/^--color-primitive-([a-z]+)-(\d+)$/)
   if (!match) throw new Error(`Cannot describe primitive ${cssName}`)
   const [, family, step] = match
-  return `Сырой оттенок палитры ${family}, шаг ${step}. Число обозначает позицию внутри этой палитры, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
+  return `Сырой оттенок палитры ${family}, шаг ${step}. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
 }
 
 function aliasDescription(cssName, semanticConsumers) {
@@ -316,6 +316,8 @@ export function renderColorSystemGuide(model) {
     '1. `color-primitives` — сырые значения палитры; Scope отключён, коллекция скрыта.',
     '2. `color-alias` — промежуточные решения палитры и единая точка смены цвета; Scope отключён, коллекция скрыта.',
     '3. `color-semantic` — продуктовые роли с точным Scope; это единственная публичная коллекция.',
+    '',
+    'Шкала непрозрачных примитивов: `0–50` — самые светлые значения, около `500` — базовые, `700–1000` — тёмные. У `alpha/*` последнее число означает процент непрозрачности, например `alpha/black/55`.',
     '',
     '## Surface hierarchy',
     '',

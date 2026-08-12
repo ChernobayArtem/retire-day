@@ -208,12 +208,15 @@ function auditTokenHierarchy() {
   )
 
   for (const declaration of primitives) {
-    if (!declaration.name.startsWith('--color-primitive-')) {
+    const expectedPrefix = declaration.file === primitiveFile
+      ? '--color-primitive-'
+      : '--color-illustration-primitive-'
+    if (!declaration.name.startsWith(expectedPrefix)) {
       addIssue(
         'token hierarchy',
         declaration.file,
         declaration.index,
-        `${declaration.name} must use the --color-primitive- prefix.`,
+        `${declaration.name} must use the ${expectedPrefix} prefix.`,
       )
     }
     if (/var\(/.test(declaration.value)) {
@@ -240,6 +243,9 @@ function auditTokenHierarchy() {
 
   for (const file of aliasFiles) {
     const content = fileContents.get(file) ?? ''
+    const expectedPrimitivePrefix = file.endsWith('color-illustration-aliases.css')
+      ? '--color-illustration-primitive-'
+      : '--color-primitive-'
     for (const declaration of parseDeclarations(file)) {
       if (!declaration.name.startsWith('--color-alias-')) {
         addIssue(
@@ -249,7 +255,7 @@ function auditTokenHierarchy() {
           `${declaration.name} must use the --color-alias- prefix.`,
         )
       }
-      if (!/^var\(--color-primitive-[\w-]+\)$/.test(declaration.value)) {
+      if (!declaration.value.startsWith(`var(${expectedPrimitivePrefix}`) || !declaration.value.endsWith(')')) {
         addIssue(
           'token hierarchy',
           file,
@@ -259,7 +265,7 @@ function auditTokenHierarchy() {
       }
     }
     for (const reference of parseVarReferences(content)) {
-      if (!reference.name.startsWith('--color-primitive-')) {
+      if (!reference.name.startsWith(expectedPrimitivePrefix)) {
         addIssue(
           'token hierarchy',
           file,
@@ -310,7 +316,10 @@ function auditLayerConsumption() {
     if (tokenFiles.has(file)) continue
 
     for (const reference of parseVarReferences(content)) {
-      if (reference.name.startsWith('--color-primitive-')) {
+      if (
+        reference.name.startsWith('--color-primitive-') ||
+        reference.name.startsWith('--color-illustration-primitive-')
+      ) {
         addIssue(
           'token layer',
           file,
