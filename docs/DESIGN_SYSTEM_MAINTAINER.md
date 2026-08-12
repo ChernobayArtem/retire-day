@@ -25,6 +25,7 @@ Check the proposal against:
 - WCAG contrast and focus visibility;
 - existing empty, loading, error, disabled, and media states.
 - accessible names, focus behavior, reduced motion, safe areas, and touch targets.
+- system icon consistency: button and control glyphs use the local Material Symbols Outlined registry in `src/ui/Icons.tsx`; category emoji, company logos, and decorative artwork are not replaced by UI glyphs. Run `npm run audit:icons` after adding or changing an icon.
 
 Fix a clear system mistake immediately when the product intent stays the same. Examples include replacing a raw color with a semantic token, correcting a wrong surface level, using the existing white button instead of inventing a new one, fixing spacing that breaks proximity, or repairing a failing contrast pair.
 

@@ -19,10 +19,13 @@ export {
   ChevronLeft,
   ChevronRight,
   Close,
+  Copy,
   Download,
   Expand,
+  Gift,
   Grid,
   Icons,
+  Play,
   Sparkle,
   type IconProps,
 } from './Icons'

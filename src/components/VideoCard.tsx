@@ -3,6 +3,7 @@ import { useMedia } from '../lib/useMedia'
 import { trackGoal } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
 import { mediaDownloadName } from '../lib/download'
+import { Icons } from '../ui'
 import VideoLightbox from './VideoLightbox'
 
 interface Props {
@@ -54,7 +55,7 @@ export default function VideoCard({ day, analyticsEnabled, src, poster }: Props)
           <span className="vid__poster encimg-loading" aria-hidden="true" />
         )}
         <span className="vid__play" aria-hidden="true">
-          <PlayIcon />
+          <Icons.Play size={40} />
         </span>
       </button>
       {opened && (
@@ -67,20 +68,5 @@ export default function VideoCard({ day, analyticsEnabled, src, poster }: Props)
         />
       )}
     </>
-  )
-}
-
-/** Треугольник play в системном стиле iOS. */
-function PlayIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="40"
-      height="40"
-      fill="var(--color-semantic-icon-inverse)"
-      aria-hidden="true"
-    >
-      <path d="M8.5 5.6a1 1 0 0 1 1.53-.85l8.2 5.15a1.3 1.3 0 0 1 0 2.2l-8.2 5.15a1 1 0 0 1-1.53-.85V5.6Z" />
-    </svg>
   )
 }

@@ -26,6 +26,7 @@ import PostFinale from './PostFinale'
 import ProgressBar from './ProgressBar'
 import SceneStage from './SceneStage'
 import SurpriseArchive from './SurpriseArchive'
+import { Icons } from '../ui'
 
 interface Active {
   day: number
@@ -213,7 +214,9 @@ export default function Home({ testMode, dateOverride }: Props) {
                   <div className="stat__num">{left}</div>
                   <div className="stat__cap">
                     {left > 0 ? 'дн. осталось' : 'свобода!'}
-                    <span className="stat__arrow" aria-hidden="true">›</span>
+                    <span className="stat__arrow" aria-hidden="true">
+                      <Icons.ChevronRight size={16} />
+                    </span>
                   </div>
                 </button>
                 <div className="stat stat--right">
@@ -241,13 +244,13 @@ export default function Home({ testMode, dateOverride }: Props) {
           {testMode && (
             <div className="testbar">
               <button onClick={() => setSimNow((d) => shift(d, -1))} aria-label="День назад">
-                ◀
+                <Icons.ChevronLeft size={16} />
               </button>
               <span className="testbar__date">
                 {pad2(now.getDate())}.{pad2(now.getMonth() + 1)}
               </span>
               <button onClick={() => setSimNow((d) => shift(d, 1))} aria-label="День вперёд">
-                ▶
+                <Icons.ChevronRight size={16} />
               </button>
               <button onClick={() => resetProgress()}>сброс</button>
               <button onClick={() => logout()}>выход</button>

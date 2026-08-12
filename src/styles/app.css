@@ -222,9 +222,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 18px;
 }
 
 /* ---------- calendar ---------- */
@@ -579,6 +576,9 @@
   padding: 4px 9px;
   cursor: pointer;
 }
+.testbar button svg {
+  display: block;
+}
 
 /* ---------- archive of opened surprises ---------- */
 .archive {
@@ -772,11 +772,9 @@
   flex: none;
   width: 46px;
   height: 46px;
-  padding-left: 3px;
   border-radius: 50%;
   background: var(--color-semantic-background-surface-inverse);
   color: var(--color-semantic-icon-inverse);
-  font-size: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1378,6 +1376,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--color-semantic-icon-inverse);
   pointer-events: none;
 }
 .vid__pending {

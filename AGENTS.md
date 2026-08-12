@@ -33,6 +33,7 @@ Read [docs/DESIGN_SYSTEM_MAINTAINER.md](docs/DESIGN_SYSTEM_MAINTAINER.md) before
 - Respect Figma Scope exactly: Text for text, Frame for backgrounds, Shape for shape fills, Stroke for borders, and Effects for shadows/effects.
 - Use the surface hierarchy `canvas → level-0 → level-1 → level-2 → level-3`; use `inverse` only as the separate dark/media branch.
 - Reuse and extend existing UI-kit components before creating one-off controls.
+- Button and control icons must come from the local Material Symbols Outlined registry in `src/ui/Icons.tsx`, imported through `src/ui/index.ts`. Add future system icons to that registry from Google's official SVG source; do not add ad-hoc paths, icon fonts, or CDN dependencies. Category emoji, company logos, and decorative illustrations are intentional exceptions. `npm run audit:icons` enforces the boundary.
 - Never edit `design-tokens/generated/color-variables.figma.json` or `docs/COLOR_SYSTEM.md` by hand. Change their sources and run `npm run tokens:colors`.
 - Enabled text, icons, boundaries, focus states, and meaningful graphics must continue to satisfy WCAG 2.2 AA. Never weaken a passing pair merely to make it look quieter; choose the correct semantic role instead.
 - When changing tokens, regenerate the registry and documentation, then synchronize Figma in the order primitive → alias → semantic.

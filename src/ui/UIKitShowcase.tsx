@@ -268,6 +268,7 @@ export default function UIKitShowcase() {
           <IconSample name="Скачать"><Icons.Download /></IconSample>
           <IconSample name="Бонус"><Icons.Gift /></IconSample>
           <IconSample name="Копировать"><CopyIcon /></IconSample>
+          <IconSample name="Воспроизвести"><Icons.Play /></IconSample>
         </div>
       </section>
     </main>

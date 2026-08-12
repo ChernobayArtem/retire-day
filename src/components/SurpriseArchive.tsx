@@ -392,7 +392,9 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
       {category === 'video' && def.video && (
         <>
           <div className="archive-card__video-head">
-            <span className="archive-card__play" aria-hidden="true">▶</span>
+            <span className="archive-card__play" aria-hidden="true">
+              <Icons.Play size={24} />
+            </span>
             <div>
               <h2 className="archive-card__title">
                 {keepRussianShortWords(videoAuthor(def))}
