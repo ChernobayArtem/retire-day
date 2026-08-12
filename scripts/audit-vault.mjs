@@ -47,6 +47,7 @@ const DAY_KEYS = new Set([
   'compliment',
   'collage',
   'video',
+  'bonusVideo',
   'booking',
   'cert',
   'coupon',
@@ -299,6 +300,17 @@ function validateContentShape(value) {
         validateOptionalString(day.video.src, 'CONTENT_VIDEO_SOURCE')
         rememberMedia(day.video.poster)
         rememberMedia(day.video.src)
+      }
+    }
+
+    if (day.bonusVideo !== undefined) {
+      if (!hasOnlyKeys(day.bonusVideo, new Set(['src']), 'CONTENT_BONUS_VIDEO_SCHEMA')) {
+        valid = false
+      } else if (!isNonEmptyString(day.bonusVideo.src)) {
+        addIssue('CONTENT_BONUS_VIDEO_SOURCE', 'bonus video source is required')
+        valid = false
+      } else {
+        rememberMedia(day.bonusVideo.src)
       }
     }
 

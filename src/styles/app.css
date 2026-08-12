@@ -946,6 +946,16 @@
 .day__band--nomeme {
   min-height: 0;
 }
+.day__bonus {
+  position: absolute;
+  left: 50%;
+  top: -48px;
+  z-index: 3;
+  transform: translateX(-50%);
+}
+.day__bonus-button.ui-button {
+  padding-inline: 8px;
+}
 /* no caption → no bubble, so the meme sits in the middle instead of the corner */
 .day__band--center .meme__photo {
   right: auto;

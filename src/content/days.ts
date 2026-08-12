@@ -41,6 +41,8 @@ export interface DayDef {
    * Пока `src` не добавлен, карточка показывает аккуратную заглушку.
    */
   video?: { src?: string; poster: string }
+  /** Дополнительное видео дня, открываемое отдельной компактной кнопкой. */
+  bonusVideo?: { src: string }
   /** Бронь: фоновая картинка, прозрачная карточка заведения и детали поверх неё. */
   booking?: { card: string; background?: string; when: string; where: string }
   cert?: {

@@ -131,6 +131,19 @@ export function Download(props: IconProps) {
   )
 }
 
+/** Outline-версия Material Symbols `featured_seasonal_and_gifts`. */
+export function Gift(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M4 10h16v10H4z" />
+      <path d="M3 7h18v4H3z" />
+      <path d="M12 7v13" />
+      <path d="M12 7H8.5a2.5 2.5 0 1 1 2-4c.75.58 1.5 2.2 1.5 4Z" />
+      <path d="M12 7h3.5a2.5 2.5 0 1 0-2-4C12.75 3.58 12 5.2 12 7Z" />
+    </IconBase>
+  )
+}
+
 export const Icons = {
   ArrowLeft,
   ChevronLeft,
@@ -141,4 +154,5 @@ export const Icons = {
   Check,
   Expand,
   Download,
+  Gift,
 } as const

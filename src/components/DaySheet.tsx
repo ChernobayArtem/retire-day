@@ -10,6 +10,7 @@ import CouponCard from './CouponCard'
 import CertCard from './CertCard'
 import PhotoCarousel from './PhotoCarousel'
 import VideoCard from './VideoCard'
+import BonusVideoButton from './BonusVideoButton'
 import BookingCard from './BookingCard'
 import ConfettiBurst from './Day29Confetti'
 import ZoomableLightbox from './ZoomableLightbox'
@@ -130,6 +131,14 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
             }
           >
             {locked && <img className="day__peek" src={asset('peek.webp')} alt="" />}
+            {!locked && def?.bonusVideo && (
+              <BonusVideoButton
+                key={`${def.day}:${def.bonusVideo.src}`}
+                day={def.day}
+                analyticsEnabled={analyticsEnabled}
+                src={def.bonusVideo.src}
+              />
+            )}
             {showMeme && def?.meme && (
               <>
                 <EncImg className="meme__photo" path={def.meme.photo} />
