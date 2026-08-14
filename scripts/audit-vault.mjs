@@ -14,10 +14,11 @@ const vaultDir = path.join(root, 'public/vault')
 const mediaDir = path.join(vaultDir, 'media')
 const manifestPath = path.join(vaultDir, 'manifest.json')
 const contentPath = path.join(vaultDir, 'content.bin')
-const cekPath = path.join(root, 'secret/cek.json')
-const passwordsPath = path.join(root, 'secret/passwords.json')
-const localContentPath = path.join(root, 'secret/content.mjs')
-const localMediaDir = path.join(root, 'media-src')
+const credentialsDir = path.join(root, 'local-content/credentials')
+const cekPath = path.join(root, 'local-content/credentials/cek.json')
+const passwordsPath = path.join(root, 'local-content/credentials/passwords.json')
+const localContentPath = path.join(root, 'local-content/current/content.mjs')
+const localMediaDir = path.join(root, 'local-content/current/media')
 const subtle = webcrypto.subtle
 
 const SCHEMA_VERSION = 1
@@ -25,23 +26,18 @@ const PBKDF2_ITERATIONS_FLOOR = 600_000
 const PBKDF2_ITERATIONS_CURRENT = 600_000
 const EXPECTED_ROLES = ['live', 'test']
 const EXPECTED_VAULT_ENTRIES = new Set(['manifest.json', 'content.bin', 'media'])
-const DAY_TYPES = new Set([
-  'intro',
-  'meme',
-  'coupon',
-  'photo',
-  'cert',
+const DAY_CATEGORIES = new Set([
   'compliment',
-  'milestone',
-  'anniversary',
-  'baby',
-  'finale',
+  'photos',
+  'cert',
+  'coupon',
+  'restaurant',
+  'video',
 ])
 const DAY_KEYS = new Set([
   'day',
   'title',
-  'type',
-  'accent',
+  'category',
   'emoji',
   'icon',
   'compliment',
@@ -241,6 +237,33 @@ async function isSecureLocalFile(filePath, code) {
   }
 }
 
+async function auditCredentialPermissions(directory) {
+  if (!existsSync(directory) || process.platform === 'win32') return
+  const directoryInfo = await lstat(directory)
+  if (!directoryInfo.isDirectory() || directoryInfo.isSymbolicLink() || (directoryInfo.mode & 0o077) !== 0) {
+    addIssue(
+      'LOCAL_CREDENTIAL_PERMISSIONS',
+      'credential directories must be owner-only real directories',
+    )
+    return
+  }
+  const entries = await readdir(directory, { withFileTypes: true })
+  for (const entry of entries) {
+    const target = path.join(directory, entry.name)
+    const info = await lstat(target)
+    if (info.isSymbolicLink()) {
+      addIssue('LOCAL_CREDENTIAL_PERMISSIONS', 'credential storage must not contain symlinks')
+    } else if (info.isDirectory()) {
+      await auditCredentialPermissions(target)
+    } else if (!info.isFile() || (info.mode & 0o077) !== 0) {
+      addIssue(
+        'LOCAL_CREDENTIAL_PERMISSIONS',
+        'credential files must be regular files readable only by their owner',
+      )
+    }
+  }
+}
+
 function validateContentShape(value) {
   if (!Array.isArray(value) || value.length === 0) {
     addIssue('CONTENT_SHAPE', 'decrypted content must be a non-empty day array')
@@ -272,16 +295,34 @@ function validateContentShape(value) {
     } else {
       seenDays.add(day.day)
     }
-    if (!isNonEmptyString(day.title) || !isNonEmptyString(day.accent) || !isNonEmptyString(day.emoji)) {
+    if (!isNonEmptyString(day.title) || !isNonEmptyString(day.emoji)) {
       addIssue('CONTENT_DAY_REQUIRED', 'a required day text field is invalid')
       valid = false
     }
-    if (!DAY_TYPES.has(day.type)) {
-      addIssue('CONTENT_DAY_TYPE', 'day type is unsupported')
+    if (!DAY_CATEGORIES.has(day.category)) {
+      addIssue('CONTENT_DAY_CATEGORY', 'day category is unsupported')
       valid = false
+    } else {
+      const hasCategoryContent = {
+        compliment: Boolean(
+          isNonEmptyString(day.compliment) ||
+          day.compliments?.length ||
+          isNonEmptyString(day.wish) ||
+          isNonEmptyString(day.message),
+        ),
+        photos: Boolean(isNonEmptyString(day.collage) || day.photos?.length),
+        cert: isPlainObject(day.cert),
+        coupon: isPlainObject(day.coupon),
+        restaurant: isPlainObject(day.booking),
+        video: isPlainObject(day.video),
+      }[day.category]
+      if (!hasCategoryContent) {
+        addIssue('CONTENT_DAY_CATEGORY_PAYLOAD', 'day category has no matching content payload')
+        valid = false
+      }
     }
 
-    for (const key of ['title', 'accent', 'emoji', 'icon', 'compliment', 'collage', 'wish', 'message']) {
+    for (const key of ['title', 'category', 'emoji', 'icon', 'compliment', 'collage', 'wish', 'message']) {
       if (day[key] !== undefined) remember(day[key])
     }
     for (const key of ['icon', 'compliment', 'collage', 'wish', 'message']) {
@@ -334,45 +375,48 @@ function validateContentShape(value) {
     }
 
     if (day.cert !== undefined) {
-      if (!hasOnlyKeys(day.cert, new Set(['brand', 'banner', 'codes', 'code']), 'CONTENT_CERT_SCHEMA')) {
+      if (!hasOnlyKeys(day.cert, new Set(['brand', 'banner', 'codes']), 'CONTENT_CERT_SCHEMA')) {
         valid = false
       } else {
         validateOptionalString(day.cert.brand, 'CONTENT_CERT_TEXT')
         validateOptionalString(day.cert.banner, 'CONTENT_CERT_TEXT')
-        validateOptionalString(day.cert.code, 'CONTENT_CERT_TEXT')
         remember(day.cert.brand)
         rememberMedia(day.cert.banner)
-        remember(day.cert.code)
-        if (day.cert.codes !== undefined) {
-          if (!Array.isArray(day.cert.codes) || day.cert.codes.length === 0) {
-            addIssue('CONTENT_CERT_CODES', 'certificate codes must be a non-empty array')
-            valid = false
-          } else {
-            for (const code of day.cert.codes) {
-              if (!hasOnlyKeys(code, new Set(['label', 'value']), 'CONTENT_CERT_CODE_SCHEMA')) {
-                valid = false
-                continue
-              }
-              if (!isNonEmptyString(code.value)) {
-                addIssue('CONTENT_CERT_CODE_VALUE', 'certificate code value is invalid')
-                valid = false
-              }
-              validateOptionalString(code.label, 'CONTENT_CERT_CODE_LABEL')
+        if (!Array.isArray(day.cert.codes) || day.cert.codes.length === 0) {
+          addIssue('CONTENT_CERT_CODES', 'certificate codes must be a non-empty array')
+          valid = false
+        } else {
+          for (const code of day.cert.codes) {
+            if (!hasOnlyKeys(code, new Set(['label', 'value']), 'CONTENT_CERT_CODE_SCHEMA')) {
+              valid = false
+              continue
             }
+            if (!isNonEmptyString(code.value)) {
+              addIssue('CONTENT_CERT_CODE_VALUE', 'certificate code value is invalid')
+              valid = false
+            }
+            validateOptionalString(code.label, 'CONTENT_CERT_CODE_LABEL')
+            remember(code.label)
+            remember(code.value)
           }
         }
       }
     }
 
     if (day.coupon !== undefined) {
-      const couponKeys = new Set(['title', 'desc', 'claim', 'emoji', 'action', 'note'])
+      const couponKeys = new Set(['title', 'desc', 'claim', 'emoji'])
       if (!hasOnlyKeys(day.coupon, couponKeys, 'CONTENT_COUPON_SCHEMA')) {
         valid = false
       } else {
-        for (const [key, field] of Object.entries(day.coupon)) {
-          validateOptionalString(field, 'CONTENT_COUPON_TEXT')
-          if (!couponKeys.has(key)) valid = false
+        for (const key of ['title', 'desc', 'claim']) {
+          if (!isNonEmptyString(day.coupon[key])) {
+            addIssue('CONTENT_COUPON_REQUIRED', 'coupon is missing a required text field')
+            valid = false
+          }
+          remember(day.coupon[key])
         }
+        validateOptionalString(day.coupon.emoji, 'CONTENT_COUPON_TEXT')
+        remember(day.coupon.emoji)
       }
     }
 
@@ -695,6 +739,7 @@ if (originRef.status !== 0) {
 
 // Full release mode requires local key and password records. The opt-out exists
 // only for intentionally partial CI/build environments and is always reported.
+await auditCredentialPermissions(credentialsDir)
 const hasCek = existsSync(cekPath) && (await isSecureLocalFile(cekPath, 'LOCAL_CEK_FILE'))
 const hasPasswords =
   existsSync(passwordsPath) && (await isSecureLocalFile(passwordsPath, 'LOCAL_PASSWORDS_FILE'))

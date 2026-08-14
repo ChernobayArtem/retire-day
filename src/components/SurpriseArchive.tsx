@@ -10,7 +10,7 @@ import {
 import { copyText } from '../lib/clipboard'
 import { keepRussianShortWords } from '../lib/typography'
 import { useVault } from '../lib/vault'
-import { couponMessage, normaliseCoupon } from './CouponCard'
+import { couponMessage } from './CouponCard'
 import { trackGoal, trackView } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
 import {
@@ -42,8 +42,7 @@ function ddmm(day: number): string {
 }
 
 function certCodes(def: DayDef): CertCode[] {
-  if (!def.cert) return []
-  return def.cert.codes ?? (def.cert.code ? [{ value: def.cert.code }] : [])
+  return def.cert?.codes ?? []
 }
 
 function complimentText(def: DayDef): string {
@@ -258,7 +257,7 @@ interface CardProps {
 
 function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
   const style = { '--card-accent': categoryAccent(def) } as CSSProperties
-  const coupon = def.coupon ? normaliseCoupon(def.coupon) : null
+  const coupon = def.coupon ?? null
   const codes = certCodes(def)
 
   return (

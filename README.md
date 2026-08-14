@@ -4,7 +4,7 @@
 
 ## Стек
 
-Vite + React + TypeScript, Framer Motion, vite-plugin-pwa.
+Vite + React + TypeScript, vite-plugin-pwa.
 
 ## Разработка
 
@@ -21,6 +21,14 @@ npm run typecheck
 в `src/ui/`, правила задокументированы в [`docs/UI_KIT.md`](docs/UI_KIT.md).
 Каталог компонентов открывается только в тестовой сессии через `?ui-kit=1`
 или кнопку `UI kit` на тестовой панели.
+
+## Контент
+
+Локальные исходники собраны в одной игнорируемой Git папке
+`local-content/`. Единственный актуальный источник данных приложения —
+`local-content/current/`; для личных фото и видео внутри проекта хранится только
+подготовленная актуальная версия, без отдельного архива оригиналов. Полная схема описана в
+[`docs/CONTENT_STRUCTURE.md`](docs/CONTENT_STRUCTURE.md).
 
 ## Деплой
 

@@ -6,18 +6,9 @@ dist-ssr
 .vite
 out
 
-# Design source inputs — originals stay local; only optimized copies in public/ ship
-/days/
-/элементы из фигмы/
-
-# Plaintext content + passwords — only the encrypted vault (public/vault) ships
-/secret/
-
-# Внутренний бриф — не публикуем
-/CODEX_BRIEF.md
+# Local-only content workspace: current plaintext content/media and credentials.
+# Nothing from here may be committed.
+/local-content/
 
 # Локальная передача незавершённой работы между coding-агентами
 /.agent/
-
-# Подготовленные плейнтекст-медиа для шифрования — не публикуем
-/media-src/

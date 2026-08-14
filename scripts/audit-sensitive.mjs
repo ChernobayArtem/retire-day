@@ -6,6 +6,7 @@
 
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
+import { existsSync } from 'node:fs'
 import { readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
@@ -17,7 +18,7 @@ const SELF_TEST = process.argv.includes('--self-test')
 const SUPPORTED_FLAGS = new Set(['--allow-missing', '--self-test'])
 const UNKNOWN_FLAGS = process.argv.slice(2).filter((flag) => !SUPPORTED_FLAGS.has(flag))
 
-const PLAINTEXT_SOURCE_PREFIXES = ['secret/', 'days/', 'media-src/']
+const PLAINTEXT_SOURCE_PREFIXES = ['local-content/']
 const TEXT_SCAN_EXCLUDED_PREFIXES = [
   ...PLAINTEXT_SOURCE_PREFIXES,
   'public/vault/',
@@ -28,7 +29,6 @@ const TEXT_SCAN_EXCLUDED_PREFIXES = [
 // Personal day media is never added here: it belongs only in public/vault/ as
 // encrypted blobs. A new intentional app/brand asset requires a policy change.
 const SAFE_PUBLIC_FILES = new Set([
-  'public/art/company.png',
   'public/art/day-28.png',
   'public/art/golden-apple.svg',
   'public/art/lamoda.svg',
@@ -39,9 +39,7 @@ const SAFE_PUBLIC_FILES = new Set([
   'public/icons/icon-192.png',
   'public/icons/icon-512-maskable.png',
   'public/icons/icon-512.png',
-  'public/memes/.gitkeep',
   'public/peek.webp',
-  'public/photos/.gitkeep',
   'public/scenes/day29-poster.jpg',
   'public/scenes/day29.mp4',
 ])
@@ -84,7 +82,6 @@ const BINARY_OR_ART_EXTENSIONS = new Set([
 // The content schema is classified field-by-field. Adding a new string field
 // makes the audit fail closed until that field is deliberately classified.
 const CONTENT_FIELD_POLICY = new Map([
-  ['days.[].accent', 'metadata'],
   ['days.[].booking.background', 'media-path'],
   ['days.[].booking.card', 'media-path'],
   ['days.[].booking.when', 'personal-text'],
@@ -98,6 +95,7 @@ const CONTENT_FIELD_POLICY = new Map([
   ['days.[].coupon.claim', 'personal-text'],
   ['days.[].coupon.desc', 'personal-text'],
   ['days.[].coupon.title', 'personal-text'],
+  ['days.[].category', 'metadata'],
   ['days.[].emoji', 'metadata'],
   ['days.[].icon', 'metadata'],
   ['days.[].meme.caption', 'personal-text'],
@@ -105,7 +103,6 @@ const CONTENT_FIELD_POLICY = new Map([
   ['days.[].meme.reaction', 'personal-text'],
   ['days.[].photos.[]', 'media-path'],
   ['days.[].title', 'personal-text'],
-  ['days.[].type', 'metadata'],
   ['days.[].video.poster', 'media-path'],
   ['days.[].video.src', 'media-path'],
   ['days.[].wish', 'personal-text'],
@@ -337,7 +334,7 @@ async function loadSensitiveSources() {
   let contentKey = null
 
   try {
-    const contentUrl = pathToFileURL(path.join(ROOT, 'secret/content.mjs'))
+    const contentUrl = pathToFileURL(path.join(ROOT, 'local-content/current/content.mjs'))
     const module = await import(`${contentUrl.href}?audit=${Date.now()}`)
     content = module.default ?? module
   } catch {
@@ -345,14 +342,17 @@ async function loadSensitiveSources() {
   }
 
   try {
-    const rawPasswords = await readFile(path.join(ROOT, 'secret/passwords.json'), 'utf8')
+    const rawPasswords = await readFile(
+      path.join(ROOT, 'local-content/credentials/passwords.json'),
+      'utf8',
+    )
     passwords = JSON.parse(rawPasswords)
   } catch {
     missing.push('passwords')
   }
 
   try {
-    const rawKey = await readFile(path.join(ROOT, 'secret/cek.json'), 'utf8')
+    const rawKey = await readFile(path.join(ROOT, 'local-content/credentials/cek.json'), 'utf8')
     const parsedKey = JSON.parse(rawKey)
     if (typeof parsedKey?.cek !== 'string' || parsedKey.cek.length === 0) throw new Error('invalid key')
     contentKey = parsedKey.cek
@@ -532,9 +532,8 @@ function runSelfTest() {
       {
         day: 1,
         title: 'Личный заголовок',
-        type: 'coupon',
+        category: 'coupon',
         emoji: '🎟️',
-        accent: 'linear-gradient(example)',
         icon: 'example',
         wish: 'Да',
         compliment: 'Ты',
@@ -580,7 +579,7 @@ function runSelfTest() {
   )
   check(classifyPublicEntry('public/favicon.png', 'symlink') === 'public-symlink')
   check(classifyRepositoryMedia('fixture/private.jpg') === 'unexpected-repository-media')
-  check(hasPrefix('secret/fixture.txt', PLAINTEXT_SOURCE_PREFIXES))
+  check(hasPrefix('local-content/fixture.txt', PLAINTEXT_SOURCE_PREFIXES))
 
   const keyFindings = []
   scanText(
@@ -627,11 +626,13 @@ async function main() {
   let publicEntries
   let mediaSourceEntries
   try {
-    trackedFiles = gitFileList(['ls-files', '-z'])
+    trackedFiles = gitFileList(['ls-files', '-z']).filter((repoPath) =>
+      existsSync(path.join(ROOT, repoPath)),
+    )
     untrackedFiles = gitFileList(['ls-files', '--others', '--exclude-standard', '-z'])
     distEntries = await walkDirectory('dist')
     publicEntries = await walkDirectory('public')
-    mediaSourceEntries = await walkDirectory('media-src')
+    mediaSourceEntries = await walkDirectory('local-content/current/media')
   } catch {
     console.error('Sensitive audit: ERROR (unable to enumerate repository files)')
     process.exitCode = 2
@@ -652,7 +653,7 @@ async function main() {
   let inventoryId = 0
   const plaintextMediaPaths = new Set(contentValues.secretMediaPaths)
   for (const entry of mediaSourceEntries) {
-    plaintextMediaPaths.add(entry.repoPath.replace(/^media-src\//u, ''))
+    plaintextMediaPaths.add(entry.repoPath.replace(/^local-content\/current\/media\//u, ''))
   }
 
   for (const repoPath of trackedPlaintextSources) {

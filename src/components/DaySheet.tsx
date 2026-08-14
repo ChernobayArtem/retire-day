@@ -243,19 +243,15 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
     )
   }
   if (def.cert) {
-    // `code` — одиночный код ранней версии; новые дни задают `codes`.
-    const codes = def.cert.codes ?? (def.cert.code ? [{ value: def.cert.code }] : [])
-    if (codes.length > 0) {
-      return (
-        <CertCard
-          day={def.day}
-          analyticsEnabled={analyticsEnabled}
-          banner={def.cert.banner}
-          codes={codes}
-          onCopy={onCopyText}
-        />
-      )
-    }
+    return (
+      <CertCard
+        day={def.day}
+        analyticsEnabled={analyticsEnabled}
+        banner={def.cert.banner}
+        codes={def.cert.codes}
+        onCopy={onCopyText}
+      />
+    )
   }
   if (def.coupon) {
     return (
@@ -266,14 +262,6 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
         fallbackEmoji={def.emoji}
         onCopy={onCopyText}
       />
-    )
-  }
-  if (def.cert) {
-    return (
-      <div className="coupon">
-        <div className="coupon__label">🎁 {def.cert.brand ?? 'Сертификат'}</div>
-        <div className="coupon__note">Код скоро появится ✨</div>
-      </div>
     )
   }
   if (def.photos && def.photos.length > 0) {

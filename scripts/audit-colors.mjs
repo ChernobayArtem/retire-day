@@ -118,7 +118,7 @@ function collectFiles() {
   visitDirectory(join(projectRoot, 'src'), files)
   visitDirectory(join(projectRoot, 'public'), files)
 
-  for (const file of ['index.html', 'vite.config.ts', 'secret/content.mjs']) {
+  for (const file of ['index.html', 'vite.config.ts', 'local-content/current/content.mjs']) {
     if (existsSync(join(projectRoot, file))) files.push(file)
   }
 
@@ -390,10 +390,7 @@ function auditReferences() {
 
   for (const [file, content] of fileContents) {
     for (const reference of parseVarReferences(content)) {
-      const legacyDayAccent =
-        file === 'secret/content.mjs' &&
-        /^--color-semantic-shape-day-accent-\d{2}$/.test(reference.name)
-      if (!definitions.has(reference.name) && !legacyDayAccent) {
+      if (!definitions.has(reference.name)) {
         addIssue(
           'undefined variable',
           file,

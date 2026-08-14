@@ -123,14 +123,6 @@ export const contrastPairs = Object.freeze([
     enforcement: 'required',
   },
   {
-    id: 'legacy-coupon-note-on-pink',
-    selectors: ['.coupon__note'],
-    kind: CONTRAST_KIND.NORMAL_TEXT,
-    foreground: token('--color-semantic-text-muted'),
-    backgroundLayers: [CALENDAR_PAST],
-    enforcement: 'required',
-  },
-  {
     id: 'compliment-on-pink',
     selectors: ['.compliments__item'],
     kind: CONTRAST_KIND.NORMAL_TEXT,
@@ -286,7 +278,7 @@ export const contrastPairs = Object.freeze([
   },
   {
     id: 'brand-label-on-pink',
-    selectors: ['.coupon__label', '.testbar button'],
+    selectors: ['.testbar button'],
     kind: CONTRAST_KIND.NORMAL_TEXT,
     foreground: token('--color-semantic-text-brand'),
     backgroundLayers: [CALENDAR_PAST],
@@ -701,7 +693,7 @@ export const contrastExemptions = Object.freeze([
   },
   {
     id: 'transient-loader-strokes',
-    selectors: ['.vid__spinner', '.video-lightbox__spinner', '.lightbox__spinner'],
+    selectors: ['.video-lightbox__spinner', '.lightbox__spinner'],
     tokens: [
       '--color-semantic-border-inverse-subtle',
       '--color-semantic-border-inverse-strong',

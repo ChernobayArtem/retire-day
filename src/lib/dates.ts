@@ -102,10 +102,6 @@ export function newChapterPeriod(now: Date): NewChapterPeriod {
   return { label: `Уже ${yearsText}${monthsText} новой главы` }
 }
 
-export function isBeforeStart(now: Date): boolean {
-  return diffDays(dayDate(START_DAY), now) < 0
-}
-
 export function stateForDay(day: number, now: Date): DayState {
   const rel = diffDays(dayDate(day), now) // now - day
   if (rel > 0) return 'past'
@@ -113,19 +109,10 @@ export function stateForDay(day: number, now: Date): DayState {
   return 'future'
 }
 
-const WD_SHORT = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб']
-export function weekdayShort(day: number): string {
-  return WD_SHORT[dayDate(day).getDay()]
-}
-
 /** Monday-first index (Mon=0..Sun=6) of the 1st of the target month. */
 function firstWeekdayMondayIndex(): number {
   const jsDay = new Date(YEAR, MONTH_INDEX, 1).getDay()
   return (jsDay + 6) % 7
-}
-
-export function daysInMonth(): number {
-  return new Date(YEAR, MONTH_INDEX + 1, 0).getDate()
 }
 
 /**

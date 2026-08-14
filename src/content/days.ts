@@ -1,16 +1,12 @@
 // Types only. The actual content lives encrypted in public/vault and is
 // decrypted at runtime (see src/lib/vault.ts) — nothing personal ships in plaintext.
-export type DayType =
-  | 'intro'
-  | 'meme'
-  | 'coupon'
-  | 'photo'
-  | 'cert'
+export type DayCategory =
   | 'compliment'
-  | 'milestone'
-  | 'anniversary'
-  | 'baby'
-  | 'finale'
+  | 'photos'
+  | 'cert'
+  | 'coupon'
+  | 'restaurant'
+  | 'video'
 
 export interface DayMeme {
   photo: string
@@ -30,8 +26,8 @@ export interface CertCode {
 export interface DayDef {
   day: number
   title: string
-  type: DayType
-  accent: string
+  /** Категория — единый источник для календаря, архива и цветового акцента. */
+  category: DayCategory
   emoji: string
   icon?: string
   compliment?: string
@@ -49,26 +45,20 @@ export interface DayDef {
     brand?: string
     /** Путь внутри vault — баннер прячется вместе с остальным контентом дня. */
     banner?: string
-    /** Один или несколько кодов; каждый копируется отдельной кнопкой. */
-    codes?: CertCode[]
-    /** @deprecated одиночный код из ранней версии; читается как codes[0]. */
-    code?: string
+    /** Один или несколько кодов; сертификат без кода не проходит release-аудит. */
+    codes: CertCode[]
   }
   /**
    * `title`/`desc` — то, что видно на карточке (от лица Артёма).
    * `claim` — та же услуга во втором лице: этот текст Валерия копирует и
    * отправляет ему, поэтому он звучит как её сообщение, а не как карточка.
    *
-   * `action`/`note` — черновая структура ранней сборки; ещё живёт на паре
-   * незаполненных дней, поэтому карточка читает и её.
    */
   coupon?: {
-    title?: string
-    desc?: string
-    claim?: string
+    title: string
+    desc: string
+    claim: string
     emoji?: string
-    /** @deprecated */ action?: string
-    /** @deprecated */ note?: string
   }
   photos?: string[]
   compliments?: string[]

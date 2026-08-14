@@ -33,14 +33,14 @@ Escalate before changing product intent. Examples include removing content, chan
 
 ### 3. Synchronize
 
-When Figma leads:
+When the user explicitly asks for Figma work and Figma leads:
 
 1. Correct safe design-system violations in Figma.
 2. Explain the correction in the handoff.
 3. Implement the corrected design in code using existing components and semantic tokens.
 4. Update or extend the UI kit when a reusable component or state was introduced.
 
-When code leads:
+When code leads and the user explicitly requested Figma synchronization:
 
 1. Update the token/component source of truth.
 2. Regenerate derived documentation and the Figma-ready registry.
@@ -54,8 +54,12 @@ Color-variable synchronization order is always:
 3. `color-semantic` — the only public collection.
 
 Descriptions and Scope are part of the contract, not optional documentation.
+Do not write to Figma automatically during ordinary code or token work. If the
+user did not explicitly request Figma synchronization in the current task,
+finish the registry/code work and report Figma as intentionally pending.
 Use the project Figma file at `https://www.figma.com/design/aVqXAqWFfNDnh93PyxctSv/APP`;
-the local desktop MCP endpoint is `http://127.0.0.1:3845/mcp` when available.
+prefer `https://mcp.figma.com/mcp` and use the local desktop endpoint
+`http://127.0.0.1:3845/mcp` as a fallback when available.
 If the connector is unavailable, never report the design as synchronized—record
 the exact pending Figma action instead.
 
@@ -90,9 +94,11 @@ Persisted compatibility includes `retire-day:session`, `retire-day:progress`, `r
 
 For encrypted content:
 
-1. Preserve `secret/cek.json`.
+1. Preserve `local-content/credentials/cek.json`.
 2. Capture the current `public/vault/manifest.json` `keyId`.
-3. Run the existing staging/encryption workflow.
+3. Run the existing direct-source encryption workflow; plaintext media must
+   remain under `local-content/current/media/` and must never be staged in
+   `public/`.
 4. Confirm the new `keyId` matches the old value.
 5. Confirm existing media mappings remain available and only intended encrypted payloads changed.
 6. Never stage plaintext media or secret files.
@@ -103,7 +109,14 @@ If an audit finds a value that may already exist in a published commit, remove i
 
 ### 6. Commit and publish
 
-Create a focused local commit only after verification passes. Do not combine unrelated user changes. Stage the intended paths explicitly, then run `git diff --cached --check` and review both `git diff --cached --name-status` and the full cached diff before committing; an unstaged check does not cover new files.
+Create a focused local commit only after verification passes and only when that
+matches the user's current Git instruction. If the user asked to accumulate
+changes or not to commit, leave the work unstaged, record the instruction and
+verification status in `.agent/HANDOFF.md`, and report `not created per user
+instruction`. Do not combine unrelated user changes. When committing is
+allowed, stage the intended paths explicitly, then run `git diff --cached
+--check` and review both `git diff --cached --name-status` and the full cached
+diff before committing; an unstaged check does not cover new files.
 
 Push only after an explicit request in the current task. A public push that introduces newly encrypted personal media needs explicit confirmation that names the affected day or media. This protects the user from accidentally publishing sensitive material even though the payload is encrypted.
 

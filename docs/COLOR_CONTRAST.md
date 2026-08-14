@@ -17,8 +17,8 @@ exemption. The calculator is `scripts/audit-color-contrast.mjs`.
 
 ## Current result
 
-`npm run audit:contrast:strict` checks 72 real foreground/background pairs.
-All 72 currently meet WCAG 2.2 AA. Nine exemption groups are recorded explicitly;
+`npm run audit:contrast:strict` checks 71 real foreground/background pairs.
+All 71 currently meet WCAG 2.2 AA. Nine exemption groups are recorded explicitly;
 nothing is skipped implicitly.
 
 `npm run audit:contrast:coverage` separately discovers semantic foreground,

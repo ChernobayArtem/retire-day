@@ -43,7 +43,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       // Registration is done by hand in main.tsx so a new build can reload itself.
       injectRegister: null,
-      includeAssets: ['favicon.png', 'icons/apple-touch-icon-180.png', 'peek.webp'],
+      // All public assets are already covered by workbox.globPatterns below.
+      // Do not add manifest icons a second time to the precache manifest.
+      includeManifestIcons: false,
       manifest: {
         name: 'Ариведерчи',
         short_name: 'Ариведерчи',
@@ -78,7 +80,9 @@ export default defineConfig({
             options: {
               cacheName: 'vault-media',
               // ciphertext is content-addressed, so a cached blob is never stale
-              expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 180 },
+              // Keep the complete current vault (69 items) plus enough room for
+              // future days without evicting early memories from offline use.
+              expiration: { maxEntries: 150, maxAgeSeconds: 60 * 60 * 24 * 180 },
               cacheableResponse: { statuses: [0, 200] },
               rangeRequests: true // Safari seeks video with Range requests
             }

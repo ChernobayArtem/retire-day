@@ -51,10 +51,14 @@ Before editing:
 When the task is complete:
 
 1. Run the required verification for the affected scope.
-2. Stage only intended files and review the complete staged diff.
-3. Create a focused local commit.
-4. Remove a resolved local `.agent/HANDOFF.md` so it cannot mislead the next
-   agent.
+2. Check the user's current Git instruction. If commits are allowed, stage only
+   intended files, review the complete staged diff, and create a focused local
+   commit.
+3. If the user asked to accumulate changes or not to commit, leave all work
+   unstaged, preserve the dirty tree, and update `.agent/HANDOFF.md` with that
+   instruction and the verification status.
+4. Remove a resolved local `.agent/HANDOFF.md` only after its Git instruction is
+   no longer active and the recorded work has been safely completed.
 5. Push only when the user explicitly requests it in the current task.
 
 ## Pause unfinished work

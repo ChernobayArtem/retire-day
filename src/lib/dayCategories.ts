@@ -1,12 +1,6 @@
-import type { DayDef } from '../content/days'
+import type { DayCategory, DayDef } from '../content/days'
 
-export type ArchiveCategory =
-  | 'compliment'
-  | 'photos'
-  | 'cert'
-  | 'coupon'
-  | 'restaurant'
-  | 'video'
+export type ArchiveCategory = DayCategory
 
 export interface ArchiveCategoryMeta {
   id: ArchiveCategory
@@ -24,25 +18,29 @@ export const ARCHIVE_CATEGORIES: ArchiveCategoryMeta[] = [
   { id: 'video', label: 'Видосы', icon: '🎥' },
 ]
 
-/** Структура надёжнее `type`: видео и ресторан технически имеют type=photo,
- *  а финальный комплимент содержит сертификатную карточку внутри шторки. */
+/** Явная категория сохраняет смысл гибридных дней: например, финальный
+ * комплимент может содержать сертификатную карточку внутри шторки.
+ *
+ * После обновления установленная PWA может на один цикл отдать новый JS вместе
+ * со старым закэшированным content.bin. Вторая часть функции — только адаптер
+ * такого перехода; актуальный source и release-аудит требуют `category`. */
 export function categoryForDay(def: DayDef): ArchiveCategory {
+  if (ARCHIVE_CATEGORIES.some((item) => item.id === def.category)) return def.category
+
+  const legacyType = (def as DayDef & { type?: string }).type
   if (
     def.compliment ||
     def.compliments?.length ||
-    def.type === 'compliment' ||
-    def.type === 'intro'
+    legacyType === 'compliment' ||
+    legacyType === 'intro'
   ) {
     return 'compliment'
   }
   if (def.video) return 'video'
   if (def.booking) return 'restaurant'
   if (def.coupon) return 'coupon'
-  if (def.cert || def.type === 'cert') return 'cert'
-  if (def.collage || def.photos?.length || def.type === 'photo') return 'photos'
-
-  // Все текущие 29 дней попадают в ветки выше. Если появится новый простой
-  // текстовый формат, он безопаснее всего ведёт себя как комплимент.
+  if (def.cert || legacyType === 'cert') return 'cert'
+  if (def.collage || def.photos?.length || legacyType === 'photo') return 'photos'
   return 'compliment'
 }
 

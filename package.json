@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "encrypt": "node scripts/stage-media.mjs && node scripts/encrypt.mjs",
+    "encrypt": "node scripts/encrypt.mjs",
     "audit:colors": "node scripts/audit-colors.mjs",
     "audit:icons": "node scripts/audit-icons.mjs",
     "audit:contrast": "node scripts/audit-color-contrast.mjs",
@@ -15,16 +15,16 @@
     "audit:sensitive:portable": "node scripts/audit-sensitive.mjs --allow-missing",
     "audit:vault": "node scripts/audit-vault.mjs",
     "audit:vault:portable": "node scripts/audit-vault.mjs --allow-missing-local --allow-missing-origin",
+    "clean:metadata": "node scripts/clean-macos-metadata.mjs",
+    "test:encrypt": "node scripts/test-encrypt.mjs",
     "tokens:colors": "node scripts/export-color-tokens.mjs",
     "verify:design-system": "npm run build",
-    "verify:release": "npm run audit:sensitive && npm run audit:vault && npm run verify:design-system && npm run audit:sensitive",
+    "verify:release": "npm run test:encrypt && npm run audit:sensitive && npm run audit:vault && npm run verify:design-system && npm run audit:sensitive",
     "build": "npm run audit:colors && npm run audit:icons && npm run audit:contrast:strict && npm run audit:vault:portable && tsc && vite build && npm run audit:sensitive:portable",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
-    "stage": "node scripts/stage-media.mjs"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "framer-motion": "^11.11.17",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
