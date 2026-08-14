@@ -6,6 +6,20 @@ This protocol makes handoffs between Codex, Claude Code, and fresh sessions
 predictable. Conversation history is helpful but never authoritative; Git,
 tracked documentation, tests, and the current working tree are authoritative.
 
+## Shared Figma context
+
+The canonical project file is **APP** — the Figma file where the application
+palette and color-variable system were created:
+
+<https://www.figma.com/design/aVqXAqWFfNDnh93PyxctSv/APP>
+
+When the user says “our Figma” or “the Figma with the palette”, use this file
+unless the user explicitly provides a newer link. The preferred remote MCP
+endpoint is `https://mcp.figma.com/mcp`; the desktop endpoint, when Figma
+Desktop exposes it, is `http://127.0.0.1:3845/mcp`. Do not create a new Figma
+file or edit another file by assumption. Never upload real personal media,
+passwords, certificate codes, analytics identifiers, or vault artifacts.
+
 ## Start or resume work
 
 Before editing:
