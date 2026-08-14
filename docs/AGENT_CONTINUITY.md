@@ -6,6 +6,16 @@ This protocol makes handoffs between Codex, Claude Code, and fresh sessions
 predictable. Conversation history is helpful but never authoritative; Git,
 tracked documentation, tests, and the current working tree are authoritative.
 
+## Shared motion-graphics workspace
+
+The reusable Remotion project lives at
+`tools/motion-graphics-starter/`. It is a development tool, not part of the
+PWA runtime. Use it when the user asks for a new animation or when an existing
+animation needs to be re-rendered. Keep generated renders in its ignored
+`out/` directory; copy only an intentionally approved final asset into the
+application media pipeline and follow the vault/publication rules before
+publishing personal media.
+
 ## Shared Figma context
 
 The canonical project file is **APP** — the Figma file where the application

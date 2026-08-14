@@ -30,6 +30,9 @@ Read [docs/DESIGN_SYSTEM_MAINTAINER.md](docs/DESIGN_SYSTEM_MAINTAINER.md) before
 - Contrast requirements: `design-tokens/color-contrast-contract.mjs`.
 - Generated Figma registry: `design-tokens/generated/color-variables.figma.json`.
 - Human documentation: `docs/COLOR_SYSTEM.md` and `docs/COLOR_CONTRAST.md`.
+- Motion graphics source: `tools/motion-graphics-starter/` (Remotion). Use it when
+  creating or re-rendering reusable animations; its `out/` directory contains
+  local renders and is not application runtime code.
 - Figma library: `https://www.figma.com/design/aVqXAqWFfNDnh93PyxctSv/APP`.
 - Local Figma MCP endpoint, when the desktop app exposes it: `http://127.0.0.1:3845/mcp`.
 
