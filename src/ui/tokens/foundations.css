@@ -60,14 +60,14 @@
   --ui-z-showcase: 100;
   --ui-z-guard: 2147483647;
 
-  /* Typography */
-  --ui-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Segoe UI", system-ui, sans-serif;
-  --ui-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Segoe UI", system-ui, sans-serif;
+  /* Typography: one family, with separate roles kept for future theming. */
+  --ui-font-sans: "Onest", sans-serif;
+  --ui-font-display: "Onest", sans-serif;
 
   --ui-font-size-caption: 12px;
   --ui-font-size-footnote: 13px;
   --ui-font-size-label: 14px;
-  --ui-font-size-body: 15px;
+  --ui-font-size-body: 14px;
   --ui-font-size-body-lg: 16px;
   --ui-font-size-subtitle: 17px;
   --ui-font-size-heading: 21px;
@@ -75,16 +75,30 @@
   --ui-font-size-display: 34px;
   --ui-font-size-hero: 40px;
 
-  --ui-font-weight-regular: 400;
-  --ui-font-weight-medium: 500;
-  --ui-font-weight-semibold: 600;
-  --ui-font-weight-bold: 700;
-  --ui-font-weight-heavy: 800;
-  --ui-font-weight-black: 900;
+  /* Numeric weight scale used by Onest and mirrored by Figma text styles. */
+  --ui-font-weight-100: 100;
+  --ui-font-weight-200: 200;
+  --ui-font-weight-300: 300;
+  --ui-font-weight-400: 400;
+  --ui-font-weight-500: 500;
+  --ui-font-weight-600: 600;
+  --ui-font-weight-700: 700;
+  --ui-font-weight-800: 800;
+  --ui-font-weight-900: 900;
+
+  /* Role aliases keep component intent readable while resolving to 100-step styles. */
+  --ui-font-weight-regular: var(--ui-font-weight-400);
+  --ui-font-weight-medium: var(--ui-font-weight-500);
+  --ui-font-weight-semibold: var(--ui-font-weight-600);
+  --ui-font-weight-bold: var(--ui-font-weight-700);
+  --ui-font-weight-heavy: var(--ui-font-weight-800);
+  --ui-font-weight-black: var(--ui-font-weight-900);
 
   --ui-line-height-none: 1;
   --ui-line-height-tight: 1.08;
-  --ui-line-height-heading: 1.2;
+  --ui-line-height-title: 1.2;
+  --ui-line-height-label: 1.2;
+  --ui-line-height-heading: 1.24;
   --ui-line-height-body: 1.4;
   --ui-line-height-relaxed: 1.6;
 

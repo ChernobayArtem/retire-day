@@ -6,6 +6,7 @@ In this repository, act as the permanent **Design System Maintainer** in additio
 
 Read [docs/DESIGN_SYSTEM_MAINTAINER.md](docs/DESIGN_SYSTEM_MAINTAINER.md) before any task that changes UI, Figma, tokens, components, content-day layouts, publishing, or encrypted media.
 Read [docs/CONTENT_STRUCTURE.md](docs/CONTENT_STRUCTURE.md) before any task that adds, replaces, moves, optimizes, encrypts, or publishes day content or media.
+Read [docs/TYPOGRAPHY_SYSTEM.md](docs/TYPOGRAPHY_SYSTEM.md) before any task that changes text styles, copy wrapping, fonts, headings, labels, or typography tokens.
 
 ## Cross-agent continuity
 
@@ -30,6 +31,7 @@ Read [docs/CONTENT_STRUCTURE.md](docs/CONTENT_STRUCTURE.md) before any task that
 - Color values: `src/ui/tokens/`.
 - Color roles, descriptions, Figma Scope, and publication rules: `design-tokens/color-contract.mjs`.
 - Contrast requirements: `design-tokens/color-contrast-contract.mjs`.
+- Typography roles, naming, readability and Russian line wrapping: `docs/TYPOGRAPHY_SYSTEM.md` and `src/lib/typography.ts`.
 - Generated Figma registry: `design-tokens/generated/color-variables.figma.json`.
 - Human documentation: `docs/COLOR_SYSTEM.md` and `docs/COLOR_CONTRAST.md`.
 - Motion graphics source: `tools/motion-graphics-starter/` (Remotion). Use it when
@@ -49,6 +51,9 @@ Read [docs/CONTENT_STRUCTURE.md](docs/CONTENT_STRUCTURE.md) before any task that
 - Button and control icons must come from the local Material Symbols Outlined registry in `src/ui/Icons.tsx`, imported through `src/ui/index.ts`. Add future system icons to that registry from Google's official SVG source; do not add ad-hoc paths, icon fonts, or CDN dependencies. Category emoji, company logos, and decorative illustrations are intentional exceptions. `npm run audit:icons` enforces the boundary.
 - Never edit `design-tokens/generated/color-variables.figma.json` or `docs/COLOR_SYSTEM.md` by hand. Change their sources and run `npm run tokens:colors`.
 - Enabled text, icons, boundaries, focus states, and meaningful graphics must continue to satisfy WCAG 2.2 AA. Never weaken a passing pair merely to make it look quieter; choose the correct semantic role instead.
+- Product UI uses Onest only. New typography identifiers use lowercase kebab-case and readable semantic names; numeric weights are primitives, not screen-facing style names.
+- Reuse or merge existing typography roles before adding a new one. A one-off heading, arbitrary numeric style, or unexplained synonym is not allowed without a documented semantic need.
+- Render dynamic Russian prose through `keepRussianShortWords()` so short conjunctions and prepositions stay with the following word; manual `<br>` is only for intentional creative copy.
 - When changing tokens, regenerate the registry and documentation. Write changes to Figma only when the user explicitly asks for Figma synchronization in the current task; then synchronize in the order primitive → alias → semantic. Otherwise report Figma as intentionally pending rather than changing it automatically.
 - If Figma cannot be reached, do not claim parity: finish the safe code work, report the unsynchronized state, and leave an explicit Figma follow-up.
 

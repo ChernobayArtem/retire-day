@@ -78,16 +78,20 @@ function compactSemanticName(cssName) {
 }
 
 function primitiveDescription(cssName) {
-  const alphaMatch = cssName.match(/^--color-primitive-alpha-([a-z]+)-(\d+)$/)
-  if (alphaMatch) {
-    const [, family, opacity] = alphaMatch
-    return `Прозрачный примитив ${family} с непрозрачностью ${opacity}%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
+  const prefix = '--color-primitive-'
+  const path = cssName.slice(prefix.length)
+  const segments = path.split('-')
+  const family = segments.shift()
+  const role = segments.join(' ')
+  if (!family || !role) throw new Error(`Cannot describe primitive ${cssName}`)
+
+  if (family === 'alpha') {
+    const alphaFamily = segments.shift()
+    const alphaRole = segments.join(' ')
+    return `Прозрачный примитив ${alphaFamily} с ролью «${alphaRole}». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
   }
 
-  const match = cssName.match(/^--color-primitive-([a-z]+)-(\d+)$/)
-  if (!match) throw new Error(`Cannot describe primitive ${cssName}`)
-  const [, family, step] = match
-  return `Сырой оттенок палитры ${family}, шаг ${step}. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
+  return `Сырой оттенок палитры ${family} с ролью «${role}». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.`
 }
 
 function aliasDescription(cssName, semanticConsumers) {
@@ -317,7 +321,7 @@ export function renderColorSystemGuide(model) {
     '2. `color-alias` — промежуточные решения палитры и единая точка смены цвета; Scope отключён, коллекция скрыта.',
     '3. `color-semantic` — продуктовые роли с точным Scope; это единственная публичная коллекция.',
     '',
-    'Шкала непрозрачных примитивов: `0–50` — самые светлые значения, около `500` — базовые, `700–1000` — тёмные. У `alpha/*` последнее число означает процент непрозрачности, например `alpha/black/55`.',
+    'Имена непрозрачных примитивов описывают оттенок и роль (`blue/faint`, `neutral/heading`, `rose/brand`), а не требуют запоминать шкалу 100/200. Имена `alpha/*` также используют понятные роли (`alpha/black/subtle`, `alpha/red/focus`). Точные значения остаются внутренней реализацией primitive-слоя.',
     '',
     '## Surface hierarchy',
     '',

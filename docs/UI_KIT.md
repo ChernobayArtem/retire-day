@@ -87,9 +87,18 @@ Motion must communicate state or hierarchy. It must respect
 
 ## Typography
 
-The kit uses a local system stack through `--ui-font-sans` and
-`--ui-font-display`. It must not depend on a remote font request for first
-render.
+The kit uses the single **Onest** family from Google Fonts through
+`--ui-font-sans` and `--ui-font-display`. Both variables intentionally resolve
+to Onest so the product has one consistent typographic voice; `sans-serif` is
+only a browser fallback when the font request is unavailable. The numeric
+weight scale is `100, 200, 300, 400, 500, 600, 700, 800, 900`.
+
+Designer-facing style names are readable lowercase kebab-case (`display`,
+`title`, `heading`, `body`, `label`, `caption`). The numbers are only the
+foundation scale; use the semantic role or readable aliases such as
+`regular`, `medium`, `semibold`, `bold` and `heavy` in day-to-day work. Figma
+may use `/` as a visual hierarchy separator (`typography/headings/heading`),
+but every segment remains lowercase kebab-case.
 
 Use roles instead of selecting arbitrary font sizes:
 
@@ -107,6 +116,10 @@ Each role is a combination of the `--ui-font-size-*`,
 `--ui-letter-spacing-*` scales. Do not override only the font size while
 leaving an unrelated line height. Use no more than one display role per view,
 and keep muted colour separate from typographic hierarchy.
+
+Dynamic Russian copy uses `keepRussianShortWords()` from
+`src/lib/typography.ts`; this keeps short conjunctions and prepositions with
+the following word. Do not add manual line breaks to ordinary prose.
 
 ## Components
 

@@ -34,7 +34,8 @@ passwords, certificate codes, analytics identifiers, or vault artifacts.
 
 Before editing:
 
-1. Read `AGENTS.md` and every task-specific document it requires.
+1. Read `AGENTS.md` and every task-specific document it requires, including
+   `docs/TYPOGRAPHY_SYSTEM.md` for UI, copy or text-style work.
 2. Run `git status --short --branch` and inspect recent commits with
    `git log --oneline --decorate -8`.
 3. Inspect both `git diff` and `git diff --cached`. Preserve every unrelated or

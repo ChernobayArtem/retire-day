@@ -302,8 +302,9 @@
 
 .ui-text-field__label {
   font-size: var(--ui-font-size-label);
-  font-weight: var(--ui-font-weight-bold);
-  line-height: var(--ui-line-height-heading);
+  font-weight: var(--ui-font-weight-semibold);
+  line-height: var(--ui-line-height-label);
+  letter-spacing: var(--ui-letter-spacing-label);
 }
 
 .ui-text-field__control {
@@ -489,7 +490,7 @@
   font-family: var(--ui-font-display);
   font-size: var(--ui-font-size-heading);
   font-weight: var(--ui-font-weight-bold);
-  line-height: 1.24;
+  line-height: var(--ui-line-height-heading);
 }
 
 .ui-empty-state__description {
@@ -629,6 +630,14 @@
   color: inherit;
 }
 
+.ui-type-display,
+.ui-type-title,
+.ui-type-heading,
+.ui-type-body,
+.ui-type-caption {
+  text-wrap: pretty;
+}
+
 .ui-type-display {
   font-family: var(--ui-font-display);
   font-size: var(--ui-font-size-display);
@@ -641,14 +650,14 @@
   font-family: var(--ui-font-display);
   font-size: var(--ui-font-size-title);
   font-weight: var(--ui-font-weight-bold);
-  line-height: var(--ui-line-height-heading);
+  line-height: var(--ui-line-height-title);
 }
 
 .ui-type-heading {
   font-family: var(--ui-font-display);
   font-size: var(--ui-font-size-heading);
   font-weight: var(--ui-font-weight-bold);
-  line-height: 1.24;
+  line-height: var(--ui-line-height-heading);
 }
 
 .ui-type-body {
@@ -662,7 +671,7 @@
   font-family: var(--ui-font-sans);
   font-size: var(--ui-font-size-label);
   font-weight: var(--ui-font-weight-semibold);
-  line-height: var(--ui-line-height-heading);
+  line-height: var(--ui-line-height-label);
   letter-spacing: var(--ui-letter-spacing-label);
 }
 
@@ -760,7 +769,7 @@
   font-family: var(--ui-font-display);
   font-size: var(--ui-font-size-heading);
   font-weight: var(--ui-font-weight-bold);
-  line-height: 1.24;
+  line-height: var(--ui-line-height-heading);
 }
 
 .ui-showcase__section-heading {

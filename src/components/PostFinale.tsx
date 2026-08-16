@@ -1,5 +1,6 @@
 import { forwardRef } from 'react'
 import type { NewChapterPeriod } from '../lib/dates'
+import { keepRussianShortWords } from '../lib/typography'
 import { Button, Icons, Surface } from '../ui'
 
 interface Props {
@@ -32,7 +33,7 @@ const PostFinale = forwardRef<HTMLButtonElement, Props>(function PostFinale(
           aria-labelledby="post-finale-memories-title"
         >
           <h2 id="post-finale-memories-title">29 сюрпризов — всегда рядом</h2>
-          <p>Можно открыть любой ещё раз или доверить выбор случаю.</p>
+          <p>{keepRussianShortWords('Можно открыть любой ещё раз или доверить выбор случаю.')}</p>
           <div className="post-finale__actions">
             <Button
               className="post-finale__action"

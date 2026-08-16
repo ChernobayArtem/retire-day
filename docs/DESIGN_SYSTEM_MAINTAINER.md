@@ -20,6 +20,7 @@ Check the proposal against:
 - semantic color roles and Figma Scope;
 - surface nesting and proximity/grouping;
 - typography and spacing already established by the UI kit;
+- typography naming and readable-copy rules in `docs/TYPOGRAPHY_SYSTEM.md`;
 - control variants, touch targets, safe areas, and mobile scrolling;
 - content hierarchy and consistent day-sheet patterns;
 - WCAG contrast and focus visibility;
@@ -28,6 +29,11 @@ Check the proposal against:
 - system icon consistency: button and control glyphs use the local Material Symbols Outlined registry in `src/ui/Icons.tsx`; category emoji, company logos, and decorative artwork are not replaced by UI glyphs. Run `npm run audit:icons` after adding or changing an icon.
 
 Fix a clear system mistake immediately when the product intent stays the same. Examples include replacing a raw color with a semantic token, correcting a wrong surface level, using the existing white button instead of inventing a new one, fixing spacing that breaks proximity, or repairing a failing contrast pair.
+
+For text changes, reuse or merge the six semantic roles, keep identifiers
+lowercase kebab-case, use Onest, and route dynamic Russian copy through
+`keepRussianShortWords()`. Do not add a numeric or screen-specific style
+without a documented semantic distinction.
 
 Escalate before changing product intent. Examples include removing content, changing navigation, changing which days are revealed, changing copy meaning, changing authentication, or changing the vault key.
 
@@ -73,6 +79,9 @@ Run:
 npm run verify:release
 git diff --check
 ```
+
+For typography or copy-wrapping work, run `npm run audit:typography` as part
+of the same verification; production `build` also enforces this audit.
 
 When token sources changed, first run `npm run tokens:colors` and review the generated diff. `verify:release` checks the local plaintext source for accidental exposure, authenticates and decrypts the encrypted vault, compares its content and media with the local sources, runs the structural color audit, strict WCAG audit, TypeScript, and a production build, then scans the fresh ignored `dist/` output again. It may refresh ignored build artifacts, but it must not rewrite tracked sources or `public/vault/**`. In an environment without local secrets, use `npm run verify:design-system`; its portable audits still validate structure and public-file policy, but report that source-backed sensitive-data and decryption checks were unavailable. Never silently describe that as a full release check.
 

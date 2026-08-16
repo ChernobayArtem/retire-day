@@ -56,907 +56,907 @@
   "collections": [
     {
       "name": "color-primitives",
-      "description": "Сырые значения палитры на стандартной шкале: 0–50 — самые светлые, около 500 — базовые, 700–1000 — тёмные. У alpha-примитивов последнее число означает процент непрозрачности. Служебная коллекция: переменные из неё нельзя применять напрямую к макетам или компонентам.",
+      "description": "Сырые значения палитры с читаемыми lowercase kebab-case именами: blue/faint, neutral/heading, rose/brand и alpha/black/subtle. Название описывает роль оттенка, а не заставляет выбирать между непрозрачными шагами 100/200. Служебная коллекция: переменные из неё нельзя применять напрямую к макетам или компонентам.",
       "hiddenFromPublishing": true,
       "variables": [
         {
-          "cssName": "--color-primitive-blue-50",
+          "cssName": "--color-primitive-blue-faint",
           "collection": "color-primitives",
-          "name": "blue/50",
+          "name": "blue/faint",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-blue-50)"
+            "WEB": "var(--color-primitive-blue-faint)"
           },
           "value": "#f0f1ff",
           "resolvedValue": "#f0f1ff",
-          "description": "Сырой оттенок палитры blue, шаг 50. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры blue с ролью «faint». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-blue-100",
+          "cssName": "--color-primitive-blue-soft",
           "collection": "color-primitives",
-          "name": "blue/100",
+          "name": "blue/soft",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-blue-100)"
+            "WEB": "var(--color-primitive-blue-soft)"
           },
           "value": "#e4e6ff",
           "resolvedValue": "#e4e6ff",
-          "description": "Сырой оттенок палитры blue, шаг 100. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры blue с ролью «soft». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-blue-300",
+          "cssName": "--color-primitive-blue-medium",
           "collection": "color-primitives",
-          "name": "blue/300",
+          "name": "blue/medium",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-blue-300)"
+            "WEB": "var(--color-primitive-blue-medium)"
           },
           "value": "#7ac2ff",
           "resolvedValue": "#7ac2ff",
-          "description": "Сырой оттенок палитры blue, шаг 300. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры blue с ролью «medium». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-blue-500",
+          "cssName": "--color-primitive-blue-action",
           "collection": "color-primitives",
-          "name": "blue/500",
+          "name": "blue/action",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-blue-500)"
+            "WEB": "var(--color-primitive-blue-action)"
           },
           "value": "#269dfd",
           "resolvedValue": "#269dfd",
-          "description": "Сырой оттенок палитры blue, шаг 500. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры blue с ролью «action». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-blue-700",
+          "cssName": "--color-primitive-blue-strong",
           "collection": "color-primitives",
-          "name": "blue/700",
+          "name": "blue/strong",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-blue-700)"
+            "WEB": "var(--color-primitive-blue-strong)"
           },
           "value": "#006fc9",
           "resolvedValue": "#006fc9",
-          "description": "Сырой оттенок палитры blue, шаг 700. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры blue с ролью «strong». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-blue-900",
+          "cssName": "--color-primitive-blue-electric",
           "collection": "color-primitives",
-          "name": "blue/900",
+          "name": "blue/electric",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-blue-900)"
+            "WEB": "var(--color-primitive-blue-electric)"
           },
           "value": "#0213ff",
           "resolvedValue": "#0213ff",
-          "description": "Сырой оттенок палитры blue, шаг 900. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры blue с ролью «electric». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-green-500",
+          "cssName": "--color-primitive-green-accent",
           "collection": "color-primitives",
-          "name": "green/500",
+          "name": "green/accent",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-green-500)"
+            "WEB": "var(--color-primitive-green-accent)"
           },
           "value": "#7bd88f",
           "resolvedValue": "#7bd88f",
-          "description": "Сырой оттенок палитры green, шаг 500. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры green с ролью «accent». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-mauve-50",
+          "cssName": "--color-primitive-mauve-surface-soft",
           "collection": "color-primitives",
-          "name": "mauve/50",
+          "name": "mauve/surface/soft",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-mauve-50)"
+            "WEB": "var(--color-primitive-mauve-surface-soft)"
           },
           "value": "#faf8fa",
           "resolvedValue": "#faf8fa",
-          "description": "Сырой оттенок палитры mauve, шаг 50. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры mauve с ролью «surface soft». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-mauve-100",
+          "cssName": "--color-primitive-mauve-surface",
           "collection": "color-primitives",
-          "name": "mauve/100",
+          "name": "mauve/surface",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-mauve-100)"
+            "WEB": "var(--color-primitive-mauve-surface)"
           },
           "value": "#f8f6f8",
           "resolvedValue": "#f8f6f8",
-          "description": "Сырой оттенок палитры mauve, шаг 100. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры mauve с ролью «surface». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-mauve-200",
+          "cssName": "--color-primitive-mauve-inset",
           "collection": "color-primitives",
-          "name": "mauve/200",
+          "name": "mauve/inset",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-mauve-200)"
+            "WEB": "var(--color-primitive-mauve-inset)"
           },
           "value": "#f8f5f7",
           "resolvedValue": "#f8f5f7",
-          "description": "Сырой оттенок палитры mauve, шаг 200. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры mauve с ролью «inset». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-mauve-300",
+          "cssName": "--color-primitive-mauve-border",
           "collection": "color-primitives",
-          "name": "mauve/300",
+          "name": "mauve/border",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-mauve-300)"
+            "WEB": "var(--color-primitive-mauve-border)"
           },
           "value": "#f1edf2",
           "resolvedValue": "#f1edf2",
-          "description": "Сырой оттенок палитры mauve, шаг 300. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры mauve с ролью «border». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-mauve-400",
+          "cssName": "--color-primitive-mauve-border-soft",
           "collection": "color-primitives",
-          "name": "mauve/400",
+          "name": "mauve/border/soft",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-mauve-400)"
+            "WEB": "var(--color-primitive-mauve-border-soft)"
           },
           "value": "#f0edf1",
           "resolvedValue": "#f0edf1",
-          "description": "Сырой оттенок палитры mauve, шаг 400. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры mauve с ролью «border soft». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-mauve-900",
+          "cssName": "--color-primitive-mauve-ink",
           "collection": "color-primitives",
-          "name": "mauve/900",
+          "name": "mauve/ink",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-mauve-900)"
+            "WEB": "var(--color-primitive-mauve-ink)"
           },
           "value": "#2b2229",
           "resolvedValue": "#2b2229",
-          "description": "Сырой оттенок палитры mauve, шаг 900. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры mauve с ролью «ink». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-mauve-950",
+          "cssName": "--color-primitive-mauve-deep",
           "collection": "color-primitives",
-          "name": "mauve/950",
+          "name": "mauve/deep",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-mauve-950)"
+            "WEB": "var(--color-primitive-mauve-deep)"
           },
           "value": "#241a22",
           "resolvedValue": "#241a22",
-          "description": "Сырой оттенок палитры mauve, шаг 950. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры mauve с ролью «deep». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-0",
+          "cssName": "--color-primitive-neutral-white",
           "collection": "color-primitives",
-          "name": "neutral/0",
+          "name": "neutral/white",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-0)"
+            "WEB": "var(--color-primitive-neutral-white)"
           },
           "value": "#ffffff",
           "resolvedValue": "#ffffff",
-          "description": "Сырой оттенок палитры neutral, шаг 0. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «white». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-50",
+          "cssName": "--color-primitive-neutral-faint",
           "collection": "color-primitives",
-          "name": "neutral/50",
+          "name": "neutral/faint",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-50)"
+            "WEB": "var(--color-primitive-neutral-faint)"
           },
           "value": "#f5f5f5",
           "resolvedValue": "#f5f5f5",
-          "description": "Сырой оттенок палитры neutral, шаг 50. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «faint». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-100",
+          "cssName": "--color-primitive-neutral-soft",
           "collection": "color-primitives",
-          "name": "neutral/100",
+          "name": "neutral/soft",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-100)"
+            "WEB": "var(--color-primitive-neutral-soft)"
           },
           "value": "#f4f4f4",
           "resolvedValue": "#f4f4f4",
-          "description": "Сырой оттенок палитры neutral, шаг 100. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «soft». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-300",
+          "cssName": "--color-primitive-neutral-light",
           "collection": "color-primitives",
-          "name": "neutral/300",
+          "name": "neutral/light",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-300)"
+            "WEB": "var(--color-primitive-neutral-light)"
           },
           "value": "#c8c8c8",
           "resolvedValue": "#c8c8c8",
-          "description": "Сырой оттенок палитры neutral, шаг 300. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «light». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-400",
+          "cssName": "--color-primitive-neutral-muted",
           "collection": "color-primitives",
-          "name": "neutral/400",
+          "name": "neutral/muted",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-400)"
+            "WEB": "var(--color-primitive-neutral-muted)"
           },
           "value": "#9e9e9e",
           "resolvedValue": "#9e9e9e",
-          "description": "Сырой оттенок палитры neutral, шаг 400. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «muted». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-500",
+          "cssName": "--color-primitive-neutral-control",
           "collection": "color-primitives",
-          "name": "neutral/500",
+          "name": "neutral/control",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-500)"
+            "WEB": "var(--color-primitive-neutral-control)"
           },
           "value": "#8a8a8a",
           "resolvedValue": "#8a8a8a",
-          "description": "Сырой оттенок палитры neutral, шаг 500. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «control». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-600",
+          "cssName": "--color-primitive-neutral-secondary",
           "collection": "color-primitives",
-          "name": "neutral/600",
+          "name": "neutral/secondary",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-600)"
+            "WEB": "var(--color-primitive-neutral-secondary)"
           },
           "value": "#6e676c",
           "resolvedValue": "#6e676c",
-          "description": "Сырой оттенок палитры neutral, шаг 600. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «secondary». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-800",
+          "cssName": "--color-primitive-neutral-heading",
           "collection": "color-primitives",
-          "name": "neutral/800",
+          "name": "neutral/heading",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-800)"
+            "WEB": "var(--color-primitive-neutral-heading)"
           },
           "value": "#353535",
           "resolvedValue": "#353535",
-          "description": "Сырой оттенок палитры neutral, шаг 800. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «heading». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-900",
+          "cssName": "--color-primitive-neutral-ink",
           "collection": "color-primitives",
-          "name": "neutral/900",
+          "name": "neutral/ink",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-900)"
+            "WEB": "var(--color-primitive-neutral-ink)"
           },
           "value": "#202020",
           "resolvedValue": "#202020",
-          "description": "Сырой оттенок палитры neutral, шаг 900. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «ink». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-neutral-1000",
+          "cssName": "--color-primitive-neutral-black",
           "collection": "color-primitives",
-          "name": "neutral/1000",
+          "name": "neutral/black",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-neutral-1000)"
+            "WEB": "var(--color-primitive-neutral-black)"
           },
           "value": "#000000",
           "resolvedValue": "#000000",
-          "description": "Сырой оттенок палитры neutral, шаг 1000. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры neutral с ролью «black». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-orange-500",
+          "cssName": "--color-primitive-orange-accent",
           "collection": "color-primitives",
-          "name": "orange/500",
+          "name": "orange/accent",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-orange-500)"
+            "WEB": "var(--color-primitive-orange-accent)"
           },
           "value": "#e8a13a",
           "resolvedValue": "#e8a13a",
-          "description": "Сырой оттенок палитры orange, шаг 500. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры orange с ролью «accent». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-purple-500",
+          "cssName": "--color-primitive-purple-accent",
           "collection": "color-primitives",
-          "name": "purple/500",
+          "name": "purple/accent",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-purple-500)"
+            "WEB": "var(--color-primitive-purple-accent)"
           },
           "value": "#a24cc9",
           "resolvedValue": "#a24cc9",
-          "description": "Сырой оттенок палитры purple, шаг 500. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры purple с ролью «accent». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-red-50",
+          "cssName": "--color-primitive-red-faint",
           "collection": "color-primitives",
-          "name": "red/50",
+          "name": "red/faint",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-red-50)"
+            "WEB": "var(--color-primitive-red-faint)"
           },
           "value": "#fff8f8",
           "resolvedValue": "#fff8f8",
-          "description": "Сырой оттенок палитры red, шаг 50. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры red с ролью «faint». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-red-100",
+          "cssName": "--color-primitive-red-subtle",
           "collection": "color-primitives",
-          "name": "red/100",
+          "name": "red/subtle",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-red-100)"
+            "WEB": "var(--color-primitive-red-subtle)"
           },
           "value": "#ffedee",
           "resolvedValue": "#ffedee",
-          "description": "Сырой оттенок палитры red, шаг 100. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры red с ролью «subtle». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-red-700",
+          "cssName": "--color-primitive-red-contrast",
           "collection": "color-primitives",
-          "name": "red/700",
+          "name": "red/contrast",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-red-700)"
+            "WEB": "var(--color-primitive-red-contrast)"
           },
           "value": "#a93235",
           "resolvedValue": "#a93235",
-          "description": "Сырой оттенок палитры red, шаг 700. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры red с ролью «contrast». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-red-800",
+          "cssName": "--color-primitive-red-strong",
           "collection": "color-primitives",
-          "name": "red/800",
+          "name": "red/strong",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-red-800)"
+            "WEB": "var(--color-primitive-red-strong)"
           },
           "value": "#8f2930",
           "resolvedValue": "#8f2930",
-          "description": "Сырой оттенок палитры red, шаг 800. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры red с ролью «strong». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-rose-50",
+          "cssName": "--color-primitive-rose-page",
           "collection": "color-primitives",
-          "name": "rose/50",
+          "name": "rose/page",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-rose-50)"
+            "WEB": "var(--color-primitive-rose-page)"
           },
           "value": "#fff7fb",
           "resolvedValue": "#fff7fb",
-          "description": "Сырой оттенок палитры rose, шаг 50. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры rose с ролью «page». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-rose-100",
+          "cssName": "--color-primitive-rose-soft",
           "collection": "color-primitives",
-          "name": "rose/100",
+          "name": "rose/soft",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-rose-100)"
+            "WEB": "var(--color-primitive-rose-soft)"
           },
           "value": "#ffd0dc",
           "resolvedValue": "#ffd0dc",
-          "description": "Сырой оттенок палитры rose, шаг 100. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры rose с ролью «soft». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-rose-300",
+          "cssName": "--color-primitive-rose-medium",
           "collection": "color-primitives",
-          "name": "rose/300",
+          "name": "rose/medium",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-rose-300)"
+            "WEB": "var(--color-primitive-rose-medium)"
           },
           "value": "#ff9cba",
           "resolvedValue": "#ff9cba",
-          "description": "Сырой оттенок палитры rose, шаг 300. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры rose с ролью «medium». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-rose-400",
+          "cssName": "--color-primitive-rose-brand",
           "collection": "color-primitives",
-          "name": "rose/400",
+          "name": "rose/brand",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-rose-400)"
+            "WEB": "var(--color-primitive-rose-brand)"
           },
           "value": "#ff7aa8",
           "resolvedValue": "#ff7aa8",
-          "description": "Сырой оттенок палитры rose, шаг 400. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры rose с ролью «brand». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-rose-500",
+          "cssName": "--color-primitive-rose-vivid",
           "collection": "color-primitives",
-          "name": "rose/500",
+          "name": "rose/vivid",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-rose-500)"
+            "WEB": "var(--color-primitive-rose-vivid)"
           },
           "value": "#ff5ea8",
           "resolvedValue": "#ff5ea8",
-          "description": "Сырой оттенок палитры rose, шаг 500. Шкала идёт от светлых значений 0–50 к базовым около 500 и тёмным 700–1000; число обозначает позицию, а не продуктовое назначение. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Сырой оттенок палитры rose с ролью «vivid». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-indigo-18",
+          "cssName": "--color-primitive-alpha-indigo-soft",
           "collection": "color-primitives",
-          "name": "alpha/indigo/18",
+          "name": "alpha/indigo/soft",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-indigo-18)"
+            "WEB": "var(--color-primitive-alpha-indigo-soft)"
           },
           "value": "rgba(20, 18, 24, 0.18)",
           "resolvedValue": "rgba(20, 18, 24, 0.18)",
-          "description": "Прозрачный примитив indigo с непрозрачностью 18%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив indigo с ролью «soft». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-indigo-26",
+          "cssName": "--color-primitive-alpha-indigo-medium",
           "collection": "color-primitives",
-          "name": "alpha/indigo/26",
+          "name": "alpha/indigo/medium",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-indigo-26)"
+            "WEB": "var(--color-primitive-alpha-indigo-medium)"
           },
           "value": "rgba(20, 18, 24, 0.26)",
           "resolvedValue": "rgba(20, 18, 24, 0.26)",
-          "description": "Прозрачный примитив indigo с непрозрачностью 26%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив indigo с ролью «medium». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-indigo-42",
+          "cssName": "--color-primitive-alpha-indigo-strong",
           "collection": "color-primitives",
-          "name": "alpha/indigo/42",
+          "name": "alpha/indigo/strong",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-indigo-42)"
+            "WEB": "var(--color-primitive-alpha-indigo-strong)"
           },
           "value": "rgba(20, 18, 24, 0.42)",
           "resolvedValue": "rgba(20, 18, 24, 0.42)",
-          "description": "Прозрачный примитив indigo с непрозрачностью 42%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив indigo с ролью «strong». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-mauve-18",
+          "cssName": "--color-primitive-alpha-mauve-soft",
           "collection": "color-primitives",
-          "name": "alpha/mauve/18",
+          "name": "alpha/mauve/soft",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-mauve-18)"
+            "WEB": "var(--color-primitive-alpha-mauve-soft)"
           },
           "value": "rgba(36, 26, 34, 0.18)",
           "resolvedValue": "rgba(36, 26, 34, 0.18)",
-          "description": "Прозрачный примитив mauve с непрозрачностью 18%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив mauve с ролью «soft». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-mauve-40",
+          "cssName": "--color-primitive-alpha-mauve-medium",
           "collection": "color-primitives",
-          "name": "alpha/mauve/40",
+          "name": "alpha/mauve/medium",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-mauve-40)"
+            "WEB": "var(--color-primitive-alpha-mauve-medium)"
           },
           "value": "rgba(36, 26, 34, 0.4)",
           "resolvedValue": "rgba(36, 26, 34, 0.4)",
-          "description": "Прозрачный примитив mauve с непрозрачностью 40%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив mauve с ролью «medium». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-black-0",
+          "cssName": "--color-primitive-alpha-black-transparent",
           "collection": "color-primitives",
-          "name": "alpha/black/0",
+          "name": "alpha/black/transparent",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-black-0)"
+            "WEB": "var(--color-primitive-alpha-black-transparent)"
           },
           "value": "rgba(0, 0, 0, 0)",
           "resolvedValue": "rgba(0, 0, 0, 0)",
-          "description": "Прозрачный примитив black с непрозрачностью 0%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив black с ролью «transparent». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-black-8",
+          "cssName": "--color-primitive-alpha-black-subtle",
           "collection": "color-primitives",
-          "name": "alpha/black/8",
+          "name": "alpha/black/subtle",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-black-8)"
+            "WEB": "var(--color-primitive-alpha-black-subtle)"
           },
           "value": "rgba(0, 0, 0, 0.08)",
           "resolvedValue": "rgba(0, 0, 0, 0.08)",
-          "description": "Прозрачный примитив black с непрозрачностью 8%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив black с ролью «subtle». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-black-30",
+          "cssName": "--color-primitive-alpha-black-medium",
           "collection": "color-primitives",
-          "name": "alpha/black/30",
+          "name": "alpha/black/medium",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-black-30)"
+            "WEB": "var(--color-primitive-alpha-black-medium)"
           },
           "value": "rgba(0, 0, 0, 0.3)",
           "resolvedValue": "rgba(0, 0, 0, 0.3)",
-          "description": "Прозрачный примитив black с непрозрачностью 30%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив black с ролью «medium». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-black-55",
+          "cssName": "--color-primitive-alpha-black-strong",
           "collection": "color-primitives",
-          "name": "alpha/black/55",
+          "name": "alpha/black/strong",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-black-55)"
+            "WEB": "var(--color-primitive-alpha-black-strong)"
           },
           "value": "rgba(0, 0, 0, 0.55)",
           "resolvedValue": "rgba(0, 0, 0, 0.55)",
-          "description": "Прозрачный примитив black с непрозрачностью 55%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив black с ролью «strong». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-black-58",
+          "cssName": "--color-primitive-alpha-black-stronger",
           "collection": "color-primitives",
-          "name": "alpha/black/58",
+          "name": "alpha/black/stronger",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-black-58)"
+            "WEB": "var(--color-primitive-alpha-black-stronger)"
           },
           "value": "rgba(0, 0, 0, 0.58)",
           "resolvedValue": "rgba(0, 0, 0, 0.58)",
-          "description": "Прозрачный примитив black с непрозрачностью 58%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив black с ролью «stronger». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-black-92",
+          "cssName": "--color-primitive-alpha-black-heavy",
           "collection": "color-primitives",
-          "name": "alpha/black/92",
+          "name": "alpha/black/heavy",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-black-92)"
+            "WEB": "var(--color-primitive-alpha-black-heavy)"
           },
           "value": "rgba(0, 0, 0, 0.92)",
           "resolvedValue": "rgba(0, 0, 0, 0.92)",
-          "description": "Прозрачный примитив black с непрозрачностью 92%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив black с ролью «heavy». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-white-40",
+          "cssName": "--color-primitive-alpha-white-soft",
           "collection": "color-primitives",
-          "name": "alpha/white/40",
+          "name": "alpha/white/soft",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-white-40)"
+            "WEB": "var(--color-primitive-alpha-white-soft)"
           },
           "value": "rgba(255, 255, 255, 0.4)",
           "resolvedValue": "rgba(255, 255, 255, 0.4)",
-          "description": "Прозрачный примитив white с непрозрачностью 40%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив white с ролью «soft». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-white-92",
+          "cssName": "--color-primitive-alpha-white-strong",
           "collection": "color-primitives",
-          "name": "alpha/white/92",
+          "name": "alpha/white/strong",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-white-92)"
+            "WEB": "var(--color-primitive-alpha-white-strong)"
           },
           "value": "rgba(255, 255, 255, 0.92)",
           "resolvedValue": "rgba(255, 255, 255, 0.92)",
-          "description": "Прозрачный примитив white с непрозрачностью 92%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив white с ролью «strong». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-white-94",
+          "cssName": "--color-primitive-alpha-white-stronger",
           "collection": "color-primitives",
-          "name": "alpha/white/94",
+          "name": "alpha/white/stronger",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-white-94)"
+            "WEB": "var(--color-primitive-alpha-white-stronger)"
           },
           "value": "rgba(255, 255, 255, 0.94)",
           "resolvedValue": "rgba(255, 255, 255, 0.94)",
-          "description": "Прозрачный примитив white с непрозрачностью 94%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив white с ролью «stronger». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-red-10",
+          "cssName": "--color-primitive-alpha-red-subtle",
           "collection": "color-primitives",
-          "name": "alpha/red/10",
+          "name": "alpha/red/subtle",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-red-10)"
+            "WEB": "var(--color-primitive-alpha-red-subtle)"
           },
           "value": "rgba(255, 94, 97, 0.1)",
           "resolvedValue": "rgba(255, 94, 97, 0.1)",
-          "description": "Прозрачный примитив red с непрозрачностью 10%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив red с ролью «subtle». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-red-70",
+          "cssName": "--color-primitive-alpha-red-focus",
           "collection": "color-primitives",
-          "name": "alpha/red/70",
+          "name": "alpha/red/focus",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-red-70)"
+            "WEB": "var(--color-primitive-alpha-red-focus)"
           },
           "value": "rgba(169, 50, 53, 0.7)",
           "resolvedValue": "rgba(169, 50, 53, 0.7)",
-          "description": "Прозрачный примитив red с непрозрачностью 70%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив red с ролью «focus». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-rose-50",
+          "cssName": "--color-primitive-alpha-rose-shadow",
           "collection": "color-primitives",
-          "name": "alpha/rose/50",
+          "name": "alpha/rose/shadow",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-rose-50)"
+            "WEB": "var(--color-primitive-alpha-rose-shadow)"
           },
           "value": "rgba(47, 28, 40, 0.5)",
           "resolvedValue": "rgba(47, 28, 40, 0.5)",
-          "description": "Прозрачный примитив rose с непрозрачностью 50%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив rose с ролью «shadow». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
         {
-          "cssName": "--color-primitive-alpha-rose-55",
+          "cssName": "--color-primitive-alpha-rose-shadow-strong",
           "collection": "color-primitives",
-          "name": "alpha/rose/55",
+          "name": "alpha/rose/shadow/strong",
           "type": "COLOR",
           "layer": "primitive",
           "status": "internal",
           "source": "src/ui/tokens/color-primitives.css",
           "codeSyntax": {
-            "WEB": "var(--color-primitive-alpha-rose-55)"
+            "WEB": "var(--color-primitive-alpha-rose-shadow-strong)"
           },
           "value": "rgba(96, 42, 65, 0.55)",
           "resolvedValue": "rgba(96, 42, 65, 0.55)",
-          "description": "Прозрачный примитив rose с непрозрачностью 55%. Последнее число всегда означает процент непрозрачности. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "description": "Прозрачный примитив rose с ролью «shadow strong». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         }
@@ -980,9 +980,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-mauve-950",
+              "cssName": "--color-primitive-mauve-deep",
               "collection": "color-primitives",
-              "name": "mauve/950"
+              "name": "mauve/deep"
             }
           },
           "resolvedValue": "#241a22",
@@ -1003,9 +1003,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-800",
+              "cssName": "--color-primitive-neutral-heading",
               "collection": "color-primitives",
-              "name": "neutral/800"
+              "name": "neutral/heading"
             }
           },
           "resolvedValue": "#353535",
@@ -1026,9 +1026,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-600",
+              "cssName": "--color-primitive-neutral-secondary",
               "collection": "color-primitives",
-              "name": "neutral/600"
+              "name": "neutral/secondary"
             }
           },
           "resolvedValue": "#6e676c",
@@ -1049,9 +1049,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-0",
+              "cssName": "--color-primitive-neutral-white",
               "collection": "color-primitives",
-              "name": "neutral/0"
+              "name": "neutral/white"
             }
           },
           "resolvedValue": "#ffffff",
@@ -1072,9 +1072,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-700",
+              "cssName": "--color-primitive-red-contrast",
               "collection": "color-primitives",
-              "name": "red/700"
+              "name": "red/contrast"
             }
           },
           "resolvedValue": "#a93235",
@@ -1095,9 +1095,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-800",
+              "cssName": "--color-primitive-red-strong",
               "collection": "color-primitives",
-              "name": "red/800"
+              "name": "red/strong"
             }
           },
           "resolvedValue": "#8f2930",
@@ -1118,9 +1118,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-rose-100",
+              "cssName": "--color-primitive-rose-soft",
               "collection": "color-primitives",
-              "name": "rose/100"
+              "name": "rose/soft"
             }
           },
           "resolvedValue": "#ffd0dc",
@@ -1141,9 +1141,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-rose-300",
+              "cssName": "--color-primitive-rose-medium",
               "collection": "color-primitives",
-              "name": "rose/300"
+              "name": "rose/medium"
             }
           },
           "resolvedValue": "#ff9cba",
@@ -1164,9 +1164,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-100",
+              "cssName": "--color-primitive-red-subtle",
               "collection": "color-primitives",
-              "name": "red/100"
+              "name": "red/subtle"
             }
           },
           "resolvedValue": "#ffedee",
@@ -1187,9 +1187,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-50",
+              "cssName": "--color-primitive-red-faint",
               "collection": "color-primitives",
-              "name": "red/50"
+              "name": "red/faint"
             }
           },
           "resolvedValue": "#fff8f8",
@@ -1210,9 +1210,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-rose-50",
+              "cssName": "--color-primitive-rose-page",
               "collection": "color-primitives",
-              "name": "rose/50"
+              "name": "rose/page"
             }
           },
           "resolvedValue": "#fff7fb",
@@ -1233,9 +1233,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-blue-900",
+              "cssName": "--color-primitive-blue-electric",
               "collection": "color-primitives",
-              "name": "blue/900"
+              "name": "blue/electric"
             }
           },
           "resolvedValue": "#0213ff",
@@ -1256,9 +1256,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-blue-50",
+              "cssName": "--color-primitive-blue-faint",
               "collection": "color-primitives",
-              "name": "blue/50"
+              "name": "blue/faint"
             }
           },
           "resolvedValue": "#f0f1ff",
@@ -1279,9 +1279,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-blue-100",
+              "cssName": "--color-primitive-blue-soft",
               "collection": "color-primitives",
-              "name": "blue/100"
+              "name": "blue/soft"
             }
           },
           "resolvedValue": "#e4e6ff",
@@ -1302,9 +1302,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-700",
+              "cssName": "--color-primitive-red-contrast",
               "collection": "color-primitives",
-              "name": "red/700"
+              "name": "red/contrast"
             }
           },
           "resolvedValue": "#a93235",
@@ -1325,9 +1325,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-red-10",
+              "cssName": "--color-primitive-alpha-red-subtle",
               "collection": "color-primitives",
-              "name": "alpha/red/10"
+              "name": "alpha/red/subtle"
             }
           },
           "resolvedValue": "rgba(255, 94, 97, 0.1)",
@@ -1348,9 +1348,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-50",
+              "cssName": "--color-primitive-neutral-faint",
               "collection": "color-primitives",
-              "name": "neutral/50"
+              "name": "neutral/faint"
             }
           },
           "resolvedValue": "#f5f5f5",
@@ -1371,9 +1371,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-400",
+              "cssName": "--color-primitive-neutral-muted",
               "collection": "color-primitives",
-              "name": "neutral/400"
+              "name": "neutral/muted"
             }
           },
           "resolvedValue": "#9e9e9e",
@@ -1394,9 +1394,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-rose-500",
+              "cssName": "--color-primitive-rose-vivid",
               "collection": "color-primitives",
-              "name": "rose/500"
+              "name": "rose/vivid"
             }
           },
           "resolvedValue": "#ff5ea8",
@@ -1417,9 +1417,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-blue-300",
+              "cssName": "--color-primitive-blue-medium",
               "collection": "color-primitives",
-              "name": "blue/300"
+              "name": "blue/medium"
             }
           },
           "resolvedValue": "#7ac2ff",
@@ -1440,9 +1440,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-purple-500",
+              "cssName": "--color-primitive-purple-accent",
               "collection": "color-primitives",
-              "name": "purple/500"
+              "name": "purple/accent"
             }
           },
           "resolvedValue": "#a24cc9",
@@ -1463,9 +1463,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-orange-500",
+              "cssName": "--color-primitive-orange-accent",
               "collection": "color-primitives",
-              "name": "orange/500"
+              "name": "orange/accent"
             }
           },
           "resolvedValue": "#e8a13a",
@@ -1486,9 +1486,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-green-500",
+              "cssName": "--color-primitive-green-accent",
               "collection": "color-primitives",
-              "name": "green/500"
+              "name": "green/accent"
             }
           },
           "resolvedValue": "#7bd88f",
@@ -1509,9 +1509,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-blue-500",
+              "cssName": "--color-primitive-blue-action",
               "collection": "color-primitives",
-              "name": "blue/500"
+              "name": "blue/action"
             }
           },
           "resolvedValue": "#269dfd",
@@ -1532,9 +1532,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-0",
+              "cssName": "--color-primitive-neutral-white",
               "collection": "color-primitives",
-              "name": "neutral/0"
+              "name": "neutral/white"
             }
           },
           "resolvedValue": "#ffffff",
@@ -1555,9 +1555,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-0",
+              "cssName": "--color-primitive-neutral-white",
               "collection": "color-primitives",
-              "name": "neutral/0"
+              "name": "neutral/white"
             }
           },
           "resolvedValue": "#ffffff",
@@ -1578,9 +1578,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-mauve-50",
+              "cssName": "--color-primitive-mauve-surface-soft",
               "collection": "color-primitives",
-              "name": "mauve/50"
+              "name": "mauve/surface/soft"
             }
           },
           "resolvedValue": "#faf8fa",
@@ -1601,9 +1601,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-mauve-100",
+              "cssName": "--color-primitive-mauve-surface",
               "collection": "color-primitives",
-              "name": "mauve/100"
+              "name": "mauve/surface"
             }
           },
           "resolvedValue": "#f8f6f8",
@@ -1624,9 +1624,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-mauve-200",
+              "cssName": "--color-primitive-mauve-inset",
               "collection": "color-primitives",
-              "name": "mauve/200"
+              "name": "mauve/inset"
             }
           },
           "resolvedValue": "#f8f5f7",
@@ -1647,9 +1647,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-mauve-900",
+              "cssName": "--color-primitive-mauve-ink",
               "collection": "color-primitives",
-              "name": "mauve/900"
+              "name": "mauve/ink"
             }
           },
           "resolvedValue": "#2b2229",
@@ -1670,9 +1670,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-1000",
+              "cssName": "--color-primitive-neutral-black",
               "collection": "color-primitives",
-              "name": "neutral/1000"
+              "name": "neutral/black"
             }
           },
           "resolvedValue": "#000000",
@@ -1693,9 +1693,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-100",
+              "cssName": "--color-primitive-neutral-soft",
               "collection": "color-primitives",
-              "name": "neutral/100"
+              "name": "neutral/soft"
             }
           },
           "resolvedValue": "#f4f4f4",
@@ -1716,9 +1716,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-blue-700",
+              "cssName": "--color-primitive-blue-strong",
               "collection": "color-primitives",
-              "name": "blue/700"
+              "name": "blue/strong"
             }
           },
           "resolvedValue": "#006fc9",
@@ -1739,9 +1739,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-mauve-400",
+              "cssName": "--color-primitive-mauve-border-soft",
               "collection": "color-primitives",
-              "name": "mauve/400"
+              "name": "mauve/border/soft"
             }
           },
           "resolvedValue": "#f0edf1",
@@ -1762,9 +1762,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-900",
+              "cssName": "--color-primitive-neutral-ink",
               "collection": "color-primitives",
-              "name": "neutral/900"
+              "name": "neutral/ink"
             }
           },
           "resolvedValue": "#202020",
@@ -1785,9 +1785,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-500",
+              "cssName": "--color-primitive-neutral-control",
               "collection": "color-primitives",
-              "name": "neutral/500"
+              "name": "neutral/control"
             }
           },
           "resolvedValue": "#8a8a8a",
@@ -1808,9 +1808,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-300",
+              "cssName": "--color-primitive-neutral-light",
               "collection": "color-primitives",
-              "name": "neutral/300"
+              "name": "neutral/light"
             }
           },
           "resolvedValue": "#c8c8c8",
@@ -1831,9 +1831,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-mauve-300",
+              "cssName": "--color-primitive-mauve-border",
               "collection": "color-primitives",
-              "name": "mauve/300"
+              "name": "mauve/border"
             }
           },
           "resolvedValue": "#f1edf2",
@@ -1854,9 +1854,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-700",
+              "cssName": "--color-primitive-red-contrast",
               "collection": "color-primitives",
-              "name": "red/700"
+              "name": "red/contrast"
             }
           },
           "resolvedValue": "#a93235",
@@ -1877,9 +1877,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-800",
+              "cssName": "--color-primitive-red-strong",
               "collection": "color-primitives",
-              "name": "red/800"
+              "name": "red/strong"
             }
           },
           "resolvedValue": "#8f2930",
@@ -1900,9 +1900,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-white-40",
+              "cssName": "--color-primitive-alpha-white-soft",
               "collection": "color-primitives",
-              "name": "alpha/white/40"
+              "name": "alpha/white/soft"
             }
           },
           "resolvedValue": "rgba(255, 255, 255, 0.4)",
@@ -1923,9 +1923,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-neutral-0",
+              "cssName": "--color-primitive-neutral-white",
               "collection": "color-primitives",
-              "name": "neutral/0"
+              "name": "neutral/white"
             }
           },
           "resolvedValue": "#ffffff",
@@ -1946,9 +1946,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-black-0",
+              "cssName": "--color-primitive-alpha-black-transparent",
               "collection": "color-primitives",
-              "name": "alpha/black/0"
+              "name": "alpha/black/transparent"
             }
           },
           "resolvedValue": "rgba(0, 0, 0, 0)",
@@ -1969,9 +1969,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-mauve-40",
+              "cssName": "--color-primitive-alpha-mauve-medium",
               "collection": "color-primitives",
-              "name": "alpha/mauve/40"
+              "name": "alpha/mauve/medium"
             }
           },
           "resolvedValue": "rgba(36, 26, 34, 0.4)",
@@ -1992,9 +1992,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-indigo-18",
+              "cssName": "--color-primitive-alpha-indigo-soft",
               "collection": "color-primitives",
-              "name": "alpha/indigo/18"
+              "name": "alpha/indigo/soft"
             }
           },
           "resolvedValue": "rgba(20, 18, 24, 0.18)",
@@ -2015,9 +2015,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-indigo-26",
+              "cssName": "--color-primitive-alpha-indigo-medium",
               "collection": "color-primitives",
-              "name": "alpha/indigo/26"
+              "name": "alpha/indigo/medium"
             }
           },
           "resolvedValue": "rgba(20, 18, 24, 0.26)",
@@ -2038,9 +2038,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-indigo-42",
+              "cssName": "--color-primitive-alpha-indigo-strong",
               "collection": "color-primitives",
-              "name": "alpha/indigo/42"
+              "name": "alpha/indigo/strong"
             }
           },
           "resolvedValue": "rgba(20, 18, 24, 0.42)",
@@ -2061,9 +2061,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-black-55",
+              "cssName": "--color-primitive-alpha-black-strong",
               "collection": "color-primitives",
-              "name": "alpha/black/55"
+              "name": "alpha/black/strong"
             }
           },
           "resolvedValue": "rgba(0, 0, 0, 0.55)",
@@ -2084,9 +2084,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-black-58",
+              "cssName": "--color-primitive-alpha-black-stronger",
               "collection": "color-primitives",
-              "name": "alpha/black/58"
+              "name": "alpha/black/stronger"
             }
           },
           "resolvedValue": "rgba(0, 0, 0, 0.58)",
@@ -2107,9 +2107,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-black-92",
+              "cssName": "--color-primitive-alpha-black-heavy",
               "collection": "color-primitives",
-              "name": "alpha/black/92"
+              "name": "alpha/black/heavy"
             }
           },
           "resolvedValue": "rgba(0, 0, 0, 0.92)",
@@ -2130,9 +2130,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-white-92",
+              "cssName": "--color-primitive-alpha-white-strong",
               "collection": "color-primitives",
-              "name": "alpha/white/92"
+              "name": "alpha/white/strong"
             }
           },
           "resolvedValue": "rgba(255, 255, 255, 0.92)",
@@ -2153,9 +2153,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-white-94",
+              "cssName": "--color-primitive-alpha-white-stronger",
               "collection": "color-primitives",
-              "name": "alpha/white/94"
+              "name": "alpha/white/stronger"
             }
           },
           "resolvedValue": "rgba(255, 255, 255, 0.94)",
@@ -2176,9 +2176,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-red-70",
+              "cssName": "--color-primitive-alpha-red-focus",
               "collection": "color-primitives",
-              "name": "alpha/red/70"
+              "name": "alpha/red/focus"
             }
           },
           "resolvedValue": "rgba(169, 50, 53, 0.7)",
@@ -2199,9 +2199,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-mauve-18",
+              "cssName": "--color-primitive-alpha-mauve-soft",
               "collection": "color-primitives",
-              "name": "alpha/mauve/18"
+              "name": "alpha/mauve/soft"
             }
           },
           "resolvedValue": "rgba(36, 26, 34, 0.18)",
@@ -2222,9 +2222,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-rose-50",
+              "cssName": "--color-primitive-alpha-rose-shadow",
               "collection": "color-primitives",
-              "name": "alpha/rose/50"
+              "name": "alpha/rose/shadow"
             }
           },
           "resolvedValue": "rgba(47, 28, 40, 0.5)",
@@ -2245,9 +2245,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-alpha-rose-55",
+              "cssName": "--color-primitive-alpha-rose-shadow-strong",
               "collection": "color-primitives",
-              "name": "alpha/rose/55"
+              "name": "alpha/rose/shadow/strong"
             }
           },
           "resolvedValue": "rgba(96, 42, 65, 0.55)",
@@ -2268,9 +2268,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-rose-400",
+              "cssName": "--color-primitive-rose-brand",
               "collection": "color-primitives",
-              "name": "rose/400"
+              "name": "rose/brand"
             }
           },
           "resolvedValue": "#ff7aa8",
@@ -2291,9 +2291,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-rose-50",
+              "cssName": "--color-primitive-rose-page",
               "collection": "color-primitives",
-              "name": "rose/50"
+              "name": "rose/page"
             }
           },
           "resolvedValue": "#fff7fb",
