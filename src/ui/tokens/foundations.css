@@ -1,25 +1,6 @@
 :root {
   color-scheme: light;
 
-  /* Four-point spacing scale */
-  --ui-space-0: 0;
-  --ui-space-0-5: 2px;
-  --ui-space-1: 4px;
-  --ui-space-1-5: 6px;
-  --ui-space-2: 8px;
-  --ui-space-2-5: 10px;
-  --ui-space-3: 12px;
-  --ui-space-3-5: 14px;
-  --ui-space-4: 16px;
-  --ui-space-4-5: 18px;
-  --ui-space-5: 20px;
-  --ui-space-6: 24px;
-  --ui-space-7: 28px;
-  --ui-space-8: 32px;
-  --ui-space-10: 40px;
-  --ui-space-12: 48px;
-  --ui-space-16: 64px;
-
   /* Shape */
   --ui-radius-xs: 4px;
   --ui-radius-sm: 8px;
@@ -41,7 +22,6 @@
   /* App layout */
   --ui-layout-app-max: 480px;
   --ui-layout-content-max: 398px;
-  --ui-layout-gutter: 16px;
   --ui-layout-control-sm: 44px;
   --ui-layout-control-md: 51px;
   --ui-safe-top: env(safe-area-inset-top, 0px);
@@ -120,7 +100,6 @@
   --ui-button-height-md: var(--ui-layout-control-md);
   --ui-button-radius: var(--ui-radius-control);
   --ui-button-icon-size: 18px;
-  --ui-button-icon-gap: var(--ui-space-2);
   --ui-icon-button-size-sm: var(--ui-layout-control-sm);
   --ui-icon-button-size-md: var(--ui-layout-control-md);
   --ui-field-height: var(--ui-layout-control-md);

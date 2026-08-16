@@ -1,0 +1,678 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Figma-ready mirror of the compact production spacing system. CSS owns values; this contract owns meaning, picker scope and publication.",
+  "scopeReference": {
+    "gap": "GAP",
+    "rules": [
+      "Spacing variables are FLOAT values with one Value mode.",
+      "Primitive and alias variables use scopes: [] and stay hidden from publishing.",
+      "Semantic variables use scopes: [\"GAP\"] so they appear only for auto-layout gaps and padding.",
+      "Product components consume semantic variables only; primitive and alias layers are internal."
+    ]
+  },
+  "proximityRules": [
+    {
+      "relationship": "same-thought",
+      "token": "--spacing-semantic-content-text-gap",
+      "guidance": "Связанные текстовые строки и label/value живут ближе друг к другу, чем соседние блоки."
+    },
+    {
+      "relationship": "same-control",
+      "token": "--spacing-semantic-control-icon-gap",
+      "guidance": "Иконка и label одного control составляют неделимую пару."
+    },
+    {
+      "relationship": "same-group",
+      "token": "--spacing-semantic-layout-content-gap",
+      "guidance": "Элементы одной content-группы разделяются равномерным stack-gap."
+    },
+    {
+      "relationship": "adjacent-blocks",
+      "token": "--spacing-semantic-layout-block-gap",
+      "guidance": "Близкие блоки остаются одной смысловой группой, но не слипаются."
+    },
+    {
+      "relationship": "separate-sections",
+      "token": "--spacing-semantic-layout-section-gap",
+      "guidance": "Самостоятельные разделы получают заметно больше воздуха, чем внутренности группы."
+    }
+  ],
+  "collections": [
+    {
+      "name": "spacing-primitives",
+      "description": "Базовая шкала расстояний. Значения не выбираются напрямую в макетах или продуктовых компонентах: они питают alias-слой. Коллекция скрыта из публикации.",
+      "hiddenFromPublishing": true,
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "cssName": "--spacing-primitive-space-text",
+          "collection": "spacing-primitives",
+          "name": "space/text",
+          "type": "FLOAT",
+          "layer": "primitive",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-primitive-space-text)"
+          },
+          "value": 4,
+          "resolvedValue": 4,
+          "description": "Расстояние внутри одной текстовой мысли: между строковой меткой и связанным значением. Использовать только как источник alias-переменных; Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-primitive-space-inline",
+          "collection": "spacing-primitives",
+          "name": "space/inline",
+          "type": "FLOAT",
+          "layer": "primitive",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-primitive-space-inline)"
+          },
+          "value": 8,
+          "resolvedValue": 8,
+          "description": "Компактная дистанция между элементами одной строки: иконкой и label, соседними controls или близкими metadata. Использовать только как источник alias-переменных; Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-primitive-space-stack",
+          "collection": "spacing-primitives",
+          "name": "space/stack",
+          "type": "FLOAT",
+          "layer": "primitive",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-primitive-space-stack)"
+          },
+          "value": 12,
+          "resolvedValue": 12,
+          "description": "Обычная вертикальная дистанция внутри связанной группы контента. Использовать только как источник alias-переменных; Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-primitive-space-inset",
+          "collection": "spacing-primitives",
+          "name": "space/inset",
+          "type": "FLOAT",
+          "layer": "primitive",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-primitive-space-inset)"
+          },
+          "value": 16,
+          "resolvedValue": 16,
+          "description": "Базовый внутренний отступ поверхности и боковой gutter мобильного экрана. Использовать только как источник alias-переменных; Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-primitive-space-group",
+          "collection": "spacing-primitives",
+          "name": "space/group",
+          "type": "FLOAT",
+          "layer": "primitive",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-primitive-space-group)"
+          },
+          "value": 24,
+          "resolvedValue": 24,
+          "description": "Дистанция между самостоятельными группами внутри одного экрана или поверхности. Использовать только как источник alias-переменных; Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-primitive-space-section",
+          "collection": "spacing-primitives",
+          "name": "space/section",
+          "type": "FLOAT",
+          "layer": "primitive",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-primitive-space-section)"
+          },
+          "value": 32,
+          "resolvedValue": 32,
+          "description": "Крупный внешний отступ между разделами страницы или вокруг содержательной области. Использовать только как источник alias-переменных; Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-primitive-space-empty",
+          "collection": "spacing-primitives",
+          "name": "space/empty",
+          "type": "FLOAT",
+          "layer": "primitive",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-primitive-space-empty)"
+          },
+          "value": 48,
+          "resolvedValue": 48,
+          "description": "Воздух пустого состояния или намеренно редкой композиции. Не использовать для обычной группировки элементов. Использовать только как источник alias-переменных; Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        }
+      ]
+    },
+    {
+      "name": "spacing-alias",
+      "description": "Промежуточные названные расстояния между базовой шкалой и продуктовой семантикой. Здесь можно менять соответствие роли и примитива без правки компонентов. Коллекция скрыта из публикации.",
+      "hiddenFromPublishing": true,
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "cssName": "--spacing-alias-gap-text",
+          "collection": "spacing-alias",
+          "name": "gap/text",
+          "type": "FLOAT",
+          "layer": "alias",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-alias-gap-text)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-primitive-space-text",
+              "collection": "spacing-primitives",
+              "name": "space/text"
+            }
+          },
+          "resolvedValue": 4,
+          "description": "Зазор между непосредственно связанными текстовыми частями. Питает semantic-роли: content/text-gap. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-alias-gap-inline",
+          "collection": "spacing-alias",
+          "name": "gap/inline",
+          "type": "FLOAT",
+          "layer": "alias",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-alias-gap-inline)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-primitive-space-inline",
+              "collection": "spacing-primitives",
+              "name": "space/inline"
+            }
+          },
+          "resolvedValue": 8,
+          "description": "Зазор между элементами одной строки или близкими controls. Питает semantic-роли: layout/inline-gap, control/icon-gap. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-alias-gap-stack",
+          "collection": "spacing-alias",
+          "name": "gap/stack",
+          "type": "FLOAT",
+          "layer": "alias",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-alias-gap-stack)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-primitive-space-stack",
+              "collection": "spacing-primitives",
+              "name": "space/stack"
+            }
+          },
+          "resolvedValue": 12,
+          "description": "Стандартный вертикальный зазор внутри связанной content-группы. Питает semantic-роли: layout/content-gap. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-alias-inset-default",
+          "collection": "spacing-alias",
+          "name": "inset/default",
+          "type": "FLOAT",
+          "layer": "alias",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-alias-inset-default)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-primitive-space-inset",
+              "collection": "spacing-primitives",
+              "name": "space/inset"
+            }
+          },
+          "resolvedValue": 16,
+          "description": "Стандартный внутренний отступ поверхности и основной мобильный gutter. Питает semantic-роли: layout/page-gutter, layout/block-gap, control/padding-inline, surface/padding. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-alias-gap-group",
+          "collection": "spacing-alias",
+          "name": "gap/group",
+          "type": "FLOAT",
+          "layer": "alias",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-alias-gap-group)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-primitive-space-group",
+              "collection": "spacing-primitives",
+              "name": "space/group"
+            }
+          },
+          "resolvedValue": 24,
+          "description": "Отделяет самостоятельные группы, не разрывая страницу на секции. Питает semantic-роли: layout/section-gap, surface/padding-spacious. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-alias-inset-page",
+          "collection": "spacing-alias",
+          "name": "inset/page",
+          "type": "FLOAT",
+          "layer": "alias",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-alias-inset-page)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-primitive-space-section",
+              "collection": "spacing-primitives",
+              "name": "space/section"
+            }
+          },
+          "resolvedValue": 32,
+          "description": "Крупный внешний отступ содержательной области страницы. Питает semantic-роли: layout/page-inset. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--spacing-alias-inset-empty",
+          "collection": "spacing-alias",
+          "name": "inset/empty",
+          "type": "FLOAT",
+          "layer": "alias",
+          "status": "internal",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-aliases.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-alias-inset-empty)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-primitive-space-empty",
+              "collection": "spacing-primitives",
+              "name": "space/empty"
+            }
+          },
+          "resolvedValue": 48,
+          "description": "Выделенный воздух для empty state или редкой финальной композиции. Питает semantic-роли: empty-state/padding. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        }
+      ]
+    },
+    {
+      "name": "spacing-semantic",
+      "description": "Публичные расстояния дизайн-системы. В макетах и продуктовых компонентах выбираются только эти роли; Scope ограничен GAP.",
+      "hiddenFromPublishing": false,
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "cssName": "--spacing-semantic-layout-page-gutter",
+          "collection": "spacing-semantic",
+          "name": "layout/page-gutter",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-layout-page-gutter)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-inset-default",
+              "collection": "spacing-alias",
+              "name": "inset/default"
+            }
+          },
+          "resolvedValue": 16,
+          "description": "Боковой отступ экранного контента от границы мобильного viewport или sheet. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-layout-inline-gap",
+          "collection": "spacing-semantic",
+          "name": "layout/inline-gap",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-layout-inline-gap)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-gap-inline",
+              "collection": "spacing-alias",
+              "name": "gap/inline"
+            }
+          },
+          "resolvedValue": 8,
+          "description": "Стандартный горизонтальный gap элементов, которые читаются одной строкой. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-layout-content-gap",
+          "collection": "spacing-semantic",
+          "name": "layout/content-gap",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-layout-content-gap)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-gap-stack",
+              "collection": "spacing-alias",
+              "name": "gap/stack"
+            }
+          },
+          "resolvedValue": 12,
+          "description": "Стандартный вертикальный gap внутри связанного блока контента. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-layout-block-gap",
+          "collection": "spacing-semantic",
+          "name": "layout/block-gap",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-layout-block-gap)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-inset-default",
+              "collection": "spacing-alias",
+              "name": "inset/default"
+            }
+          },
+          "resolvedValue": 16,
+          "description": "Дистанция между близкими блоками, которые остаются одной смысловой группой. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-layout-section-gap",
+          "collection": "spacing-semantic",
+          "name": "layout/section-gap",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-layout-section-gap)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-gap-group",
+              "collection": "spacing-alias",
+              "name": "gap/group"
+            }
+          },
+          "resolvedValue": 24,
+          "description": "Дистанция между самостоятельными разделами одного экрана. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-layout-page-inset",
+          "collection": "spacing-semantic",
+          "name": "layout/page-inset",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-layout-page-inset)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-inset-page",
+              "collection": "spacing-alias",
+              "name": "inset/page"
+            }
+          },
+          "resolvedValue": 32,
+          "description": "Крупный внешний отступ вокруг содержательной области страницы или самостоятельного empty state. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-content-text-gap",
+          "collection": "spacing-semantic",
+          "name": "content/text-gap",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-content-text-gap)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-gap-text",
+              "collection": "spacing-alias",
+              "name": "gap/text"
+            }
+          },
+          "resolvedValue": 4,
+          "description": "Минимальная дистанция между связанными строками текста, например label и значением. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-control-padding-inline",
+          "collection": "spacing-semantic",
+          "name": "control/padding-inline",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-control-padding-inline)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-inset-default",
+              "collection": "spacing-alias",
+              "name": "inset/default"
+            }
+          },
+          "resolvedValue": 16,
+          "description": "Горизонтальный внутренний отступ стандартного control или кнопки. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-control-icon-gap",
+          "collection": "spacing-semantic",
+          "name": "control/icon-gap",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-control-icon-gap)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-gap-inline",
+              "collection": "spacing-alias",
+              "name": "gap/inline"
+            }
+          },
+          "resolvedValue": 8,
+          "description": "Расстояние между системной иконкой control и его label. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-surface-padding",
+          "collection": "spacing-semantic",
+          "name": "surface/padding",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-surface-padding)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-inset-default",
+              "collection": "spacing-alias",
+              "name": "inset/default"
+            }
+          },
+          "resolvedValue": 16,
+          "description": "Базовый внутренний отступ карточки, sheet или обычной поверхности. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-surface-padding-spacious",
+          "collection": "spacing-semantic",
+          "name": "surface/padding-spacious",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-surface-padding-spacious)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-gap-group",
+              "collection": "spacing-alias",
+              "name": "gap/group"
+            }
+          },
+          "resolvedValue": 24,
+          "description": "Увеличенный внутренний отступ самостоятельной поверхности с длинным контентом. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        },
+        {
+          "cssName": "--spacing-semantic-empty-state-padding",
+          "collection": "spacing-semantic",
+          "name": "empty-state/padding",
+          "type": "FLOAT",
+          "layer": "semantic",
+          "status": "active",
+          "mode": "Value",
+          "source": "src/ui/tokens/spacing-semantic.css",
+          "codeSyntax": {
+            "WEB": "var(--spacing-semantic-empty-state-padding)"
+          },
+          "value": {
+            "alias": {
+              "cssName": "--spacing-alias-inset-empty",
+              "collection": "spacing-alias",
+              "name": "inset/empty"
+            }
+          },
+          "resolvedValue": 48,
+          "description": "Вертикальный воздух для пустого или завершающего состояния, когда обычный section-gap недостаточен. Scope Figma: GAP — переменная доступна только для расстояний, padding и auto-layout gap. Не применять как размер иконки, радиус или типографический размер.",
+          "scopes": [
+            "GAP"
+          ],
+          "hiddenFromPublishing": false
+        }
+      ]
+    }
+  ]
+}

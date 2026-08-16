@@ -7,6 +7,7 @@ In this repository, act as the permanent **Design System Maintainer** in additio
 Read [docs/DESIGN_SYSTEM_MAINTAINER.md](docs/DESIGN_SYSTEM_MAINTAINER.md) before any task that changes UI, Figma, tokens, components, content-day layouts, publishing, or encrypted media.
 Read [docs/CONTENT_STRUCTURE.md](docs/CONTENT_STRUCTURE.md) before any task that adds, replaces, moves, optimizes, encrypts, or publishes day content or media.
 Read [docs/TYPOGRAPHY_SYSTEM.md](docs/TYPOGRAPHY_SYSTEM.md) before any task that changes text styles, copy wrapping, fonts, headings, labels, or typography tokens.
+Read [docs/SPACING_SYSTEM.md](docs/SPACING_SYSTEM.md) before any task that changes UI layout, spacing, component geometry, calendar/day-sheet composition, or Figma variables and components.
 
 ## Cross-agent continuity
 
@@ -32,6 +33,9 @@ Read [docs/TYPOGRAPHY_SYSTEM.md](docs/TYPOGRAPHY_SYSTEM.md) before any task that
 - Color roles, descriptions, Figma Scope, and publication rules: `design-tokens/color-contract.mjs`.
 - Contrast requirements: `design-tokens/color-contrast-contract.mjs`.
 - Typography roles, naming, readability and Russian line wrapping: `docs/TYPOGRAPHY_SYSTEM.md` and `src/lib/typography.ts`.
+- Spacing token composition, descriptions, Figma Scope, and publication flags: `design-tokens/spacing-contract.mjs`.
+- Generated Figma spacing registry: `design-tokens/generated/spacing-variables.figma.json`.
+- Human spacing/proximity rules: `docs/SPACING_SYSTEM.md`.
 - Generated Figma registry: `design-tokens/generated/color-variables.figma.json`.
 - Human documentation: `docs/COLOR_SYSTEM.md` and `docs/COLOR_CONTRAST.md`.
 - Motion graphics source: `tools/motion-graphics-starter/` (Remotion). Use it when
@@ -53,6 +57,10 @@ Read [docs/TYPOGRAPHY_SYSTEM.md](docs/TYPOGRAPHY_SYSTEM.md) before any task that
 - Enabled text, icons, boundaries, focus states, and meaningful graphics must continue to satisfy WCAG 2.2 AA. Never weaken a passing pair merely to make it look quieter; choose the correct semantic role instead.
 - Product UI uses Onest only. New typography identifiers use lowercase kebab-case and readable semantic names; numeric weights are primitives, not screen-facing style names.
 - Reuse or merge existing typography roles before adding a new one. A one-off heading, arbitrary numeric style, or unexplained synonym is not allowed without a documented semantic need.
+- The **Design System Maintainer** is also the permanent layout and proximity guardian; do not create a separate autonomous spacing agent. Product UI consumes only `--spacing-semantic-*` variables. Primitive and alias spacing variables are internal.
+- A parent owns external spacing; a component owns its internal padding and cluster gaps. Keep internal spacing smaller than the gap to the next independent group, use the compact scale from `docs/SPACING_SYSTEM.md`, and never introduce day-specific spacing roles.
+- Raw spacing values are allowed only for art direction, media crop, safe area, or full-bleed rules and require an adjacent `layout-exception` comment explaining why a semantic role cannot apply.
+- Before adding a spacing semantic, reuse an existing one whenever possible. A new role must describe a repeatable need in at least two contexts and be documented in `docs/SPACING_SYSTEM.md` before it reaches Figma or product code.
 - Render dynamic Russian prose through `keepRussianShortWords()` so short conjunctions and prepositions stay with the following word; manual `<br>` is only for intentional creative copy.
 - When changing tokens, regenerate the registry and documentation. Write changes to Figma only when the user explicitly asks for Figma synchronization in the current task; then synchronize in the order primitive → alias → semantic. Otherwise report Figma as intentionally pending rather than changing it automatically.
 - If Figma cannot be reached, do not claim parity: finish the safe code work, report the unsynchronized state, and leave an explicit Figma follow-up.
@@ -85,11 +93,12 @@ Read [docs/TYPOGRAPHY_SYSTEM.md](docs/TYPOGRAPHY_SYSTEM.md) before any task that
 For any design-system or UI change:
 
 1. Run `npm run clean:metadata` to remove Finder metadata that must never become a deploy artifact.
-2. When token sources changed, run `npm run tokens:colors` and review every generated diff.
+2. When token sources changed, run the matching generator (`npm run tokens:colors` or `npm run tokens:spacing`) and review every generated diff.
 3. Run `npm run verify:release` when local secrets are available; otherwise run `npm run verify:design-system` and explicitly report that the sensitive-data audit was partial/not available.
 4. Run `git diff --check`. Before committing, stage only the intended files, run `git diff --cached --check`, and review the complete cached diff so new/untracked files are covered too.
 5. Visually inspect the affected flow at mobile width, including the main calendar, archive, a day sheet, and the UI kit when shared foundations changed.
-6. Check console errors and horizontal overflow.
+6. For layout or spacing work, inspect the main calendar, archive, a representative day sheet, and UI kit at 320px, 390px, and 430px widths; check safe areas, console errors, and horizontal overflow.
+   `npm run audit:spacing` rejects direct internal-layer use, legacy spacing proxies, unused internal steps, and ordinary raw spacing without a documented `layout-exception`.
 7. When Figma variables changed, compare collection counts, aliases, values, descriptions, scopes, code syntax, and hidden/public flags against the generated registry.
 8. When vault output changed, compare `keyId` and media mappings before declaring the update safe.
 

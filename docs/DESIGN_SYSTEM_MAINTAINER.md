@@ -2,13 +2,14 @@
 
 ## Purpose
 
-The maintainer keeps one coherent system across the production PWA, the internal UI kit, the token registry, and the Figma library. It is expected to exercise design judgement, not only translate pixels.
+The maintainer keeps one coherent system across the production PWA, the internal UI kit, the token registry, and the Figma library. It is expected to exercise design judgement, not only translate pixels. It is also the permanent **layout and proximity guardian**: there is no separate autonomous spacing agent.
 
 ## Operating loop
 
 ### 1. Inspect
 
 - Read the request, affected implementation, nearby existing components, and the relevant Figma nodes.
+- Read `docs/SPACING_SYSTEM.md` before any UI-layout, component-geometry, calendar/day-sheet, or Figma task. It defines the human contract for internal versus external spacing and proximity; `design-tokens/spacing-contract.mjs` is the machine-readable token contract.
 - Determine whether the change starts in Figma, in code, or in content.
 - Record the current Git state and preserve unrelated user changes.
 - For an installed-PWA or vault change, identify the existing migration and session constraints before editing.
@@ -18,8 +19,8 @@ The maintainer keeps one coherent system across the production PWA, the internal
 Check the proposal against:
 
 - semantic color roles and Figma Scope;
-- surface nesting and proximity/grouping;
-- typography and spacing already established by the UI kit;
+- surface nesting and the proximity/grouping contract in `docs/SPACING_SYSTEM.md`;
+- typography and semantic spacing already established by the UI kit;
 - typography naming and readable-copy rules in `docs/TYPOGRAPHY_SYSTEM.md`;
 - control variants, touch targets, safe areas, and mobile scrolling;
 - content hierarchy and consistent day-sheet patterns;
@@ -29,6 +30,14 @@ Check the proposal against:
 - system icon consistency: button and control glyphs use the local Material Symbols Outlined registry in `src/ui/Icons.tsx`; category emoji, company logos, and decorative artwork are not replaced by UI glyphs. Run `npm run audit:icons` after adding or changing an icon.
 
 Fix a clear system mistake immediately when the product intent stays the same. Examples include replacing a raw color with a semantic token, correcting a wrong surface level, using the existing white button instead of inventing a new one, fixing spacing that breaks proximity, or repairing a failing contrast pair.
+
+For layout, the parent owns the external gap and the component owns internal
+padding or cluster gaps. Prefer existing `--spacing-semantic-*` roles; do not
+invent a new role for one screen or day. Any new spacing role must represent a
+repeatable need in at least two contexts, be documented in
+  `docs/SPACING_SYSTEM.md`, added to `design-tokens/spacing-contract.mjs`, and be added primitive → alias → semantic. Raw
+spacing is limited to art direction, media crop, safe area, and full-bleed
+rules, each with an adjacent `layout-exception` comment.
 
 For text changes, reuse or merge the six semantic roles, keep identifiers
 lowercase kebab-case, use Onest, and route dynamic Russian copy through
@@ -58,6 +67,16 @@ Color-variable synchronization order is always:
 1. `color-primitives` — internal and hidden;
 2. `color-alias` — internal and hidden;
 3. `color-semantic` — the only public collection.
+
+Spacing-variable synchronization order is always:
+
+1. `spacing-primitives` — internal, hidden, FLOAT, Scope `[]`;
+2. `spacing-alias` — internal, hidden, FLOAT, Scope `[]`;
+3. `spacing-semantic` — the only public collection, FLOAT, Scope `[GAP]`.
+
+Product code and ordinary Figma layers bind only to `spacing-semantic`; the
+required CSS names start with `--spacing-semantic-`. Preserve each variable's
+description, value or alias, code syntax, Scope, and publication flag exactly.
 
 Descriptions and Scope are part of the contract, not optional documentation.
 Do not write to Figma automatically during ordinary code or token work. If the
@@ -93,7 +112,11 @@ For shared foundations, visually inspect at least:
 - the UI kit;
 - the affected photo/video fullscreen state when media controls changed.
 
-Use a mobile viewport representative of the app, confirm there is no horizontal overflow, and inspect console errors. Test on a real installed iPhone PWA when a change touches the keyboard, safe areas, orientation, media download/fullscreen, storage, service worker, or cache migration.
+Inspect the main calendar, archive, representative day sheet, and UI kit at
+320px, 390px, and 430px widths. Confirm safe areas, no horizontal overflow,
+clear proximity between groups, and console errors. Test on a real installed
+iPhone PWA when a change touches the keyboard, safe areas, orientation, media
+download/fullscreen, storage, service worker, or cache migration.
 
 ### 5. Protect the live PWA
 

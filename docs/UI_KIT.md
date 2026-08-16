@@ -54,22 +54,26 @@ invalid scopes, and a stale Figma export.
 
 ### Spacing and layout
 
-Spacing uses `--ui-space-0`, `--ui-space-1`, `--ui-space-2`, `--ui-space-3`,
-`--ui-space-4`, `--ui-space-5`, `--ui-space-6`, `--ui-space-7`,
-`--ui-space-8`, `--ui-space-10`, `--ui-space-12`, and `--ui-space-16`.
+The machine-readable contract lives in
+`design-tokens/spacing-contract.mjs`; its derived Figma registry is
+`design-tokens/generated/spacing-variables.figma.json`. The human proximity
+rules live in [`docs/SPACING_SYSTEM.md`](SPACING_SYSTEM.md). Product code uses
+only readable `--spacing-semantic-*` roles. The system has a compact primitive
+scale, hidden aliases, and public semantic roles so an app with a different
+number of days never acquires screen- or day-specific values.
 
-- Elements that belong together use the smaller steps.
-- Space between groups must be visibly larger than space inside a group.
-- Do not add margins to individual labels to imitate grouping. Give the group a
-  wrapper and control its `gap`.
-- A component owns its internal spacing. A parent owns only the space between
-  components.
-- App width, content width, gutters, control heights, and safe areas use the
-  `--ui-layout-*` tokens.
-
-This proximity rule is especially important for an icon and its label: they
-form one content cluster inside the control. Do not position the icon and text
-at opposite ends of a full-width button.
+- A component owns internal padding and inner cluster gaps; its parent owns
+  only the gap to neighbouring components.
+- Use a wrapper with semantic `gap`, not individual child margins, to express a
+  group.
+- Elements that belong together use 4–12px; an independent block begins at
+  16px, a section at 24px, a large page inset at 32px, and an empty state at
+  48px.
+- The icon and label inside a button form one compact cluster. Do not push them
+  apart with `space-between` or absolute positioning.
+- App width, content width, gutters, control heights, and safe areas keep their
+  own layout/dimension tokens; safe-area and media-crop geometry are not a
+  reason to add product spacing values.
 
 ### Radius, shadow, and motion
 
@@ -242,18 +246,22 @@ The remaining component transfer and every later update are controlled mirrors,
 not detached redesigns:
 
 1. Freeze and tag a known code version.
-2. Import the three collections from
-   `design-tokens/generated/color-variables.figma.json`. Preserve each
-   variable's `description`, `scopes`, and `hiddenFromPublishing` values exactly;
-   primitives and aliases stay hidden, semantic variables are public.
+2. Import the three colour collections from
+   `design-tokens/generated/color-variables.figma.json` and the three spacing
+   collections from `design-tokens/generated/spacing-variables.figma.json`.
+   Preserve each variable's
+   `description`, `scopes`, code syntax, alias/value, and
+   `hiddenFromPublishing` values exactly; primitives and aliases stay hidden,
+   semantic variables are public.
 3. Create text styles from the code roles and verify the actual iOS/system font
    metrics on representative screens.
 4. Create components whose variants match React props: button variant/size and
    state, icon button, field state, surface variant, tab selection, and badge
    variant.
-5. Bind all component values to variables; avoid detached fills and arbitrary
-   spacing.
-6. Compare Figma and code at 390 px and 430 px widths before declaring parity.
+5. Bind all component values to variables; use only public semantic spacing and
+   avoid detached fills or arbitrary spacing.
+6. Compare Figma and code at 320 px, 390 px, and 430 px widths before
+   declaring parity.
 7. Record the mirrored code commit in the Figma library description.
 
 Use only fictional showcase text and placeholders during the transfer. Do not

@@ -1,0 +1,10 @@
+:root {
+  /* Internal names that decouple the universal scale from product semantics. */
+  --spacing-alias-gap-text: var(--spacing-primitive-space-text);
+  --spacing-alias-gap-inline: var(--spacing-primitive-space-inline);
+  --spacing-alias-gap-stack: var(--spacing-primitive-space-stack);
+  --spacing-alias-inset-default: var(--spacing-primitive-space-inset);
+  --spacing-alias-gap-group: var(--spacing-primitive-space-group);
+  --spacing-alias-inset-page: var(--spacing-primitive-space-section);
+  --spacing-alias-inset-empty: var(--spacing-primitive-space-empty);
+}

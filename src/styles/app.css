@@ -9,12 +9,15 @@
   inset: 0;
   z-index: var(--ui-z-guard);
   min-height: 100dvh;
-  padding: calc(env(safe-area-inset-top) + 24px) 32px calc(env(safe-area-inset-bottom) + 24px);
+  padding:
+    calc(env(safe-area-inset-top) + var(--spacing-semantic-layout-section-gap))
+    var(--spacing-semantic-layout-page-inset)
+    calc(env(safe-area-inset-bottom) + var(--spacing-semantic-layout-section-gap));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: var(--spacing-semantic-layout-content-gap);
   overflow: hidden;
   background: var(--color-semantic-background-brand-page);
   color: var(--color-semantic-text-heading);
@@ -24,7 +27,7 @@
   position: relative;
   width: 46px;
   height: 76px;
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-semantic-layout-content-gap);
   border: 3px solid var(--color-semantic-border-brand);
   border-radius: 12px;
   background: var(--color-semantic-background-surface-level-0);
@@ -82,7 +85,7 @@
 .home {
   height: 100dvh;
   overflow: hidden;
-  padding-top: calc(env(safe-area-inset-top) + 10px);
+  padding-top: calc(env(safe-area-inset-top) + var(--spacing-semantic-layout-content-gap));
 }
 
 .gate {
@@ -93,6 +96,7 @@
 
 /* ---------- progress bar ---------- */
 .pb {
+  /* layout-exception: the 29-step flower rail is drawn as one compact graphic. */
   padding: 0 13px;
 }
 .pb__labels {
@@ -104,7 +108,7 @@
   bottom: 0;
   display: flex;
   align-items: flex-end;
-  gap: 4px;
+  gap: var(--spacing-semantic-content-text-gap);
   white-space: nowrap;
 }
 .pb__label--flip {
@@ -131,6 +135,7 @@
 .pb__row {
   display: flex;
   align-items: center;
+  /* layout-exception: the flower rail remains one compact decorative graphic. */
   gap: 2px;
   margin-top: 2px;
 }
@@ -153,18 +158,18 @@
 
 /* ---------- two stat columns ---------- */
 .stats {
-  margin-top: 12px;
+  margin-top: var(--spacing-semantic-layout-content-gap);
   display: grid;
   grid-template-columns: 43% 57%;
   border-top: 1px solid var(--color-semantic-border-subtle);
   border-bottom: 1px solid var(--color-semantic-border-subtle);
 }
 .stat {
-  padding: 14px 8px 18px;
+  padding: var(--spacing-semantic-layout-block-gap) var(--spacing-semantic-layout-inline-gap);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 .stat--archive {
   appearance: none;
@@ -212,7 +217,7 @@
   font-weight: var(--ui-font-weight-500);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 .stat__arrow {
   width: 21px;
@@ -226,10 +231,10 @@
 
 /* ---------- calendar ---------- */
 .calbox {
-  padding: 16px;
+  padding: var(--spacing-semantic-surface-padding);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-semantic-layout-block-gap);
 }
 .calbox__title {
   margin: 0;
@@ -242,13 +247,13 @@
 .cal {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-semantic-layout-content-gap);
 }
 .cal__weekdays,
 .cal__grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 .cal__wd {
   text-align: center;
@@ -260,6 +265,7 @@
 
 .cell {
   position: relative;
+  min-width: 0;
   aspect-ratio: 1 / 1;
   border: none;
   border-radius: 4px;
@@ -267,6 +273,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* layout-exception: the date and icon sit inside a fixed square calendar cell. */
   padding: 14px 8px 8px;
   font-family: inherit;
   cursor: pointer;
@@ -375,7 +382,8 @@
   position: relative;
   z-index: var(--ui-z-content);
   flex: none;
-  padding: 20px var(--ui-layout-gutter) 0;
+  /* layout-exception: this finale is a fixed art-directed composition aligned to the sunrise scene. */
+  padding: 20px var(--spacing-semantic-layout-page-gutter) 0;
 }
 .post-finale__hero {
   text-align: center;
@@ -396,14 +404,14 @@
 }
 .post-finale__period {
   max-width: var(--ui-layout-content-max);
-  margin: 12px auto 0;
+  margin: var(--spacing-semantic-layout-content-gap) auto 0;
   color: var(--color-semantic-text-heading);
   font-size: 17px;
   font-weight: var(--ui-font-weight-700);
   line-height: 1.3;
 }
 .post-finale__since {
-  margin: 3px 0 0;
+  margin: var(--spacing-semantic-content-text-gap) 0 0;
   color: var(--color-semantic-text-muted);
   font-size: 14px;
   font-weight: var(--ui-font-weight-700);
@@ -411,7 +419,7 @@
 }
 .post-finale__memories {
   max-width: var(--ui-layout-content-max);
-  margin: 28px auto 0;
+  margin: var(--spacing-semantic-layout-section-gap) auto 0;
   text-align: left;
 }
 .post-finale__memories h2 {
@@ -422,17 +430,17 @@
   line-height: 1.24;
 }
 .post-finale__memories > p {
-  margin: 6px 0 0;
+  margin: var(--spacing-semantic-content-text-gap) 0 0;
   color: var(--color-semantic-text-secondary);
   font-size: 14px;
   font-weight: var(--ui-font-weight-500);
   line-height: 1.35;
 }
 .post-finale__actions {
-  margin-top: 16px;
+  margin-top: var(--spacing-semantic-layout-block-gap);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 .post-finale__action {
   min-width: 0;
@@ -504,18 +512,18 @@
 }
 @media (max-height: 700px) {
   .post-finale__content {
-    padding-top: 12px;
+    padding-top: var(--spacing-semantic-layout-content-gap);
   }
   .post-finale__title {
     font-size: 31px;
   }
   .post-finale__period {
-    margin-top: 8px;
+    margin-top: var(--spacing-semantic-layout-inline-gap);
     font-size: 16px;
   }
   .post-finale__memories.ui-surface {
-    margin-top: 16px;
-    padding: 14px;
+    margin-top: var(--spacing-semantic-layout-block-gap);
+    padding: var(--spacing-semantic-surface-padding);
   }
   .post-finale__memories h2 {
     font-size: 19px;
@@ -524,7 +532,7 @@
     font-size: 14px;
   }
   .post-finale__actions {
-    margin-top: 11px;
+    margin-top: var(--spacing-semantic-layout-content-gap);
   }
   .finale-scene {
     min-height: 135px;
@@ -547,19 +555,19 @@
 .testbar {
   position: fixed;
   left: 50%;
-  bottom: calc(env(safe-area-inset-bottom) + 8px);
+  bottom: calc(env(safe-area-inset-bottom) + var(--spacing-semantic-layout-inline-gap));
   transform: translateX(-50%);
   z-index: var(--ui-z-floating);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-semantic-layout-inline-gap);
   font-size: 12px;
   font-weight: var(--ui-font-weight-700);
   color: var(--color-semantic-text-muted);
   background: var(--color-semantic-overlay-glass-strong);
   border: 1px solid var(--color-semantic-border-subtle);
   border-radius: 999px;
-  padding: 5px 8px;
+  padding: var(--spacing-semantic-content-text-gap) var(--spacing-semantic-layout-inline-gap);
   box-shadow: 0 8px 22px -12px var(--color-semantic-shadow-medium);
 }
 .testbar__date {
@@ -573,7 +581,9 @@
   background: var(--color-semantic-background-brand-subtle);
   color: var(--color-semantic-text-brand);
   border-radius: 999px;
-  padding: 4px 9px;
+  padding:
+    var(--spacing-semantic-content-text-gap)
+    var(--spacing-semantic-layout-inline-gap);
   cursor: pointer;
 }
 .testbar button svg {
@@ -601,11 +611,14 @@
 }
 .archive__header {
   flex: none;
-  padding: calc(env(safe-area-inset-top) + 10px) 16px 18px;
+  padding:
+    calc(env(safe-area-inset-top) + var(--spacing-semantic-layout-content-gap))
+    var(--spacing-semantic-layout-page-gutter)
+    var(--spacing-semantic-layout-block-gap);
   background: var(--color-semantic-background-surface-level-0);
 }
-.archive__back {
-  margin: 0 0 10px -6px;
+.archive__back.ui-button {
+  margin: 0 0 var(--spacing-semantic-layout-content-gap) calc(0px - var(--spacing-semantic-content-text-gap));
 }
 .archive__title {
   margin: 0;
@@ -617,14 +630,16 @@
 }
 .archive__subtitle {
   max-width: 360px;
-  margin: 9px 0 0;
+  margin: var(--spacing-semantic-layout-inline-gap) 0 0;
   color: var(--color-semantic-text-secondary);
   font-size: 16px;
   line-height: 1.35;
 }
 .archive__tabs {
   flex: none;
-  padding: 12px 16px;
+  padding:
+    var(--spacing-semantic-layout-content-gap)
+    var(--spacing-semantic-layout-page-gutter);
   background: var(--color-semantic-background-surface-level-0);
   border-top: 1px solid var(--color-semantic-border-subtle);
   border-bottom: 1px solid var(--color-semantic-border-subtle);
@@ -635,15 +650,21 @@
   overflow-y: auto;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
-  padding: 14px 16px calc(env(safe-area-inset-bottom) + 24px);
+  padding:
+    var(--spacing-semantic-surface-padding)
+    var(--spacing-semantic-layout-page-gutter)
+    calc(env(safe-area-inset-bottom) + var(--spacing-semantic-layout-section-gap));
 }
 .archive__list {
   display: grid;
-  gap: 12px;
+  gap: var(--spacing-semantic-layout-content-gap);
 }
 .archive-card {
   position: relative;
   overflow: hidden;
+  display: grid;
+  align-content: start;
+  gap: var(--spacing-semantic-layout-content-gap);
 }
 .archive-card::before {
   content: '';
@@ -653,7 +674,7 @@
   background: var(--card-accent, var(--color-semantic-content-accent-compliment));
 }
 .archive-card__meta {
-  margin-bottom: 12px;
+  margin: 0;
   color: var(--color-semantic-text-muted);
   font-size: 12px;
   font-weight: var(--ui-font-weight-700);
@@ -661,7 +682,7 @@
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--spacing-semantic-layout-content-gap);
 }
 .archive-card__title {
   margin: 0;
@@ -671,7 +692,7 @@
   line-height: 1.2;
 }
 .archive-card__text {
-  margin: 9px 0 0;
+  margin: 0;
   color: var(--color-semantic-text-secondary);
   font-size: 14px;
   line-height: 1.42;
@@ -684,29 +705,29 @@
   -webkit-line-clamp: 4;
 }
 .archive-card__hint {
-  margin: 4px 0 0;
+  margin: var(--spacing-semantic-content-text-gap) 0 0;
   color: var(--color-semantic-text-muted);
   font-size: 14px;
   line-height: 1.3;
 }
 .archive-card__open {
-  margin-top: 15px;
+  margin: 0;
 }
 .archive-card__actions {
-  margin-top: 15px;
+  margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 .archive-card__open--inline {
-  margin-top: 0;
+  margin: 0;
 }
 .archive-card__coupon-head,
 .archive-card__cert-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
+  gap: var(--spacing-semantic-layout-block-gap);
 }
 .archive-card__cert-head {
   width: 100%;
@@ -730,19 +751,21 @@
   object-position: right center;
 }
 .archive-card__codes {
-  margin-top: 13px;
+  margin: 0;
   display: grid;
-  gap: 8px;
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 .archive-card__code-row {
   min-width: 0;
   min-height: 48px;
-  padding: 8px 9px 8px 12px;
+  padding:
+    var(--spacing-semantic-layout-inline-gap)
+    var(--spacing-semantic-layout-content-gap);
   border-radius: 12px;
   background: var(--color-semantic-background-surface-level-3);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 .archive-card__code {
   flex: 1 1 auto;
@@ -766,7 +789,7 @@
 .archive-card__video-head {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-semantic-layout-content-gap);
 }
 .archive-card__play {
   flex: none;
@@ -809,6 +832,7 @@
 .gate {
   align-items: center;
   justify-content: flex-end;
+  /* layout-exception: this keyboard-safe entry composition was tuned as one fixed screen. */
   gap: 10px;
   padding: calc(env(safe-area-inset-top) + 28px) 24px calc(env(safe-area-inset-bottom) + 28px);
 }
@@ -833,18 +857,18 @@
 .gate__title {
   font-size: 24px;
   font-weight: var(--ui-font-weight-900);
-  margin: 0 0 4px;
+  margin: 0 0 var(--spacing-semantic-content-text-gap);
   color: var(--color-semantic-text-primary);
 }
 .gate__sub {
   color: var(--color-semantic-text-muted);
   font-size: 14px;
-  margin: 0 0 20px;
+  margin: 0 0 var(--spacing-semantic-layout-block-gap);
 }
 .gate__form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-semantic-layout-content-gap);
 }
 .gate__input {
   text-align: center;
@@ -857,7 +881,7 @@
   color: var(--color-semantic-text-brand);
   font-weight: var(--ui-font-weight-700);
   font-size: 14px;
-  margin: 14px 0 0;
+  margin: var(--spacing-semantic-layout-content-gap) 0 0;
 }
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
@@ -903,13 +927,16 @@
   flex: 1 1 auto;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: calc(env(safe-area-inset-top) + 20px) 16px 8px;
+  padding:
+    calc(env(safe-area-inset-top) + var(--spacing-semantic-surface-padding-spacious))
+    var(--spacing-semantic-layout-page-gutter)
+    var(--spacing-semantic-layout-inline-gap);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-semantic-layout-block-gap);
 }
 .day__title {
-  margin: 4px 0 0;
+  margin: var(--spacing-semantic-content-text-gap) 0 0;
   text-align: center;
   font-size: 40px;
   font-weight: var(--ui-font-weight-700);
@@ -918,8 +945,8 @@
 }
 .rule.ui-divider {
   flex: none;
-  width: calc(100% + 32px);
-  margin: 0 -16px;
+  width: calc(100% + var(--spacing-semantic-layout-page-gutter) + var(--spacing-semantic-layout-page-gutter));
+  margin: 0 calc(0px - var(--spacing-semantic-layout-page-gutter));
 }
 .day__wish {
   margin: 0;
@@ -936,7 +963,7 @@
   flex: none;
   position: relative;
   min-height: 178px;
-  padding: 0 16px;
+  padding: 0 var(--spacing-semantic-layout-page-gutter);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -945,6 +972,7 @@
   min-height: 0;
 }
 .day__bonus {
+  /* layout-exception: an opt-in bonus overlays the existing final-day composition. */
   position: absolute;
   left: 50%;
   top: -48px;
@@ -952,7 +980,7 @@
   transform: translateX(-50%);
 }
 .day__bonus-button.ui-button {
-  padding-inline: 8px;
+  padding-inline: var(--spacing-semantic-layout-inline-gap);
 }
 /* no caption → no bubble, so the meme sits in the middle instead of the corner */
 .day__band--center .meme__photo {
@@ -963,7 +991,7 @@
 /* photo pinned bottom-right; bubble sits to its left with a left inset */
 .meme__photo {
   position: absolute;
-  right: 8px;
+  right: var(--spacing-semantic-layout-page-gutter);
   bottom: 0;
   /* follows the band so it shrinks with it on short screens */
   height: 100%;
@@ -979,12 +1007,13 @@
   right: var(--meme-bubble-right, 187px);
   bottom: 64px;
   width: max-content;
-  max-width: min(185px, calc(100% - var(--meme-bubble-right, 187px) - 16px));
+  max-width: min(185px, calc(100% - var(--meme-bubble-right, 187px) - var(--spacing-semantic-layout-page-gutter)));
   background: var(--color-semantic-background-message);
   color: var(--color-semantic-text-inverse);
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: 0.2px;
+  /* layout-exception: chat bubble proportions follow the supplied meme art. */
   padding: 9px 14px;
   border-radius: 18px;
   white-space: pre-line;
@@ -1071,11 +1100,18 @@
   --meme-bubble-right: 227px;
 }
 
+@media (max-width: 360px) {
+  .sheet--day22 .meme__bubble {
+    /* layout-exception: this source cutout leaves less room for its two-line bubble at 320px. */
+    --meme-bubble-right: 190px;
+  }
+}
+
 /* Day 28 has the long approval line from the final mockup. Keep the shared
    sheet layout, but give its bubble two readable lines and match the supplied
    transparent cutout instead of stretching it to the generic meme height. */
 .sheet--day28 .meme__photo {
-  right: 16px;
+  right: var(--spacing-semantic-layout-page-gutter);
   height: 149px;
   max-height: 149px;
 }
@@ -1094,6 +1130,7 @@
    dimensions and line breaks from their supplied 430×780 mockups. */
 .sheet--day21 .mcard--compliment {
   min-height: 260px;
+  /* layout-exception: this supplied day mockup needs a taller text card. */
   padding: 28px 24px;
   white-space: pre-line;
 }
@@ -1107,9 +1144,10 @@
   max-height: 149px;
 }
 .sheet--day21 .meme__photo {
-  right: 16px;
+  right: var(--spacing-semantic-layout-page-gutter);
 }
 .sheet--day22 .meme__photo {
+  /* layout-exception: crop aligns this source image to its supplied mockup. */
   right: 18px;
 }
 .sheet--day21 .meme__photo.encimg-loading {
@@ -1124,8 +1162,8 @@
   min-height: 260px;
 }
 .sheet--day22 .cpn__emoji {
-  right: 24px;
-  bottom: 24px;
+  right: var(--spacing-semantic-surface-padding-spacious);
+  bottom: var(--spacing-semantic-surface-padding-spacious);
   font-size: 105px;
 }
 .sheet--day23 .meme__bubble {
@@ -1144,7 +1182,7 @@
 .day__top--locked {
   align-items: center;
   text-align: center;
-  gap: 8px;
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 /* A locked day follows the normal sheet layout: title, note, the cat where a
    meme would go, and only "Закрыть шторку" below, stretched across. */
@@ -1173,15 +1211,15 @@
   font-size: 16px;
   font-weight: var(--ui-font-weight-700);
   color: var(--color-semantic-text-muted);
-  margin-bottom: 4px;
+  margin-bottom: var(--spacing-semantic-content-text-gap);
 }
 /* foot: the line + nav buttons, 16px all around */
 .day__foot {
   flex: none;
-  padding: 0 16px 16px;
+  padding: 0 var(--spacing-semantic-layout-page-gutter) var(--spacing-semantic-layout-block-gap);
 }
 .day__foot .rule {
-  margin: 0 -16px 16px;
+  margin: 0 calc(0px - var(--spacing-semantic-layout-page-gutter)) var(--spacing-semantic-layout-block-gap);
 }
 /* media blocks */
 .mcard {
@@ -1195,7 +1233,7 @@
 }
 .mcard--compliment {
   border: 1px solid var(--color-semantic-border-danger);
-  padding: 28px 24px;
+  padding: var(--spacing-semantic-layout-page-inset) var(--spacing-semantic-surface-padding-spacious);
   min-height: 240px;
   display: flex;
   align-items: center;
@@ -1276,8 +1314,8 @@
 }
 .mcard__expand {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: var(--spacing-semantic-layout-inline-gap);
+  right: var(--spacing-semantic-layout-inline-gap);
   width: 28px;
   height: 28px;
   border-radius: 8px;
@@ -1290,7 +1328,7 @@
 .mcard--emoji {
   font-size: 64px;
   text-align: center;
-  padding: 24px 0;
+  padding: var(--spacing-semantic-surface-padding-spacious) 0;
 }
 
 /* booking: the venue card carries the logo, the details sit on top of it */
@@ -1381,8 +1419,8 @@
   z-index: 2;
   transform: translate(-50%, -50%);
   width: max-content;
-  max-width: calc(100% - 32px);
-  padding: 14px 20px;
+  max-width: calc(100% - var(--spacing-semantic-layout-page-inset));
+  padding: var(--spacing-semantic-layout-content-gap) var(--spacing-semantic-surface-padding);
   border: 1px solid var(--color-semantic-border-inverse-subtle);
   border-radius: 18px;
   background: var(--color-semantic-overlay-control-strong);
@@ -1396,7 +1434,7 @@
   text-align: center;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: var(--spacing-semantic-layout-inline-gap);
 }
 .vid__pending-icon {
   flex: none;
@@ -1417,7 +1455,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: var(--spacing-semantic-layout-block-gap);
   width: 100%;
 }
 .cert__banner {
@@ -1437,14 +1475,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: var(--spacing-semantic-content-text-gap);
   width: 100%;
 }
 .cert__row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--spacing-semantic-layout-inline-gap);
   max-width: 100%;
 }
 .cert__code {
@@ -1470,7 +1508,7 @@
 }
 .cert__tip {
   position: absolute;
-  bottom: calc(100% + 8px);
+  bottom: calc(100% + var(--spacing-semantic-layout-inline-gap));
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
@@ -1478,7 +1516,7 @@
   color: var(--color-semantic-text-inverse);
   font-size: 12px;
   font-weight: var(--ui-font-weight-600);
-  padding: 5px 9px;
+  padding: var(--spacing-semantic-content-text-gap) var(--spacing-semantic-layout-inline-gap);
   border-radius: 8px;
   pointer-events: none;
   animation: fade 0.15s ease;
@@ -1509,7 +1547,7 @@
   /* fixed: 270 card + 2x8 padding, so the track never reflows */
   height: 286px;
   gap: 0;
-  /* neighbours peek in from both sides */
+  /* layout-exception: neighbours peek in from both sides around a fixed 202px card. */
   padding: 8px calc(50% - 101px);
   overflow-x: auto;
   overscroll-behavior-x: contain;
@@ -1524,7 +1562,7 @@
   flex: none;
   width: 202px;
   height: 270px;
-  /* pulls the shrunken neighbours back to a ~17px visual gap */
+  /* layout-exception: pulls the scaled neighbours back to a ~17px visual gap. */
   margin-inline: -2px;
   padding: 0;
   border: 0;
@@ -1559,8 +1597,9 @@
 .carou__dots {
   display: flex;
   justify-content: center;
+  /* layout-exception: dot diameter and gap form one visual pagination marker. */
   gap: 6px;
-  margin-top: 12px;
+  margin-top: var(--spacing-semantic-layout-content-gap);
 }
 .carou__dot {
   width: 6px;
@@ -1578,7 +1617,7 @@
   position: relative;
   width: 100%;
   min-height: 260px;
-  padding: 24px;
+  padding: var(--spacing-semantic-surface-padding-spacious);
   border-radius: 16px;
   outline: 1px dashed var(--color-semantic-border-danger);
   outline-offset: -1px;
@@ -1586,13 +1625,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 24px;
+  gap: var(--spacing-semantic-layout-section-gap);
   overflow: hidden;
 }
 .cpn__body {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--spacing-semantic-layout-section-gap);
 }
 .cpn__title {
   margin: 0;
@@ -1603,7 +1642,7 @@
 }
 .cpn__desc {
   margin: 0;
-  /* keeps the copy clear of the oversized emoji in the bottom-right */
+  /* layout-exception: keeps the copy clear of the oversized emoji in the bottom-right. */
   padding-right: 92px;
   font-size: 20px;
   font-weight: var(--ui-font-weight-400);
@@ -1622,7 +1661,7 @@
 }
 .cpn__emoji {
   position: absolute;
-  right: 24px;
+  right: var(--spacing-semantic-surface-padding-spacious);
   bottom: 16px;
   font-size: 96px;
   line-height: 1;
@@ -1634,13 +1673,13 @@
 .compliments {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-semantic-layout-content-gap);
   width: 100%;
 }
 .compliments__item {
   background: var(--color-semantic-background-brand-subtle);
   border-radius: 14px;
-  padding: 13px 16px;
+  padding: var(--spacing-semantic-layout-content-gap) var(--spacing-semantic-surface-padding);
   font-size: 16px;
   font-weight: var(--ui-font-weight-600);
   color: var(--color-semantic-text-primary);
@@ -1656,6 +1695,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* layout-exception: media zoom needs a slightly wider gesture-safe perimeter. */
   padding: 20px;
   overflow: hidden;
   overscroll-behavior: contain;
@@ -1711,6 +1751,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* layout-exception: native video controls require a gesture-safe safe-area perimeter. */
   padding:
     calc(env(safe-area-inset-top) + 72px)
     calc(env(safe-area-inset-right) + 16px)
@@ -1779,7 +1820,9 @@
   z-index: 2;
   max-width: calc(100% - 40px);
   margin: 0;
-  padding: 8px 12px;
+  padding:
+    var(--spacing-semantic-layout-inline-gap)
+    var(--spacing-semantic-layout-content-gap);
   border: 1px solid var(--color-semantic-border-inverse-subtle);
   border-radius: var(--ui-radius-pill);
   background: var(--color-semantic-overlay-control);
@@ -1909,8 +1952,8 @@
  */
 @media (max-height: 780px) {
   .day__top {
-    padding-top: calc(env(safe-area-inset-top) + 12px);
-    gap: 12px;
+    padding-top: calc(env(safe-area-inset-top) + var(--spacing-semantic-layout-content-gap));
+    gap: var(--spacing-semantic-layout-content-gap);
   }
   .day__title {
     font-size: 34px;
@@ -1923,16 +1966,16 @@
   }
   .cpn {
     min-height: 214px;
-    padding: 20px;
+    padding: var(--spacing-semantic-surface-padding);
   }
   .sheet--day22 .cpn {
     min-height: 260px;
-    padding: 24px;
+    padding: var(--spacing-semantic-surface-padding-spacious);
   }
   .cert {
-    gap: 10px;
+    gap: var(--spacing-semantic-layout-content-gap);
   }
-  /* the carousel keeps its own fixed track height, so shrink it too */
+  /* layout-exception: the carousel keeps its own fixed track height, so shrink it too. */
   .carou__track {
     height: 198px;
     padding-inline: calc(50% - 70px);
@@ -1942,20 +1985,49 @@
     height: 186px;
   }
   .carou__dots {
-    margin-top: 8px;
+    margin-top: var(--spacing-semantic-layout-inline-gap);
   }
   .cpn__body,
   .cpn {
-    gap: 16px;
+    gap: var(--spacing-semantic-layout-block-gap);
   }
   .sheet--day22 .cpn,
   .sheet--day22 .cpn__body {
-    gap: 24px;
+    gap: var(--spacing-semantic-layout-section-gap);
   }
   .day__foot {
-    padding-bottom: 12px;
+    padding-bottom: var(--spacing-semantic-layout-content-gap);
   }
   .day__foot .rule {
-    margin-bottom: 12px;
+    margin-bottom: var(--spacing-semantic-layout-content-gap);
+  }
+
+  /* Fixed 149px cutouts used to exceed the compact 112px band. */
+  .sheet--day21 .meme__photo,
+  .sheet--day22 .meme__photo {
+    height: 100%;
+  }
+
+  .day__band--locked .day__peek {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .cal__weekdays,
+  .cal__grid {
+    gap: var(--spacing-semantic-content-text-gap);
+  }
+
+  .cell {
+    /* layout-exception: seven equal calendar cells need tighter geometry at 320px. */
+    padding: 12px 4px 4px;
+  }
+
+  .cell__icon {
+    width: 18px;
+    height: 18px;
   }
 }

@@ -1,0 +1,15 @@
+:root {
+  /* Public product roles. Components and layouts consume this layer only. */
+  --spacing-semantic-layout-page-gutter: var(--spacing-alias-inset-default);
+  --spacing-semantic-layout-inline-gap: var(--spacing-alias-gap-inline);
+  --spacing-semantic-layout-content-gap: var(--spacing-alias-gap-stack);
+  --spacing-semantic-layout-block-gap: var(--spacing-alias-inset-default);
+  --spacing-semantic-layout-section-gap: var(--spacing-alias-gap-group);
+  --spacing-semantic-layout-page-inset: var(--spacing-alias-inset-page);
+  --spacing-semantic-content-text-gap: var(--spacing-alias-gap-text);
+  --spacing-semantic-control-padding-inline: var(--spacing-alias-inset-default);
+  --spacing-semantic-control-icon-gap: var(--spacing-alias-gap-inline);
+  --spacing-semantic-surface-padding: var(--spacing-alias-inset-default);
+  --spacing-semantic-surface-padding-spacious: var(--spacing-alias-gap-group);
+  --spacing-semantic-empty-state-padding: var(--spacing-alias-inset-empty);
+}

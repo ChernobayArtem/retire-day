@@ -1,0 +1,10 @@
+:root {
+  /* Compact universal distance scale. Product UI consumes semantic tokens only. */
+  --spacing-primitive-space-text: 4px;
+  --spacing-primitive-space-inline: 8px;
+  --spacing-primitive-space-stack: 12px;
+  --spacing-primitive-space-inset: 16px;
+  --spacing-primitive-space-group: 24px;
+  --spacing-primitive-space-section: 32px;
+  --spacing-primitive-space-empty: 48px;
+}
