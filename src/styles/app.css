@@ -618,7 +618,9 @@
   background: var(--color-semantic-background-surface-level-0);
 }
 .archive__back.ui-button {
-  margin: 0 0 var(--spacing-semantic-layout-content-gap) calc(0px - var(--spacing-semantic-content-text-gap));
+  /* A text-link aligns by its visible arrow, not transparent control padding. */
+  margin: 0 0 var(--spacing-semantic-layout-content-gap);
+  padding-inline: 0;
 }
 .archive__title {
   margin: 0;
@@ -657,7 +659,7 @@
 }
 .archive__list {
   display: grid;
-  gap: var(--spacing-semantic-layout-content-gap);
+  gap: var(--spacing-semantic-layout-block-gap);
 }
 .archive-card {
   position: relative;
@@ -765,10 +767,12 @@
   background: var(--color-semantic-background-surface-level-3);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-semantic-layout-inline-gap);
 }
 .archive-card__code {
-  flex: 1 1 auto;
+  /* Code and its copy action are one compact, centered cluster. */
+  flex: 0 1 auto;
   min-width: 0;
   color: var(--color-semantic-text-primary);
   font-size: 14px;
