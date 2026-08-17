@@ -291,15 +291,24 @@ the code type scale or the row gap changes, re-measure and update the contract.
 
 ## Icon alignment
 
-An inline icon takes the size of the text beside it through
-`--ui-button-icon-size: 1em`, so a 14px label carries a 14px icon.
+A `md` button carries 17px text with a 20px icon. An inline icon reads as a
+cap-height object, so it is deliberately a little taller than the label beside
+it rather than matched to the type size.
 
-Centring the boxes is not the same as centring what the eye sees: a text
-baseline sits below its box centre, so a geometrically centred icon reads as
-slightly too high. `--ui-control-icon-optical-shift` moves the icon back onto
-the optical centre of the glyphs. It is expressed in `em` so it follows the font
-size, and it was measured against Onest across the real button labels, where the
-optical centre varies by only 0.21px between strings.
+No optical correction is applied, and that is a measured decision rather than an
+omission. In Onest the baseline sits `(ascent - descent) / 2` below the centre
+of the line box, which lands within 0.5px of the cap-height centre — so the
+geometrically centred icon is already optically centred. Correcting towards the
+ink centre of a whole string instead is wrong: descenders in words like
+"Предыдущий" drag that centre down and push the icon visibly low.
+
+When judging alignment by eye, compare the icon centre with the centre of the
+capital letters, not with the centre of the text box or of the glyph ink.
+
+Because the button text is at its full size, the two `SheetFooter` labels stop
+fitting beside their icons below 360px. Trimming the gap or the icon does not
+recover enough room, so the footer drops the icons there and keeps the labels
+whole. Verified at 320/390/430 with no truncation and no horizontal overflow.
 
 ## Showcase and verification
 

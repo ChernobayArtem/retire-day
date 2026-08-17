@@ -43,7 +43,7 @@
   height: var(--ui-button-height-md);
   padding-inline: var(--spacing-semantic-control-padding-inline);
   border-radius: var(--ui-radius-control);
-  font-size: var(--ui-font-size-body);
+  font-size: var(--ui-font-size-subtitle);
 }
 
 .ui-button--sm {
@@ -126,7 +126,6 @@
   display: inline-grid;
   place-items: center;
   line-height: var(--ui-line-height-none);
-  transform: translateY(var(--ui-control-icon-optical-shift));
 }
 
 .ui-button__icon > svg {
@@ -501,6 +500,17 @@
 
   .ui-sheet-footer > .ui-button {
     padding-inline: var(--spacing-semantic-layout-inline-gap);
+  }
+}
+
+/* On the narrowest phones the two footer labels no longer fit beside their
+   icons at the full button text size, and a truncated "Предыдущий" is worse
+   than no icon. Trimming the gap or the icon does not recover enough room, so
+   the decoration goes and the label — the part that carries the meaning —
+   stays whole. */
+@media (max-width: 360px) {
+  .ui-sheet-footer .ui-button__icon {
+    display: none;
   }
 }
 
