@@ -265,6 +265,42 @@ The kit does not own:
 Those are product content or product behaviour. They may be composed with kit
 components, but must not become tokens or generic component props.
 
+## Target size
+
+Every interactive control must satisfy WCAG 2.2 SC 2.5.8 Target Size (Minimum):
+at least 24x24 CSS pixels, or a documented exception. `IconLink` is the only
+control below that minimum and relies on the spacing exception, which requires
+24px between the centres of adjacent targets.
+
+`design-tokens/target-size-contract.mjs` declares each control and the size it
+resolves to, and `npm run audit:target-size` enforces it as part of the build.
+The audit resolves token chains the way the browser does, so shrinking a control
+token, tightening the gap between stacked code rows, or adding a new control to
+`src/ui/ui.css` without declaring it all fail the build.
+
+Measured on a rendered page with the real stylesheets, identically at 320/390/430:
+
+| Context | Control | Centre distance | Requirement |
+| --- | --- | --- | --- |
+| Certificate row in the day sheet | 20x20 | 29.50px | 24px |
+| Certificate row in the archive card | 20x20 | 56px | 24px |
+
+The static audit checks the conservative form of that geometry — control size
+plus row gap — because a row is never shorter than the control inside it. When
+the code type scale or the row gap changes, re-measure and update the contract.
+
+## Icon alignment
+
+An inline icon takes the size of the text beside it through
+`--ui-button-icon-size: 1em`, so a 14px label carries a 14px icon.
+
+Centring the boxes is not the same as centring what the eye sees: a text
+baseline sits below its box centre, so a geometrically centred icon reads as
+slightly too high. `--ui-control-icon-optical-shift` moves the icon back onto
+the optical centre of the glyphs. It is expressed in `em` so it follows the font
+size, and it was measured against Onest across the real button labels, where the
+optical centre varies by only 0.21px between strings.
+
 ## Showcase and verification
 
 `src/ui/UIKitShowcase.tsx` is an internal catalogue with fictional content. It

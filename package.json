@@ -13,6 +13,7 @@
     "audit:contrast": "node scripts/audit-color-contrast.mjs",
     "audit:contrast:coverage": "node scripts/audit-contrast-coverage.mjs",
     "audit:contrast:strict": "node scripts/audit-color-contrast.mjs --strict && node scripts/audit-contrast-coverage.mjs",
+    "audit:target-size": "node scripts/audit-target-size.mjs",
     "audit:sensitive": "node scripts/audit-sensitive.mjs",
     "audit:sensitive:portable": "node scripts/audit-sensitive.mjs --allow-missing",
     "audit:vault": "node scripts/audit-vault.mjs",
@@ -23,7 +24,7 @@
     "tokens:spacing": "node scripts/export-spacing-tokens.mjs",
     "verify:design-system": "npm run build",
     "verify:release": "npm run test:encrypt && npm run audit:sensitive && npm run audit:vault && npm run verify:design-system && npm run audit:sensitive",
-    "build": "npm run audit:colors && npm run audit:spacing && npm run audit:icons && npm run audit:typography && npm run audit:contrast:strict && npm run audit:vault:portable && tsc && vite build && npm run audit:sensitive:portable",
+    "build": "npm run audit:colors && npm run audit:spacing && npm run audit:icons && npm run audit:typography && npm run audit:contrast:strict && npm run audit:target-size && npm run audit:vault:portable && tsc && vite build && npm run audit:sensitive:portable",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },

@@ -126,6 +126,7 @@
   display: inline-grid;
   place-items: center;
   line-height: var(--ui-line-height-none);
+  transform: translateY(var(--ui-control-icon-optical-shift));
 }
 
 .ui-button__icon > svg {

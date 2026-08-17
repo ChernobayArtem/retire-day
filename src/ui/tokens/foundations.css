@@ -99,7 +99,14 @@
   --ui-button-height-sm: var(--ui-layout-control-sm);
   --ui-button-height-md: var(--ui-layout-control-md);
   --ui-button-radius: var(--ui-radius-control);
-  --ui-button-icon-size: 18px;
+  /* An inline icon matches the size of the text it sits next to, so a 14px
+     label carries a 14px icon and a larger control scales with it. */
+  --ui-button-icon-size: 1em;
+  /* Centring the boxes is not the same as centring what the eye sees: the text
+     baseline sits below the box centre, so a geometrically centred icon reads
+     as too high. This nudges it back onto the optical centre of the glyphs.
+     Measured against Onest; keep it in em so it follows the font size. */
+  --ui-control-icon-optical-shift: 0.07em;
   --ui-icon-button-size-sm: var(--ui-layout-control-sm);
   --ui-icon-button-size-md: var(--ui-layout-control-md);
   --ui-field-height: var(--ui-layout-control-md);

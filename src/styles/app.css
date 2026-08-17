@@ -1511,8 +1511,15 @@
 .cert__tip {
   position: absolute;
   bottom: calc(100% + var(--spacing-semantic-layout-inline-gap));
-  left: 50%;
-  transform: translateX(-50%);
+  /* The copy action always sits at the right end of a centred code row, so a
+     tooltip centred on that 20px icon overflows the screen on a long code.
+     Anchor its right edge to the icon and let it open leftwards into the row:
+     the arrow still points at the icon and nothing can clip. */
+  right: 0;
+  left: auto;
+  /* Anchored to the right edge of a 20px button, shrink-to-fit would collapse
+     the tooltip to that width; max-content keeps it as wide as its label. */
+  width: max-content;
   white-space: nowrap;
   background: var(--color-semantic-background-tooltip);
   color: var(--color-semantic-text-inverse);
@@ -1527,8 +1534,9 @@
   content: '';
   position: absolute;
   top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  /* 5px keeps the 10px arrow centred over the 20px icon the tooltip belongs to. */
+  right: 5px;
+  left: auto;
   border: 5px solid var(--color-semantic-border-transparent);
   border-top-color: var(--color-semantic-shape-tooltip-pointer);
 }
