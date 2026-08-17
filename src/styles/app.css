@@ -1188,7 +1188,7 @@
   gap: var(--spacing-semantic-layout-inline-gap);
 }
 /* A locked day follows the normal sheet layout: title, note, the cat where a
-   meme would go, and only "Закрыть шторку" below, stretched across. */
+   meme would go, and only "Закрыть" below, stretched across. */
 .day__peek {
   position: absolute;
   left: 50%;

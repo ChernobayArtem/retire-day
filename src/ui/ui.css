@@ -284,10 +284,12 @@
   background: var(--color-semantic-background-transparent);
 }
 
+/* An icon-only button carries the same glyph as a button with a label, just
+   without the label, so both read from one size. */
 .ui-icon-button > svg,
 .ui-icon-button > .ui-icon-button__icon {
-  width: 20px;
-  height: 20px;
+  width: var(--ui-button-icon-size);
+  height: var(--ui-button-icon-size);
   display: block;
 }
 

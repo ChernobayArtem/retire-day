@@ -17,7 +17,7 @@ export function SheetFooter({
   showPrevious = true,
   previousDisabled = false,
   previousLabel = 'Предыдущий',
-  closeLabel = 'Закрыть шторку',
+  closeLabel = 'Закрыть',
   onPrevious,
   onClose,
 }: SheetFooterProps) {
