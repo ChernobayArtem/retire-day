@@ -7,6 +7,7 @@ import {
   Divider,
   EmptyState,
   IconButton,
+  IconLink,
   Icons,
   SheetFooter,
   Surface,
@@ -21,6 +22,8 @@ export default function UIKitShowcase() {
   const [selectedTab, setSelectedTab] = useState<ShowcaseTab>('overview')
   const [displayName, setDisplayName] = useState('Александра')
   const [copied, setCopied] = useState(false)
+  const [compactCopied, setCompactCopied] = useState(false)
+  const [inlineCopied, setInlineCopied] = useState(false)
 
   function leaveShowcase() {
     const url = new URL(window.location.href)
@@ -48,6 +51,24 @@ export default function UIKitShowcase() {
         </p>
       </header>
 
+      <section className="ui-showcase__section" aria-labelledby="showcase-foundations">
+        <h2 id="showcase-foundations">Основы</h2>
+        <div className="ui-showcase__foundation-grid">
+          <Surface variant="plain" className="ui-showcase__foundation-card">
+            <p className="ui-type-label">Поверхности</p>
+            <p className="ui-type-caption">canvas → level-0 → level-1 → level-2 → level-3</p>
+          </Surface>
+          <Surface variant="subtle" className="ui-showcase__foundation-card">
+            <p className="ui-type-label">Близость</p>
+            <p className="ui-type-caption">4–12px внутри группы · 16px+ между блоками</p>
+          </Surface>
+          <Surface variant="raised" className="ui-showcase__foundation-card">
+            <p className="ui-type-label">Контролы</p>
+            <p className="ui-type-caption">44/51px · focus-visible · reduced motion</p>
+          </Surface>
+        </div>
+      </section>
+
       <section className="ui-showcase__section" aria-labelledby="showcase-type">
         <div className="ui-showcase__section-heading">
           <h2 id="showcase-type">Типографика</h2>
@@ -68,31 +89,33 @@ export default function UIKitShowcase() {
 
       <section className="ui-showcase__section" aria-labelledby="showcase-buttons">
         <h2 id="showcase-buttons">Кнопки</h2>
-        <div className="ui-showcase__row">
-          <Button variant="primary" leadingIcon={<Icons.Sparkle />}>
-            Основное действие
-          </Button>
-          <Button variant="outline" leadingIcon={<Icons.ArrowLeft />}>
-            Белая кнопка
-          </Button>
-          <Button variant="soft" leadingIcon={<Icons.Grid />}>
-            Мягкий акцент
-          </Button>
-          <Button variant="action" leadingIcon={<Icons.Check />}>
-            Скопировать
-          </Button>
-          <Button variant="ghost" trailingIcon={<Icons.ChevronRight />}>
-            Без фона
-          </Button>
-          <Button variant="link">Текстовое действие</Button>
-        </div>
-        <div className="ui-showcase__row">
-          <Button size="sm" variant="outline">Маленькая</Button>
-          <Button variant="outline" disabled>Недоступна</Button>
-          <Button variant="outline" loading>Загрузка</Button>
-          <Button variant="outline" fullWidth leadingIcon={<Icons.Check />}>
-            Кнопка на всю ширину
-          </Button>
+        <div className="ui-showcase__stack">
+          <div className="ui-showcase__row">
+            <Button variant="primary" leadingIcon={<Icons.Sparkle />}>
+              Основное действие
+            </Button>
+            <Button variant="outline" leadingIcon={<Icons.ArrowLeft />}>
+              Белая кнопка
+            </Button>
+            <Button variant="soft" leadingIcon={<Icons.Grid />}>
+              Мягкий акцент
+            </Button>
+            <Button variant="action" leadingIcon={<Icons.Check />}>
+              Скопировать
+            </Button>
+            <Button variant="ghost" trailingIcon={<Icons.ChevronRight />}>
+              Без фона
+            </Button>
+            <Button variant="link">Текстовое действие</Button>
+          </div>
+          <div className="ui-showcase__row">
+            <Button size="sm" variant="outline">Маленькая</Button>
+            <Button variant="outline" disabled>Недоступна</Button>
+            <Button variant="primary" loading>Загрузка</Button>
+            <Button variant="outline" fullWidth leadingIcon={<Icons.Check />}>
+              Кнопка на всю ширину
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -108,6 +131,7 @@ export default function UIKitShowcase() {
             icon={<Icons.Close />}
             aria-label="Закрыть пример"
             variant="ghost"
+            size="sm"
           />
           <IconButton
             icon={<Icons.Sparkle />}
@@ -115,11 +139,60 @@ export default function UIKitShowcase() {
             variant="soft"
           />
           <IconButton
+            icon={<CopyIcon />}
+            aria-label="Скопировать пример"
+            variant="action"
+          />
+          <IconButton
             icon={<Icons.Check />}
             aria-label="Сохранено"
             variant="primary"
             disabled
           />
+          <IconButton
+            icon={<Icons.Download />}
+            aria-label="Скачать пример"
+            variant="outline"
+            loading
+          />
+        </div>
+      </section>
+
+      <section className="ui-showcase__section" aria-labelledby="showcase-inline-action">
+        <h2 id="showcase-inline-action">Компактное действие</h2>
+        <div className="ui-showcase__inline-action-grid">
+          <Surface variant="subtle" className="ui-showcase__foundation-card">
+            <div className="ui-showcase__code-cluster">
+              <span className="ui-showcase__code-value">DEMO-1234</span>
+              <IconLink
+                icon={inlineCopied ? <Icons.Check /> : <CopyIcon />}
+                aria-label="Скопировать демонстрационный код"
+                onClick={() => {
+                  setInlineCopied(true)
+                  window.setTimeout(() => setInlineCopied(false), 1400)
+                }}
+              />
+              <span className="ui-visually-hidden" role="status" aria-live="polite">
+                {inlineCopied ? 'Код скопирован' : ''}
+              </span>
+            </div>
+            <p className="ui-type-caption ui-showcase__inline-note">
+              20px без padding, 8px от связанного кода.
+            </p>
+          </Surface>
+          <Surface variant="subtle" className="ui-showcase__foundation-card">
+            <div className="ui-showcase__code-cluster">
+              <span className="ui-showcase__code-value">DEMO-5678</span>
+              <IconLink
+                icon={<CopyIcon />}
+                aria-label="Копирование недоступно"
+                disabled
+              />
+            </div>
+            <p className="ui-type-caption ui-showcase__inline-note">
+              Используется только рядом со значением, не как самостоятельная кнопка.
+            </p>
+          </Surface>
         </div>
       </section>
 
@@ -141,8 +214,14 @@ export default function UIKitShowcase() {
             fullWidth
           />
           <TextField
-            label="Код из примера"
+            label="Поле только для чтения"
             value="DEMO-0000"
+            readOnly
+            fullWidth
+          />
+          <TextField
+            label="Код из примера"
+            value="DEMO-0001"
             error="Этот демонстрационный код уже использован."
             readOnly
             fullWidth
@@ -158,44 +237,48 @@ export default function UIKitShowcase() {
 
       <section className="ui-showcase__section" aria-labelledby="showcase-tabs">
         <h2 id="showcase-tabs">Табы и метаданные</h2>
-        <TabsList aria-label="Разделы демонстрации">
-          <Tab
-            id="showcase-tab-overview"
-            selected={selectedTab === 'overview'}
-            aria-controls="showcase-tab-panel"
-            icon={<Icons.Sparkle />}
-            onClick={() => setSelectedTab('overview')}
+        <div className="ui-showcase__stack">
+          <TabsList aria-label="Разделы демонстрации">
+            <Tab
+              id="showcase-tab-overview"
+              selected={selectedTab === 'overview'}
+              aria-controls="showcase-tab-panel"
+              icon={<Icons.Sparkle />}
+              badge={<Badge>3</Badge>}
+              onClick={() => setSelectedTab('overview')}
+            >
+              Обзор
+            </Tab>
+            <Tab
+              id="showcase-tab-saved"
+              selected={selectedTab === 'saved'}
+              aria-controls="showcase-tab-panel"
+              icon={<Icons.Grid />}
+              badge={<Badge>8</Badge>}
+              onClick={() => setSelectedTab('saved')}
+            >
+              Сохранённое
+            </Tab>
+            <Tab
+              id="showcase-tab-settings"
+              selected={selectedTab === 'settings'}
+              aria-controls="showcase-tab-panel"
+              onClick={() => setSelectedTab('settings')}
+            >
+              Настройки
+            </Tab>
+          </TabsList>
+          <div
+            id="showcase-tab-panel"
+            className="ui-showcase__row"
+            role="tabpanel"
+            aria-labelledby={`showcase-tab-${selectedTab}`}
+            aria-live="polite"
           >
-            Обзор
-          </Tab>
-          <Tab
-            id="showcase-tab-saved"
-            selected={selectedTab === 'saved'}
-            aria-controls="showcase-tab-panel"
-            icon={<Icons.Grid />}
-            onClick={() => setSelectedTab('saved')}
-          >
-            Сохранённое
-          </Tab>
-          <Tab
-            id="showcase-tab-settings"
-            selected={selectedTab === 'settings'}
-            aria-controls="showcase-tab-panel"
-            onClick={() => setSelectedTab('settings')}
-          >
-            Настройки
-          </Tab>
-        </TabsList>
-        <div
-          id="showcase-tab-panel"
-          className="ui-showcase__row"
-          role="tabpanel"
-          aria-labelledby={`showcase-tab-${selectedTab}`}
-          aria-live="polite"
-        >
-          <Badge variant="accent">Выбрано: {selectedTab}</Badge>
-          <Badge>3 примера</Badge>
-          <Badge>Демо</Badge>
+            <Badge variant="accent">Выбрано: {selectedTab}</Badge>
+            <Badge>3 примера</Badge>
+            <Badge>Демо</Badge>
+          </div>
         </div>
       </section>
 
@@ -229,29 +312,47 @@ export default function UIKitShowcase() {
 
       <section className="ui-showcase__section" aria-labelledby="showcase-patterns">
         <h2 id="showcase-patterns">Готовые паттерны</h2>
-        <div className="ui-showcase__row">
-          <CopyAction
-            copied={copied}
-            onClick={() => {
-              setCopied(true)
-              window.setTimeout(() => setCopied(false), 1400)
-            }}
-          />
+        <div className="ui-showcase__stack">
+          <div className="ui-showcase__row">
+            <CopyAction
+              copied={copied}
+              onClick={() => {
+                setCopied(true)
+                window.setTimeout(() => setCopied(false), 1400)
+              }}
+            />
+            <CopyAction
+              copied={compactCopied}
+              variant="link"
+              size="sm"
+              onClick={() => {
+                setCompactCopied(true)
+                window.setTimeout(() => setCompactCopied(false), 1400)
+              }}
+            />
+          </div>
+          <div className="ui-showcase__pattern-grid">
+            <Surface variant="subtle" className="ui-showcase__pattern-card">
+              <p className="ui-type-caption">Обычный день</p>
+              <SheetFooter onPrevious={() => {}} onClose={() => {}} />
+            </Surface>
+            <Surface variant="subtle" className="ui-showcase__pattern-card">
+              <p className="ui-type-caption">Первый доступный день</p>
+              <SheetFooter previousDisabled onPrevious={() => {}} onClose={() => {}} />
+            </Surface>
+            <Surface variant="subtle" className="ui-showcase__pattern-card">
+              <p className="ui-type-caption">Закрытый день</p>
+              <SheetFooter showPrevious={false} onClose={() => {}} />
+            </Surface>
+            <Surface variant="subtle" className="ui-showcase__pattern-card">
+              <EmptyState
+                icon={<Icons.Sparkle />}
+                title="Пока здесь пусто"
+                description="Демонстрационный элемент появится после нужного действия."
+              />
+            </Surface>
+          </div>
         </div>
-        <Surface variant="subtle" className="ui-showcase__pattern">
-          <SheetFooter
-            previousDisabled
-            onPrevious={() => {}}
-            onClose={() => {}}
-          />
-        </Surface>
-        <Surface variant="subtle" className="ui-showcase__pattern">
-          <EmptyState
-            icon={<Icons.Sparkle />}
-            title="Пока здесь пусто"
-            description="Демонстрационный элемент появится после нужного действия."
-          />
-        </Surface>
       </section>
 
       <section className="ui-showcase__section" aria-labelledby="showcase-icons">

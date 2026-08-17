@@ -786,8 +786,7 @@
   font-weight: var(--ui-font-weight-600);
   user-select: none;
 }
-.archive-card__icon-action.ui-icon-button {
-  background: var(--color-semantic-button-outline-background);
+.archive-card__icon-action.ui-icon-link {
   color: var(--color-semantic-button-action-foreground);
 }
 .archive-card__video-head {
@@ -1505,9 +1504,8 @@
 .cert__label {
   user-select: none;
 }
-.cert__copy.ui-icon-button {
+.cert__copy.ui-icon-link {
   position: relative;
-  flex: none;
   color: var(--color-semantic-button-action-foreground);
 }
 .cert__tip {

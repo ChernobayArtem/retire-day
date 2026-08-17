@@ -34,6 +34,7 @@ export {
   type IconButtonProps,
   type IconButtonVariant,
 } from './IconButton'
+export { IconLink, type IconLinkProps } from './IconLink'
 export { EmptyState, type EmptyStateProps } from './EmptyState'
 export { SheetFooter, type SheetFooterProps } from './SheetFooter'
 export {
@@ -42,5 +43,5 @@ export {
   type SurfaceProps,
   type SurfaceVariant,
 } from './Surface'
-export { Tab, TabsList, type TabProps, type TabsListProps, type TabsOrientation } from './Tabs'
+export { Tab, TabsList, type TabProps, type TabsListProps } from './Tabs'
 export { TextField, type TextFieldProps } from './TextField'

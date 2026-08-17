@@ -3,7 +3,7 @@ import type { CertCode } from '../content/days'
 import EncImg from './EncImg'
 import { trackGoal } from '../lib/analytics'
 import { recordJourneyInteraction } from '../lib/journey'
-import { CopyIcon, IconButton, Icons } from '../ui'
+import { CopyIcon, IconLink, Icons } from '../ui'
 
 interface Props {
   day: number
@@ -75,10 +75,8 @@ function CodeRow({
         {code.label && <span className="cert__label">{code.label} </span>}
         {code.value}
       </span>
-      <IconButton
+      <IconLink
         className="cert__copy"
-        variant="ghost"
-        size="sm"
         onClick={handleCopy}
         aria-label={`Скопировать ${code.label ?? 'код'}`}
         icon={
@@ -88,6 +86,9 @@ function CodeRow({
           </>
         }
       />
+      <span className="ui-visually-hidden" role="status" aria-live="polite">
+        {copied ? 'Код скопирован' : ''}
+      </span>
     </div>
   )
 }

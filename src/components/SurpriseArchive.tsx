@@ -19,7 +19,7 @@ import {
   CopyAction,
   CopyIcon,
   EmptyState,
-  IconButton,
+  IconLink,
   Icons,
   Surface,
   Tab,
@@ -317,10 +317,8 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
                     {code.label && <span className="archive-card__code-label">{code.label} </span>}
                     {code.value}
                   </div>
-                  <IconButton
+                  <IconLink
                     className="archive-card__icon-action"
-                    size="sm"
-                    variant="ghost"
                     onClick={() =>
                       onCopy(key, code.value, {
                         day: def.day,
@@ -331,6 +329,9 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
                     aria-label={`Скопировать ${code.label ?? 'код'}`}
                     icon={copiedKey === key ? <Icons.Check /> : <CopyIcon />}
                   />
+                  <span className="ui-visually-hidden" role="status" aria-live="polite">
+                    {copiedKey === key ? 'Код скопирован' : ''}
+                  </span>
                 </div>
               )
             })}

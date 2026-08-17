@@ -61,6 +61,19 @@ const BASE64_PATTERN = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/
 const issues = []
 const addIssue = (code, message) => issues.push({ code, message })
 
+// A bare `catch {}` around a decrypt reports every failure — a failed read, an
+// exhausted file handle, an out-of-memory abort — as a cryptographic
+// authentication failure, which reads like corrupted vault data. Keep the cause
+// so a transient I/O fault is never mistaken for a broken blob. Only the error
+// identity is reported: never a path, key, or any decrypted content.
+function describeError(error) {
+  const code = error?.code
+  if (typeof code === 'string' && code) return code
+  const name = error?.name
+  if (typeof name === 'string' && name) return name
+  return 'unknown error'
+}
+
 const allowedFlags = new Set(['--allow-missing-local', '--allow-missing-origin'])
 for (const argument of process.argv.slice(2)) {
   if (!allowedFlags.has(argument)) {
@@ -811,48 +824,73 @@ if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
           } else {
             wrapVerificationCount++
           }
-        } catch {
-          addIssue('PASSWORD_WRAP_AUTH', 'a password wrap failed authenticated decryption')
+        } catch (error) {
+          addIssue(
+            'PASSWORD_WRAP_AUTH',
+            `a password wrap failed authenticated decryption (${describeError(error)})`,
+          )
         }
       }
     }
 
     let contentShape = null
     if (decodedContentIv && contentFileReady) {
+      let contentCiphertext = null
       try {
-        const ciphertext = await readFile(contentPath)
-        const plaintext = await decryptAesGcm(localCek, decodedContentIv, ciphertext)
-        let decodedContent
+        contentCiphertext = await readFile(contentPath)
+      } catch (error) {
+        addIssue('CONTENT_READ', `encrypted content could not be read (${describeError(error)})`)
+      }
+      if (contentCiphertext !== null) {
+        let plaintext = null
         try {
-          decodedContent = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(plaintext))
-        } catch {
-          addIssue('CONTENT_JSON_AUTH', 'authenticated content is not valid UTF-8 JSON')
+          plaintext = await decryptAesGcm(localCek, decodedContentIv, contentCiphertext)
+        } catch (error) {
+          addIssue(
+            'CONTENT_AUTH',
+            `content failed AES-GCM authenticated decryption (${describeError(error)})`,
+          )
         }
-        if (decodedContent !== undefined) {
-          contentShape = validateContentShape(decodedContent)
-          dayCount = contentShape.dayCount
-          if (localDays) {
-            const currentBytes = Buffer.from(JSON.stringify(decodedContent))
-            const sourceBytes = Buffer.from(JSON.stringify(localDays))
-            if (
-              currentBytes.length !== sourceBytes.length ||
-              !timingSafeEqual(currentBytes, sourceBytes)
-            ) {
-              addIssue('LOCAL_CONTENT_MISMATCH', 'encrypted content differs from the local content source')
-            } else {
-              localContentMatch = true
+        if (plaintext !== null) {
+          let decodedContent
+          try {
+            decodedContent = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(plaintext))
+          } catch {
+            addIssue('CONTENT_JSON_AUTH', 'authenticated content is not valid UTF-8 JSON')
+          }
+          if (decodedContent !== undefined) {
+            contentShape = validateContentShape(decodedContent)
+            dayCount = contentShape.dayCount
+            if (localDays) {
+              const currentBytes = Buffer.from(JSON.stringify(decodedContent))
+              const sourceBytes = Buffer.from(JSON.stringify(localDays))
+              if (
+                currentBytes.length !== sourceBytes.length ||
+                !timingSafeEqual(currentBytes, sourceBytes)
+              ) {
+                addIssue('LOCAL_CONTENT_MISMATCH', 'encrypted content differs from the local content source')
+              } else {
+                localContentMatch = true
+              }
             }
           }
         }
-      } catch {
-        addIssue('CONTENT_AUTH', 'content failed AES-GCM authenticated decryption')
       }
     }
 
     for (const [file, record] of mediaRecordsByFile) {
       if (!regularMediaFiles.has(file)) continue
+      let ciphertext
       try {
-        const ciphertext = await readFile(path.join(mediaDir, file))
+        ciphertext = await readFile(path.join(mediaDir, file))
+      } catch (error) {
+        addIssue(
+          'MEDIA_READ',
+          `an encrypted media blob could not be read (${describeError(error)})`,
+        )
+        continue
+      }
+      try {
         const plaintext = await decryptAesGcm(localCek, record.iv, ciphertext)
         const actualSha = createHash('sha256').update(plaintext).digest('hex').slice(0, 16)
         if (actualSha !== record.sha) {
@@ -860,8 +898,11 @@ if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
         } else {
           decryptedBlobCount++
         }
-      } catch {
-        addIssue('MEDIA_AUTH', 'an encrypted media blob failed AES-GCM authenticated decryption')
+      } catch (error) {
+        addIssue(
+          'MEDIA_AUTH',
+          `an encrypted media blob failed AES-GCM authenticated decryption (${describeError(error)})`,
+        )
       }
     }
 

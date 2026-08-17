@@ -150,14 +150,33 @@ are `sm` and `md`. The canonical white application button is
 
 Use `IconButton` only when the icon is a familiar action in context. Every icon
 button requires a concise `aria-label`; a tooltip is supplementary, not a
-replacement for its accessible name.
+replacement for its accessible name. Its variants are `outline`, `primary`,
+`soft`, `action`, and `ghost`; sizes are `sm` and `md`. Use it for a standalone
+control with a perimeter of at least 44px (the current `sm` and `md` controls
+are 44px and 51px respectively). Use `loading` while an icon-only action is in
+progress.
+
+### IconLink
+
+`IconLink` is the compact no-padding inline variant for a familiar action that
+belongs directly to adjacent content, such as copying a certificate code. It
+is a semantic HTML `button`, not a navigation link, and has a visible 20px
+icon only, so it must have a concise `aria-label`. Keep it at the standard 8px
+gap from the value it operates on. Its compact target is allowed only through
+the inline-target exception: it must sit directly beside that value, never
+alone in a control bar. Do not use it as a general touch control or standalone
+primary action; use `IconButton` when the action needs its own 44px-or-larger
+control perimeter.
 
 ### TextField
 
 `TextField` owns its label, hint, error, icon positions, focus, and disabled
 states. Use `label` whenever the field's purpose is not already permanently
 visible. An error replaces supporting guidance and must explain how to recover.
-Placeholders are examples, not labels.
+Placeholders are examples, not labels. The only label-less exception is a
+field whose purpose is permanently obvious in the surrounding UI: it still
+needs a concise `aria-label`. Its 17px input text is a documented iOS
+Safari/PWA focus-zoom prevention exception, not an additional text role.
 
 ### Surface and Divider
 
@@ -174,8 +193,11 @@ the page hierarchy.
 ### TabsList and Tab
 
 `TabsList` groups related views at the same hierarchy level. Each `Tab` receives
-an explicit `selected` state. Tabs are not filters, buttons for unrelated
-actions, or a way to reveal unreleased surprise categories.
+an explicit `selected` state. The kit supports one horizontal, scrollable tab
+pattern; do not create a vertical variation without a real product consumer.
+Use `badge` only for compact tab metadata such as an available-item count. Tabs
+are not filters, buttons for unrelated actions, or a way to reveal unreleased
+surprise categories.
 
 ### Badge
 
@@ -186,9 +208,33 @@ through colour alone.
 ### Product patterns
 
 - `CopyAction` owns the copy/copy-complete labels and canonical copy/check
-  icons while the product remains responsible for the clipboard operation.
+  icons while the product remains responsible for the clipboard operation. It
+  inherits `Button`'s `variant` and `size`, and announces copy completion to
+  assistive technology.
 - `SheetFooter` owns the paired previous/close controls used by day sheets.
 - `EmptyState` owns the proximity and type hierarchy of empty collections.
+  It deliberately has no action slot: put a context-specific action beside the
+  state in its parent instead of turning an empty state into a generic card.
+
+## Catalogue coverage
+
+`UIKitShowcase` is deliberately a compact contract catalogue, not a second
+application. It shows the states that the product actually uses or can reuse:
+
+| Family | Catalogue coverage |
+| --- | --- |
+| Foundations | Semantic surface hierarchy, proximity rule, control/motion contract |
+| Button | All six variants; `sm`, disabled, loading and full-width states |
+| IconButton | All five variants; `sm`, disabled and loading states |
+| IconLink | Real code cluster, copied feedback and disabled state |
+| TextField | Label, hint, icons, read-only, error and disabled states |
+| Tabs and Badge | Horizontal selection, icon and compact count badge |
+| Surface and Divider | All four surfaces plus horizontal and vertical separation |
+| Product patterns | Default, first-day and locked `SheetFooter`; compact and regular copy; empty state |
+
+Do not add a showcase example merely to enumerate every theoretical prop
+combination. Add one only when the product uses it or it is an intentional,
+documented reusable contract.
 
 ## Icons
 

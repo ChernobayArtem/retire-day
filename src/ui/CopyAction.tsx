@@ -20,13 +20,18 @@ export const CopyAction = forwardRef<HTMLButtonElement, CopyActionProps>(functio
   ref,
 ) {
   return (
-    <Button
-      {...props}
-      ref={ref}
-      variant={variant}
-      trailingIcon={copied ? <Check /> : <CopyIcon />}
-    >
-      {copied ? copiedLabel : label}
-    </Button>
+    <>
+      <Button
+        {...props}
+        ref={ref}
+        variant={variant}
+        trailingIcon={copied ? <Check /> : <CopyIcon />}
+      >
+        {copied ? copiedLabel : label}
+      </Button>
+      <span className="ui-visually-hidden" role="status" aria-live="polite">
+        {copied ? copiedLabel : ''}
+      </span>
+    </>
   )
 })

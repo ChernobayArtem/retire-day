@@ -89,6 +89,9 @@ size, line-height, tracking and meaning, merge them.
 - Do not use letter-spacing to compensate for a wrong font size or weight.
 - Keep color hierarchy separate from typography hierarchy: use semantic color
   tokens rather than inventing a new text style for muted content.
+- `TextField` uses the existing 17px `subtitle` foundation only as a documented
+  platform exception that prevents iOS Safari/PWA focus zoom. It is not a
+  seventh semantic type role and must not be reused as an ad-hoc text style.
 
 ## Russian line wrapping
 

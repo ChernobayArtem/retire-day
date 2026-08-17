@@ -7,14 +7,10 @@ import {
 } from 'react'
 import { classNames } from './classNames'
 
-export type TabsOrientation = 'horizontal' | 'vertical'
-
-export interface TabsListProps extends HTMLAttributes<HTMLDivElement> {
-  orientation?: TabsOrientation
-}
+export interface TabsListProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
-  { className, onKeyDown, orientation = 'horizontal', role = 'tablist', ...props },
+  { className, onKeyDown, role = 'tablist', ...props },
   ref,
 ) {
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
@@ -33,16 +29,10 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsL
     let nextIndex: number | undefined
     if (event.key === 'Home') nextIndex = 0
     if (event.key === 'End') nextIndex = tabs.length - 1
-    if (orientation === 'horizontal' && event.key === 'ArrowRight') {
+    if (event.key === 'ArrowRight') {
       nextIndex = (currentIndex + 1) % tabs.length
     }
-    if (orientation === 'horizontal' && event.key === 'ArrowLeft') {
-      nextIndex = (currentIndex - 1 + tabs.length) % tabs.length
-    }
-    if (orientation === 'vertical' && event.key === 'ArrowDown') {
-      nextIndex = (currentIndex + 1) % tabs.length
-    }
-    if (orientation === 'vertical' && event.key === 'ArrowUp') {
+    if (event.key === 'ArrowLeft') {
       nextIndex = (currentIndex - 1 + tabs.length) % tabs.length
     }
 
@@ -57,8 +47,8 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsL
       {...props}
       ref={ref}
       role={role}
-      aria-orientation={orientation}
-      className={classNames('ui-tabs', `ui-tabs--${orientation}`, className)}
+      aria-orientation="horizontal"
+      className={classNames('ui-tabs', className)}
       onKeyDown={handleKeyDown}
     />
   )
