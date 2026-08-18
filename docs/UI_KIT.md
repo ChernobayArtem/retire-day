@@ -146,6 +146,11 @@ are `sm` and `md`. The canonical white application button is
 - `action` is the blue-on-soft-blue treatment used for copy actions.
 - Never place one interactive element inside another.
 
+The `md` button renders its label at `subtitle` (17px, `medium`) rather than the
+`label` role that governs tabs, inputs and `.ui-button--sm`. That divergence is
+deliberate and is justified in `docs/TYPOGRAPHY_SYSTEM.md`; keep the two
+documents in step if the size changes.
+
 ### IconButton
 
 Use `IconButton` only when the icon is a familiar action in context. Every icon

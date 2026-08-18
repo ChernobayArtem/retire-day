@@ -76,6 +76,29 @@ meaning is genuinely different. Do not add `heading-2`, `heading-3`,
 `heading-new` or a one-off screen name. If two styles have the same family,
 size, line-height, tracking and meaning, merge them.
 
+### Documented exception: the `md` button label
+
+`label` covers tabs, inputs and compact actions, and `.ui-button--sm` uses it.
+The `md` button does not: it renders at `subtitle` (17px) with `medium` (500).
+
+This is deliberate. The `md` button is the primary action of a sheet, and at
+14px its label read as secondary against the surrounding content — the reason
+this exception was raised in the first place. 17px is not a new role: it is the
+size the `TextField` control already uses, so a button and a field sitting on
+the same surface now share one optical weight. The lighter `medium` weight
+keeps a 17px label from shouting where 14px `semibold` was compensating for
+being small.
+
+The exception is confined to `.ui-button--md`. Do not widen it to `label`
+itself: that role is shared with tabs and fields, which are correct at 14px and
+would grow with it. If a future control needs the same treatment, extend this
+note rather than promoting `subtitle` into a general button role.
+
+The cost is that the button no longer inherits from the semantic layer, so a
+change to `label` will not reach it. `docs/UI_KIT.md` records the measured
+geometry that depends on this size, including the 360px breakpoint where the
+sheet footer drops its icons to keep both labels whole.
+
 ## Readability rules
 
 - Body text is 14px in the current mobile product; increase size for content
