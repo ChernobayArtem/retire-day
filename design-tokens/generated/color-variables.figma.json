@@ -546,8 +546,8 @@
           "codeSyntax": {
             "WEB": "var(--color-primitive-red-contrast)"
           },
-          "value": "#a93235",
-          "resolvedValue": "#a93235",
+          "value": "#b02d50",
+          "resolvedValue": "#b02d50",
           "description": "Сырой оттенок палитры red с ролью «contrast». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -563,9 +563,26 @@
           "codeSyntax": {
             "WEB": "var(--color-primitive-red-strong)"
           },
-          "value": "#8f2930",
-          "resolvedValue": "#8f2930",
+          "value": "#992545",
+          "resolvedValue": "#992545",
           "description": "Сырой оттенок палитры red с ролью «strong». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
+          "scopes": [],
+          "hiddenFromPublishing": true
+        },
+        {
+          "cssName": "--color-primitive-red-danger",
+          "collection": "color-primitives",
+          "name": "red/danger",
+          "type": "COLOR",
+          "layer": "primitive",
+          "status": "internal",
+          "source": "src/ui/tokens/color-primitives.css",
+          "codeSyntax": {
+            "WEB": "var(--color-primitive-red-danger)"
+          },
+          "value": "#a93235",
+          "resolvedValue": "#a93235",
+          "description": "Сырой оттенок палитры red с ролью «danger». Имя описывает визуальную интенсивность или техническое назначение, а не конкретный экран. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
         },
@@ -920,8 +937,8 @@
           "codeSyntax": {
             "WEB": "var(--color-primitive-alpha-red-focus)"
           },
-          "value": "rgba(169, 50, 53, 0.7)",
-          "resolvedValue": "rgba(169, 50, 53, 0.7)",
+          "value": "rgba(176, 45, 80, 0.7)",
+          "resolvedValue": "rgba(176, 45, 80, 0.7)",
           "description": "Прозрачный примитив red с ролью «focus». Имя описывает назначение и не является semantic-токеном. Только источник для alias-переменных; напрямую в макетах и компонентах не применять. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -1077,7 +1094,7 @@
               "name": "red/contrast"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: text/brand, icon/brand, button/primary/background, button/primary/border, button/soft/foreground, shape/carousel/active. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -1100,7 +1117,7 @@
               "name": "red/strong"
             }
           },
-          "resolvedValue": "#8f2930",
+          "resolvedValue": "#992545",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: button/primary/background/hover, button/primary/border/hover. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -1302,9 +1319,9 @@
           },
           "value": {
             "alias": {
-              "cssName": "--color-primitive-red-contrast",
+              "cssName": "--color-primitive-red-danger",
               "collection": "color-primitives",
-              "name": "red/contrast"
+              "name": "red/danger"
             }
           },
           "resolvedValue": "#a93235",
@@ -1859,7 +1876,7 @@
               "name": "red/contrast"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: border/brand. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -1882,7 +1899,7 @@
               "name": "red/strong"
             }
           },
-          "resolvedValue": "#8f2930",
+          "resolvedValue": "#992545",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: border/brand/strong. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -2181,7 +2198,7 @@
               "name": "alpha/red/focus"
             }
           },
-          "resolvedValue": "rgba(169, 50, 53, 0.7)",
+          "resolvedValue": "rgba(176, 45, 80, 0.7)",
           "description": "Промежуточное решение палитры между primitive и semantic слоями. Питает semantic-роли: effect/focus/ring. Напрямую к макетам и компонентам не привязывать. Scope Figma отключён.",
           "scopes": [],
           "hiddenFromPublishing": true
@@ -2476,7 +2493,7 @@
               "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Функциональный брендовый акцент в тексте: активное или текущее состояние. Scope Figma: Text — переменная показывается только для заливки текста.",
           "scopes": [
             "TEXT_FILL"
@@ -2629,7 +2646,7 @@
               "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Функциональные брендовые иконки активного или текущего состояния. Scope Figma: Shape — переменная показывается только для заливки геометрических форм. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "SHAPE_FILL",
@@ -3156,7 +3173,7 @@
               "name": "border/brand"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Брендовая обводка активного, текущего или сфокусированного элемента. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -3181,7 +3198,7 @@
               "name": "border/brand/strong"
             }
           },
-          "resolvedValue": "#8f2930",
+          "resolvedValue": "#992545",
           "description": "Усиленная брендовая обводка выбранного таба или акцентной поверхности. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -3408,7 +3425,7 @@
               "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Фон главной брендовой кнопки в обычном состоянии. Scope Figma: Frame — переменная показывается только для заливки Frame.",
           "scopes": [
             "FRAME_FILL"
@@ -3433,7 +3450,7 @@
               "name": "brand/strong"
             }
           },
-          "resolvedValue": "#8f2930",
+          "resolvedValue": "#992545",
           "description": "Фон главной брендовой кнопки при hover или pressed. Scope Figma: Frame — переменная показывается только для заливки Frame.",
           "scopes": [
             "FRAME_FILL"
@@ -3458,7 +3475,7 @@
               "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Обводка главной брендовой кнопки в обычном состоянии. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -3483,7 +3500,7 @@
               "name": "brand/strong"
             }
           },
-          "resolvedValue": "#8f2930",
+          "resolvedValue": "#992545",
           "description": "Обводка главной брендовой кнопки при hover или pressed. Scope Figma: Stroke — переменная показывается только для обводки.",
           "scopes": [
             "STROKE_COLOR"
@@ -3585,7 +3602,7 @@
               "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Текст и системная иконка мягкой брендовой кнопки. Scope Figma: Text, Shape и Stroke — единый foreground намеренно окрашивает label, fill-иконку и stroke-иконку внутри одного контрола.",
           "scopes": [
             "SHAPE_FILL",
@@ -3766,7 +3783,7 @@
               "name": "brand/contrast"
             }
           },
-          "resolvedValue": "#a93235",
+          "resolvedValue": "#b02d50",
           "description": "Активная точка пагинации фотокарусели. Scope Figma: Shape — переменная показывается только для заливки геометрических форм.",
           "scopes": [
             "SHAPE_FILL"
@@ -4341,7 +4358,7 @@
               "name": "focus/default"
             }
           },
-          "resolvedValue": "rgba(169, 50, 53, 0.7)",
+          "resolvedValue": "rgba(176, 45, 80, 0.7)",
           "description": "Цвет внешнего focus ring интерактивного элемента, реализованного эффектом. Scope Figma: Effects — переменная показывается только для цвета тени или другого эффекта.",
           "scopes": [
             "EFFECT_COLOR"

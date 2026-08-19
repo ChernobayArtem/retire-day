@@ -16,7 +16,7 @@
   --color-alias-action-default: var(--color-primitive-blue-electric);
   --color-alias-action-subtle: var(--color-primitive-blue-faint);
   --color-alias-action-hover: var(--color-primitive-blue-soft);
-  --color-alias-danger-default: var(--color-primitive-red-contrast);
+  --color-alias-danger-default: var(--color-primitive-red-danger);
   --color-alias-danger-subtle: var(--color-primitive-alpha-red-subtle);
   --color-alias-disabled-background: var(--color-primitive-neutral-faint);
   --color-alias-disabled-foreground: var(--color-primitive-neutral-muted);

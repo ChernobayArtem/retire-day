@@ -810,11 +810,12 @@ export const contrastExemptions = Object.freeze([
 ])
 
 export const accessibleValues = Object.freeze({
-  '--color-alias-brand-contrast': '#A93235',
-  '--color-alias-brand-strong': '#8F2930',
+  '--color-alias-brand-contrast': '#B02D50',
+  '--color-alias-brand-strong': '#992545',
+  '--color-alias-danger-default': '#A93235',
   '--color-alias-surface-message': '#006FC9',
   '--color-alias-secondary-default': '#6E676C',
   '--color-alias-border-default': '#8A8A8A',
-  '--color-alias-focus-default': 'rgba(169, 50, 53, 0.70)',
+  '--color-alias-focus-default': 'rgba(176, 45, 80, 0.70)',
   '--color-alias-overlay-control': 'rgba(0, 0, 0, 0.55)',
 })
