@@ -1,0 +1,6 @@
+# Revisions to skip in `git blame` — bulk mechanical reformats, not real changes.
+# GitHub honours this file automatically. Locally, enable it once with:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Format the entire codebase with Prettier
+291a2b5fc43e26c75920ae1590ed39194ed93882

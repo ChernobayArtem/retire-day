@@ -24,7 +24,7 @@
     "tokens:spacing": "node scripts/export-spacing-tokens.mjs",
     "verify:design-system": "npm run build",
     "verify:release": "npm run test:encrypt && npm run audit:sensitive && npm run audit:vault && npm run verify:design-system && npm run audit:sensitive",
-    "build": "npm run lint && npm run test && npm run audit:colors && npm run audit:spacing && npm run audit:icons && npm run audit:typography && npm run audit:contrast:strict && npm run audit:target-size && npm run audit:vault:portable && tsc && vite build && npm run audit:sensitive:portable",
+    "build": "npm run format:check && npm run lint && npm run test && npm run audit:colors && npm run audit:spacing && npm run audit:icons && npm run audit:typography && npm run audit:contrast:strict && npm run audit:target-size && npm run audit:vault:portable && tsc && vite build && npm run audit:sensitive:portable",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
