@@ -29,19 +29,19 @@ contrast contract simply because nobody remembered to add a pair manually.
 
 Selected narrow passing pairs:
 
-| Pair | Ratio | Requirement |
-| --- | ---: | ---: |
-| Lightbox control, white icon over the worst-case translucent background | `3.037:1` | `3:1` |
-| Text-field boundary on level-1 | `3.267:1` | `3:1` |
-| Default outline-control boundary on white | `3.452:1` | `3:1` |
-| Outline-control hover boundary on white | `3.452:1` | `3:1` |
-| Inactive carousel indicator on white | `3.452:1` | `3:1` |
-| Focus ring on white | `3.542:1` | `3:1` |
-| Video play icon over the worst-case translucent background | `4.759:1` | `3:1` |
-| Lightbox hint over the worst-case translucent background | `4.759:1` | `4.5:1` |
-| Soft-button text in hover state | `4.587:1` | `4.5:1` |
-| Inactive tab text on white | `4.807:1` | `4.5:1` |
-| Calendar number on the future-day surface | `4.999:1` | `4.5:1` |
+| Pair                                                                    |     Ratio | Requirement |
+| ----------------------------------------------------------------------- | --------: | ----------: |
+| Lightbox control, white icon over the worst-case translucent background | `3.037:1` |       `3:1` |
+| Text-field boundary on level-1                                          | `3.267:1` |       `3:1` |
+| Default outline-control boundary on white                               | `3.452:1` |       `3:1` |
+| Outline-control hover boundary on white                                 | `3.452:1` |       `3:1` |
+| Inactive carousel indicator on white                                    | `3.452:1` |       `3:1` |
+| Focus ring on white                                                     | `3.542:1` |       `3:1` |
+| Video play icon over the worst-case translucent background              | `4.759:1` |       `3:1` |
+| Lightbox hint over the worst-case translucent background                | `4.759:1` |     `4.5:1` |
+| Soft-button text in hover state                                         | `4.587:1` |     `4.5:1` |
+| Inactive tab text on white                                              | `4.807:1` |     `4.5:1` |
+| Calendar number on the future-day surface                               | `4.999:1` |     `4.5:1` |
 
 These narrowest pairs are intentional contract entries. Any later token change
 that drops them below the target fails the build.
@@ -51,16 +51,16 @@ that drops them below the target fails the build.
 The bright brand pink `#FF5E61` remains available for decorative accents. It is
 not used for small text, functional icons or required control states.
 
-| Role | Value | Rule |
-| --- | --- | --- |
-| Accessible brand | `#B02D50` | Brand text, functional brand icons, progress state, primary controls and required brand strokes |
-| Accessible brand strong | `#992545` | Hover and pressed brand controls |
-| Accessible danger | `#A93235` | Error text, danger icons and danger/coupon strokes; kept separate from the brand hue |
-| Message surface | `#006FC9` | iMessage-style bubble behind white text |
-| Accessible muted text | `#6E676C` | Muted, caption, subtle, faint, metadata, code label, calendar number and progress label roles |
-| Control stroke | `#8A8A8A` | Enabled buttons, icon buttons, tabs and text-field boundaries; decorative dividers remain light |
-| Focus ring | `rgba(176, 45, 80, 0.70)` | Three-pixel focus indicator on every light surface |
-| Media hint overlay | `rgba(0, 0, 0, 0.55)` | Guarantees white small text over a worst-case white image |
+| Role                    | Value                     | Rule                                                                                            |
+| ----------------------- | ------------------------- | ----------------------------------------------------------------------------------------------- |
+| Accessible brand        | `#B02D50`                 | Brand text, functional brand icons, progress state, primary controls and required brand strokes |
+| Accessible brand strong | `#992545`                 | Hover and pressed brand controls                                                                |
+| Accessible danger       | `#A93235`                 | Error text, danger icons and danger/coupon strokes; kept separate from the brand hue            |
+| Message surface         | `#006FC9`                 | iMessage-style bubble behind white text                                                         |
+| Accessible muted text   | `#6E676C`                 | Muted, caption, subtle, faint, metadata, code label, calendar number and progress label roles   |
+| Control stroke          | `#8A8A8A`                 | Enabled buttons, icon buttons, tabs and text-field boundaries; decorative dividers remain light |
+| Focus ring              | `rgba(176, 45, 80, 0.70)` | Three-pixel focus indicator on every light surface                                              |
+| Media hint overlay      | `rgba(0, 0, 0, 0.55)`     | Guarantees white small text over a worst-case white image                                       |
 
 Mutedness must be expressed by an explicit semantic foreground. Do not reduce
 the opacity of a whole enabled control: it changes text, icon and border contrast

@@ -10,13 +10,7 @@ export interface CopyActionProps extends Omit<ButtonProps, 'children' | 'trailin
 }
 
 export const CopyAction = forwardRef<HTMLButtonElement, CopyActionProps>(function CopyAction(
-  {
-    copied,
-    copiedLabel = 'Скопировано',
-    label = 'Скопировать',
-    variant = 'action',
-    ...props
-  },
+  { copied, copiedLabel = 'Скопировано', label = 'Скопировать', variant = 'action', ...props },
   ref,
 ) {
   return (

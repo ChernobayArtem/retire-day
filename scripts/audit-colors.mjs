@@ -12,10 +12,7 @@ import {
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const primitiveFile = 'src/ui/tokens/color-primitives.css'
-const primitiveFiles = [
-  primitiveFile,
-  'src/ui/tokens/color-illustration-primitives.css',
-]
+const primitiveFiles = [primitiveFile, 'src/ui/tokens/color-illustration-primitives.css']
 const aliasFiles = [
   'src/ui/tokens/color-aliases.css',
   'src/ui/tokens/color-illustration-aliases.css',
@@ -49,7 +46,8 @@ const sourceExtensions = new Set([
   '.tsx',
 ])
 
-const cssNamedColors = new Set(`
+const cssNamedColors = new Set(
+  `
   aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond
   blue blueviolet brown burlywood cadetblue chartreuse chocolate coral cornflowerblue
   cornsilk crimson cyan darkblue darkcyan darkgoldenrod darkgray darkgreen darkgrey
@@ -69,7 +67,10 @@ const cssNamedColors = new Set(`
   sienna silver skyblue slateblue slategray slategrey snow springgreen steelblue tan
   teal thistle tomato transparent turquoise violet wheat white whitesmoke yellow
   yellowgreen
-`.trim().split(/\s+/))
+`
+    .trim()
+    .split(/\s+/),
+)
 
 const issues = []
 
@@ -122,9 +123,7 @@ function collectFiles() {
     if (existsSync(join(projectRoot, file))) files.push(file)
   }
 
-  return [...new Set(files)]
-    .filter((file) => !brandAssetExceptions.has(file))
-    .sort()
+  return [...new Set(files)].filter((file) => !brandAssetExceptions.has(file)).sort()
 }
 
 const files = collectFiles()
@@ -176,12 +175,7 @@ function auditRawColorLiterals(file, content) {
 
   for (const match of matchesOf(content, /(["'`])([a-z]+)\1/gi)) {
     if (cssNamedColors.has(match[2].toLowerCase())) {
-      addIssue(
-        'raw color',
-        file,
-        match.index + 1,
-        `Replace named color ${match[2]} with a token.`,
-      )
+      addIssue('raw color', file, match.index + 1, `Replace named color ${match[2]} with a token.`)
     }
   }
 }
@@ -208,9 +202,8 @@ function auditTokenHierarchy() {
   )
 
   for (const declaration of primitives) {
-    const expectedPrefix = declaration.file === primitiveFile
-      ? '--color-primitive-'
-      : '--color-illustration-primitive-'
+    const expectedPrefix =
+      declaration.file === primitiveFile ? '--color-primitive-' : '--color-illustration-primitive-'
     if (!declaration.name.startsWith(expectedPrefix)) {
       addIssue(
         'token hierarchy',
@@ -255,7 +248,10 @@ function auditTokenHierarchy() {
           `${declaration.name} must use the --color-alias- prefix.`,
         )
       }
-      if (!declaration.value.startsWith(`var(${expectedPrimitivePrefix}`) || !declaration.value.endsWith(')')) {
+      if (
+        !declaration.value.startsWith(`var(${expectedPrimitivePrefix}`) ||
+        !declaration.value.endsWith(')')
+      ) {
         addIssue(
           'token hierarchy',
           file,
@@ -332,8 +328,7 @@ function auditLayerConsumption() {
       if (!reference.name.startsWith('--color-alias-')) continue
 
       const allowedIllustration =
-        isIllustrationConsumer(file) &&
-        reference.name.startsWith('--color-alias-illustration-')
+        isIllustrationConsumer(file) && reference.name.startsWith('--color-alias-illustration-')
       if (!allowedIllustration) {
         addIssue(
           'token layer',
@@ -444,10 +439,7 @@ function auditFigmaMetadata() {
         }
       }
 
-      if (
-        variable.scopes.includes(FIGMA_COLOR_SCOPES.ALL_SCOPES) &&
-        variable.scopes.length !== 1
-      ) {
+      if (variable.scopes.includes(FIGMA_COLOR_SCOPES.ALL_SCOPES) && variable.scopes.length !== 1) {
         addIssue(
           'figma metadata',
           variable.source,
@@ -530,7 +522,9 @@ issues.sort(
 )
 
 if (issues.length > 0) {
-  console.error(`Color token audit failed with ${issues.length} issue${issues.length === 1 ? '' : 's'}:`)
+  console.error(
+    `Color token audit failed with ${issues.length} issue${issues.length === 1 ? '' : 's'}:`,
+  )
   let previousKind = ''
   for (const issue of issues) {
     if (issue.kind !== previousKind) {
@@ -545,5 +539,7 @@ if (issues.length > 0) {
     (count, file) => count + parseDeclarations(file).length,
     0,
   )
-  console.log(`Color token audit passed: ${files.length} files checked, ${tokenCount} color tokens validated.`)
+  console.log(
+    `Color token audit passed: ${files.length} files checked, ${tokenCount} color tokens validated.`,
+  )
 }

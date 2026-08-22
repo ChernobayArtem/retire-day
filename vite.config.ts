@@ -61,8 +61,13 @@ export default defineConfig({
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },
-          { src: 'icons/icon-512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
-        ]
+          {
+            src: 'icons/icon-512-maskable.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,woff,woff2,mp4,webm,mov,json,bin}'],
@@ -84,12 +89,12 @@ export default defineConfig({
               // future days without evicting early memories from offline use.
               expiration: { maxEntries: 150, maxAgeSeconds: 60 * 60 * 24 * 180 },
               cacheableResponse: { statuses: [0, 200] },
-              rangeRequests: true // Safari seeks video with Range requests
-            }
-          }
-        ]
+              rangeRequests: true, // Safari seeks video with Range requests
+            },
+          },
+        ],
       },
-      devOptions: { enabled: false }
-    })
-  ]
+      devOptions: { enabled: false },
+    }),
+  ],
 })

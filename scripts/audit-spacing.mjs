@@ -77,7 +77,8 @@ function auditNoInternalLayerConsumption() {
 
 function auditRawProductSpacing() {
   const cssFiles = ['src/styles/app.css', 'src/ui/ui.css']
-  const propertyPattern = /^\s*(?:margin|padding|gap|row-gap|column-gap)(?:-(?:top|right|bottom|left|inline|block))?\s*:\s*([^;]*\b-?\d+(?:\.\d+)?px[^;]*);/gm
+  const propertyPattern =
+    /^\s*(?:margin|padding|gap|row-gap|column-gap)(?:-(?:top|right|bottom|left|inline|block))?\s*:\s*([^;]*\b-?\d+(?:\.\d+)?px[^;]*);/gm
 
   for (const file of cssFiles) {
     const content = readFileSync(join(projectRoot, file), 'utf8')
@@ -86,8 +87,7 @@ function auditRawProductSpacing() {
       const value = match[1]
       const rawValues = [...value.matchAll(/-?\d+(?:\.\d+)?px/g)].map((item) => item[0])
       const isSemanticCancellation =
-        rawValues.every((item) => item === '0px') &&
-        value.includes('var(--spacing-semantic-')
+        rawValues.every((item) => item === '0px') && value.includes('var(--spacing-semantic-')
       if (isSemanticCancellation) continue
 
       const line = content.slice(0, match.index).split('\n').length
@@ -106,7 +106,9 @@ function auditRawProductSpacing() {
 }
 
 function auditModelMetadata(model) {
-  const collectionsByName = new Map(model.collections.map((collection) => [collection.name, collection]))
+  const collectionsByName = new Map(
+    model.collections.map((collection) => [collection.name, collection]),
+  )
 
   for (const expected of Object.values(spacingCollections)) {
     const collection = collectionsByName.get(expected.name)
@@ -209,7 +211,10 @@ function auditModelMetadata(model) {
           message: `${variable.cssName} must hold a literal number.`,
         })
       }
-      if (variable.layer === 'alias' && !variable.value?.alias?.cssName?.startsWith('--spacing-primitive-')) {
+      if (
+        variable.layer === 'alias' &&
+        !variable.value?.alias?.cssName?.startsWith('--spacing-primitive-')
+      ) {
         issues.push({
           kind: 'hierarchy',
           file: variable.source,
@@ -217,7 +222,10 @@ function auditModelMetadata(model) {
           message: `${variable.cssName} must alias a primitive spacing token.`,
         })
       }
-      if (variable.layer === 'semantic' && !variable.value?.alias?.cssName?.startsWith('--spacing-alias-')) {
+      if (
+        variable.layer === 'semantic' &&
+        !variable.value?.alias?.cssName?.startsWith('--spacing-alias-')
+      ) {
         issues.push({
           kind: 'hierarchy',
           file: variable.source,
@@ -281,7 +289,8 @@ function auditGeneratedArtifact(model) {
       kind: 'generated artifact',
       file: generatedSpacingFiles.figma,
       line: 1,
-      message: 'Generated spacing registry is stale. Run npm run tokens:spacing and review the diff.',
+      message:
+        'Generated spacing registry is stale. Run npm run tokens:spacing and review the diff.',
     })
   }
 }
@@ -313,6 +322,9 @@ if (issues.length) {
   }
   process.exitCode = 1
 } else {
-  const count = model.collections.reduce((total, collection) => total + collection.variables.length, 0)
+  const count = model.collections.reduce(
+    (total, collection) => total + collection.variables.length,
+    0,
+  )
   console.log(`Spacing audit passed: ${count} variables across 3 layers.`)
 }

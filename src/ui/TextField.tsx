@@ -1,9 +1,4 @@
-import {
-  forwardRef,
-  useId,
-  type InputHTMLAttributes,
-  type ReactNode,
-} from 'react'
+import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react'
 import { classNames } from './classNames'
 
 export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -39,7 +34,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
   const messageId = `${inputId}-message`
   const hasError = Boolean(error)
   const message = hasError ? error : hint
-  const describedBy = [ariaDescribedBy, message ? messageId : undefined].filter(Boolean).join(' ') || undefined
+  const describedBy =
+    [ariaDescribedBy, message ? messageId : undefined].filter(Boolean).join(' ') || undefined
 
   return (
     <div

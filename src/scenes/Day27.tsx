@@ -1,7 +1,12 @@
 // День 27 — ракета готовится к старту
 export default function Day27() {
   return (
-    <svg className="scn s27" viewBox="0 0 430 260" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className="scn s27"
+      viewBox="0 0 430 260"
+      preserveAspectRatio="xMidYMax slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <style>{`
         .s27 .rocket{transform-box:fill-box;transform-origin:50% 100%;animation:s27bob 8s ease-in-out infinite}
         .s27 .glow{transform-box:fill-box;transform-origin:center;animation:s27glow 8s ease-in-out infinite}
@@ -16,28 +21,91 @@ export default function Day27() {
         @keyframes s27ring{0%,35%,100%{transform:scale(.4);opacity:0}50%{opacity:.35}72%{transform:scale(1.35);opacity:0}}
       `}</style>
       <rect width="430" height="260" fill="var(--color-alias-illustration-blue-111)" />
-      <path d="M0 236 Q 215 226 430 236 L430 260 L0 260 Z" fill="var(--color-alias-illustration-blue-306)" />
+      <path
+        d="M0 236 Q 215 226 430 236 L430 260 L0 260 Z"
+        fill="var(--color-alias-illustration-blue-306)"
+      />
       {/* стартовая площадка */}
-      <rect x="168" y="228" width="94" height="8" rx="3" fill="var(--color-alias-illustration-blue-681)" />
+      <rect
+        x="168"
+        y="228"
+        width="94"
+        height="8"
+        rx="3"
+        fill="var(--color-alias-illustration-blue-681)"
+      />
       <rect x="176" y="236" width="8" height="16" fill="var(--color-alias-illustration-blue-681)" />
       <rect x="246" y="236" width="8" height="16" fill="var(--color-alias-illustration-blue-681)" />
       {/* свечение */}
-      <ellipse className="glow" cx="215" cy="230" rx="34" ry="9" fill="var(--color-alias-illustration-orange-333)" />
-      <ellipse className="ring" cx="215" cy="232" rx="42" ry="9" fill="none" stroke="var(--color-alias-illustration-blue-417)" strokeWidth="2" />
+      <ellipse
+        className="glow"
+        cx="215"
+        cy="230"
+        rx="34"
+        ry="9"
+        fill="var(--color-alias-illustration-orange-333)"
+      />
+      <ellipse
+        className="ring"
+        cx="215"
+        cy="232"
+        rx="42"
+        ry="9"
+        fill="none"
+        stroke="var(--color-alias-illustration-blue-417)"
+        strokeWidth="2"
+      />
       {/* пар */}
       <g fill="var(--color-alias-illustration-neutral-0)">
         <circle className="steam" style={{ ['--sx' as string]: '-30px' }} cx="188" cy="226" r="7" />
-        <circle className="steam stR" style={{ ['--sx' as string]: '30px' }} cx="242" cy="226" r="7" />
+        <circle
+          className="steam stR"
+          style={{ ['--sx' as string]: '30px' }}
+          cx="242"
+          cy="226"
+          r="7"
+        />
       </g>
       {/* ракета */}
       <g className="rocket">
-        <path d="M215 132 Q 236 158 232 196 L198 196 Q 194 158 215 132 Z" fill="var(--color-alias-illustration-orange-70)" />
-        <path d="M215 132 Q 226 148 224 166 L206 166 Q 204 148 215 132 Z" fill="var(--color-alias-illustration-red-563)" />
-        <circle cx="215" cy="176" r="7" fill="var(--color-alias-illustration-blue-569)" stroke="var(--color-alias-illustration-blue-278)" strokeWidth="2" />
-        <path d="M198 196 Q 182 200 186 224 L200 214 Z" fill="var(--color-alias-illustration-orange-667)" />
-        <path d="M232 196 Q 248 200 244 224 L230 214 Z" fill="var(--color-alias-illustration-orange-667)" />
-        <rect x="200" y="196" width="30" height="6" rx="2" fill="var(--color-alias-illustration-brown-0)" />
-        <path className="flame" d="M207 202 Q 215 224 223 202 Z" fill="var(--color-alias-illustration-orange-263)" opacity=".7" />
+        <path
+          d="M215 132 Q 236 158 232 196 L198 196 Q 194 158 215 132 Z"
+          fill="var(--color-alias-illustration-orange-70)"
+        />
+        <path
+          d="M215 132 Q 226 148 224 166 L206 166 Q 204 148 215 132 Z"
+          fill="var(--color-alias-illustration-red-563)"
+        />
+        <circle
+          cx="215"
+          cy="176"
+          r="7"
+          fill="var(--color-alias-illustration-blue-569)"
+          stroke="var(--color-alias-illustration-blue-278)"
+          strokeWidth="2"
+        />
+        <path
+          d="M198 196 Q 182 200 186 224 L200 214 Z"
+          fill="var(--color-alias-illustration-orange-667)"
+        />
+        <path
+          d="M232 196 Q 248 200 244 224 L230 214 Z"
+          fill="var(--color-alias-illustration-orange-667)"
+        />
+        <rect
+          x="200"
+          y="196"
+          width="30"
+          height="6"
+          rx="2"
+          fill="var(--color-alias-illustration-brown-0)"
+        />
+        <path
+          className="flame"
+          d="M207 202 Q 215 224 223 202 Z"
+          fill="var(--color-alias-illustration-orange-263)"
+          opacity=".7"
+        />
       </g>
     </svg>
   )

@@ -8,22 +8,22 @@ The codebase is in strong shape and comfortable to take over. TypeScript runs in
 `strict` mode with zero `any` in application code, the architecture is cleanly
 layered, and an unusually thorough set of custom audits guards the design system,
 accessibility contrast, icon usage and the encrypted vault. The gaps found were
-missing *standard tooling* rather than messy code, and the main ones are now
+missing _standard tooling_ rather than messy code, and the main ones are now
 closed.
 
 ## Scorecard
 
-| Area | Status | Notes |
-| --- | --- | --- |
-| Architecture and layering | Strong | `ui / components / scenes / lib / content / styles`, barrel export in `src/ui/index.ts` |
-| TypeScript strictness | Strong | `strict: true`, zero `any` in code, zero `@ts-ignore` |
-| Code hygiene | Strong | No `console.*`, `TODO/FIXME`, or `as any` in `src` |
-| Design system and audits | Exceptional | Token contracts, generated Figma registry, WCAG contrast and target-size audits |
-| Documentation and onboarding | Good | `README`, `AGENTS.md`, system docs under `docs/` |
-| CI/CD | Good | GitHub Actions builds and deploys to Pages on push to `main` |
-| Linting | Added | ESLint (flat config) with typescript-eslint, react-hooks, react-refresh, jsx-a11y |
-| Formatting | Added | Prettier + EditorConfig, aligned to the existing no-semicolon, single-quote style |
-| Unit tests | Added | Vitest with 20 tests across the date, progress and journey logic |
+| Area                         | Status      | Notes                                                                                   |
+| ---------------------------- | ----------- | --------------------------------------------------------------------------------------- |
+| Architecture and layering    | Strong      | `ui / components / scenes / lib / content / styles`, barrel export in `src/ui/index.ts` |
+| TypeScript strictness        | Strong      | `strict: true`, zero `any` in code, zero `@ts-ignore`                                   |
+| Code hygiene                 | Strong      | No `console.*`, `TODO/FIXME`, or `as any` in `src`                                      |
+| Design system and audits     | Exceptional | Token contracts, generated Figma registry, WCAG contrast and target-size audits         |
+| Documentation and onboarding | Good        | `README`, `AGENTS.md`, system docs under `docs/`                                        |
+| CI/CD                        | Good        | GitHub Actions builds and deploys to Pages on push to `main`                            |
+| Linting                      | Added       | ESLint (flat config) with typescript-eslint, react-hooks, react-refresh, jsx-a11y       |
+| Formatting                   | Added       | Prettier + EditorConfig, aligned to the existing no-semicolon, single-quote style       |
+| Unit tests                   | Added       | Vitest with 20 tests across the date, progress and journey logic                        |
 
 ## What is enforced now
 

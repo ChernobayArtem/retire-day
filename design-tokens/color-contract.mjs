@@ -55,24 +55,19 @@ export const semanticPurpose = Object.freeze({
     'Приглушённый вспомогательный текст, который не конкурирует с основным содержанием.',
   '--color-semantic-text-disabled':
     'Текст недоступного состояния; не применять для обычного вторичного текста.',
-  '--color-semantic-text-inverse':
-    'Светлый текст на тёмной, цветной или медиа-поверхности.',
+  '--color-semantic-text-inverse': 'Светлый текст на тёмной, цветной или медиа-поверхности.',
   '--color-semantic-text-brand':
     'Функциональный брендовый акцент в тексте: активное или текущее состояние.',
-  '--color-semantic-text-action':
-    'Текст утилитарного действия, например копирования или возврата.',
+  '--color-semantic-text-action': 'Текст утилитарного действия, например копирования или возврата.',
   '--color-semantic-text-danger':
     'Текст ошибки или опасного состояния; не использовать декоративно.',
-  '--color-semantic-icon-primary':
-    'Основные системные иконки на светлой поверхности.',
-  '--color-semantic-icon-muted':
-    'Второстепенные иконки и неактивные графические маркеры.',
+  '--color-semantic-icon-primary': 'Основные системные иконки на светлой поверхности.',
+  '--color-semantic-icon-muted': 'Второстепенные иконки и неактивные графические маркеры.',
   '--color-semantic-icon-inverse':
     'Светлые системные иконки на тёмной, цветной или медиа-поверхности.',
   '--color-semantic-icon-brand':
     'Функциональные брендовые иконки активного или текущего состояния.',
-  '--color-semantic-icon-danger':
-    'Иконки ошибки или потенциально опасного действия.',
+  '--color-semantic-icon-danger': 'Иконки ошибки или потенциально опасного действия.',
   '--color-semantic-background-canvas':
     'Корневой canvas приложения; самый нижний фон всего экрана.',
   '--color-semantic-background-surface-level-0':
@@ -93,16 +88,13 @@ export const semanticPurpose = Object.freeze({
     'Едва заметная брендовая заливка компактного текущего состояния.',
   '--color-semantic-background-danger-subtle':
     'Слабая заливка ошибки или предупреждения без потери читаемости.',
-  '--color-semantic-background-media':
-    'Базовая тёмная поверхность вокруг фото или видео.',
+  '--color-semantic-background-media': 'Базовая тёмная поверхность вокруг фото или видео.',
   '--color-semantic-background-media-placeholder':
     'Нейтральная область до появления или расшифровки медиа.',
   '--color-semantic-background-message':
     'Заливка синего сообщения, его хвоста и связанных реакций.',
-  '--color-semantic-background-skeleton':
-    'Базовая заливка состояния загрузки и skeleton-элемента.',
-  '--color-semantic-background-tooltip':
-    'Фон информационной подсказки поверх интерфейса.',
+  '--color-semantic-background-skeleton': 'Базовая заливка состояния загрузки и skeleton-элемента.',
+  '--color-semantic-background-tooltip': 'Фон информационной подсказки поверх интерфейса.',
   '--color-semantic-background-transparent':
     'Прозрачная заливка, сохраняющая геометрию и hit area контрола.',
   '--color-semantic-border-default':
@@ -117,56 +109,41 @@ export const semanticPurpose = Object.freeze({
     'Усиленная брендовая обводка выбранного таба или акцентной поверхности.',
   '--color-semantic-border-danger':
     'Обводка ошибки, опасного состояния или предупреждающей карточки.',
-  '--color-semantic-border-inverse-subtle':
-    'Слабая светлая обводка контрола поверх тёмного медиа.',
+  '--color-semantic-border-inverse-subtle': 'Слабая светлая обводка контрола поверх тёмного медиа.',
   '--color-semantic-border-inverse-strong':
     'Контрастная светлая обводка loader или активного медиа-контрола.',
   '--color-semantic-border-transparent':
     'Прозрачная обводка, сохраняющая геометрию между состояниями.',
-  '--color-semantic-button-outline-background':
-    'Фон обычной светлой outline-кнопки.',
+  '--color-semantic-button-outline-background': 'Фон обычной светлой outline-кнопки.',
   '--color-semantic-button-outline-background-hover':
     'Фон светлой outline-кнопки при наведении указателя.',
   '--color-semantic-button-outline-border':
     'Обводка светлой outline-кнопки во всех обычных состояниях.',
-  '--color-semantic-button-outline-foreground':
-    'Текст и системная иконка светлой outline-кнопки.',
-  '--color-semantic-button-primary-background':
-    'Фон главной брендовой кнопки в обычном состоянии.',
+  '--color-semantic-button-outline-foreground': 'Текст и системная иконка светлой outline-кнопки.',
+  '--color-semantic-button-primary-background': 'Фон главной брендовой кнопки в обычном состоянии.',
   '--color-semantic-button-primary-background-hover':
     'Фон главной брендовой кнопки при hover или pressed.',
-  '--color-semantic-button-primary-border':
-    'Обводка главной брендовой кнопки в обычном состоянии.',
+  '--color-semantic-button-primary-border': 'Обводка главной брендовой кнопки в обычном состоянии.',
   '--color-semantic-button-primary-border-hover':
     'Обводка главной брендовой кнопки при hover или pressed.',
   '--color-semantic-button-primary-foreground':
     'Текст и системная иконка главной брендовой кнопки.',
-  '--color-semantic-button-soft-background':
-    'Мягкий брендовый фон вторичной кнопки или badge.',
+  '--color-semantic-button-soft-background': 'Мягкий брендовый фон вторичной кнопки или badge.',
   '--color-semantic-button-soft-background-hover':
     'Мягкий брендовый фон вторичной кнопки при наведении.',
-  '--color-semantic-button-soft-foreground':
-    'Текст и системная иконка мягкой брендовой кнопки.',
+  '--color-semantic-button-soft-foreground': 'Текст и системная иконка мягкой брендовой кнопки.',
   '--color-semantic-button-action-background':
     'Мягкий фон утилитарного действия, например копирования.',
   '--color-semantic-button-action-background-hover':
     'Мягкий фон утилитарного действия при наведении.',
-  '--color-semantic-button-action-foreground':
-    'Текст и системная иконка утилитарного действия.',
-  '--color-semantic-button-disabled-background':
-    'Фон недоступной кнопки или иконки-кнопки.',
-  '--color-semantic-button-disabled-foreground':
-    'Текст и системная иконка недоступной кнопки.',
-  '--color-semantic-shape-divider':
-    'Заливка геометрической линии Divider; это shape, а не stroke.',
-  '--color-semantic-shape-carousel-active':
-    'Активная точка пагинации фотокарусели.',
-  '--color-semantic-shape-carousel-inactive':
-    'Неактивная точка пагинации фотокарусели.',
-  '--color-semantic-shape-message-tail':
-    'Треугольный хвост синего пузыря сообщения.',
-  '--color-semantic-shape-tooltip-pointer':
-    'Треугольный хвост tooltip, совпадающий с его фоном.',
+  '--color-semantic-button-action-foreground': 'Текст и системная иконка утилитарного действия.',
+  '--color-semantic-button-disabled-background': 'Фон недоступной кнопки или иконки-кнопки.',
+  '--color-semantic-button-disabled-foreground': 'Текст и системная иконка недоступной кнопки.',
+  '--color-semantic-shape-divider': 'Заливка геометрической линии Divider; это shape, а не stroke.',
+  '--color-semantic-shape-carousel-active': 'Активная точка пагинации фотокарусели.',
+  '--color-semantic-shape-carousel-inactive': 'Неактивная точка пагинации фотокарусели.',
+  '--color-semantic-shape-message-tail': 'Треугольный хвост синего пузыря сообщения.',
+  '--color-semantic-shape-tooltip-pointer': 'Треугольный хвост tooltip, совпадающий с его фоном.',
   '--color-semantic-shape-brand-soft':
     'Мягкая брендовая форма внутри служебной иллюстрации интерфейса.',
   '--color-semantic-content-accent-compliment':
@@ -181,28 +158,22 @@ export const semanticPurpose = Object.freeze({
     'Акцент категории «Ресторан» независимо от номера и длины календаря.',
   '--color-semantic-content-accent-video':
     'Акцент категории «Видео» независимо от номера и длины календаря.',
-  '--color-semantic-overlay-sheet':
-    'Затемнение основного экрана под открытой шторкой дня.',
-  '--color-semantic-overlay-media-soft':
-    'Слабое затемнение поверх медиапостера или фотографии.',
+  '--color-semantic-overlay-sheet': 'Затемнение основного экрана под открытой шторкой дня.',
+  '--color-semantic-overlay-media-soft': 'Слабое затемнение поверх медиапостера или фотографии.',
   '--color-semantic-overlay-media-medium':
     'Среднее затемнение между светлым и сильным stop градиента медиапостера.',
   '--color-semantic-overlay-media-strong':
     'Сильное затемнение поверх медиапостера для читаемого foreground.',
-  '--color-semantic-overlay-control':
-    'Полупрозрачный тёмный фон контрола поверх фото или видео.',
+  '--color-semantic-overlay-control': 'Полупрозрачный тёмный фон контрола поверх фото или видео.',
   '--color-semantic-overlay-control-strong':
     'Усиленный тёмный фон важной плашки поверх фото или видео.',
-  '--color-semantic-overlay-fullscreen':
-    'Почти непрозрачный фон полноэкранного просмотра медиа.',
+  '--color-semantic-overlay-fullscreen': 'Почти непрозрачный фон полноэкранного просмотра медиа.',
   '--color-semantic-overlay-glass':
     'Светлая стеклянная заливка компактного контрола поверх контента.',
   '--color-semantic-overlay-glass-strong':
     'Более плотная стеклянная заливка внутренней тестовой панели.',
-  '--color-semantic-shadow-soft':
-    'Мягкая тень малой высоты для компактной поверхности.',
-  '--color-semantic-shadow-medium':
-    'Средняя тень приподнятой карточки или панели.',
+  '--color-semantic-shadow-soft': 'Мягкая тень малой высоты для компактной поверхности.',
+  '--color-semantic-shadow-medium': 'Средняя тень приподнятой карточки или панели.',
   '--color-semantic-shadow-strong':
     'Сильная тень верхнего слоя или выразительной модальной поверхности.',
   '--color-semantic-effect-focus-ring':

@@ -11,7 +11,11 @@ export interface EmptyStateProps {
 export function EmptyState({ className, icon, title, description }: EmptyStateProps) {
   return (
     <div className={classNames('ui-empty-state', className)}>
-      {icon && <span className="ui-empty-state__icon" aria-hidden="true">{icon}</span>}
+      {icon && (
+        <span className="ui-empty-state__icon" aria-hidden="true">
+          {icon}
+        </span>
+      )}
       <h2 className="ui-empty-state__title">{title}</h2>
       {description && <p className="ui-empty-state__description">{description}</p>}
     </div>

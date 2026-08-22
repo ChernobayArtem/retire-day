@@ -106,13 +106,13 @@ but every segment remains lowercase kebab-case.
 
 Use roles instead of selecting arbitrary font sizes:
 
-| Role | Use |
-| --- | --- |
-| Display | One primary expressive heading on a screen |
-| Title | Screen and sheet titles |
-| Heading | Card and section headings |
-| Body | Reading text and descriptions |
-| Label | Buttons, tabs, fields, and compact actions |
+| Role    | Use                                                         |
+| ------- | ----------------------------------------------------------- |
+| Display | One primary expressive heading on a screen                  |
+| Title   | Screen and sheet titles                                     |
+| Heading | Card and section headings                                   |
+| Body    | Reading text and descriptions                               |
+| Label   | Buttons, tabs, fields, and compact actions                  |
 | Caption | Supporting explanations, hints, dates, counts, and metadata |
 
 Each role is a combination of the `--ui-font-size-*`,
@@ -226,16 +226,16 @@ through colour alone.
 `UIKitShowcase` is deliberately a compact contract catalogue, not a second
 application. It shows the states that the product actually uses or can reuse:
 
-| Family | Catalogue coverage |
-| --- | --- |
-| Foundations | Semantic surface hierarchy, proximity rule, control/motion contract |
-| Button | All six variants; `sm`, disabled, loading and full-width states |
-| IconButton | All five variants; `sm`, disabled and loading states |
-| IconLink | Real code cluster, copied feedback and disabled state |
-| TextField | Label, hint, icons, read-only, error and disabled states |
-| Tabs and Badge | Horizontal selection, icon and compact count badge |
-| Surface and Divider | All four surfaces plus horizontal and vertical separation |
-| Product patterns | Default, first-day and locked `SheetFooter`; compact and regular copy; empty state |
+| Family              | Catalogue coverage                                                                 |
+| ------------------- | ---------------------------------------------------------------------------------- |
+| Foundations         | Semantic surface hierarchy, proximity rule, control/motion contract                |
+| Button              | All six variants; `sm`, disabled, loading and full-width states                    |
+| IconButton          | All five variants; `sm`, disabled and loading states                               |
+| IconLink            | Real code cluster, copied feedback and disabled state                              |
+| TextField           | Label, hint, icons, read-only, error and disabled states                           |
+| Tabs and Badge      | Horizontal selection, icon and compact count badge                                 |
+| Surface and Divider | All four surfaces plus horizontal and vertical separation                          |
+| Product patterns    | Default, first-day and locked `SheetFooter`; compact and regular copy; empty state |
 
 Do not add a showcase example merely to enumerate every theoretical prop
 combination. Add one only when the product uses it or it is an intentional,
@@ -285,10 +285,10 @@ token, tightening the gap between stacked code rows, or adding a new control to
 
 Measured on a rendered page with the real stylesheets, identically at 320/390/430:
 
-| Context | Control | Centre distance | Requirement |
-| --- | --- | --- | --- |
-| Certificate row in the day sheet | 20x20 | 29.50px | 24px |
-| Certificate row in the archive card | 20x20 | 56px | 24px |
+| Context                             | Control | Centre distance | Requirement |
+| ----------------------------------- | ------- | --------------- | ----------- |
+| Certificate row in the day sheet    | 20x20   | 29.50px         | 24px        |
+| Certificate row in the archive card | 20x20   | 56px            | 24px        |
 
 The static audit checks the conservative form of that geometry — control size
 plus row gap — because a row is never shorter than the control inside it. When

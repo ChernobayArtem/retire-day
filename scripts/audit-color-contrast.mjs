@@ -24,7 +24,9 @@ function parseColor(value) {
       hex = [...hex].map((character) => character + character).join('')
     }
     if (hex.length !== 6 && hex.length !== 8) throw new Error(`Unsupported hex color: ${value}`)
-    const channels = [0, 2, 4].map((index) => Number.parseInt(hex.slice(index, index + 2), 16) / 255)
+    const channels = [0, 2, 4].map(
+      (index) => Number.parseInt(hex.slice(index, index + 2), 16) / 255,
+    )
     const alpha = hex.length === 8 ? Number.parseInt(hex.slice(6, 8), 16) / 255 : 1
     return [...channels, alpha]
   }
@@ -55,10 +57,7 @@ function opaque(color, fallback = [1, 1, 1, 1]) {
 
 function relativeLuminance(color) {
   return color.slice(0, 3).reduce((sum, channel, index) => {
-    const linear =
-      channel <= 0.04045
-        ? channel / 12.92
-        : ((channel + 0.055) / 1.055) ** 2.4
+    const linear = channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
     return sum + linear * [0.2126, 0.7152, 0.0722][index]
   }, 0)
 }
@@ -81,7 +80,8 @@ function referenceColor(reference, valuesByToken) {
 }
 
 function evaluatePair(pair, valuesByToken) {
-  if (!CONTRAST_MINIMUM[pair.kind]) throw new Error(`Unknown contrast kind in ${pair.id}: ${pair.kind}`)
+  if (!CONTRAST_MINIMUM[pair.kind])
+    throw new Error(`Unknown contrast kind in ${pair.id}: ${pair.kind}`)
   if (!pair.backgroundLayers?.length) throw new Error(`No background layers in ${pair.id}`)
 
   let background = [1, 1, 1, 1]
@@ -115,7 +115,8 @@ const valuesByToken = new Map(
 
 for (const [cssName, expectedValue] of Object.entries(accessibleValues)) {
   const actualValue = valuesByToken.get(cssName)
-  if (!actualValue) throw new Error(`Accessible color contract references an unknown token: ${cssName}`)
+  if (!actualValue)
+    throw new Error(`Accessible color contract references an unknown token: ${cssName}`)
   const actual = parseColor(actualValue)
   const expected = parseColor(expectedValue)
   const matches = actual.every((channel, index) => Math.abs(channel - expected[index]) <= 1 / 510)
@@ -167,9 +168,7 @@ if (json) {
       `${report.totals.failures} failures; ${report.totals.exemptions} documented exemption groups.`,
   )
   for (const result of standardFailures) {
-    console.log(
-      `FAIL\t${result.id}\t${result.ratio}:1 < ${result.minimum}:1\t${result.kind}`,
-    )
+    console.log(`FAIL\t${result.id}\t${result.ratio}:1 < ${result.minimum}:1\t${result.kind}`)
   }
 }
 

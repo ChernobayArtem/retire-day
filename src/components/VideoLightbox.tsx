@@ -13,13 +13,7 @@ interface Props {
 }
 
 /** Fullscreen video viewer with app-owned close and download controls. */
-export default function VideoLightbox({
-  src,
-  poster,
-  sourcePath,
-  downloadName,
-  onClose,
-}: Props) {
+export default function VideoLightbox({ src, poster, sourcePath, downloadName, onClose }: Props) {
   const downloadButtonRef = useRef<HTMLButtonElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -40,14 +34,9 @@ export default function VideoLightbox({
       }
       if (event.key !== 'Tab') return
 
-      const controls = [
-        downloadButtonRef.current,
-        closeButtonRef.current,
-        videoRef.current,
-      ].filter(
+      const controls = [downloadButtonRef.current, closeButtonRef.current, videoRef.current].filter(
         (control): control is HTMLButtonElement | HTMLVideoElement =>
-          Boolean(control) &&
-          !(control instanceof HTMLButtonElement && control.disabled),
+          Boolean(control) && !(control instanceof HTMLButtonElement && control.disabled),
       )
       if (controls.length === 0) return
 

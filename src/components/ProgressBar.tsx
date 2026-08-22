@@ -61,14 +61,15 @@ export default function ProgressBar({ passed }: Props) {
         role="img"
         aria-label={`Пройдено ${done} из ${TOTAL_DAYS} дней`}
       >
-        <span className="pb__cap" aria-hidden="true">🚀</span>
+        <span className="pb__cap" aria-hidden="true">
+          🚀
+        </span>
         {Array.from({ length: TOTAL_DAYS }, (_, i) => (
-          <Orchid
-            key={i}
-            className={'pb__orchid' + (i < done ? ' pb__orchid--on' : '')}
-          />
+          <Orchid key={i} className={'pb__orchid' + (i < done ? ' pb__orchid--on' : '')} />
         ))}
-        <span className="pb__cap" aria-hidden="true">🏁</span>
+        <span className="pb__cap" aria-hidden="true">
+          🏁
+        </span>
       </div>
     </div>
   )

@@ -4,8 +4,10 @@ import type { ButtonSize, ButtonVariant } from './Button'
 
 export type IconButtonVariant = Exclude<ButtonVariant, 'link'>
 
-export interface IconButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label' | 'children'> {
+export interface IconButtonProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'aria-label' | 'children'
+> {
   'aria-label': string
   icon: ReactNode
   variant?: IconButtonVariant

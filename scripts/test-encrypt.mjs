@@ -4,7 +4,16 @@
 // inside a disposable dummy project and never reads or mutates personal data.
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
-import { copyFile, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises'
+import {
+  copyFile,
+  mkdir,
+  mkdtemp,
+  readFile,
+  readdir,
+  rename,
+  rm,
+  writeFile,
+} from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { spawnSync } from 'node:child_process'
@@ -85,7 +94,7 @@ try {
   assert.equal(await treeDigest(vaultDir), stableDigest)
   await writeFile(cekPath, validCek)
 
-  await writeFile(contentPath, "export const days = undefined\nexport const secretMedia = []\n")
+  await writeFile(contentPath, 'export const days = undefined\nexport const secretMedia = []\n')
   runEncrypt(false)
   assert.equal(await treeDigest(vaultDir), stableDigest)
   await writeFile(contentPath, validContent)

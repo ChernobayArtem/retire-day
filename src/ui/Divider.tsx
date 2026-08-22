@@ -9,13 +9,7 @@ export interface DividerProps extends HTMLAttributes<HTMLHRElement> {
 }
 
 export const Divider = forwardRef<HTMLHRElement, DividerProps>(function Divider(
-  {
-    className,
-    decorative = true,
-    orientation = 'horizontal',
-    role,
-    ...props
-  },
+  { className, decorative = true, orientation = 'horizontal', role, ...props },
   ref,
 ) {
   return (
@@ -23,7 +17,7 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(function Divider(
       {...props}
       ref={ref}
       className={classNames('ui-divider', `ui-divider--${orientation}`, className)}
-      role={decorative ? 'presentation' : role ?? 'separator'}
+      role={decorative ? 'presentation' : (role ?? 'separator')}
       aria-hidden={decorative || undefined}
       aria-orientation={decorative ? undefined : orientation}
     />

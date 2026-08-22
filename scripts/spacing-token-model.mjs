@@ -33,13 +33,11 @@ const definitionsForLayer = Object.freeze({
 })
 
 function parseDeclarations(file, source) {
-  return [...source.matchAll(/^\s*(--spacing-[\w-]+)\s*:\s*([^;]+);/gm)].map(
-    (match) => ({
-      cssName: match[1],
-      cssValue: match[2].trim(),
-      source: file,
-    }),
-  )
+  return [...source.matchAll(/^\s*(--spacing-[\w-]+)\s*:\s*([^;]+);/gm)].map((match) => ({
+    cssName: match[1],
+    cssValue: match[2].trim(),
+    source: file,
+  }))
 }
 
 function referenceFromValue(value) {
@@ -67,7 +65,9 @@ function definitionsByName(layer) {
 
 function assertLayerMatchesContract(layer, declarations) {
   const expectedByName = definitionsByName(layer)
-  const actualByName = new Map(declarations.map((declaration) => [declaration.cssName, declaration]))
+  const actualByName = new Map(
+    declarations.map((declaration) => [declaration.cssName, declaration]),
+  )
 
   if (actualByName.size !== declarations.length) {
     throw new Error(`Duplicate ${layer} spacing token declaration.`)
@@ -77,8 +77,7 @@ function assertLayerMatchesContract(layer, declarations) {
     const actual = actualByName.get(definition.cssName)
     if (!actual) throw new Error(`Missing ${layer} spacing token: ${definition.cssName}`)
 
-    const expectedValue =
-      layer === 'primitive' ? definition.value : `var(${definition.target})`
+    const expectedValue = layer === 'primitive' ? definition.value : `var(${definition.target})`
     if (actual.cssValue !== expectedValue) {
       throw new Error(
         `${definition.cssName} must equal ${expectedValue}, received ${actual.cssValue}`,
@@ -104,9 +103,7 @@ function semanticConsumersByAlias() {
 }
 
 function aliasDescription(definition, consumers) {
-  const consumerNames = (consumers.get(definition.cssName) ?? []).map(
-    (consumer) => consumer.name,
-  )
+  const consumerNames = (consumers.get(definition.cssName) ?? []).map((consumer) => consumer.name)
   const targets = consumerNames.length
     ? ` Питает semantic-роли: ${consumerNames.join(', ')}.`
     : ' Пока не имеет semantic-потребителя и зарезервирована для будущей роли.'
@@ -152,8 +149,7 @@ function definitionFor(cssName, layer) {
 
 export function buildSpacingTokenModel(projectRoot) {
   const entries = Object.entries(spacingTokenFiles).map(([layer, file]) => ({
-    layer:
-      layer === 'primitives' ? 'primitive' : layer === 'aliases' ? 'alias' : 'semantic',
+    layer: layer === 'primitives' ? 'primitive' : layer === 'aliases' ? 'alias' : 'semantic',
     file,
     source: readFileSync(join(projectRoot, file), 'utf8'),
   }))
@@ -234,7 +230,8 @@ export function buildSpacingTokenModel(projectRoot) {
       {
         relationship: 'same-thought',
         token: '--spacing-semantic-content-text-gap',
-        guidance: 'Связанные текстовые строки и label/value живут ближе друг к другу, чем соседние блоки.',
+        guidance:
+          'Связанные текстовые строки и label/value живут ближе друг к другу, чем соседние блоки.',
       },
       {
         relationship: 'same-control',
@@ -254,7 +251,8 @@ export function buildSpacingTokenModel(projectRoot) {
       {
         relationship: 'separate-sections',
         token: '--spacing-semantic-layout-section-gap',
-        guidance: 'Самостоятельные разделы получают заметно больше воздуха, чем внутренности группы.',
+        guidance:
+          'Самостоятельные разделы получают заметно больше воздуха, чем внутренности группы.',
       },
     ],
     collections: Object.values(spacingCollections).map((collection) => ({

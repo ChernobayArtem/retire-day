@@ -162,7 +162,8 @@ export const spacingSemanticDefinitions = Object.freeze([
     cssName: '--spacing-semantic-layout-page-inset',
     name: 'layout/page-inset',
     target: '--spacing-alias-inset-page',
-    purpose: 'Крупный внешний отступ вокруг содержательной области страницы или самостоятельного empty state.',
+    purpose:
+      'Крупный внешний отступ вокруг содержательной области страницы или самостоятельного empty state.',
   },
   {
     cssName: '--spacing-semantic-content-text-gap',
@@ -198,7 +199,8 @@ export const spacingSemanticDefinitions = Object.freeze([
     cssName: '--spacing-semantic-empty-state-padding',
     name: 'empty-state/padding',
     target: '--spacing-alias-inset-empty',
-    purpose: 'Вертикальный воздух для пустого или завершающего состояния, когда обычный section-gap недостаточен.',
+    purpose:
+      'Вертикальный воздух для пустого или завершающего состояния, когда обычный section-gap недостаточен.',
   },
 ])
 

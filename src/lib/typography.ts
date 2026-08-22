@@ -52,10 +52,7 @@ const BEFORE_LINE_BREAK = new RegExp(
   `(^|\\n)([^\\n]*\\S)[ \\t]+(${WORD_PATTERN})[ \\t]*\\n[ \\t]*(?=\\S)`,
   'giu',
 )
-const BEFORE_NEXT_WORD = new RegExp(
-  `(^|[\\s([{"'«„—–-])(${WORD_PATTERN})[ \\t]+(?=\\S)`,
-  'giu',
-)
+const BEFORE_NEXT_WORD = new RegExp(`(^|[\\s([{"'«„—–-])(${WORD_PATTERN})[ \\t]+(?=\\S)`, 'giu')
 
 /**
  * Не оставляет русские союзы и предлоги в конце строки.

@@ -61,14 +61,14 @@ All new token, style and documentation identifiers use lowercase kebab-case:
 
 ## Semantic role guidance
 
-| Role | Default purpose | Typical weight | Guidance |
-| --- | --- | --- | --- |
-| `display` | One expressive hero statement per view | `heavy` (800) | Use sparingly; never for paragraphs. |
-| `title` | Screen, sheet or major card title | `bold` (700) | The main navigation/content title. |
-| `heading` | Section and card heading | `bold` (700) | Use for grouping, not for every emphasized word. |
-| `body` | Reading copy, descriptions and wishes | `regular` (400) | Default readable text; keep line-height relaxed. |
-| `label` | Buttons, tabs, inputs and compact actions | `semibold` (600) | Keep labels short and action-oriented. |
-| `caption` | Dates, hints, metadata and supporting notes | `bold` (700) | Use only for secondary information; do not reduce body copy to caption. |
+| Role      | Default purpose                             | Typical weight   | Guidance                                                                |
+| --------- | ------------------------------------------- | ---------------- | ----------------------------------------------------------------------- |
+| `display` | One expressive hero statement per view      | `heavy` (800)    | Use sparingly; never for paragraphs.                                    |
+| `title`   | Screen, sheet or major card title           | `bold` (700)     | The main navigation/content title.                                      |
+| `heading` | Section and card heading                    | `bold` (700)     | Use for grouping, not for every emphasized word.                        |
+| `body`    | Reading copy, descriptions and wishes       | `regular` (400)  | Default readable text; keep line-height relaxed.                        |
+| `label`   | Buttons, tabs, inputs and compact actions   | `semibold` (600) | Keep labels short and action-oriented.                                  |
+| `caption` | Dates, hints, metadata and supporting notes | `bold` (700)     | Use only for secondary information; do not reduce body copy to caption. |
 
 If a heading needs two or three strengths, keep one semantic role and add a
 documented state/variant (`heading-regular`, `heading-strong`) only when the

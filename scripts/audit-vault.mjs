@@ -26,14 +26,7 @@ const PBKDF2_ITERATIONS_FLOOR = 600_000
 const PBKDF2_ITERATIONS_CURRENT = 600_000
 const EXPECTED_ROLES = ['live', 'test']
 const EXPECTED_VAULT_ENTRIES = new Set(['manifest.json', 'content.bin', 'media'])
-const DAY_CATEGORIES = new Set([
-  'compliment',
-  'photos',
-  'cert',
-  'coupon',
-  'restaurant',
-  'video',
-])
+const DAY_CATEGORIES = new Set(['compliment', 'photos', 'cert', 'coupon', 'restaurant', 'video'])
 const DAY_KEYS = new Set([
   'day',
   'title',
@@ -148,7 +141,11 @@ function validateOptionalString(value, code) {
 }
 
 function validateStringArray(value, code) {
-  if (!Array.isArray(value) || value.length === 0 || value.some((item) => !isNonEmptyString(item))) {
+  if (
+    !Array.isArray(value) ||
+    value.length === 0 ||
+    value.some((item) => !isNonEmptyString(item))
+  ) {
     addIssue(code, 'expected a non-empty array of canonical strings')
     return false
   }
@@ -156,12 +153,15 @@ function validateStringArray(value, code) {
 }
 
 function isSafeMediaSourcePath(value) {
-  if (typeof value !== 'string' || value.length === 0 || value !== value.normalize('NFC')) return false
+  if (typeof value !== 'string' || value.length === 0 || value !== value.normalize('NFC'))
+    return false
   if (value.includes('\\') || /[\0-\x1F\x7F?#]/.test(value)) return false
   if (path.posix.isAbsolute(value) || path.posix.normalize(value) !== value) return false
 
   const parts = value.split('/')
-  return parts.length >= 2 && parts.every((part) => part.length > 0 && part !== '.' && part !== '..')
+  return (
+    parts.length >= 2 && parts.every((part) => part.length > 0 && part !== '.' && part !== '..')
+  )
 }
 
 async function readJson(filePath, code) {
@@ -206,7 +206,9 @@ async function validateVaultLayout() {
 
     const entries = await readdir(vaultDir, { withFileTypes: true })
     const names = new Set(entries.map((entry) => entry.name))
-    const unexpectedCount = entries.filter((entry) => !EXPECTED_VAULT_ENTRIES.has(entry.name)).length
+    const unexpectedCount = entries.filter(
+      (entry) => !EXPECTED_VAULT_ENTRIES.has(entry.name),
+    ).length
     if (unexpectedCount > 0) {
       addIssue('VAULT_LAYOUT', 'vault root contains unexpected entries')
     }
@@ -253,7 +255,11 @@ async function isSecureLocalFile(filePath, code) {
 async function auditCredentialPermissions(directory) {
   if (!existsSync(directory) || process.platform === 'win32') return
   const directoryInfo = await lstat(directory)
-  if (!directoryInfo.isDirectory() || directoryInfo.isSymbolicLink() || (directoryInfo.mode & 0o077) !== 0) {
+  if (
+    !directoryInfo.isDirectory() ||
+    directoryInfo.isSymbolicLink() ||
+    (directoryInfo.mode & 0o077) !== 0
+  ) {
     addIssue(
       'LOCAL_CREDENTIAL_PERMISSIONS',
       'credential directories must be owner-only real directories',
@@ -335,7 +341,16 @@ function validateContentShape(value) {
       }
     }
 
-    for (const key of ['title', 'category', 'emoji', 'icon', 'compliment', 'collage', 'wish', 'message']) {
+    for (const key of [
+      'title',
+      'category',
+      'emoji',
+      'icon',
+      'compliment',
+      'collage',
+      'wish',
+      'message',
+    ]) {
       if (day[key] !== undefined) remember(day[key])
     }
     for (const key of ['icon', 'compliment', 'collage', 'wish', 'message']) {
@@ -369,7 +384,13 @@ function validateContentShape(value) {
     }
 
     if (day.booking !== undefined) {
-      if (!hasOnlyKeys(day.booking, new Set(['card', 'background', 'when', 'where']), 'CONTENT_BOOKING_SCHEMA')) {
+      if (
+        !hasOnlyKeys(
+          day.booking,
+          new Set(['card', 'background', 'when', 'where']),
+          'CONTENT_BOOKING_SCHEMA',
+        )
+      ) {
         valid = false
       } else {
         if (
@@ -443,7 +464,9 @@ function validateContentShape(value) {
     }
 
     if (day.meme !== undefined) {
-      if (!hasOnlyKeys(day.meme, new Set(['photo', 'caption', 'reaction']), 'CONTENT_MEME_SCHEMA')) {
+      if (
+        !hasOnlyKeys(day.meme, new Set(['photo', 'caption', 'reaction']), 'CONTENT_MEME_SCHEMA')
+      ) {
         valid = false
       } else {
         if (!isNonEmptyString(day.meme.photo)) {
@@ -478,13 +501,9 @@ function validateContentShape(value) {
 }
 
 async function deriveKEK(password, salt, iterations) {
-  const base = await subtle.importKey(
-    'raw',
-    new TextEncoder().encode(password),
-    'PBKDF2',
-    false,
-    ['deriveKey'],
-  )
+  const base = await subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, [
+    'deriveKey',
+  ])
   return subtle.deriveKey(
     { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },
     base,
@@ -524,7 +543,10 @@ const regularMediaFiles = new Set()
 const cekIvOwners = new Map()
 let contentFileReady = false
 
-if (manifest && hasExactKeys(manifest, ['v', 'iter', 'keyId', 'wraps', 'content', 'media'], 'MANIFEST_SCHEMA')) {
+if (
+  manifest &&
+  hasExactKeys(manifest, ['v', 'iter', 'keyId', 'wraps', 'content', 'media'], 'MANIFEST_SCHEMA')
+) {
   if (manifest.v !== SCHEMA_VERSION) {
     addIssue('MANIFEST_VERSION', 'unsupported vault schema version')
   }
@@ -532,7 +554,10 @@ if (manifest && hasExactKeys(manifest, ['v', 'iter', 'keyId', 'wraps', 'content'
     addIssue('PBKDF2_FLOOR', 'PBKDF2 iteration count is below the security floor')
   }
   if (manifest.iter !== PBKDF2_ITERATIONS_CURRENT) {
-    addIssue('PBKDF2_CURRENT', 'PBKDF2 iteration count differs from the current encryption contract')
+    addIssue(
+      'PBKDF2_CURRENT',
+      'PBKDF2 iteration count differs from the current encryption contract',
+    )
   }
   if (typeof manifest.keyId !== 'string' || !KEY_ID_PATTERN.test(manifest.keyId)) {
     addIssue('KEY_ID_SHAPE', 'key identity has an invalid shape')
@@ -608,13 +633,19 @@ if (manifest && hasExactKeys(manifest, ['v', 'iter', 'keyId', 'wraps', 'content'
         continue
       }
       if (match[1] !== entry.sha || match[2] !== manifest.keyId) {
-        addIssue('MEDIA_BLOB_IDENTITY', 'encrypted media filename does not match its declared identities')
+        addIssue(
+          'MEDIA_BLOB_IDENTITY',
+          'encrypted media filename does not match its declared identities',
+        )
       }
 
       const signature = `${entry.sha}:${entry.iv}`
       const priorSignature = referencedFiles.get(entry.file)
       if (priorSignature && priorSignature !== signature) {
-        addIssue('MEDIA_BLOB_UNIQUENESS', 'one encrypted media file has conflicting manifest metadata')
+        addIssue(
+          'MEDIA_BLOB_UNIQUENESS',
+          'one encrypted media file has conflicting manifest metadata',
+        )
       }
       referencedFiles.set(entry.file, signature)
       if (iv && SHA_PATTERN.test(entry.sha)) {
@@ -654,7 +685,10 @@ if (manifest && hasExactKeys(manifest, ['v', 'iter', 'keyId', 'wraps', 'content'
           addIssue('MEDIA_ORPHANS', 'vault media directory contains unreferenced encrypted files')
         }
         if ([...referencedFiles.keys()].some((file) => !encryptedFiles.has(file))) {
-          addIssue('MEDIA_DIRECTORY_MAPPING', 'manifest references encrypted files absent from the media directory')
+          addIssue(
+            'MEDIA_DIRECTORY_MAPPING',
+            'manifest references encrypted files absent from the media directory',
+          )
         }
       } catch {
         addIssue('MEDIA_DIRECTORY', 'vault media directory is missing or unreadable')
@@ -672,15 +706,22 @@ if (originRef.status !== 0) {
   if (allowMissingOrigin) {
     originStatus = 'partial (explicitly allowed)'
   } else {
-    addIssue('ORIGIN_UNAVAILABLE', 'origin/main is unavailable; published mapping protection was not performed')
+    addIssue(
+      'ORIGIN_UNAVAILABLE',
+      'origin/main is unavailable; published mapping protection was not performed',
+    )
     originStatus = 'unavailable'
   }
 } else {
-  const originManifestResult = spawnSync('git', ['show', 'origin/main:public/vault/manifest.json'], {
-    cwd: root,
-    encoding: 'utf8',
-    maxBuffer: 10 * 1024 * 1024,
-  })
+  const originManifestResult = spawnSync(
+    'git',
+    ['show', 'origin/main:public/vault/manifest.json'],
+    {
+      cwd: root,
+      encoding: 'utf8',
+      maxBuffer: 10 * 1024 * 1024,
+    },
+  )
   if (originManifestResult.status !== 0) {
     addIssue('ORIGIN_MANIFEST', 'origin/main exists but its vault manifest cannot be read')
   } else {
@@ -691,9 +732,15 @@ if (originRef.status !== 0) {
         !KEY_ID_PATTERN.test(originManifest.keyId ?? '') ||
         !isPlainObject(originManifest.media)
       ) {
-        addIssue('ORIGIN_MANIFEST', 'origin/main vault manifest does not support compatibility comparison')
+        addIssue(
+          'ORIGIN_MANIFEST',
+          'origin/main vault manifest does not support compatibility comparison',
+        )
       } else if (!manifest || !isPlainObject(manifest.media)) {
-        addIssue('ORIGIN_COMPARISON', 'current vault manifest is unavailable for compatibility comparison')
+        addIssue(
+          'ORIGIN_COMPARISON',
+          'current vault manifest is unavailable for compatibility comparison',
+        )
       } else {
         if (originManifest.keyId !== manifest.keyId) {
           addIssue('ORIGIN_KEY_ID', 'vault key identity changed relative to origin/main')
@@ -757,13 +804,13 @@ const hasCek = existsSync(cekPath) && (await isSecureLocalFile(cekPath, 'LOCAL_C
 const hasPasswords =
   existsSync(passwordsPath) && (await isSecureLocalFile(passwordsPath, 'LOCAL_PASSWORDS_FILE'))
 const hasContentSource =
-  existsSync(localContentPath) &&
-  (await isSecureLocalFile(localContentPath, 'LOCAL_CONTENT_FILE'))
+  existsSync(localContentPath) && (await isSecureLocalFile(localContentPath, 'LOCAL_CONTENT_FILE'))
 if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
   localStatus = 'partial (explicitly allowed)'
 } else {
   if (!hasCek) addIssue('LOCAL_CEK_REQUIRED', 'local CEK record is required for a full vault audit')
-  if (!hasPasswords) addIssue('LOCAL_PASSWORDS_REQUIRED', 'local password record is required for a full vault audit')
+  if (!hasPasswords)
+    addIssue('LOCAL_PASSWORDS_REQUIRED', 'local password record is required for a full vault audit')
   if (!hasContentSource) {
     addIssue('LOCAL_CONTENT_REQUIRED', 'local content source is required for a full vault audit')
   }
@@ -868,7 +915,10 @@ if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
                 currentBytes.length !== sourceBytes.length ||
                 !timingSafeEqual(currentBytes, sourceBytes)
               ) {
-                addIssue('LOCAL_CONTENT_MISMATCH', 'encrypted content differs from the local content source')
+                addIssue(
+                  'LOCAL_CONTENT_MISMATCH',
+                  'encrypted content differs from the local content source',
+                )
               } else {
                 localContentMatch = true
               }
@@ -894,7 +944,10 @@ if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
         const plaintext = await decryptAesGcm(localCek, record.iv, ciphertext)
         const actualSha = createHash('sha256').update(plaintext).digest('hex').slice(0, 16)
         if (actualSha !== record.sha) {
-          addIssue('MEDIA_PLAINTEXT_SHA', 'decrypted media does not match its declared plaintext identity')
+          addIssue(
+            'MEDIA_PLAINTEXT_SHA',
+            'decrypted media does not match its declared plaintext identity',
+          )
         } else {
           decryptedBlobCount++
         }
@@ -915,10 +968,16 @@ if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
         (sourcePath) => !contentShape.mediaReferences.has(sourcePath),
       ).length
       if (missingMappings > 0) {
-        addIssue('CONTENT_MEDIA_MISSING', 'content references media absent from the encrypted vault')
+        addIssue(
+          'CONTENT_MEDIA_MISSING',
+          'content references media absent from the encrypted vault',
+        )
       }
       if (unreferencedMappings > 0) {
-        addIssue('CONTENT_MEDIA_REFERENCES', 'encrypted content does not reference every media mapping')
+        addIssue(
+          'CONTENT_MEDIA_REFERENCES',
+          'encrypted content does not reference every media mapping',
+        )
       }
     }
 
@@ -935,7 +994,10 @@ if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
           manifestSourcePaths.length !== uniqueSourcePaths.size ||
           manifestSourcePaths.some((sourcePath) => !uniqueSourcePaths.has(sourcePath))
         ) {
-          addIssue('LOCAL_MEDIA_MAPPING', 'vault media mappings differ from the local encrypted-media allowlist')
+          addIssue(
+            'LOCAL_MEDIA_MAPPING',
+            'vault media mappings differ from the local encrypted-media allowlist',
+          )
         }
 
         for (const sourcePath of uniqueSourcePaths) {
@@ -943,7 +1005,10 @@ if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
           if (!isPlainObject(entry) || typeof entry.sha !== 'string') continue
           const sourceFile = path.resolve(localMediaDir, sourcePath)
           if (!sourceFile.startsWith(`${localMediaDir}${path.sep}`)) {
-            addIssue('LOCAL_MEDIA_PATH', 'a local media source escapes the prepared-media directory')
+            addIssue(
+              'LOCAL_MEDIA_PATH',
+              'a local media source escapes the prepared-media directory',
+            )
             continue
           }
           if (!(await isSecureLocalFile(sourceFile, 'LOCAL_MEDIA_FILE'))) {
@@ -954,7 +1019,10 @@ if (!hasCek && !hasPasswords && !hasContentSource && allowMissingLocal) {
             const plaintext = await readFile(sourceFile)
             const actualSha = createHash('sha256').update(plaintext).digest('hex').slice(0, 16)
             if (actualSha !== entry.sha) {
-              addIssue('LOCAL_MEDIA_MISMATCH', 'encrypted media differs from its prepared local source')
+              addIssue(
+                'LOCAL_MEDIA_MISMATCH',
+                'encrypted media differs from its prepared local source',
+              )
             } else {
               localMediaMatchCount++
             }

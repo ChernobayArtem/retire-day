@@ -623,7 +623,12 @@ export const contrastPairs = Object.freeze([
   },
   {
     id: 'lightbox-control-worst-case',
-    selectors: ['.lightbox__close', '.lightbox__download', '.video-lightbox__close', '.video-lightbox__download'],
+    selectors: [
+      '.lightbox__close',
+      '.lightbox__download',
+      '.video-lightbox__close',
+      '.video-lightbox__download',
+    ],
     kind: CONTRAST_KIND.UI_GRAPHIC,
     foreground: token('--color-semantic-icon-inverse'),
     backgroundLayers: [WHITE, token('--color-semantic-overlay-control')],
@@ -684,7 +689,8 @@ export const contrastExemptions = Object.freeze([
       '--color-semantic-button-disabled-foreground',
       '--color-semantic-text-disabled',
     ],
-    reason: 'WCAG 1.4.3 and 1.4.11 exempt inactive user-interface components. Do not reuse these tokens for enabled content.',
+    reason:
+      'WCAG 1.4.3 and 1.4.11 exempt inactive user-interface components. Do not reuse these tokens for enabled content.',
   },
   {
     id: 'nonessential-boundaries',
@@ -728,7 +734,8 @@ export const contrastExemptions = Object.freeze([
       '--color-semantic-border-inverse-subtle',
       '--color-semantic-border-inverse-subtle',
     ],
-    reason: 'These strokes are decorative separators, geometry-preserving transparent strokes, or redundant embellishments. Spacing, surface fill, readable text, and accessible names carry the structure and meaning without them.',
+    reason:
+      'These strokes are decorative separators, geometry-preserving transparent strokes, or redundant embellishments. Spacing, surface fill, readable text, and accessible names carry the structure and meaning without them.',
   },
   {
     id: 'redundant-media-control-rings',
@@ -739,11 +746,9 @@ export const contrastExemptions = Object.freeze([
       '.video-lightbox__download',
       '.vid__play',
     ],
-    tokens: [
-      '--color-semantic-border-inverse-subtle',
-      '--color-semantic-border-inverse-subtle',
-    ],
-    reason: 'The ring is not the sole control boundary: each control has a separately audited dark overlay fill and inverse icon against a conservative white-media backdrop.',
+    tokens: ['--color-semantic-border-inverse-subtle', '--color-semantic-border-inverse-subtle'],
+    reason:
+      'The ring is not the sole control boundary: each control has a separately audited dark overlay fill and inverse icon against a conservative white-media backdrop.',
   },
   {
     id: 'transient-loader-strokes',
@@ -753,13 +758,15 @@ export const contrastExemptions = Object.freeze([
       '--color-semantic-border-inverse-strong',
       '--color-semantic-border-inverse-subtle',
     ],
-    reason: 'These transient animated strokes are loading motion, not a control or the only carrier of content. The media container and loading lifecycle remain available without distinguishing the individual stroke colours.',
+    reason:
+      'These transient animated strokes are loading motion, not a control or the only carrier of content. The media container and loading lifecycle remain available without distinguishing the individual stroke colours.',
   },
   {
     id: 'decorative-content-accents',
     selectors: ['.archive-card::before', 'code-authored day scenes'],
     tokens: ['--color-semantic-content-accent-*'],
-    reason: 'Decorative category identity only; date, category label and action remain available without colour.',
+    reason:
+      'Decorative category identity only; date, category label and action remain available without colour.',
   },
   {
     id: 'decorative-foundations',
@@ -772,7 +779,8 @@ export const contrastExemptions = Object.freeze([
       '--color-semantic-shadow-*',
       '--color-semantic-gradient-*',
     ],
-    reason: 'Decoration, loading texture, shadow or motion; it does not carry unique information or identify a control.',
+    reason:
+      'Decoration, loading texture, shadow or motion; it does not carry unique information or identify a control.',
   },
   {
     id: 'decorative-interface-shapes',
@@ -793,7 +801,8 @@ export const contrastExemptions = Object.freeze([
       '--color-semantic-shape-tooltip-pointer',
       '--color-semantic-icon-inverse',
     ],
-    reason: 'These fills complete decorative artwork or a tooltip/speech-bubble silhouette; adjacent text and audited surfaces carry all meaning.',
+    reason:
+      'These fills complete decorative artwork or a tooltip/speech-bubble silhouette; adjacent text and audited surfaces carry all meaning.',
   },
   {
     id: 'decorative-empty-state-icon',
@@ -805,7 +814,8 @@ export const contrastExemptions = Object.freeze([
     id: 'media-and-brand-artwork',
     selectors: ['photos', 'video posters', 'company logos', 'illustration aliases'],
     tokens: ['--color-alias-illustration-*'],
-    reason: 'Photographic or brand artwork is not interface text; controls placed above it are audited with conservative worst-case backdrops.',
+    reason:
+      'Photographic or brand artwork is not interface text; controls placed above it are audited with conservative worst-case backdrops.',
   },
 ])
 

@@ -56,7 +56,10 @@ function complimentText(def: DayDef): string {
 }
 
 function videoAuthor(def: DayDef): string {
-  const lines = (def.wish ?? '').split('\n').map((line) => line.trim()).filter(Boolean)
+  const lines = (def.wish ?? '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
   return lines[1] ?? lines[0] ?? 'Видео-заметка'
 }
 
@@ -171,7 +174,9 @@ export default function SurpriseArchive({
         >
           Назад
         </Button>
-        <h1 className="archive__title" id="archive-title">Все твои сюрпризы</h1>
+        <h1 className="archive__title" id="archive-title">
+          Все твои сюрпризы
+        </h1>
         <p className="archive__subtitle">
           {keepRussianShortWords('Здесь собрано всё, что уже открылось в календаре')}
         </p>
@@ -189,11 +194,7 @@ export default function SurpriseArchive({
                 selected={active}
                 aria-controls="archive-panel"
                 icon={category.icon ? <span>{category.icon}</span> : undefined}
-                badge={
-                  <Badge variant={active ? 'accent' : 'neutral'}>
-                    {counts[category.id]}
-                  </Badge>
-                }
+                badge={<Badge variant={active ? 'accent' : 'neutral'}>{counts[category.id]}</Badge>}
                 onClick={() => choose(category.id)}
               >
                 {category.label}
@@ -343,9 +344,7 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
       {category === 'coupon' && coupon && def.coupon && (
         <>
           <div className="archive-card__coupon-head">
-            <h2 className="archive-card__title">
-              {keepRussianShortWords(coupon.title)}
-            </h2>
+            <h2 className="archive-card__title">{keepRussianShortWords(coupon.title)}</h2>
             <span className="archive-card__emoji" aria-hidden="true">
               {def.coupon.emoji ?? def.emoji}
             </span>
@@ -379,12 +378,8 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
 
       {category === 'restaurant' && def.booking && (
         <>
-          <h2 className="archive-card__title">
-            {keepRussianShortWords(def.booking.when)}
-          </h2>
-          <p className="archive-card__text">
-            {keepRussianShortWords(def.booking.where)}
-          </p>
+          <h2 className="archive-card__title">{keepRussianShortWords(def.booking.when)}</h2>
+          <p className="archive-card__text">{keepRussianShortWords(def.booking.where)}</p>
           <ArchiveOpenButton label="Открыть ресторан" onClick={onOpen} />
         </>
       )}
@@ -396,9 +391,7 @@ function ArchiveCard({ def, category, copiedKey, onCopy, onOpen }: CardProps) {
               <Icons.Play size={24} />
             </span>
             <div>
-              <h2 className="archive-card__title">
-                {keepRussianShortWords(videoAuthor(def))}
-              </h2>
+              <h2 className="archive-card__title">{keepRussianShortWords(videoAuthor(def))}</h2>
               <p className="archive-card__hint">
                 {keepRussianShortWords(
                   def.video.src ? 'Видео-заметка готова к просмотру' : 'Видео скоро появится',

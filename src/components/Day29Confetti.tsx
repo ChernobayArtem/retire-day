@@ -1,6 +1,14 @@
 import type { CSSProperties } from 'react'
 
-const COLORS = ['var(--color-alias-illustration-rose-774)', 'var(--color-alias-illustration-orange-263)', 'var(--color-alias-illustration-blue-653)', 'var(--color-alias-illustration-green-615)', 'var(--color-alias-illustration-indigo-375)', 'var(--color-alias-illustration-orange-719)', 'var(--color-alias-illustration-teal-500)']
+const COLORS = [
+  'var(--color-alias-illustration-rose-774)',
+  'var(--color-alias-illustration-orange-263)',
+  'var(--color-alias-illustration-blue-653)',
+  'var(--color-alias-illustration-green-615)',
+  'var(--color-alias-illustration-indigo-375)',
+  'var(--color-alias-illustration-orange-719)',
+  'var(--color-alias-illustration-teal-500)',
+]
 
 const PIECES = Array.from({ length: 64 }, (_, index) => {
   const fromLeft = index % 2 === 0
@@ -26,8 +34,7 @@ const PIECES = Array.from({ length: 64 }, (_, index) => {
 export default function Day29Confetti() {
   const rootStyle = {
     '--confetti-flash-color': 'var(--color-alias-illustration-confetti-flash)',
-    '--confetti-flash-transparent':
-      'var(--color-alias-illustration-confetti-flash-transparent)',
+    '--confetti-flash-transparent': 'var(--color-alias-illustration-confetti-flash-transparent)',
     '--confetti-shadow-color': 'var(--color-alias-illustration-confetti-shadow)',
   } as CSSProperties
 
@@ -52,8 +59,7 @@ export default function Day29Confetti() {
         return (
           <span
             className={
-              'day29-confetti__piece' +
-              (index % 5 === 0 ? ' day29-confetti__piece--round' : '')
+              'day29-confetti__piece' + (index % 5 === 0 ? ' day29-confetti__piece--round' : '')
             }
             key={index}
             style={style}

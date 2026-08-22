@@ -12,11 +12,13 @@ const inlineSvgAllowlist = new Set([
 
 async function collectFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true })
-  const nested = await Promise.all(entries.map(async (entry) => {
-    const target = path.join(directory, entry.name)
-    if (entry.isDirectory()) return collectFiles(target)
-    return entry.isFile() && target.endsWith('.tsx') ? [target] : []
-  }))
+  const nested = await Promise.all(
+    entries.map(async (entry) => {
+      const target = path.join(directory, entry.name)
+      if (entry.isDirectory()) return collectFiles(target)
+      return entry.isFile() && target.endsWith('.tsx') ? [target] : []
+    }),
+  )
   return nested.flat()
 }
 
@@ -48,4 +50,6 @@ if (violations.length > 0) {
   process.exit(1)
 }
 
-console.log(`Icon system audit passed: ${files.length} TSX files checked; system SVGs are centralized in src/ui/Icons.tsx.`)
+console.log(
+  `Icon system audit passed: ${files.length} TSX files checked; system SVGs are centralized in src/ui/Icons.tsx.`,
+)

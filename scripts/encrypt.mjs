@@ -11,11 +11,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const subtle = globalThis.crypto.subtle
 const ITER = 600000
 
-const { days, secretMedia } = await import(
-  path.join(root, 'local-content/current/content.mjs')
-)
+const { days, secretMedia } = await import(path.join(root, 'local-content/current/content.mjs'))
 const passwords = JSON.parse(
-  await readFile(path.join(root, 'local-content/credentials/passwords.json'), 'utf8')
+  await readFile(path.join(root, 'local-content/credentials/passwords.json'), 'utf8'),
 )
 
 const localMediaDir = path.join(root, 'local-content/current/media')
@@ -119,7 +117,9 @@ const b64 = (buf) => Buffer.from(buf).toString('base64')
 const rand = (n) => crypto.getRandomValues(new Uint8Array(n))
 
 async function deriveKEK(pw, salt) {
-  const base = await subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey'])
+  const base = await subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, [
+    'deriveKey',
+  ])
   return subtle.deriveKey(
     { name: 'PBKDF2', salt, iterations: ITER, hash: 'SHA-256' },
     base,

@@ -2,10 +2,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { extname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import {
-  contrastExemptions,
-  contrastPairs,
-} from '../design-tokens/color-contrast-contract.mjs'
+import { contrastExemptions, contrastPairs } from '../design-tokens/color-contrast-contract.mjs'
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const json = process.argv.includes('--json')
@@ -50,9 +47,7 @@ function lineAt(source, index) {
 }
 
 function maskCssComments(source) {
-  return source.replace(/\/\*[\s\S]*?\*\//g, (comment) =>
-    comment.replace(/[^\n]/g, ' '),
-  )
+  return source.replace(/\/\*[\s\S]*?\*\//g, (comment) => comment.replace(/[^\n]/g, ' '))
 }
 
 function contrastCategory(token) {
@@ -90,9 +85,8 @@ function collectConsumers() {
 
   for (const file of collectSourceFiles(join(projectRoot, 'src')).sort()) {
     const source = readFileSync(join(projectRoot, file), 'utf8')
-    const searchableSource = extname(file).toLowerCase() === '.css'
-      ? maskCssComments(source)
-      : source
+    const searchableSource =
+      extname(file).toLowerCase() === '.css' ? maskCssComments(source) : source
     for (const match of searchableSource.matchAll(/var\(\s*(--color-semantic-[\w-]+)/g)) {
       const token = match[1]
       const category = contrastCategory(token)
@@ -126,10 +120,7 @@ function exemptionPatternMatches(token, pattern) {
   }
 
   if (pattern.includes('*')) {
-    const expression = pattern
-      .split('*')
-      .map(escapeRegExp)
-      .join('.*')
+    const expression = pattern.split('*').map(escapeRegExp).join('.*')
     return new RegExp(`^${expression}$`).test(token)
   }
 
@@ -137,9 +128,7 @@ function exemptionPatternMatches(token, pattern) {
 }
 
 const consumers = collectConsumers()
-const requiredTokens = new Set(
-  contrastPairs.map((pair) => pair.foreground?.token).filter(Boolean),
-)
+const requiredTokens = new Set(contrastPairs.map((pair) => pair.foreground?.token).filter(Boolean))
 const exemptionEntries = contrastExemptions.flatMap((exemption) =>
   (exemption.tokens ?? []).map((pattern) => ({
     id: exemption.id,
@@ -175,9 +164,7 @@ const results = [...consumers.entries()]
     )
     const exemptionIds = new Set()
     const allLocationsExempt = consumer.locations.every((location) => {
-      const exemption = matchingExemptions.find((entry) =>
-        exemptionAllowsLocation(entry, location),
-      )
+      const exemption = matchingExemptions.find((entry) => exemptionAllowsLocation(entry, location))
       if (exemption) exemptionIds.add(exemption.id)
       return Boolean(exemption)
     })
@@ -199,10 +186,8 @@ const results = [...consumers.entries()]
 
 const missing = results.filter((result) => result.status === 'missing')
 const report = {
-  scope:
-    'Consumed semantic text, icon, control-foreground, boundary, and focus token roles.',
-  note:
-    'This is a token-role coverage audit. Numeric contrast remains the responsibility of audit-color-contrast.mjs.',
+  scope: 'Consumed semantic text, icon, control-foreground, boundary, and focus token roles.',
+  note: 'This is a token-role coverage audit. Numeric contrast remains the responsibility of audit-color-contrast.mjs.',
   totals: {
     consumed: results.length,
     required: results.filter((result) => result.status === 'required').length,

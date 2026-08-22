@@ -1,7 +1,12 @@
 // День 4 — бумажный самолётик
 export default function Day4() {
   return (
-    <svg className="scn s4" viewBox="0 0 430 260" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className="scn s4"
+      viewBox="0 0 430 260"
+      preserveAspectRatio="xMidYMax slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <style>{`
         .s4 .plane{transform-box:fill-box;transform-origin:center;animation:s4fly 9s ease-in-out infinite}
         .s4 .trail{animation:s4trail 9s ease-in-out infinite}
@@ -30,10 +35,26 @@ export default function Day4() {
         <circle cx="336" cy="190" r="22" />
       </g>
       <g className="plane">
-        <polyline className="trail" points="-58,11 -7,11" stroke="var(--color-alias-illustration-blue-514)" strokeWidth="2" strokeDasharray="4 5" fill="none" />
-        <path d="M0 0 L42 11 L0 23 L11 11 Z" fill="var(--color-alias-illustration-neutral-0)" stroke="var(--color-alias-illustration-blue-403)" strokeWidth="1.4" />
+        <polyline
+          className="trail"
+          points="-58,11 -7,11"
+          stroke="var(--color-alias-illustration-blue-514)"
+          strokeWidth="2"
+          strokeDasharray="4 5"
+          fill="none"
+        />
+        <path
+          d="M0 0 L42 11 L0 23 L11 11 Z"
+          fill="var(--color-alias-illustration-neutral-0)"
+          stroke="var(--color-alias-illustration-blue-403)"
+          strokeWidth="1.4"
+        />
         <path d="M0 0 L9 11 L0 22 Z" fill="var(--color-alias-illustration-blue-167)" />
-        <path d="M10 11 L35 11" stroke="var(--color-alias-illustration-blue-264)" strokeWidth="1.2" />
+        <path
+          d="M10 11 L35 11"
+          stroke="var(--color-alias-illustration-blue-264)"
+          strokeWidth="1.2"
+        />
       </g>
     </svg>
   )

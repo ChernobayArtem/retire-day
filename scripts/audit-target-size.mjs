@@ -2,11 +2,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 
-import {
-  MIN_TARGET_SIZE,
-  exceptions,
-  targets,
-} from '../design-tokens/target-size-contract.mjs'
+import { MIN_TARGET_SIZE, exceptions, targets } from '../design-tokens/target-size-contract.mjs'
 
 const root = process.cwd()
 const tokenFiles = [

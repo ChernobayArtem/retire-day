@@ -35,7 +35,7 @@ For layout, the parent owns the external gap and the component owns internal
 padding or cluster gaps. Prefer existing `--spacing-semantic-*` roles; do not
 invent a new role for one screen or day. Any new spacing role must represent a
 repeatable need in at least two contexts, be documented in
-  `docs/SPACING_SYSTEM.md`, added to `design-tokens/spacing-contract.mjs`, and be added primitive → alias → semantic. Raw
+`docs/SPACING_SYSTEM.md`, added to `design-tokens/spacing-contract.mjs`, and be added primitive → alias → semantic. Raw
 spacing is limited to art direction, media crop, safe area, and full-bleed
 rules, each with an adjacent `layout-exception` comment.
 

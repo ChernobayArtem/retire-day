@@ -1,5 +1,12 @@
 // День 23 — пляжный мяч
-const BALL_COLORS = ['var(--color-alias-illustration-red-813)', 'var(--color-alias-illustration-orange-263)', 'var(--color-alias-illustration-teal-1000)', 'var(--color-alias-illustration-neutral-0)', 'var(--color-alias-illustration-rose-419)', 'var(--color-alias-illustration-blue-569)']
+const BALL_COLORS = [
+  'var(--color-alias-illustration-red-813)',
+  'var(--color-alias-illustration-orange-263)',
+  'var(--color-alias-illustration-teal-1000)',
+  'var(--color-alias-illustration-neutral-0)',
+  'var(--color-alias-illustration-rose-419)',
+  'var(--color-alias-illustration-blue-569)',
+]
 function ballWedges(cx: number, cy: number, r: number) {
   const pts: number[][] = []
   for (let i = 0; i < 7; i++) {
@@ -14,7 +21,12 @@ function ballWedges(cx: number, cy: number, r: number) {
 
 export default function Day23() {
   return (
-    <svg className="scn s23" viewBox="0 0 430 260" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className="scn s23"
+      viewBox="0 0 430 260"
+      preserveAspectRatio="xMidYMax slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <style>{`
         .s23 .ball{transform-box:fill-box;transform-origin:50% 100%;animation:s23roll 9s ease-in-out infinite}
         .s23 .wave{transform-box:fill-box;transform-origin:center;animation:s23wave 6s ease-in-out infinite}
@@ -28,24 +40,68 @@ export default function Day23() {
         @keyframes s23foam{0%,100%{opacity:.25;transform:translateX(-5px)}50%{opacity:.75;transform:translateX(6px)}}
       `}</style>
       <rect width="430" height="260" fill="var(--color-alias-illustration-blue-69)" />
-      <circle cx="330" cy="82" r="24" fill="var(--color-alias-illustration-orange-158)" opacity=".85" />
-      <g className="cloud" fill="var(--color-alias-illustration-neutral-0)"><ellipse cx="112" cy="96" rx="28" ry="11" /><circle cx="98" cy="92" r="11" /><circle cx="126" cy="90" r="13" /></g>
+      <circle
+        cx="330"
+        cy="82"
+        r="24"
+        fill="var(--color-alias-illustration-orange-158)"
+        opacity=".85"
+      />
+      <g className="cloud" fill="var(--color-alias-illustration-neutral-0)">
+        <ellipse cx="112" cy="96" rx="28" ry="11" />
+        <circle cx="98" cy="92" r="11" />
+        <circle cx="126" cy="90" r="13" />
+      </g>
       <rect y="150" width="430" height="60" fill="var(--color-alias-illustration-blue-333)" />
-      <path className="wave" d="M-20 154 q 30 -8 60 0 q 30 8 60 0 q 30 -8 60 0 q 30 8 60 0 q 30 -8 60 0 q 30 8 60 0 q 30 -8 60 0 L470 152 L470 210 L-20 210 Z" fill="var(--color-alias-illustration-blue-458)" />
-      <path className="foam" d="M70 168 q 28 -7 56 0 M276 174 q 24 -6 48 0" fill="none" stroke="var(--color-alias-illustration-neutral-0)" strokeWidth="3" strokeLinecap="round" />
-      <path d="M0 200 Q 215 184 430 200 L430 260 L0 260 Z" fill="var(--color-alias-illustration-orange-123)" />
+      <path
+        className="wave"
+        d="M-20 154 q 30 -8 60 0 q 30 8 60 0 q 30 -8 60 0 q 30 8 60 0 q 30 -8 60 0 q 30 8 60 0 q 30 -8 60 0 L470 152 L470 210 L-20 210 Z"
+        fill="var(--color-alias-illustration-blue-458)"
+      />
+      <path
+        className="foam"
+        d="M70 168 q 28 -7 56 0 M276 174 q 24 -6 48 0"
+        fill="none"
+        stroke="var(--color-alias-illustration-neutral-0)"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M0 200 Q 215 184 430 200 L430 260 L0 260 Z"
+        fill="var(--color-alias-illustration-orange-123)"
+      />
       {/* мяч */}
       <g className="ball">
         {ballWedges(215, 202, 26).map((w, i) => (
           <path key={i} d={w.d} fill={w.c} />
         ))}
-        <circle cx="215" cy="202" r="26" fill="none" stroke="var(--color-alias-illustration-orange-246)" strokeWidth="1.5" />
-        <circle cx="206" cy="193" r="6" fill="var(--color-alias-illustration-neutral-0)" opacity="0.45" />
+        <circle
+          cx="215"
+          cy="202"
+          r="26"
+          fill="none"
+          stroke="var(--color-alias-illustration-orange-246)"
+          strokeWidth="1.5"
+        />
+        <circle
+          cx="206"
+          cy="193"
+          r="6"
+          fill="var(--color-alias-illustration-neutral-0)"
+          opacity="0.45"
+        />
       </g>
       {/* ракушка */}
       <g className="shell">
-        <path d="M300 232 Q 300 214 316 214 Q 332 214 332 232 Z" fill="var(--color-alias-illustration-rose-226)" />
-        <g stroke="var(--color-alias-illustration-rose-452)" strokeWidth="1.5" fill="none"><path d="M316 214 L316 232" /><path d="M308 216 L311 232" /><path d="M324 216 L321 232" /></g>
+        <path
+          d="M300 232 Q 300 214 316 214 Q 332 214 332 232 Z"
+          fill="var(--color-alias-illustration-rose-226)"
+        />
+        <g stroke="var(--color-alias-illustration-rose-452)" strokeWidth="1.5" fill="none">
+          <path d="M316 214 L316 232" />
+          <path d="M308 216 L311 232" />
+          <path d="M324 216 L321 232" />
+        </g>
       </g>
     </svg>
   )

@@ -1,5 +1,15 @@
 // День 28 — предфинальное конфетти
-function Confetti({ tx, peak, color, shape }: { tx: number; peak: number; color: string; shape: 'sq' | 'ci' | 'tr' | 'rc' }) {
+function Confetti({
+  tx,
+  peak,
+  color,
+  shape,
+}: {
+  tx: number
+  peak: number
+  color: string
+  shape: 'sq' | 'ci' | 'tr' | 'rc'
+}) {
   const style = { ['--tx' as string]: tx + 'px', ['--peak' as string]: peak + 'px' }
   return (
     <g className="conf" style={style}>
@@ -13,7 +23,12 @@ function Confetti({ tx, peak, color, shape }: { tx: number; peak: number; color:
 
 export default function Day28() {
   return (
-    <svg className="scn s28" viewBox="0 0 430 260" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className="scn s28"
+      viewBox="0 0 430 260"
+      preserveAspectRatio="xMidYMax slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <style>{`
         .s28 .conf{transform-box:fill-box;transform-origin:center;animation:s28fly 9s ease-out infinite}
         .s28 .popper{transform-box:fill-box;transform-origin:50% 100%;animation:s28pop 9s ease-out infinite}
@@ -24,7 +39,13 @@ export default function Day28() {
       `}</style>
       <rect width="430" height="260" fill="var(--color-alias-illustration-rose-32)" />
       <ellipse cx="215" cy="244" rx="90" ry="8" fill="var(--color-alias-illustration-rose-129)" />
-      <g className="burst" fill="none" stroke="var(--color-alias-illustration-orange-263)" strokeWidth="3" strokeLinecap="round">
+      <g
+        className="burst"
+        fill="none"
+        stroke="var(--color-alias-illustration-orange-263)"
+        strokeWidth="3"
+        strokeLinecap="round"
+      >
         <path d="M215 204 L215 178 M208 206 L194 184 M222 206 L236 184" />
       </g>
       <Confetti tx={-92} peak={-40} color="var(--color-alias-illustration-red-750)" shape="sq" />
@@ -40,9 +61,22 @@ export default function Day28() {
       {/* хлопушка */}
       <g transform="translate(0 -5) scale(1.12 1.12)" transform-origin="215 250">
         <g className="popper">
-          <path d="M215 210 L196 250 L234 250 Z" fill="var(--color-alias-illustration-orange-754)" />
-          <path d="M215 210 L205 250 L225 250 Z" fill="var(--color-alias-illustration-red-688)" opacity="0.6" />
-          <ellipse cx="215" cy="210" rx="13" ry="4" fill="var(--color-alias-illustration-orange-263)" />
+          <path
+            d="M215 210 L196 250 L234 250 Z"
+            fill="var(--color-alias-illustration-orange-754)"
+          />
+          <path
+            d="M215 210 L205 250 L225 250 Z"
+            fill="var(--color-alias-illustration-red-688)"
+            opacity="0.6"
+          />
+          <ellipse
+            cx="215"
+            cy="210"
+            rx="13"
+            ry="4"
+            fill="var(--color-alias-illustration-orange-263)"
+          />
         </g>
       </g>
     </svg>

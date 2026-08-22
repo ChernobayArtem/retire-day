@@ -58,13 +58,17 @@ function bytesToB64(bytes: Uint8Array): string {
 
 async function getManifest(): Promise<Manifest> {
   if (!manifest) {
-    manifest = (await (await fetch(`${BASE}vault/manifest.json`, { cache: 'force-cache' })).json()) as Manifest
+    manifest = (await (
+      await fetch(`${BASE}vault/manifest.json`, { cache: 'force-cache' })
+    ).json()) as Manifest
   }
   return manifest
 }
 
 async function deriveKEK(pw: string, salt: BufferSource, iter: number): Promise<CryptoKey> {
-  const base = await subtle().importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey'])
+  const base = await subtle().importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, [
+    'deriveKey',
+  ])
   return subtle().deriveKey(
     { name: 'PBKDF2', salt, iterations: iter, hash: 'SHA-256' },
     base,
@@ -89,7 +93,11 @@ export async function unlock(password: string): Promise<Role | null> {
   for (const w of m.wraps) {
     try {
       const kek = await deriveKEK(password, b64ToBytes(w.salt), m.iter)
-      cekRaw = await subtle().decrypt({ name: 'AES-GCM', iv: b64ToBytes(w.iv) }, kek, b64ToBytes(w.ct))
+      cekRaw = await subtle().decrypt(
+        { name: 'AES-GCM', iv: b64ToBytes(w.iv) },
+        kek,
+        b64ToBytes(w.ct),
+      )
       role = w.role
       break
     } catch {
@@ -100,7 +108,10 @@ export async function unlock(password: string): Promise<Role | null> {
   cek = await subtle().importKey('raw', cekRaw, { name: 'AES-GCM' }, true, ['decrypt'])
   const days = await loadContent(cek)
   try {
-    localStorage.setItem(SESSION_KEY, JSON.stringify({ cek: bytesToB64(new Uint8Array(cekRaw)), role }))
+    localStorage.setItem(
+      SESSION_KEY,
+      JSON.stringify({ cek: bytesToB64(new Uint8Array(cekRaw)), role }),
+    )
   } catch {
     /* storage unavailable — session just won't persist */
   }
@@ -122,7 +133,9 @@ export async function resume(): Promise<void> {
     return
   }
   try {
-    cek = await subtle().importKey('raw', b64ToBytes(saved.cek), { name: 'AES-GCM' }, true, ['decrypt'])
+    cek = await subtle().importKey('raw', b64ToBytes(saved.cek), { name: 'AES-GCM' }, true, [
+      'decrypt',
+    ])
     const days = await loadContent(cek)
     set({ status: 'ready', role: saved.role, days })
   } catch {
@@ -155,9 +168,17 @@ export function logout() {
 function mimeFor(pathRel: string): string {
   const ext = pathRel.slice(pathRel.lastIndexOf('.') + 1).toLowerCase()
   return (
-    { mp4: 'video/mp4', mov: 'video/quicktime', webm: 'video/webm', jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif', svg: 'image/svg+xml' }[
-      ext
-    ] ?? 'application/octet-stream'
+    {
+      mp4: 'video/mp4',
+      mov: 'video/quicktime',
+      webm: 'video/webm',
+      jpg: 'image/jpeg',
+      jpeg: 'image/jpeg',
+      png: 'image/png',
+      webp: 'image/webp',
+      gif: 'image/gif',
+      svg: 'image/svg+xml',
+    }[ext] ?? 'application/octet-stream'
   )
 }
 
@@ -190,14 +211,16 @@ export async function mediaUrl(pathRel: string): Promise<string> {
     return url
   })()
   mediaPending.set(pathRel, p)
-  void p.finally(() => {
-    // A rejected request must not poison this path forever. A later mount or
-    // online event can then retry the download normally.
-    if (mediaPending.get(pathRel) === p) mediaPending.delete(pathRel)
-  }).catch(() => {
-    // The caller receives the original rejection; this only handles the
-    // promise returned by finally() itself.
-  })
+  void p
+    .finally(() => {
+      // A rejected request must not poison this path forever. A later mount or
+      // online event can then retry the download normally.
+      if (mediaPending.get(pathRel) === p) mediaPending.delete(pathRel)
+    })
+    .catch(() => {
+      // The caller receives the original rejection; this only handles the
+      // promise returned by finally() itself.
+    })
   return p
 }
 

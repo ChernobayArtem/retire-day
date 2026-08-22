@@ -76,9 +76,21 @@ function DawnScene() {
             <stop offset="1" stopColor="var(--color-alias-illustration-orange-193)" />
           </linearGradient>
           <radialGradient id="finale-halo">
-            <stop offset="0" stopColor="var(--color-alias-illustration-yellow-818)" stopOpacity="0.88" />
-            <stop offset="0.58" stopColor="var(--color-alias-illustration-orange-211)" stopOpacity="0.34" />
-            <stop offset="1" stopColor="var(--color-alias-illustration-orange-211)" stopOpacity="0" />
+            <stop
+              offset="0"
+              stopColor="var(--color-alias-illustration-yellow-818)"
+              stopOpacity="0.88"
+            />
+            <stop
+              offset="0.58"
+              stopColor="var(--color-alias-illustration-orange-211)"
+              stopOpacity="0.34"
+            />
+            <stop
+              offset="1"
+              stopColor="var(--color-alias-illustration-orange-211)"
+              stopOpacity="0"
+            />
           </radialGradient>
           <linearGradient id="finale-sun" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="var(--color-alias-illustration-yellow-455)" />
@@ -94,23 +106,66 @@ function DawnScene() {
 
         <g transform="translate(33 112)">
           <g className="finale-scene__cloud finale-scene__cloud--left">
-            <ellipse cx="31" cy="12" rx="31" ry="11" fill="var(--color-alias-illustration-neutral-0)" fillOpacity="0.76" />
-            <circle cx="20" cy="7" r="12" fill="var(--color-alias-illustration-neutral-0)" fillOpacity="0.76" />
-            <circle cx="38" cy="4" r="16" fill="var(--color-alias-illustration-neutral-0)" fillOpacity="0.76" />
+            <ellipse
+              cx="31"
+              cy="12"
+              rx="31"
+              ry="11"
+              fill="var(--color-alias-illustration-neutral-0)"
+              fillOpacity="0.76"
+            />
+            <circle
+              cx="20"
+              cy="7"
+              r="12"
+              fill="var(--color-alias-illustration-neutral-0)"
+              fillOpacity="0.76"
+            />
+            <circle
+              cx="38"
+              cy="4"
+              r="16"
+              fill="var(--color-alias-illustration-neutral-0)"
+              fillOpacity="0.76"
+            />
           </g>
         </g>
         <g transform="translate(337 91)">
           <g className="finale-scene__cloud finale-scene__cloud--right">
-            <ellipse cx="31" cy="12" rx="31" ry="11" fill="var(--color-alias-illustration-neutral-0)" fillOpacity="0.7" />
-            <circle cx="21" cy="8" r="12" fill="var(--color-alias-illustration-neutral-0)" fillOpacity="0.7" />
-            <circle cx="39" cy="5" r="15" fill="var(--color-alias-illustration-neutral-0)" fillOpacity="0.7" />
+            <ellipse
+              cx="31"
+              cy="12"
+              rx="31"
+              ry="11"
+              fill="var(--color-alias-illustration-neutral-0)"
+              fillOpacity="0.7"
+            />
+            <circle
+              cx="21"
+              cy="8"
+              r="12"
+              fill="var(--color-alias-illustration-neutral-0)"
+              fillOpacity="0.7"
+            />
+            <circle
+              cx="39"
+              cy="5"
+              r="15"
+              fill="var(--color-alias-illustration-neutral-0)"
+              fillOpacity="0.7"
+            />
           </g>
         </g>
 
         <g transform="translate(215 151)">
           <g className="finale-scene__sun-rise">
             <circle r="88" fill="url(#finale-halo)" />
-            <g className="finale-scene__rays" stroke="var(--color-alias-illustration-orange-386)" strokeWidth="5" strokeLinecap="round">
+            <g
+              className="finale-scene__rays"
+              stroke="var(--color-alias-illustration-orange-386)"
+              strokeWidth="5"
+              strokeLinecap="round"
+            >
               {Array.from({ length: 12 }, (_, index) => (
                 <line
                   key={index}
@@ -135,23 +190,60 @@ function DawnScene() {
           d="M0 215Q78 172 174 211Q277 160 430 208V280H0Z"
           fill="var(--color-alias-illustration-green-256)"
         />
-        <path
-          d="M0 243Q106 190 218 235Q323 186 430 224V280H0Z"
-          fill="url(#finale-hill-near)"
-        />
+        <path d="M0 243Q106 190 218 235Q323 186 430 224V280H0Z" fill="url(#finale-hill-near)" />
 
         <g transform="translate(67 265)">
           <g className="finale-scene__plant finale-scene__plant--left">
-            <path d="M0 0C-4-29-14-52-31-69" fill="none" stroke="var(--color-alias-illustration-green-1000)" strokeWidth="2.5" strokeLinecap="round" />
-            <ellipse cx="-26" cy="-62" rx="16" ry="9" fill="var(--color-alias-illustration-green-949)" transform="rotate(33 -26 -62)" />
-            <ellipse cx="-7" cy="-29" rx="15" ry="8" fill="var(--color-alias-illustration-green-974)" transform="rotate(-37 -7 -29)" />
+            <path
+              d="M0 0C-4-29-14-52-31-69"
+              fill="none"
+              stroke="var(--color-alias-illustration-green-1000)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            <ellipse
+              cx="-26"
+              cy="-62"
+              rx="16"
+              ry="9"
+              fill="var(--color-alias-illustration-green-949)"
+              transform="rotate(33 -26 -62)"
+            />
+            <ellipse
+              cx="-7"
+              cy="-29"
+              rx="15"
+              ry="8"
+              fill="var(--color-alias-illustration-green-974)"
+              transform="rotate(-37 -7 -29)"
+            />
           </g>
         </g>
         <g transform="translate(372 272)">
           <g className="finale-scene__plant finale-scene__plant--right">
-            <path d="M0 0C2-31 13-52 31-72" fill="none" stroke="var(--color-alias-illustration-green-1000)" strokeWidth="2.5" strokeLinecap="round" />
-            <ellipse cx="27" cy="-65" rx="17" ry="9" fill="var(--color-alias-illustration-green-949)" transform="rotate(-30 27 -65)" />
-            <ellipse cx="8" cy="-34" rx="15" ry="8" fill="var(--color-alias-illustration-green-974)" transform="rotate(35 8 -34)" />
+            <path
+              d="M0 0C2-31 13-52 31-72"
+              fill="none"
+              stroke="var(--color-alias-illustration-green-1000)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            <ellipse
+              cx="27"
+              cy="-65"
+              rx="17"
+              ry="9"
+              fill="var(--color-alias-illustration-green-949)"
+              transform="rotate(-30 27 -65)"
+            />
+            <ellipse
+              cx="8"
+              cy="-34"
+              rx="15"
+              ry="8"
+              fill="var(--color-alias-illustration-green-974)"
+              transform="rotate(35 8 -34)"
+            />
           </g>
         </g>
       </svg>

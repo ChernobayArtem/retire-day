@@ -89,10 +89,7 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
 
   return (
     <div className="sheet-overlay" onClick={onClose}>
-      <div
-        className={`sheet sheet--day${active.day}`}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className={`sheet sheet--day${active.day}`} onClick={(e) => e.stopPropagation()}>
         <div className="day">
           {locked ? (
             <div className="day__top day__top--locked">
@@ -114,9 +111,7 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
               />
               <Divider className="rule" />
               {(def.wish || def.message) && (
-                <p className="day__wish">
-                  {keepRussianShortWords(def.wish ?? def.message ?? '')}
-                </p>
+                <p className="day__wish">{keepRussianShortWords(def.wish ?? def.message ?? '')}</p>
               )}
             </div>
           )}
@@ -202,11 +197,7 @@ function Media({ def, analyticsEnabled, onCopyText, onExpand }: MediaProps) {
   }
 
   if (def.compliment) {
-    return (
-      <div className="mcard mcard--compliment">
-        {keepRussianShortWords(def.compliment)}
-      </div>
-    )
+    return <div className="mcard mcard--compliment">{keepRussianShortWords(def.compliment)}</div>
   }
   if (def.collage) {
     return (

@@ -46,8 +46,8 @@ export default function UIKitShowcase() {
         <Badge variant="accent">Внутреннее превью</Badge>
         <h1 id="ui-showcase-title">Retire Day UI kit</h1>
         <p>
-          Компоненты показаны на вымышленных данных и не связаны с приложением,
-          хранилищем или пользовательской сессией.
+          Компоненты показаны на вымышленных данных и не связаны с приложением, хранилищем или
+          пользовательской сессией.
         </p>
       </header>
 
@@ -109,9 +109,15 @@ export default function UIKitShowcase() {
             <Button variant="link">Текстовое действие</Button>
           </div>
           <div className="ui-showcase__row">
-            <Button size="sm" variant="outline">Маленькая</Button>
-            <Button variant="outline" disabled>Недоступна</Button>
-            <Button variant="primary" loading>Загрузка</Button>
+            <Button size="sm" variant="outline">
+              Маленькая
+            </Button>
+            <Button variant="outline" disabled>
+              Недоступна
+            </Button>
+            <Button variant="primary" loading>
+              Загрузка
+            </Button>
             <Button variant="outline" fullWidth leadingIcon={<Icons.Check />}>
               Кнопка на всю ширину
             </Button>
@@ -122,11 +128,7 @@ export default function UIKitShowcase() {
       <section className="ui-showcase__section" aria-labelledby="showcase-icon-buttons">
         <h2 id="showcase-icon-buttons">Кнопки-иконки</h2>
         <div className="ui-showcase__row">
-          <IconButton
-            icon={<Icons.ArrowLeft />}
-            aria-label="Вернуться назад"
-            variant="outline"
-          />
+          <IconButton icon={<Icons.ArrowLeft />} aria-label="Вернуться назад" variant="outline" />
           <IconButton
             icon={<Icons.Close />}
             aria-label="Закрыть пример"
@@ -138,17 +140,8 @@ export default function UIKitShowcase() {
             aria-label="Выбрать случайный пример"
             variant="soft"
           />
-          <IconButton
-            icon={<CopyIcon />}
-            aria-label="Скопировать пример"
-            variant="action"
-          />
-          <IconButton
-            icon={<Icons.Check />}
-            aria-label="Сохранено"
-            variant="primary"
-            disabled
-          />
+          <IconButton icon={<CopyIcon />} aria-label="Скопировать пример" variant="action" />
+          <IconButton icon={<Icons.Check />} aria-label="Сохранено" variant="primary" disabled />
           <IconButton
             icon={<Icons.Download />}
             aria-label="Скачать пример"
@@ -183,11 +176,7 @@ export default function UIKitShowcase() {
           <Surface variant="subtle" className="ui-showcase__foundation-card">
             <div className="ui-showcase__code-cluster">
               <span className="ui-showcase__code-value">DEMO-5678</span>
-              <IconLink
-                icon={<CopyIcon />}
-                aria-label="Копирование недоступно"
-                disabled
-              />
+              <IconLink icon={<CopyIcon />} aria-label="Копирование недоступно" disabled />
             </div>
             <p className="ui-type-caption ui-showcase__inline-note">
               Используется только рядом со значением, не как самостоятельная кнопка.
@@ -213,12 +202,7 @@ export default function UIKitShowcase() {
             trailingIcon={<Icons.Check />}
             fullWidth
           />
-          <TextField
-            label="Поле только для чтения"
-            value="DEMO-0000"
-            readOnly
-            fullWidth
-          />
+          <TextField label="Поле только для чтения" value="DEMO-0000" readOnly fullWidth />
           <TextField
             label="Код из примера"
             value="DEMO-0001"
@@ -226,12 +210,7 @@ export default function UIKitShowcase() {
             readOnly
             fullWidth
           />
-          <TextField
-            label="Недоступное поле"
-            value="Изменить нельзя"
-            disabled
-            fullWidth
-          />
+          <TextField label="Недоступное поле" value="Изменить нельзя" disabled fullWidth />
         </div>
       </section>
 
@@ -358,18 +337,42 @@ export default function UIKitShowcase() {
       <section className="ui-showcase__section" aria-labelledby="showcase-icons">
         <h2 id="showcase-icons">Системные иконки</h2>
         <div className="ui-showcase__icon-grid">
-          <IconSample name="Назад"><Icons.ArrowLeft /></IconSample>
-          <IconSample name="Влево"><Icons.ChevronLeft /></IconSample>
-          <IconSample name="Вправо"><Icons.ChevronRight /></IconSample>
-          <IconSample name="Закрыть"><Icons.Close /></IconSample>
-          <IconSample name="Сюрприз"><Icons.Sparkle /></IconSample>
-          <IconSample name="Сетка"><Icons.Grid /></IconSample>
-          <IconSample name="Готово"><Icons.Check /></IconSample>
-          <IconSample name="Развернуть"><Icons.Expand /></IconSample>
-          <IconSample name="Скачать"><Icons.Download /></IconSample>
-          <IconSample name="Бонус"><Icons.Gift /></IconSample>
-          <IconSample name="Копировать"><CopyIcon /></IconSample>
-          <IconSample name="Воспроизвести"><Icons.Play /></IconSample>
+          <IconSample name="Назад">
+            <Icons.ArrowLeft />
+          </IconSample>
+          <IconSample name="Влево">
+            <Icons.ChevronLeft />
+          </IconSample>
+          <IconSample name="Вправо">
+            <Icons.ChevronRight />
+          </IconSample>
+          <IconSample name="Закрыть">
+            <Icons.Close />
+          </IconSample>
+          <IconSample name="Сюрприз">
+            <Icons.Sparkle />
+          </IconSample>
+          <IconSample name="Сетка">
+            <Icons.Grid />
+          </IconSample>
+          <IconSample name="Готово">
+            <Icons.Check />
+          </IconSample>
+          <IconSample name="Развернуть">
+            <Icons.Expand />
+          </IconSample>
+          <IconSample name="Скачать">
+            <Icons.Download />
+          </IconSample>
+          <IconSample name="Бонус">
+            <Icons.Gift />
+          </IconSample>
+          <IconSample name="Копировать">
+            <CopyIcon />
+          </IconSample>
+          <IconSample name="Воспроизвести">
+            <Icons.Play />
+          </IconSample>
         </div>
       </section>
     </main>

@@ -19,30 +19,30 @@
 Примитивы — единственные числовые значения системы. Они не используются
 непосредственно в продуктовых экранах и скрыты от публикации в Figma.
 
-| Figma / CSS | Значение | Назначение |
-| --- | ---: | --- |
-| `space/text` / `--spacing-primitive-space-text` | 4px | плотная связь text label и значения |
-| `space/inline` / `--spacing-primitive-space-inline` | 8px | иконка и label или другой компактный ряд |
-| `space/stack` / `--spacing-primitive-space-stack` | 12px | компактный стек контента |
-| `space/inset` / `--spacing-primitive-space-inset` | 16px | отдельный блок или стандартный inset |
-| `space/group` / `--spacing-primitive-space-group` | 24px | граница между секциями |
-| `space/section` / `--spacing-primitive-space-section` | 32px | крупный page-inset или просторная поверхность |
-| `space/empty` / `--spacing-primitive-space-empty` | 48px | пустое состояние и намеренно свободная композиция |
+| Figma / CSS                                           | Значение | Назначение                                        |
+| ----------------------------------------------------- | -------: | ------------------------------------------------- |
+| `space/text` / `--spacing-primitive-space-text`       |      4px | плотная связь text label и значения               |
+| `space/inline` / `--spacing-primitive-space-inline`   |      8px | иконка и label или другой компактный ряд          |
+| `space/stack` / `--spacing-primitive-space-stack`     |     12px | компактный стек контента                          |
+| `space/inset` / `--spacing-primitive-space-inset`     |     16px | отдельный блок или стандартный inset              |
+| `space/group` / `--spacing-primitive-space-group`     |     24px | граница между секциями                            |
+| `space/section` / `--spacing-primitive-space-section` |     32px | крупный page-inset или просторная поверхность     |
+| `space/empty` / `--spacing-primitive-space-empty`     |     48px | пустое состояние и намеренно свободная композиция |
 
 ### 2. `spacing-alias` — устойчивые решения
 
 Aliases отделяют шкалу от смысла. Их тоже не связывают с обычными слоями в
 Figma и не используют напрямую на продуктовых экранах.
 
-| Alias | Значение | Когда использовать |
-| --- | ---: | --- |
-| `gap/text` | 4px | label и связанное с ним значение |
-| `gap/inline` | 8px | иконка и label внутри контрола, короткий ряд |
-| `gap/stack` | 12px | связанный вертикальный контентный стек |
-| `inset/default` | 16px | стандартный внутренний padding и самостоятельный блок |
-| `gap/group` | 24px | граница соседних секций |
-| `inset/page` | 32px | крупный вертикальный page-inset или просторная поверхность |
-| `inset/empty` | 48px | пространство вокруг empty state |
+| Alias           | Значение | Когда использовать                                         |
+| --------------- | -------: | ---------------------------------------------------------- |
+| `gap/text`      |      4px | label и связанное с ним значение                           |
+| `gap/inline`    |      8px | иконка и label внутри контрола, короткий ряд               |
+| `gap/stack`     |     12px | связанный вертикальный контентный стек                     |
+| `inset/default` |     16px | стандартный внутренний padding и самостоятельный блок      |
+| `gap/group`     |     24px | граница соседних секций                                    |
+| `inset/page`    |     32px | крупный вертикальный page-inset или просторная поверхность |
+| `inset/empty`   |     48px | пространство вокруг empty state                            |
 
 ### 3. `spacing-semantic` — публичный контракт
 
@@ -50,20 +50,20 @@ Figma и не используют напрямую на продуктовых 
 Figma. Имена читаемые, нижний регистр и kebab-case. CSS-переменные всегда
 начинаются с `--spacing-semantic-`.
 
-| Figma / CSS | Alias | Смысл |
-| --- | --- | --- |
-| `layout/page-gutter` / `--spacing-semantic-layout-page-gutter` | `inset/default` | постоянный боковой gutter мобильного экрана |
-| `layout/inline-gap` / `--spacing-semantic-layout-inline-gap` | `gap/inline` | ряд из связанных элементов |
-| `layout/content-gap` / `--spacing-semantic-layout-content-gap` | `gap/stack` | элементы одного контентного блока |
-| `layout/block-gap` / `--spacing-semantic-layout-block-gap` | `inset/default` | соседние самостоятельные блоки |
-| `layout/section-gap` / `--spacing-semantic-layout-section-gap` | `gap/group` | секции одной страницы |
-| `layout/page-inset` / `--spacing-semantic-layout-page-inset` | `inset/page` | крупный вертикальный отступ страницы |
-| `content/text-gap` / `--spacing-semantic-content-text-gap` | `gap/text` | text label и значение одной смысловой группы |
-| `control/padding-inline` / `--spacing-semantic-control-padding-inline` | `inset/default` | горизонтальный padding контрола |
-| `control/icon-gap` / `--spacing-semantic-control-icon-gap` | `gap/inline` | иконка и текст внутри контрола |
-| `surface/padding` / `--spacing-semantic-surface-padding` | `inset/default` | обычный padding карточки/поверхности |
-| `surface/padding-spacious` / `--spacing-semantic-surface-padding-spacious` | `gap/group` | просторная поверхность с большим объёмом контента |
-| `empty-state/padding` / `--spacing-semantic-empty-state-padding` | `inset/empty` | внешний воздух вокруг пустого состояния |
+| Figma / CSS                                                                | Alias           | Смысл                                             |
+| -------------------------------------------------------------------------- | --------------- | ------------------------------------------------- |
+| `layout/page-gutter` / `--spacing-semantic-layout-page-gutter`             | `inset/default` | постоянный боковой gutter мобильного экрана       |
+| `layout/inline-gap` / `--spacing-semantic-layout-inline-gap`               | `gap/inline`    | ряд из связанных элементов                        |
+| `layout/content-gap` / `--spacing-semantic-layout-content-gap`             | `gap/stack`     | элементы одного контентного блока                 |
+| `layout/block-gap` / `--spacing-semantic-layout-block-gap`                 | `inset/default` | соседние самостоятельные блоки                    |
+| `layout/section-gap` / `--spacing-semantic-layout-section-gap`             | `gap/group`     | секции одной страницы                             |
+| `layout/page-inset` / `--spacing-semantic-layout-page-inset`               | `inset/page`    | крупный вертикальный отступ страницы              |
+| `content/text-gap` / `--spacing-semantic-content-text-gap`                 | `gap/text`      | text label и значение одной смысловой группы      |
+| `control/padding-inline` / `--spacing-semantic-control-padding-inline`     | `inset/default` | горизонтальный padding контрола                   |
+| `control/icon-gap` / `--spacing-semantic-control-icon-gap`                 | `gap/inline`    | иконка и текст внутри контрола                    |
+| `surface/padding` / `--spacing-semantic-surface-padding`                   | `inset/default` | обычный padding карточки/поверхности              |
+| `surface/padding-spacious` / `--spacing-semantic-surface-padding-spacious` | `gap/group`     | просторная поверхность с большим объёмом контента |
+| `empty-state/padding` / `--spacing-semantic-empty-state-padding`           | `inset/empty`   | внешний воздух вокруг пустого состояния           |
 
 ## Правила близости
 
@@ -109,11 +109,11 @@ safe area и full-bleed. Это не продуктовый spacing. У тако
 генерируемый Figma-реестр. Этот документ описывает человеческие правила
 близости и использования; он не заменяет машинный контракт.
 
-| Коллекция | Что содержит | Публикация | Scope |
-| --- | --- | --- | --- |
-| `spacing-primitives` | FLOAT-примитивы `space/*` | скрыта | `[]` |
-| `spacing-alias` | FLOAT aliases `gap/*`, `inset/*` | скрыта | `[]` |
-| `spacing-semantic` | публичные FLOAT-роли из таблицы выше | опубликована | `[GAP]` |
+| Коллекция            | Что содержит                         | Публикация   | Scope   |
+| -------------------- | ------------------------------------ | ------------ | ------- |
+| `spacing-primitives` | FLOAT-примитивы `space/*`            | скрыта       | `[]`    |
+| `spacing-alias`      | FLOAT aliases `gap/*`, `inset/*`     | скрыта       | `[]`    |
+| `spacing-semantic`   | публичные FLOAT-роли из таблицы выше | опубликована | `[GAP]` |
 
 - В Figma слои и компоненты привязываются только к
   `spacing-semantic`; примитивы и aliases — внутренняя инженерная шкала.

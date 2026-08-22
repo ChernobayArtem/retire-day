@@ -19,11 +19,7 @@ const SUPPORTED_FLAGS = new Set(['--allow-missing', '--self-test'])
 const UNKNOWN_FLAGS = process.argv.slice(2).filter((flag) => !SUPPORTED_FLAGS.has(flag))
 
 const PLAINTEXT_SOURCE_PREFIXES = ['local-content/']
-const TEXT_SCAN_EXCLUDED_PREFIXES = [
-  ...PLAINTEXT_SOURCE_PREFIXES,
-  'public/vault/',
-  'dist/vault/',
-]
+const TEXT_SCAN_EXCLUDED_PREFIXES = [...PLAINTEXT_SOURCE_PREFIXES, 'public/vault/', 'dist/vault/']
 
 // Every plaintext/art file shipped from public/ must be explicitly reviewed.
 // Personal day media is never added here: it belongs only in public/vault/ as
@@ -169,11 +165,7 @@ function gitFileList(args) {
     stdio: ['ignore', 'pipe', 'ignore'],
   })
 
-  return output
-    .toString('utf8')
-    .split('\0')
-    .filter(Boolean)
-    .map(toRepoPath)
+  return output.toString('utf8').split('\0').filter(Boolean).map(toRepoPath)
 }
 
 async function walkDirectory(directory, prefix = directory) {
@@ -354,7 +346,8 @@ async function loadSensitiveSources() {
   try {
     const rawKey = await readFile(path.join(ROOT, 'local-content/credentials/cek.json'), 'utf8')
     const parsedKey = JSON.parse(rawKey)
-    if (typeof parsedKey?.cek !== 'string' || parsedKey.cek.length === 0) throw new Error('invalid key')
+    if (typeof parsedKey?.cek !== 'string' || parsedKey.cek.length === 0)
+      throw new Error('invalid key')
     contentKey = parsedKey.cek
   } catch {
     missing.push('content-key')
@@ -470,7 +463,8 @@ function scanText(repoPath, text, sensitive, findings, seen) {
           addFinding(findings, seen, repoPath, getLine(), 'certificate-code', code.id)
           continue
         }
-        const isPartial = rawFragment.length < code.original.length && code.original.includes(rawFragment)
+        const isPartial =
+          rawFragment.length < code.original.length && code.original.includes(rawFragment)
         if (isPartial) {
           const matchLine = getLine()
           if (!fullMatchesByLine.has(`${matchLine}:code:${code.id}`)) {
@@ -575,7 +569,8 @@ function runSelfTest() {
   )
   check(classifyPublicEntry('public/vault/fixture.jpg', 'file') === 'unexpected-vault-file')
   check(
-    classifyPublicEntry('public/vault/media/m0123456789abcdef-fedcba9876543210.bin', 'file') === null,
+    classifyPublicEntry('public/vault/media/m0123456789abcdef-fedcba9876543210.bin', 'file') ===
+      null,
   )
   check(classifyPublicEntry('public/favicon.png', 'symlink') === 'public-symlink')
   check(classifyRepositoryMedia('fixture/private.jpg') === 'unexpected-repository-media')
@@ -585,7 +580,12 @@ function runSelfTest() {
   scanText(
     'fixture.txt',
     'fixture-content-key',
-    { passwords: [], contentKeys: [{ id: 1, original: 'fixture-content-key' }], codes: [], texts: [] },
+    {
+      passwords: [],
+      contentKeys: [{ id: 1, original: 'fixture-content-key' }],
+      codes: [],
+      texts: [],
+    },
     keyFindings,
     new Set(),
   )
@@ -605,14 +605,16 @@ async function main() {
   const { content, passwords, contentKey, missing } = await loadSensitiveSources()
   const partial = missing.length > 0
 
-  const contentValues = content ? collectContent(content) : {
-    codes: [],
-    texts: [],
-    secretMediaPaths: [],
-    totalStringValues: 0,
-    classifiedStringValues: 0,
-    unknownFieldPaths: new Set(),
-  }
+  const contentValues = content
+    ? collectContent(content)
+    : {
+        codes: [],
+        texts: [],
+        secretMediaPaths: [],
+        totalStringValues: 0,
+        classifiedStringValues: 0,
+        unknownFieldPaths: new Set(),
+      }
   const sensitive = {
     passwords: uniqueSorted(passwords ? collectPasswords(passwords) : []),
     contentKeys: uniqueSorted(contentKey ? [contentKey] : []),
@@ -639,11 +641,13 @@ async function main() {
     return
   }
 
-  const repoFiles = [...new Set([
-    ...trackedFiles,
-    ...untrackedFiles,
-    ...distEntries.filter((entry) => entry.kind === 'file').map((entry) => entry.repoPath),
-  ])].sort()
+  const repoFiles = [
+    ...new Set([
+      ...trackedFiles,
+      ...untrackedFiles,
+      ...distEntries.filter((entry) => entry.kind === 'file').map((entry) => entry.repoPath),
+    ]),
+  ].sort()
   const trackedPlaintextSources = trackedFiles
     .filter((repoPath) => hasPrefix(repoPath, PLAINTEXT_SOURCE_PREFIXES))
     .sort()
@@ -661,7 +665,9 @@ async function main() {
     addFinding(findings, seen, repoPath, 0, 'tracked-plaintext-source', inventoryId)
   }
 
-  for (const entry of publicEntries.sort((left, right) => left.repoPath.localeCompare(right.repoPath, 'en'))) {
+  for (const entry of publicEntries.sort((left, right) =>
+    left.repoPath.localeCompare(right.repoPath, 'en'),
+  )) {
     const category = classifyPublicEntry(entry.repoPath, entry.kind, plaintextMediaPaths)
     if (!category) continue
     inventoryId += 1
@@ -707,18 +713,21 @@ async function main() {
     scanText(repoPath, buffer.toString('utf8'), sensitive, findings, seen)
   }
 
-  findings.sort((left, right) =>
-    left.repoPath.localeCompare(right.repoPath, 'en') ||
-    left.line - right.line ||
-    left.category.localeCompare(right.category, 'en') ||
-    left.id - right.id,
+  findings.sort(
+    (left, right) =>
+      left.repoPath.localeCompare(right.repoPath, 'en') ||
+      left.line - right.line ||
+      left.category.localeCompare(right.category, 'en') ||
+      left.id - right.id,
   )
 
-  const ordinalPaths = [...new Set([
-    ...repoFiles,
-    ...publicEntries.map((entry) => entry.repoPath),
-    ...findings.map((finding) => finding.repoPath),
-  ])].sort((left, right) => left.localeCompare(right, 'en'))
+  const ordinalPaths = [
+    ...new Set([
+      ...repoFiles,
+      ...publicEntries.map((entry) => entry.repoPath),
+      ...findings.map((finding) => finding.repoPath),
+    ]),
+  ].sort((left, right) => left.localeCompare(right, 'en'))
   const fileOrdinals = new Map(ordinalPaths.map((repoPath, index) => [repoPath, index + 1]))
 
   for (const finding of findings) console.error(formatFinding(finding, fileOrdinals))
@@ -743,13 +752,17 @@ async function main() {
   }
 
   if (findings.length > 0) {
-    console.error(`Sensitive audit: FAIL (${findings.length} finding${findings.length === 1 ? '' : 's'})`)
+    console.error(
+      `Sensitive audit: FAIL (${findings.length} finding${findings.length === 1 ? '' : 's'})`,
+    )
     process.exitCode = 1
     return
   }
 
   if (partial && !ALLOW_MISSING) {
-    console.error(`Sensitive audit: FAIL (source-backed audit is incomplete across ${scannedTextFiles} text files)`)
+    console.error(
+      `Sensitive audit: FAIL (source-backed audit is incomplete across ${scannedTextFiles} text files)`,
+    )
     process.exitCode = 2
     return
   }
@@ -761,7 +774,9 @@ async function main() {
     return
   }
 
-  console.log(`Sensitive audit: PASS (${scannedTextFiles} text files; all required local sources loaded)`)
+  console.log(
+    `Sensitive audit: PASS (${scannedTextFiles} text files; all required local sources loaded)`,
+  )
 }
 
 if (SELF_TEST) runSelfTest()

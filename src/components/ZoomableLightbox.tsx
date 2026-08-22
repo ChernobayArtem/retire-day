@@ -104,30 +104,36 @@ export default function ZoomableLightbox({
     }
   }, [])
 
-  const setTransform = useCallback((next: Transform, shouldConstrain = true) => {
-    const value = shouldConstrain ? constrain(next) : next
-    transformRef.current = value
-    setTransformState(value)
-  }, [constrain])
+  const setTransform = useCallback(
+    (next: Transform, shouldConstrain = true) => {
+      const value = shouldConstrain ? constrain(next) : next
+      transformRef.current = value
+      setTransformState(value)
+    },
+    [constrain],
+  )
 
-  const zoomAt = useCallback((clientPoint: Point) => {
-    const root = rootRef.current
-    if (!root) return
-    const current = transformRef.current
-    if (current.scale > MIN_SCALE + 0.05) {
-      setTransform(RESET_TRANSFORM)
-      return
-    }
+  const zoomAt = useCallback(
+    (clientPoint: Point) => {
+      const root = rootRef.current
+      if (!root) return
+      const current = transformRef.current
+      if (current.scale > MIN_SCALE + 0.05) {
+        setTransform(RESET_TRANSFORM)
+        return
+      }
 
-    const rect = root.getBoundingClientRect()
-    const origin = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
-    const scale = DOUBLE_TAP_SCALE
-    setTransform({
-      scale,
-      x: (clientPoint.x - origin.x) * (1 - scale),
-      y: (clientPoint.y - origin.y) * (1 - scale),
-    })
-  }, [setTransform])
+      const rect = root.getBoundingClientRect()
+      const origin = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+      const scale = DOUBLE_TAP_SCALE
+      setTransform({
+        scale,
+        x: (clientPoint.x - origin.x) * (1 - scale),
+        y: (clientPoint.y - origin.y) * (1 - scale),
+      })
+    },
+    [setTransform],
+  )
 
   useEffect(() => {
     setTransform(RESET_TRANSFORM, false)
@@ -258,7 +264,11 @@ export default function ZoomableLightbox({
     }
 
     const pan = panRef.current
-    if (points.length === 1 && pan?.pointerId === event.pointerId && pan.transform.scale > MIN_SCALE) {
+    if (
+      points.length === 1 &&
+      pan?.pointerId === event.pointerId &&
+      pan.transform.scale > MIN_SCALE
+    ) {
       event.preventDefault()
       setInteracting(true)
       setTransform({
@@ -284,7 +294,11 @@ export default function ZoomableLightbox({
     ) {
       const now = performance.now()
       const previousTap = lastTapRef.current
-      if (previousTap && now - previousTap.at < 320 && distance(previousTap.point, releasedPoint) < 36) {
+      if (
+        previousTap &&
+        now - previousTap.at < 320 &&
+        distance(previousTap.point, releasedPoint) < 36
+      ) {
         lastTapRef.current = null
         lastTouchZoomRef.current = now
         zoomAt(releasedPoint)

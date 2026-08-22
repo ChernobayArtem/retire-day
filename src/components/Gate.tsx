@@ -64,7 +64,11 @@ export default function Gate() {
             Войти
           </Button>
         </form>
-        {error && <p className="gate__err" id="gate-error">Не-а, попробуй ещё 😼</p>}
+        {error && (
+          <p className="gate__err" id="gate-error">
+            Не-а, попробуй ещё 😼
+          </p>
+        )}
       </div>
     </div>
   )

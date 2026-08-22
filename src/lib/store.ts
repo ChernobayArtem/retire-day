@@ -14,7 +14,9 @@ function read(): State {
     if (!raw) return initial
     const parsed = JSON.parse(raw) as Partial<State>
     return {
-      opened: Array.isArray(parsed.opened) ? parsed.opened.filter((n): n is number => typeof n === 'number') : [],
+      opened: Array.isArray(parsed.opened)
+        ? parsed.opened.filter((n): n is number => typeof n === 'number')
+        : [],
     }
   } catch {
     return initial

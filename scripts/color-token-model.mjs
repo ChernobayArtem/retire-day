@@ -35,13 +35,11 @@ const scopeDescriptions = Object.freeze({
 })
 
 function parseDeclarations(file, source) {
-  return [...source.matchAll(/^\s*(--color-[\w-]+)\s*:\s*([^;]+);/gm)].map(
-    (match) => ({
-      cssName: match[1],
-      cssValue: match[2].trim(),
-      source: file,
-    }),
-  )
+  return [...source.matchAll(/^\s*(--color-[\w-]+)\s*:\s*([^;]+);/gm)].map((match) => ({
+    cssName: match[1],
+    cssValue: match[2].trim(),
+    source: file,
+  }))
 }
 
 function referenceFromValue(value) {
@@ -168,7 +166,8 @@ export function buildColorTokenModel(projectRoot) {
   for (const declaration of declarations) {
     if (tokenLayer(declaration.cssName) !== 'semantic') continue
     const reference = referenceFromValue(declaration.cssValue)
-    if (!reference) throw new Error(`Semantic token must alias another token: ${declaration.cssName}`)
+    if (!reference)
+      throw new Error(`Semantic token must alias another token: ${declaration.cssName}`)
     const consumers = semanticConsumersByAlias.get(reference) ?? []
     consumers.push(declaration.cssName)
     semanticConsumersByAlias.set(reference, consumers)
@@ -180,14 +179,13 @@ export function buildColorTokenModel(projectRoot) {
     const collection = colorCollections[collectionKeyForLayer(layer)]
     const reference = referenceFromValue(cssValue)
     const scopes = layer === 'semantic' ? [...semanticScopes(cssName)] : []
-    const hiddenFromPublishing =
-      layer === 'semantic' ? semanticHiddenFromPublishing(cssName) : true
+    const hiddenFromPublishing = layer === 'semantic' ? semanticHiddenFromPublishing(cssName) : true
     const description =
       layer === 'primitive'
         ? primitiveDescription(cssName)
         : layer === 'alias'
-            ? aliasDescription(cssName, semanticConsumersByAlias.get(cssName) ?? [])
-            : semanticDescription(cssName, scopes)
+          ? aliasDescription(cssName, semanticConsumersByAlias.get(cssName) ?? [])
+          : semanticDescription(cssName, scopes)
 
     return {
       cssName,
@@ -195,10 +193,7 @@ export function buildColorTokenModel(projectRoot) {
       name: figmaName(cssName, layer),
       type: 'COLOR',
       layer,
-      status:
-        layer !== 'semantic' || hiddenFromPublishing
-          ? 'internal'
-          : 'active',
+      status: layer !== 'semantic' || hiddenFromPublishing ? 'internal' : 'active',
       source,
       codeSyntax: {
         WEB: `var(${cssName})`,
@@ -295,7 +290,11 @@ export function renderColorSystemGuide(model) {
     ['Icon', 'SHAPE_FILL + STROKE_COLOR', 'Fill- и stroke-иконки'],
     ['Background', 'FRAME_FILL', 'Только заливка Frame'],
     ['Border', 'STROKE_COLOR', 'Только обводка'],
-    ['Button foreground', 'TEXT_FILL + SHAPE_FILL + STROKE_COLOR', 'Label и обе разновидности иконок внутри одного контрола'],
+    [
+      'Button foreground',
+      'TEXT_FILL + SHAPE_FILL + STROKE_COLOR',
+      'Label и обе разновидности иконок внутри одного контрола',
+    ],
     ['Shape', 'SHAPE_FILL', 'Только геометрическая форма'],
     ['Overlay', 'FRAME_FILL', 'Overlay в системе всегда строится Frame'],
     ['Shadow / Effect', 'EFFECT_COLOR', 'Только цвет эффекта'],

@@ -84,8 +84,7 @@ function read(): JourneyState {
         coupon: numberMap(parsed.interactions?.coupon),
         certificate: numberMap(parsed.interactions?.certificate),
       },
-      archiveOpens:
-        typeof parsed.archiveOpens === 'number' ? Math.max(0, parsed.archiveOpens) : 0,
+      archiveOpens: typeof parsed.archiveOpens === 'number' ? Math.max(0, parsed.archiveOpens) : 0,
       randomSurprises:
         typeof parsed.randomSurprises === 'number' ? Math.max(0, parsed.randomSurprises) : 0,
     }
@@ -124,12 +123,7 @@ export function seedJourneyOpenedDays(days: number[]): void {
     let changed = false
 
     for (const day of days) {
-      if (
-        !Number.isInteger(day) ||
-        day < START_DAY ||
-        day > TOTAL_DAYS ||
-        dayOpens[String(day)]
-      ) {
+      if (!Number.isInteger(day) || day < START_DAY || day > TOTAL_DAYS || dayOpens[String(day)]) {
         continue
       }
       dayOpens[String(day)] = 1
@@ -140,11 +134,7 @@ export function seedJourneyOpenedDays(days: number[]): void {
   })
 }
 
-export function recordJourneyDayOpen(
-  day: number,
-  onTime: boolean,
-  source: JourneyDaySource,
-): void {
+export function recordJourneyDayOpen(day: number, onTime: boolean, source: JourneyDaySource): void {
   const key = String(day)
   update((current) => ({
     ...current,

@@ -61,17 +61,7 @@ export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
-  {
-    badge,
-    children,
-    className,
-    disabled,
-    icon,
-    selected,
-    tabIndex,
-    type = 'button',
-    ...props
-  },
+  { badge, children, className, disabled, icon, selected, tabIndex, type = 'button', ...props },
   ref,
 ) {
   return (

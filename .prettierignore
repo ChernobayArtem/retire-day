@@ -1,7 +1,12 @@
 dist
 node_modules
 design-tokens/generated
+docs/COLOR_SYSTEM.md
 local-content
+
+# CSS is machine-parsed and enforced by the bespoke design-system audits
+# (token hierarchy, contrast coverage). Prettier must not reformat it.
+*.css
 public/vault
 tools
 package-lock.json

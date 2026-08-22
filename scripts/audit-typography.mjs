@@ -26,12 +26,32 @@ function requireMatch(text, pattern, message) {
   if (!pattern.test(text)) failures.push(message)
 }
 
-requireMatch(foundations, /--ui-font-sans:\s*"Onest",\s*sans-serif;/, 'foundations: Onest sans token is missing')
-requireMatch(foundations, /--ui-font-display:\s*"Onest",\s*sans-serif;/, 'foundations: Onest display token is missing')
-requireMatch(indexHtml, /fonts\.googleapis\.com\/css2\?family=Onest:wght@100\.\.900/, 'index.html: Onest Google Fonts source is missing')
-requireMatch(typography, /export function keepRussianShortWords\s*\(/, 'typography helper: keepRussianShortWords is missing')
+requireMatch(
+  foundations,
+  /--ui-font-sans:\s*"Onest",\s*sans-serif;/,
+  'foundations: Onest sans token is missing',
+)
+requireMatch(
+  foundations,
+  /--ui-font-display:\s*"Onest",\s*sans-serif;/,
+  'foundations: Onest display token is missing',
+)
+requireMatch(
+  indexHtml,
+  /fonts\.googleapis\.com\/css2\?family=Onest:wght@100\.\.900/,
+  'index.html: Onest Google Fonts source is missing',
+)
+requireMatch(
+  typography,
+  /export function keepRussianShortWords\s*\(/,
+  'typography helper: keepRussianShortWords is missing',
+)
 for (const word of ['а', 'и', 'но', 'или']) {
-  requireMatch(typography, new RegExp(`['"]${word}['"]`), `typography helper: conjunction ${word} is missing`)
+  requireMatch(
+    typography,
+    new RegExp(`['"]${word}['"]`),
+    `typography helper: conjunction ${word} is missing`,
+  )
 }
 requireMatch(guide, /lowercase kebab-case/, 'typography guide: naming contract is missing')
 requireMatch(guide, /Onest/, 'typography guide: typeface contract is missing')
@@ -46,7 +66,11 @@ for (const weight of [100, 200, 300, 400, 500, 600, 700, 800, 900]) {
 }
 
 for (const role of ['display', 'title', 'heading', 'body', 'label', 'caption']) {
-  requireMatch(uiCss, new RegExp(`\\.ui-type-${role}\\s*\\{`), `ui.css: semantic role ${role} is missing`)
+  requireMatch(
+    uiCss,
+    new RegExp(`\\.ui-type-${role}\\s*\\{`),
+    `ui.css: semantic role ${role} is missing`,
+  )
 }
 
 // Typography tokens are public design-system identifiers. Keep their names
@@ -84,4 +108,6 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log('Typography audit passed: Onest, numeric foundations, semantic roles, kebab-case names and Russian wrapping are configured.')
+console.log(
+  'Typography audit passed: Onest, numeric foundations, semantic roles, kebab-case names and Russian wrapping are configured.',
+)

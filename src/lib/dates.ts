@@ -55,10 +55,7 @@ function monthAnniversary(start: Date, offset: number): Date {
 }
 
 function completedCalendarMonths(start: Date, now: Date): number {
-  let months =
-    (now.getFullYear() - start.getFullYear()) * 12 +
-    now.getMonth() -
-    start.getMonth()
+  let months = (now.getFullYear() - start.getFullYear()) * 12 + now.getMonth() - start.getMonth()
   if (months > 0 && now < monthAnniversary(start, months)) months -= 1
   return Math.max(0, months)
 }

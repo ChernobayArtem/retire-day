@@ -1,8 +1,10 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react'
 import { classNames } from './classNames'
 
-export interface IconLinkProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label' | 'children'> {
+export interface IconLinkProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'aria-label' | 'children'
+> {
   'aria-label': string
   icon: ReactNode
 }

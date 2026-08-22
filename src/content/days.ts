@@ -1,12 +1,6 @@
 // Types only. The actual content lives encrypted in public/vault and is
 // decrypted at runtime (see src/lib/vault.ts) — nothing personal ships in plaintext.
-export type DayCategory =
-  | 'compliment'
-  | 'photos'
-  | 'cert'
-  | 'coupon'
-  | 'restaurant'
-  | 'video'
+export type DayCategory = 'compliment' | 'photos' | 'cert' | 'coupon' | 'restaurant' | 'video'
 
 export interface DayMeme {
   photo: string

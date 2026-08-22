@@ -92,7 +92,6 @@ export function initAnalytics(): void {
     ecommerce: false,
     trackHash: false,
   })
-
 }
 
 /** Count one real-account launch per physical app load, after its first screen hit. */
