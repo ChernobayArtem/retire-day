@@ -81,6 +81,15 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
     return () => window.clearTimeout(timer)
   }, [showDay28Confetti])
 
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      // Let an open photo lightbox handle Escape first; only then close the sheet.
+      if (e.key === 'Escape' && active && !lightbox) onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [active, lightbox, onClose])
+
   if (!active) return null
   const def = dayByNumber(active.day)
   const canPrev = active.day > 1
@@ -88,12 +97,22 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
   const showMeme = !active.locked && !!def?.meme
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events -- backdrop tap-to-close is a pointer convenience; keyboard uses Escape (above) and the footer Close button
     <div className="sheet-overlay" onClick={onClose}>
-      <div className={`sheet sheet--day${active.day}`} onClick={(e) => e.stopPropagation()}>
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events -- role="dialog" container: the handler only stops a click from reaching the backdrop and is not an actionable control */}
+      <div
+        className={`sheet sheet--day${active.day}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="day-sheet-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="day">
           {locked ? (
             <div className="day__top day__top--locked">
-              <h2 className="day__title">Попався!</h2>
+              <h2 className="day__title" id="day-sheet-title">
+                Попався!
+              </h2>
               <p className="day__wish">
                 Рано ещё, киселёчек 😼
                 <br />
@@ -102,7 +121,9 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
             </div>
           ) : (
             <div className="day__top">
-              <h2 className="day__title">{keepRussianShortWords(def.title)}</h2>
+              <h2 className="day__title" id="day-sheet-title">
+                {keepRussianShortWords(def.title)}
+              </h2>
               <Media
                 def={def}
                 analyticsEnabled={analyticsEnabled}

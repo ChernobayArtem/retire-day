@@ -335,6 +335,7 @@ export default function ZoomableLightbox({
   }
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events -- keyboard-accessible dialog (Escape closes, Tab is trapped across the controls); the pointer handlers implement touch pan/pinch/zoom, which has no keyboard equivalent
     <div
       ref={rootRef}
       className={'lightbox' + (interacting ? ' is-interacting' : '')}

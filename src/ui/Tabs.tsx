@@ -43,6 +43,7 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsL
   }
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions -- ARIA tablist pattern: arrow/Home/End navigation belongs on the container; the tabs are the focusable controls
     <div
       {...props}
       ref={ref}

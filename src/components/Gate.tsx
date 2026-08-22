@@ -34,6 +34,7 @@ export default function Gate() {
         <h1 className="gate__title">{keepRussianShortWords('Только для киселечка')}</h1>
         <p className="gate__sub">Введи секретное слово 🤫</p>
         <form className="gate__form" onSubmit={submit}>
+          {/* eslint-disable jsx-a11y/no-autofocus -- single-field gate screen: focusing the only input on mount is the intended behaviour, not a disorienting focus jump */}
           <TextField
             className={error ? 'gate__field gate__field--error' : 'gate__field'}
             inputClassName="gate__input ym-disable-keys ym-disable-clickmap"
@@ -53,6 +54,7 @@ export default function Gate() {
             spellCheck={false}
             fullWidth
           />
+          {/* eslint-enable jsx-a11y/no-autofocus */}
           <Button
             className="gate__submit"
             type="submit"

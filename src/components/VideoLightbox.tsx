@@ -59,6 +59,7 @@ export default function VideoLightbox({ src, poster, sourcePath, downloadName, o
   }, [])
 
   return createPortal(
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events -- keyboard-accessible dialog (Escape closes, Tab is trapped across the controls); the click only closes on a backdrop tap
     <div
       className="video-lightbox"
       role="dialog"
