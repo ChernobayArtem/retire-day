@@ -1,0 +1,7 @@
+dist
+node_modules
+design-tokens/generated
+local-content
+public/vault
+tools
+package-lock.json

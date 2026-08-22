@@ -7,7 +7,7 @@ import {
 } from 'react'
 import { classNames } from './classNames'
 
-export interface TabsListProps extends HTMLAttributes<HTMLDivElement> {}
+export type TabsListProps = HTMLAttributes<HTMLDivElement>
 
 export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
   { className, onKeyDown, role = 'tablist', ...props },

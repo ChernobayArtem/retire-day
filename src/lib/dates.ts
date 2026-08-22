@@ -1,4 +1,4 @@
-import { YEAR, MONTH_INDEX, TARGET_DAY, START_DAY } from '../config'
+import { YEAR, MONTH_INDEX, TARGET_DAY } from '../config'
 
 export type DayState = 'past' | 'today' | 'future'
 
