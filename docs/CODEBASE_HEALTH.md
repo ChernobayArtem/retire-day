@@ -29,16 +29,22 @@ closed.
 
 `npm run build` — the same script CI runs to deploy — now runs, in order:
 
-1. `npm run lint` — ESLint, blocks on errors (warnings are allowed through).
-2. `npm run test` — Vitest, all unit tests must pass.
-3. The existing design-system audits (colours, spacing, icons, typography,
+1. `npm run format:check` — Prettier (CSS, `src/ui/tokens` and generated files excluded).
+2. `npm run lint` — ESLint over `src/**`, blocks on errors (warnings pass through).
+3. `npm run test` — Vitest, all unit tests must pass.
+4. The existing design-system audits (colours, spacing, icons, typography,
    contrast, target size, vault).
-4. `tsc` type-check, then `vite build`, then the sensitive-content audit.
+5. `tsc` type-check, then `vite build`, then the sensitive-content audit.
+
+Dependency installs require `legacy-peer-deps` (pinned in `.npmrc`), or CI's
+`npm ci` fails and no deploy lands.
 
 ESLint is calibrated for a first adoption: genuinely broken code is an error,
 while opinionated new React rules and accessibility findings on the existing
 gesture-driven components are surfaced as **warnings** to burn down over time,
-not build blockers. There are currently 0 errors and 19 warnings.
+not build blockers. There are currently 0 errors and 9 warnings — the ten
+jsx-a11y warnings have since been resolved, leaving only React-internal and
+Fast-Refresh hints.
 
 ## Developer quickstart
 
@@ -53,19 +59,18 @@ npm run build      # full gate: lint, test, audits, type-check, production build
 
 ## Follow-ups, by priority
 
-1. **Repo-wide Prettier format (pending owner approval).** Prettier is configured
-   but existing files are not yet formatted to it; a one-time `npm run format`
-   reformats roughly 87 files. It is purely mechanical (no behaviour change) and
-   should land as its own commit, recorded in a `.git-blame-ignore-revs` file so
-   `git blame` skips it. Only after that should `format:check` join the build gate.
-2. **Accessibility warnings.** ESLint surfaces keyboard/interaction warnings on
-   `ZoomableLightbox`, `VideoLightbox` and `DaySheet`, plus autofocus on `Gate`.
-   Each needs a human review — some are intentional, some deserve a keyboard path.
-3. **Lint the tooling scripts.** ESLint currently covers `src/**` only; the
+The repo-wide Prettier format (commit `291a2b5`, ignored in `.git-blame-ignore-revs`)
+and the accessibility-warning cleanup (commit `e126570`) from the first review are
+both done, and `format:check` now gates the build. What remains:
+
+1. **Lint the tooling scripts.** ESLint currently covers `src/**` only; the
    `scripts/*.mjs` audits are unlinted.
-4. **Typography has no generated Figma registry** unlike colours and spacing, so
+2. **React-hooks and Fast-Refresh warnings.** Nine non-blocking ESLint warnings
+   remain (`react-hooks/set-state-in-effect`, `react-hooks/static-components`, and
+   `react-refresh/only-export-components`); optional to burn down.
+3. **Typography has no generated Figma registry** unlike colours and spacing, so
    drift there can only be caught by hand.
-5. **Large CSS files** (`src/styles/app.css`, `src/ui/ui.css`) could be split,
+4. **Large CSS files** (`src/styles/app.css`, `src/ui/ui.css`) could be split,
    but this is cosmetic and low priority.
 
 ## Scope of this review
