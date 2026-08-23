@@ -36,6 +36,13 @@ const colorTokenHtmlPlugin = {
 // GitHub Pages project site: served at /retire-day/
 export default defineConfig({
   base: '/retire-day/',
+  build: {
+    // Never inline font files. A subset small enough to be base64'd into the CSS
+    // (cyrillic-ext is ~2 KB) would defeat its own unicode-range: every visitor
+    // would download glyphs almost none of them render, inside the render-blocking
+    // stylesheet, with no separate cache entry. Keep all four subsets as files.
+    assetsInlineLimit: (filePath) => (filePath.endsWith('.woff2') ? false : undefined),
+  },
   plugins: [
     colorTokenHtmlPlugin,
     react(),

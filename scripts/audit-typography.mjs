@@ -20,6 +20,8 @@ const appCss = source('src/styles/app.css')
 const globalCss = source('src/styles/global.css')
 const typography = source('src/lib/typography.ts')
 const indexHtml = source('index.html')
+const fontsCss = source('src/styles/fonts.css')
+const mainTsx = source('src/main.tsx')
 const guide = source('docs/TYPOGRAPHY_SYSTEM.md')
 
 function requireMatch(text, pattern, message) {
@@ -36,11 +38,40 @@ requireMatch(
   /--ui-font-display:\s*"Onest",\s*sans-serif;/,
   'foundations: Onest display token is missing',
 )
+// Onest is self-hosted. A CDN source would disclose every launch to a third
+// party and silently fall back to a system font whenever that host is slow,
+// blocked or offline, discarding the semantic type scale without any error.
 requireMatch(
-  indexHtml,
-  /fonts\.googleapis\.com\/css2\?family=Onest:wght@100\.\.900/,
-  'index.html: Onest Google Fonts source is missing',
+  fontsCss,
+  /@font-face\s*\{[^}]*font-family:\s*"Onest"/,
+  'fonts.css: the self-hosted Onest @font-face declaration is missing',
 )
+requireMatch(
+  mainTsx,
+  /import '\.\/styles\/fonts\.css'/,
+  'main.tsx: the self-hosted font stylesheet is not imported',
+)
+requireMatch(
+  fontsCss,
+  /font-weight:\s*100 900;/,
+  'fonts.css: the variable weight axis no longer covers 100-900',
+)
+for (const subset of ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext']) {
+  requireMatch(
+    fontsCss,
+    new RegExp(`url\\("\\.\\./assets/fonts/onest-${subset}\\.woff2"\\)`),
+    `fonts.css: the ${subset} subset is not declared`,
+  )
+  if (!existsSync(join(projectRoot, `src/assets/fonts/onest-${subset}.woff2`))) {
+    failures.push(`src/assets/fonts: onest-${subset}.woff2 is missing`)
+  }
+}
+if (/fonts\.(?:googleapis|gstatic)\.com/.test(indexHtml)) {
+  failures.push('index.html: Onest must not be loaded from a third-party CDN')
+}
+if (/url\(\s*["']?https?:/.test(fontsCss)) {
+  failures.push('fonts.css: font files must be served from this origin, not a remote URL')
+}
 requireMatch(
   typography,
   /export function keepRussianShortWords\s*\(/,

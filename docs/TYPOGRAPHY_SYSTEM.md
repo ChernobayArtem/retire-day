@@ -21,11 +21,24 @@ screen-specific text style.
 
 ## Typeface
 
-The only product typeface is **Onest**, loaded from Google Fonts. The CSS
-fallback `sans-serif` is an availability fallback, not a second design choice.
-Do not introduce SF Pro, Inter, Arial, system-ui or another web font into the
-product UI. If the project later needs a fully offline font, self-host the
-same Onest family and keep the role contract unchanged.
+The only product typeface is **Onest**, self-hosted from
+`src/assets/fonts/`. The CSS fallback `sans-serif` is an availability fallback,
+not a second design choice. Do not introduce SF Pro, Inter, Arial, system-ui or
+another web font into the product UI.
+
+Onest was previously loaded from Google Fonts. A CDN made the whole type system
+depend on a host the project does not control: every launch disclosed the active
+user's timing to a third party, and whenever that host was slow, blocked or
+unreachable the browser silently substituted a system font — discarding the
+semantic scale with no error to notice. The self-hosted faces are the same
+variable Onest files Google served (v9, weight axis 100-900) with the original
+`latin`, `latin-ext`, `cyrillic` and `cyrillic-ext` unicode ranges, so
+rendering is unchanged and the role contract still holds.
+
+Serving the font from this origin is now part of the contract: the app must not
+reference a font CDN, and `npm run audit:typography` fails if one reappears, if
+a subset file goes missing, or if the weight axis stops covering 100-900. See
+`THIRD_PARTY_NOTICES.md` for the SIL Open Font License attribution.
 
 ## Three layers
 

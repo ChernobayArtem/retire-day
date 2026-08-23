@@ -40,7 +40,15 @@ const SAFE_PUBLIC_FILES = new Set([
   'public/scenes/day29.mp4',
 ])
 
-const SAFE_NON_PUBLIC_MEDIA_FILES = new Set(['src/assets/gate-logo.png'])
+// The self-hosted Onest subsets are listed individually, not by extension, so
+// that any other binary dropped into src/assets is still reported.
+const SAFE_NON_PUBLIC_MEDIA_FILES = new Set([
+  'src/assets/gate-logo.png',
+  'src/assets/fonts/onest-cyrillic-ext.woff2',
+  'src/assets/fonts/onest-cyrillic.woff2',
+  'src/assets/fonts/onest-latin-ext.woff2',
+  'src/assets/fonts/onest-latin.woff2',
+])
 const SAFE_VAULT_FILES = new Set(['public/vault/manifest.json', 'public/vault/content.bin'])
 const VAULT_BLOB_PATTERN = /^public\/vault\/media\/m[a-f0-9]{16}-[a-f0-9]{16}\.bin$/u
 
@@ -574,6 +582,8 @@ function runSelfTest() {
   )
   check(classifyPublicEntry('public/favicon.png', 'symlink') === 'public-symlink')
   check(classifyRepositoryMedia('fixture/private.jpg') === 'unexpected-repository-media')
+  check(classifyRepositoryMedia('src/assets/fonts/onest-latin.woff2') === null)
+  check(classifyRepositoryMedia('src/assets/fonts/rogue.woff2') === 'unexpected-repository-media')
   check(hasPrefix('local-content/fixture.txt', PLAINTEXT_SOURCE_PREFIXES))
 
   const keyFindings = []
