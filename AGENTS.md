@@ -16,6 +16,19 @@ Read [docs/SPACING_SYSTEM.md](docs/SPACING_SYSTEM.md) before any task that chang
 - Never discard, overwrite, stage, commit, or publish another agent's unfinished changes until their intent and ownership are understood from the diff and handoff.
 - Complete work should normally end in a focused verified commit only when that matches the user's current Git instructions. If the user asks to accumulate changes or explicitly says not to commit, preserve the working tree, record that instruction in `.agent/HANDOFF.md`, and do not commit until the user changes it. If work must stop unfinished, update the same handoff with exact verification status and next action, without secrets or personal content.
 
+## Product roadmap (internal, local)
+
+The forward-looking backlog — turning this personal gift into a product other
+couples can send — lives in `roadmap/` (gitignored: the repository is public and
+this is internal planning, handled like `.agent/` and `local-content/`).
+`roadmap/board.json` is the machine-readable source of truth: `columns` (each with
+a status `tone`) and `cards` (title plus note, assigned to a column). When the user
+asks what is in the backlog or in progress, read that file rather than relying on
+chat memory; when they ask you to change the backlog, edit `board.json` there. The
+board opens as a local macOS app (`roadmap/Роадмап.app`, a thin launcher over
+`roadmap/server.py`); nothing under `roadmap/` may be published to the public
+repository.
+
 ## Design judgement
 
 - Do not blindly reproduce a new mockup when it conflicts with the established system.
