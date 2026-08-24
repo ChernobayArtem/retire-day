@@ -25,9 +25,9 @@ this is internal planning, handled like `.agent/` and `local-content/`).
 a status `tone`) and `cards` (title plus note, assigned to a column). When the user
 asks what is in the backlog or in progress, read that file rather than relying on
 chat memory; when they ask you to change the backlog, edit `board.json` there. The
-board opens as a local macOS app (`roadmap/Роадмап.app`, a thin launcher over
-`roadmap/server.py`); nothing under `roadmap/` may be published to the public
-repository.
+board opens as a local, native AppKit + WebKit macOS app (`roadmap/Роадмап.app`)
+that reads and writes `board.json` directly; nothing under `roadmap/` may be
+published to the public repository.
 
 ## Design judgement
 
