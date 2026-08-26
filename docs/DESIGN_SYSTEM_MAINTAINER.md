@@ -122,7 +122,7 @@ download/fullscreen, storage, service worker, or cache migration.
 
 The current user is already active. A successful change must not unexpectedly log her out, relock already available content, reset opened days, rotate the vault content key, or strand an old service worker on incompatible assets.
 
-Persisted compatibility includes `retire-day:session`, `retire-day:progress`, `retire-day:memories-stats:v1`, and `retire-day:day28-confetti:v1`.
+Persisted compatibility includes the legacy keys `retire-day:session`, `retire-day:progress`, `retire-day:memories-stats:v1`, and `retire-day:day28-confetti:v1`. Their names stay unchanged so an installed ридэй PWA keeps its session and progress.
 
 For encrypted content:
 

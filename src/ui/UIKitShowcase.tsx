@@ -44,7 +44,7 @@ export default function UIKitShowcase() {
           В приложение
         </Button>
         <Badge variant="accent">Внутреннее превью</Badge>
-        <h1 id="ui-showcase-title">Retire Day UI kit</h1>
+        <h1 id="ui-showcase-title">ридэй UI kit</h1>
         <p>
           Компоненты показаны на вымышленных данных и не связаны с приложением, хранилищем или
           пользовательской сессией.

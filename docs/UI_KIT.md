@@ -1,4 +1,4 @@
-# Retire Day UI kit
+# ридэй UI kit
 
 ## Source of truth
 

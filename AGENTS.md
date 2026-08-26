@@ -9,6 +9,12 @@ Read [docs/CONTENT_STRUCTURE.md](docs/CONTENT_STRUCTURE.md) before any task that
 Read [docs/TYPOGRAPHY_SYSTEM.md](docs/TYPOGRAPHY_SYSTEM.md) before any task that changes text styles, copy wrapping, fonts, headings, labels, or typography tokens.
 Read [docs/SPACING_SYSTEM.md](docs/SPACING_SYSTEM.md) before any task that changes UI layout, spacing, component geometry, calendar/day-sheet composition, or Figma variables and components.
 
+The product brand is **ридэй** (international spelling: `reday`). Keep the
+technical GitHub Pages path `/retire-day/`, repository slug, and legacy
+`retire-day:*` storage keys unchanged unless the user explicitly approves a
+separate migration; existing installed PWAs depend on those compatibility
+identifiers.
+
 ## Cross-agent continuity
 
 - Chat history and model memory are not portable between Codex, Claude, or a fresh session. Treat the repository—not a previous conversation—as the source of truth.

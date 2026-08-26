@@ -33,7 +33,8 @@ const colorTokenHtmlPlugin = {
   },
 }
 
-// GitHub Pages project site: served at /retire-day/
+// Keep the existing GitHub Pages path stable so an installed PWA can update.
+// The product brand is "ридэй"; /retire-day/ is a technical compatibility URL.
 export default defineConfig({
   base: '/retire-day/',
   build: {
@@ -54,8 +55,8 @@ export default defineConfig({
       // Do not add manifest icons a second time to the precache manifest.
       includeManifestIcons: false,
       manifest: {
-        name: 'Ариведерчи',
-        short_name: 'Ариведерчи',
+        name: 'ридэй',
+        short_name: 'ридэй',
         description: 'Наш отсчёт',
         lang: 'ru',
         dir: 'ltr',

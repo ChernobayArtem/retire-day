@@ -1,4 +1,4 @@
-# retire-day
+# ридэй
 
 Небольшое личное PWA — календарь-отсчёт на август 2026.
 
@@ -10,7 +10,7 @@ Vite + React + TypeScript, vite-plugin-pwa.
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/retire-day/
+npm run dev        # http://localhost:5173/retire-day/ (технический путь для совместимости)
 npm run build
 npm run typecheck
 ```

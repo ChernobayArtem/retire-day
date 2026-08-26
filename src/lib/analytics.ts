@@ -24,7 +24,7 @@ type YmFunction = {
 declare global {
   interface Window {
     ym?: YmFunction
-    __retireDayMetrika?: boolean
+    __redayMetrika?: boolean
   }
 }
 
@@ -67,9 +67,9 @@ function displayMode(): 'standalone' | 'browser' {
  * counting the same physical URL for every screen.
  */
 export function initAnalytics(): void {
-  if (typeof window === 'undefined' || !isProductionSite() || window.__retireDayMetrika) return
+  if (typeof window === 'undefined' || !isProductionSite() || window.__redayMetrika) return
 
-  window.__retireDayMetrika = true
+  window.__redayMetrika = true
   enabled = true
 
   const ym = ensureQueue()

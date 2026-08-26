@@ -15,9 +15,9 @@ type LockableScreenOrientation = ScreenOrientation & {
 }
 
 function lockViewportZoom() {
-  const guardedWindow = window as Window & { __retireDayPinchLock?: boolean }
-  if (guardedWindow.__retireDayPinchLock) return
-  guardedWindow.__retireDayPinchLock = true
+  const guardedWindow = window as Window & { __redayPinchLock?: boolean }
+  if (guardedWindow.__redayPinchLock) return
+  guardedWindow.__redayPinchLock = true
 
   const preventGesture = (event: Event) => event.preventDefault()
   document.addEventListener('gesturestart', preventGesture, { passive: false, capture: true })

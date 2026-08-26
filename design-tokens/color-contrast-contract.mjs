@@ -1,5 +1,5 @@
 /**
- * WCAG 2.x contrast contract for real Retire Day foreground/background pairs.
+ * WCAG 2.x contrast contract for real ридэй foreground/background pairs.
  *
  * `backgroundLayers` are ordered from the furthest backdrop to the nearest
  * translucent layer. This lets the audit model overlays without pretending

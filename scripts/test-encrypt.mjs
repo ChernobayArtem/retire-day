@@ -20,7 +20,7 @@ import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const sandbox = await mkdtemp(path.join(tmpdir(), 'retire-day-encrypt-test-'))
+const sandbox = await mkdtemp(path.join(tmpdir(), 'reday-encrypt-test-'))
 const encryptScript = path.join(sandbox, 'scripts/encrypt.mjs')
 const contentPath = path.join(sandbox, 'local-content/current/content.mjs')
 const mediaPath = path.join(sandbox, 'local-content/current/media/days/1/photo.webp')
