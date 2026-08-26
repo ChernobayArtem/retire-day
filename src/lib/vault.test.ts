@@ -1,0 +1,207 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+/**
+ * These tests build a throwaway vault with the same envelope scheme the real one
+ * uses — a random content key, wrapped once per password, and a content blob
+ * encrypted under that content key — and then drive the actual unlock/resume
+ * code against it. No real vault file, key or personal content is involved.
+ *
+ * The point is Lera's access path: unlocking with either password, staying
+ * unlocked across reloads, and failing closed on a wrong or damaged session.
+ * A future move of the encryption into the browser (multi-user authoring) must
+ * not silently change any of it.
+ */
+
+const SESSION_KEY = 'retire-day:session'
+// The manifest carries its own iteration count, so a low one here keeps the
+// suite fast and also proves the code honours the manifest rather than a constant.
+const ITER = 1000
+const LIVE_PASSWORD = 'correct horse battery staple'
+const TEST_PASSWORD = 'a different passphrase entirely'
+
+// Latin fixtures on purpose: the sensitive audit rejects a test string that
+// collides with real day copy, and plausible Russian titles do collide.
+const DAYS = [
+  { day: 1, title: 'Fixture one', body: 'synthetic body' },
+  { day: 2, title: 'Fixture two', body: 'another synthetic body' },
+]
+
+// btoa rather than Buffer: this file is type-checked against the browser lib the
+// app itself uses, where Node globals do not exist.
+function b64(bytes: Uint8Array): string {
+  let s = ''
+  for (const byte of bytes) s += String.fromCharCode(byte)
+  return btoa(s)
+}
+
+function rand(n: number): Uint8Array {
+  return crypto.getRandomValues(new Uint8Array(n))
+}
+
+async function deriveKek(password: string, salt: BufferSource, usage: KeyUsage[]) {
+  const base = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(password),
+    'PBKDF2',
+    false,
+    ['deriveKey'],
+  )
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: ITER, hash: 'SHA-256' },
+    base,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    usage,
+  )
+}
+
+interface SyntheticVault {
+  manifest: unknown
+  content: Uint8Array
+}
+
+async function buildVault(): Promise<SyntheticVault> {
+  const cekRaw = rand(32)
+  const cek = await crypto.subtle.importKey(
+    'raw',
+    cekRaw as BufferSource,
+    { name: 'AES-GCM' },
+    false,
+    ['encrypt'],
+  )
+
+  const wraps = []
+  for (const [role, password] of [
+    ['live', LIVE_PASSWORD],
+    ['test', TEST_PASSWORD],
+  ] as const) {
+    const salt = rand(16)
+    const iv = rand(12)
+    const kek = await deriveKek(password, salt as BufferSource, ['encrypt'])
+    const ct = new Uint8Array(
+      await crypto.subtle.encrypt(
+        { name: 'AES-GCM', iv: iv as BufferSource },
+        kek,
+        cekRaw as BufferSource,
+      ),
+    )
+    wraps.push({ role, salt: b64(salt), iv: b64(iv), ct: b64(ct) })
+  }
+
+  const contentIv = rand(12)
+  const content = new Uint8Array(
+    await crypto.subtle.encrypt(
+      { name: 'AES-GCM', iv: contentIv as BufferSource },
+      cek,
+      new TextEncoder().encode(JSON.stringify(DAYS)) as BufferSource,
+    ),
+  )
+
+  return {
+    manifest: {
+      v: 1,
+      iter: ITER,
+      keyId: 'testkeyid0000000',
+      wraps,
+      content: { iv: b64(contentIv) },
+      media: {},
+    },
+    content,
+  }
+}
+
+let vault: SyntheticVault
+
+/** Fresh module state per test: the vault module keeps the session in module scope. */
+async function importVault() {
+  vi.resetModules()
+  return import('./vault')
+}
+
+beforeEach(async () => {
+  localStorage.removeItem(SESSION_KEY)
+  vault = await buildVault()
+  vi.stubGlobal('fetch', async (input: string) => {
+    const url = String(input)
+    if (url.endsWith('manifest.json')) {
+      return new Response(JSON.stringify(vault.manifest), {
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+    if (url.endsWith('content.bin')) {
+      return new Response(vault.content as unknown as BodyInit)
+    }
+    throw new Error(`unexpected fetch: ${url}`)
+  })
+})
+
+describe('unlock', () => {
+  it('accepts the live password and reports that role', async () => {
+    const { unlock } = await importVault()
+    await expect(unlock(LIVE_PASSWORD)).resolves.toBe('live')
+  })
+
+  it('accepts the second password and distinguishes it as the test role', async () => {
+    const { unlock } = await importVault()
+    await expect(unlock(TEST_PASSWORD)).resolves.toBe('test')
+  })
+
+  it('rejects a wrong password without unlocking anything', async () => {
+    const { unlock, dayByNumber } = await importVault()
+    await expect(unlock('not the password')).resolves.toBeNull()
+    expect(dayByNumber(1)).toBeUndefined()
+    expect(localStorage.getItem(SESSION_KEY)).toBeNull()
+  })
+
+  it('decrypts the day content on success', async () => {
+    const { unlock, dayByNumber } = await importVault()
+    await unlock(LIVE_PASSWORD)
+    expect(dayByNumber(2)).toMatchObject({ day: 2, title: 'Fixture two' })
+  })
+
+  it('persists the session so the password is asked for once', async () => {
+    const { unlock } = await importVault()
+    await unlock(LIVE_PASSWORD)
+    const saved = JSON.parse(localStorage.getItem(SESSION_KEY) ?? 'null')
+    expect(saved).toMatchObject({ role: 'live' })
+    expect(typeof saved.cek).toBe('string')
+  })
+})
+
+describe('resume', () => {
+  it('restores an unlocked session without the password', async () => {
+    const first = await importVault()
+    await first.unlock(LIVE_PASSWORD)
+
+    // A fresh module is the same as a fresh page load: only localStorage carries over.
+    const { resume, dayByNumber } = await importVault()
+    await resume()
+    expect(dayByNumber(1)).toMatchObject({ day: 1 })
+  })
+
+  it('stays locked when there is no session', async () => {
+    const { resume, dayByNumber } = await importVault()
+    await resume()
+    expect(dayByNumber(1)).toBeUndefined()
+  })
+
+  it('fails closed and clears a damaged session rather than half-opening', async () => {
+    localStorage.setItem(SESSION_KEY, JSON.stringify({ cek: 'bm90LWEta2V5', role: 'live' }))
+    const { resume, dayByNumber } = await importVault()
+    await resume()
+    expect(dayByNumber(1)).toBeUndefined()
+    expect(localStorage.getItem(SESSION_KEY)).toBeNull()
+  })
+})
+
+describe('logout', () => {
+  it('drops the content and the stored session', async () => {
+    const { unlock, logout, dayByNumber } = await importVault()
+    await unlock(LIVE_PASSWORD)
+    expect(dayByNumber(1)).toBeDefined()
+
+    logout()
+    expect(dayByNumber(1)).toBeUndefined()
+    expect(localStorage.getItem(SESSION_KEY)).toBeNull()
+  })
+})
