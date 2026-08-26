@@ -1,6 +1,6 @@
 # Codebase health
 
-A snapshot for anyone picking up this project. Last reviewed 22 Aug 2026.
+A snapshot for anyone picking up this project. Last reviewed 26 Aug 2026.
 
 ## Verdict
 
@@ -23,7 +23,7 @@ closed.
 | CI/CD                        | Good        | GitHub Actions builds and deploys to Pages on push to `main`                            |
 | Linting                      | Added       | ESLint (flat config) with typescript-eslint, react-hooks, react-refresh, jsx-a11y       |
 | Formatting                   | Added       | Prettier + EditorConfig, aligned to the existing no-semicolon, single-quote style       |
-| Unit tests                   | Added       | Vitest with 20 tests across the date, progress and journey logic                        |
+| Unit tests                   | Added       | Vitest with 29 tests across the date, progress, journey and vault-unlock logic          |
 
 ## What is enforced now
 

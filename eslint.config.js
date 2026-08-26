@@ -44,7 +44,7 @@ export default tseslint.config(
     },
   },
   {
-    // The build tooling — the eleven design-system audits, the token exporters and
+    // The build tooling — the nine design-system audits, the token exporters and
     // the vault encryption script — is where a silent mistake is most expensive and
     // was the last sizeable body of code with no linter at all. Node scripts, so no
     // React or browser globals here.

@@ -17,15 +17,18 @@ exemption. The calculator is `scripts/audit-color-contrast.mjs`.
 
 ## Current result
 
-`npm run audit:contrast:strict` checks 71 real foreground/background pairs.
-All 71 currently meet WCAG 2.2 AA. Nine exemption groups are recorded explicitly;
+`npm run audit:contrast:strict` checks 77 real foreground/background pairs.
+All 77 currently meet WCAG 2.2 AA. Nine exemption groups are recorded explicitly;
 nothing is skipped implicitly.
 
 `npm run audit:contrast:coverage` separately discovers semantic foreground,
 icon, boundary and focus roles that are actually consumed by product code. The
-current coverage is 69 roles: 48 required numeric checks, 21 documented
+current coverage is 38 consumed roles: 27 required numeric checks, 11 documented
 exemptions and 0 missing roles. This prevents a new role from bypassing the
 contrast contract simply because nobody remembered to add a pair manually.
+
+These counts move whenever a role is added or retired. Both audits print their
+current totals, so read them from a run rather than from this page.
 
 Selected narrow passing pairs:
 
