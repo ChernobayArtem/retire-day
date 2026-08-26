@@ -121,7 +121,7 @@ For any design-system or UI change:
 7. When Figma variables changed, compare collection counts, aliases, values, descriptions, scopes, code syntax, and hidden/public flags against the generated registry.
 8. When vault output changed, compare `keyId` and media mappings before declaring the update safe.
 
-The production gate `npm run build` — the same script CI runs to deploy — also runs `npm run format:check`, `npm run lint` (ESLint over `src/**`), and `npm run test` (Vitest) before the audits, `tsc`, and `vite build`. Keep all three green: an ESLint error, a failing test, or an unformatted file fails the build and blocks the Pages deploy. Prettier is deliberately not run on CSS, `src/ui/tokens`, or generated files — those are owned by the design-system audits. Dependency installs require `legacy-peer-deps` (pinned in `.npmrc`); removing it makes CI's `npm ci` fail. See `docs/CODEBASE_HEALTH.md` for the fuller picture.
+The production gate `npm run build` — the same script CI runs to deploy — also runs `npm run format:check`, `npm run lint` (ESLint over `src/**`, `scripts/**` and `design-tokens/**`), and `npm run test` (Vitest) before the audits, `tsc`, and `vite build`. Keep all three green: an ESLint error, a failing test, or an unformatted file fails the build and blocks the Pages deploy. Prettier is deliberately not run on CSS, `src/ui/tokens`, or generated files — those are owned by the design-system audits. Dependency installs require `legacy-peer-deps` (pinned in `.npmrc`); removing it makes CI's `npm ci` fail. See `docs/CODEBASE_HEALTH.md` for the fuller picture.
 
 ## Commit and publication policy
 

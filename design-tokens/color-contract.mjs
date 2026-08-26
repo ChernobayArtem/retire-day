@@ -216,6 +216,9 @@ export function semanticScopes(cssName) {
   throw new Error(`No Figma Scope rule for ${cssName}`)
 }
 
-export function semanticHiddenFromPublishing(cssName) {
+// Every semantic role is published to the Figma library; the parameter is kept so
+// the signature matches the other per-role contract helpers and a future rule can
+// hide one without changing call sites.
+export function semanticHiddenFromPublishing(_cssName) {
   return false
 }

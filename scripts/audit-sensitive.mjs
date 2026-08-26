@@ -385,6 +385,10 @@ function isMeaningfulContentFragment(fragment) {
 function isMeaningfulCodeFragment(fragment) {
   const normalized = fragment.trim()
   if (normalized.length < 4) return false
+  // The `\[` escape is redundant inside a character class, but it is kept to mirror
+  // the required `\]` — an unbalanced-looking bracket pair in a rule that decides
+  // what counts as a leaked fragment is harder to review than a spare backslash.
+  // eslint-disable-next-line no-useless-escape
   return /^[\p{L}\p{N}][\p{L}\p{N}\s_.:/+@#*()\[\]-]*$/u.test(normalized)
 }
 

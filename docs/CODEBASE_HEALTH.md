@@ -30,7 +30,8 @@ closed.
 `npm run build` — the same script CI runs to deploy — now runs, in order:
 
 1. `npm run format:check` — Prettier (CSS, `src/ui/tokens` and generated files excluded).
-2. `npm run lint` — ESLint over `src/**`, blocks on errors (warnings pass through).
+2. `npm run lint` — ESLint over `src/**` plus the `scripts/**` and `design-tokens/**`
+   tooling, blocks on errors (warnings pass through).
 3. `npm run test` — Vitest, all unit tests must pass.
 4. The existing design-system audits (colours, spacing, icons, typography,
    contrast, target size, vault).
@@ -61,16 +62,18 @@ npm run build      # full gate: lint, test, audits, type-check, production build
 
 The repo-wide Prettier format (commit `291a2b5`, ignored in `.git-blame-ignore-revs`)
 and the accessibility-warning cleanup (commit `e126570`) from the first review are
-both done, and `format:check` now gates the build. What remains:
+both done, and `format:check` now gates the build. Linting the tooling scripts is
+also done: ESLint now covers `scripts/**` and `design-tokens/**` as well as
+`src/**`, which closed three findings invisible until then (a dead parameter in
+the colour contract, plus two deliberate regex constructs in the sensitive and
+vault audits that are now documented rather than silently flagged). What remains:
 
-1. **Lint the tooling scripts.** ESLint currently covers `src/**` only; the
-   `scripts/*.mjs` audits are unlinted.
-2. **React-hooks and Fast-Refresh warnings.** Nine non-blocking ESLint warnings
+1. **React-hooks and Fast-Refresh warnings.** Nine non-blocking ESLint warnings
    remain (`react-hooks/set-state-in-effect`, `react-hooks/static-components`, and
    `react-refresh/only-export-components`); optional to burn down.
-3. **Typography has no generated Figma registry** unlike colours and spacing, so
+2. **Typography has no generated Figma registry** unlike colours and spacing, so
    drift there can only be caught by hand.
-4. **Large CSS files** (`src/styles/app.css`, `src/ui/ui.css`) could be split,
+3. **Large CSS files** (`src/styles/app.css`, `src/ui/ui.css`) could be split,
    but this is cosmetic and low priority.
 
 ## Scope of this review

@@ -155,6 +155,9 @@ function validateStringArray(value, code) {
 function isSafeMediaSourcePath(value) {
   if (typeof value !== 'string' || value.length === 0 || value !== value.normalize('NFC'))
     return false
+  // Matching control characters is the point: a media source path carrying NUL, an
+  // escape sequence or DEL is rejected outright rather than reaching the filesystem.
+  // eslint-disable-next-line no-control-regex
   if (value.includes('\\') || /[\0-\x1F\x7F?#]/.test(value)) return false
   if (path.posix.isAbsolute(value) || path.posix.normalize(value) !== value) return false
 
