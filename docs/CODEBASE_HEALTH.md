@@ -23,7 +23,7 @@ closed.
 | CI/CD                        | Good        | GitHub Actions builds and deploys to Pages on push to `main`                            |
 | Linting                      | Added       | ESLint (flat config) with typescript-eslint, react-hooks, react-refresh, jsx-a11y       |
 | Formatting                   | Added       | Prettier + EditorConfig, aligned to the existing no-semicolon, single-quote style       |
-| Unit tests                   | Added       | Vitest with 29 tests across the date, progress, journey and vault-unlock logic          |
+| Unit tests                   | Added       | Vitest over the date, progress, journey and vault-unlock logic (`npm run test` counts)  |
 
 ## What is enforced now
 
@@ -43,9 +43,9 @@ Dependency installs require `legacy-peer-deps` (pinned in `.npmrc`), or CI's
 ESLint is calibrated for a first adoption: genuinely broken code is an error,
 while opinionated new React rules and accessibility findings on the existing
 gesture-driven components are surfaced as **warnings** to burn down over time,
-not build blockers. There are currently 0 errors and 9 warnings — the ten
-jsx-a11y warnings have since been resolved, leaving only React-internal and
-Fast-Refresh hints.
+not build blockers. Errors are held at zero — the build enforces that. The
+remaining warnings are React-internal and Fast-Refresh hints; the jsx-a11y ones
+were resolved in `e126570`. `npm run lint` prints the current tally.
 
 ## Developer quickstart
 
@@ -68,9 +68,11 @@ also done: ESLint now covers `scripts/**` and `design-tokens/**` as well as
 the colour contract, plus two deliberate regex constructs in the sensitive and
 vault audits that are now documented rather than silently flagged). What remains:
 
-1. **React-hooks and Fast-Refresh warnings.** Nine non-blocking ESLint warnings
-   remain (`react-hooks/set-state-in-effect`, `react-hooks/static-components`, and
-   `react-refresh/only-export-components`); optional to burn down.
+1. **React-hooks and Fast-Refresh warnings.** Non-blocking ESLint warnings remain
+   under `react-hooks/set-state-in-effect`, `react-hooks/static-components` and
+   `react-refresh/only-export-components`; optional to burn down. They live in the
+   gesture-driven components (DaySheet, SurpriseArchive, ZoomableLightbox,
+   useMedia), so touch them when the app is not in daily use.
 2. **Typography has no generated Figma registry** unlike colours and spacing, so
    drift there can only be caught by hand.
 3. **Large CSS files** (`src/styles/app.css`, `src/ui/ui.css`) could be split,

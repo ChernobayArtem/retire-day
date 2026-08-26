@@ -17,34 +17,32 @@ exemption. The calculator is `scripts/audit-color-contrast.mjs`.
 
 ## Current result
 
-`npm run audit:contrast:strict` checks 77 real foreground/background pairs.
-All 77 currently meet WCAG 2.2 AA. Nine exemption groups are recorded explicitly;
-nothing is skipped implicitly.
+Every non-exempt pair currently meets WCAG 2.2 AA, and every consumed semantic
+foreground, icon, boundary and focus role is either required or explicitly exempt —
+so a new role cannot bypass the contract just because nobody added a pair by hand.
 
-`npm run audit:contrast:coverage` separately discovers semantic foreground,
-icon, boundary and focus roles that are actually consumed by product code. The
-current coverage is 38 consumed roles: 27 required numeric checks, 11 documented
-exemptions and 0 missing roles. This prevents a new role from bypassing the
-contrast contract simply because nobody remembered to add a pair manually.
+`npm run audit:contrast:strict` and `npm run audit:contrast:coverage` print their
+own totals: how many pairs were checked, how many roles are consumed, required and
+exempt. Those totals move whenever a role is added or retired, so read them from a
+run rather than from this page.
 
-These counts move whenever a role is added or retired. Both audits print their
-current totals, so read them from a run rather than from this page.
+The pairs that sit closest to their threshold — the ones a token change is most
+likely to push under — are, by audit id:
 
-Selected narrow passing pairs:
+| Pair                                           | Requirement |
+| ---------------------------------------------- | ----------: |
+| `text-field-boundary`                          |       `3:1` |
+| `inline-icon-link-focus-ring-on-light-surface` |       `3:1` |
+| `default-control-boundary`                     |       `3:1` |
+| `outline-hover-control-boundary`               |       `3:1` |
+| `carousel-inactive-indicator`                  |       `3:1` |
+| `focus-ring-on-white`                          |       `3:1` |
+| `soft-button-hover-foreground`                 |     `4.5:1` |
+| `calendar-number-future-day`                   |     `4.5:1` |
 
-| Pair                                                                    |     Ratio | Requirement |
-| ----------------------------------------------------------------------- | --------: | ----------: |
-| Lightbox control, white icon over the worst-case translucent background | `3.037:1` |       `3:1` |
-| Text-field boundary on level-1                                          | `3.267:1` |       `3:1` |
-| Default outline-control boundary on white                               | `3.452:1` |       `3:1` |
-| Outline-control hover boundary on white                                 | `3.452:1` |       `3:1` |
-| Inactive carousel indicator on white                                    | `3.452:1` |       `3:1` |
-| Focus ring on white                                                     | `3.542:1` |       `3:1` |
-| Video play icon over the worst-case translucent background              | `4.759:1` |       `3:1` |
-| Lightbox hint over the worst-case translucent background                | `4.759:1` |     `4.5:1` |
-| Soft-button text in hover state                                         | `4.587:1` |     `4.5:1` |
-| Inactive tab text on white                                              | `4.807:1` |     `4.5:1` |
-| Calendar number on the future-day surface                               | `4.999:1` |     `4.5:1` |
+Ids and thresholds are contract and stay put; the measured ratios move with every
+token change, so they are deliberately not copied here — the `--json` command under
+**Commands** prints them.
 
 These narrowest pairs are intentional contract entries. Any later token change
 that drops them below the target fails the build.
