@@ -157,6 +157,10 @@ export function Play(props: IconProps) {
   )
 }
 
+/* eslint-disable-next-line react-refresh/only-export-components --
+   AGENTS.md requires every system icon to live in this single registry, so the
+   file exports one object of components by design. Splitting it to satisfy
+   Fast Refresh would break the rule the icon audit enforces. */
 export const Icons = {
   ArrowLeft,
   ChevronLeft,

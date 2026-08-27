@@ -49,6 +49,9 @@ function requestPortraitOrientation() {
   void orientation.lock('portrait').catch(() => {})
 }
 
+/* eslint-disable-next-line react-refresh/only-export-components --
+   This is the entry module: it bootstraps the app and registers the service
+   worker, so it will always hold non-component code alongside this guard. */
 function OrientationGuard() {
   const [landscape, setLandscape] = React.useState(isTouchDeviceInLandscape)
 

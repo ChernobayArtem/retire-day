@@ -22,6 +22,10 @@ interface Props {
 }
 
 /** Текст, который ложится в буфер: звучит как сообщение от Валерии, а не как карточка. */
+/* eslint-disable-next-line react-refresh/only-export-components --
+   The clipboard text belongs next to the card that produces it; splitting it
+   into its own module to satisfy Fast Refresh would separate the copy from the
+   component it describes for a dev-only convenience. */
 export function couponMessage(c: CouponData, emoji: string): string {
   return `Активирую купон 🎟️\n«${c.title}»\nЗначит: ${c.claim} ${emoji}`
 }

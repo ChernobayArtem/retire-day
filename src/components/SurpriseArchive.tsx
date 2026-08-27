@@ -119,6 +119,9 @@ export default function SurpriseArchive({
 
   useEffect(() => {
     if (counts[selected] > 0 || visibleCategories.length === 0) return
+    // The selected category can empty out as days unlock; fall back to the first
+    // one that still has content rather than rendering an empty tab.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelected(visibleCategories[0].id)
   }, [counts, selected, visibleCategories])
 

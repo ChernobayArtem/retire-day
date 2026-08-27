@@ -53,11 +53,18 @@ export default function DaySheet({ active, analyticsEnabled, testMode, onClose, 
   const lightboxUrl = useMedia(lightbox?.path)
 
   useEffect(() => {
+    // Closing the lightbox when the open day changes: leaving it up would show
+    // one day's photo over another day's sheet.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLightbox(null)
   }, [active?.day])
 
   useEffect(() => {
     if (active?.day !== 28 || active.locked) {
+      // Clearing the day-28 confetti whenever another day is open: the effect
+      // also coordinates with the once-ever flag in localStorage below, so the
+      // reset stays here beside the rule that owns it.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowDay28Confetti(false)
       return
     }

@@ -136,6 +136,9 @@ export default function ZoomableLightbox({
   )
 
   useEffect(() => {
+    // A new image must start unzoomed and uncentred; carrying the previous
+    // pinch transform over would open the next photo mid-gesture.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTransform(RESET_TRANSFORM, false)
     pointersRef.current.clear()
     panRef.current = null

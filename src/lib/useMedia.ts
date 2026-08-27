@@ -8,6 +8,11 @@ export function useMedia(path: string | undefined | null): string | null {
     let alive = true
     let attempts = 0
     let retryTimer: number | undefined
+    // Reset before resolving: without it the previous day's photo stays on
+    // screen until the new one decrypts, showing the wrong memory for a frame.
+    // The reset belongs with the timers and listeners set up below, so it stays
+    // in the effect rather than moving to a render-phase adjustment.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setUrl(null)
     if (!path) return
 
