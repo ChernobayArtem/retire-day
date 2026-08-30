@@ -2041,3 +2041,35 @@
     height: 18px;
   }
 }
+
+/* Crash screen. Rendered only after something already failed, so it uses the
+   plainest possible tokens and no component that could be the thing that broke. */
+.app-error {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-semantic-layout-content-gap);
+  padding: var(--spacing-semantic-layout-page-inset);
+  text-align: center;
+  background: var(--color-semantic-background-canvas);
+  color: var(--color-semantic-text-primary);
+}
+
+.app-error__title {
+  margin: 0;
+  font-family: var(--ui-font-display);
+  font-size: var(--ui-font-size-title);
+  font-weight: var(--ui-font-weight-bold);
+  line-height: var(--ui-line-height-title);
+  color: var(--color-semantic-text-heading);
+}
+
+.app-error__text {
+  margin: 0;
+  max-width: 32ch;
+  font-size: var(--ui-font-size-body);
+  line-height: var(--ui-line-height-body);
+  color: var(--color-semantic-text-secondary);
+}

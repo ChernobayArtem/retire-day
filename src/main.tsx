@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { registerSW } from 'virtual:pwa-register'
 import App from './App'
+import ErrorBoundary from './components/ErrorBoundary'
 import { initAnalytics } from './lib/analytics'
 import './styles/fonts.css'
 import './ui/tokens/index.css'
@@ -119,7 +120,11 @@ navigator.serviceWorker?.addEventListener('controllerchange', () => {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    {/* The guard stays outside: it must survive a crash in the app to keep
+        telling a sideways phone to turn, and it renders nothing otherwise. */}
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
     <OrientationGuard />
   </React.StrictMode>,
 )
