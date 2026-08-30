@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { keepRussianShortWords } from '../lib/typography'
 import gateLogo from '../assets/gate-logo.png'
-import { unlock } from '../lib/vault'
+import { unlock, type Role } from '../lib/vault'
 import { trackGoal } from '../lib/analytics'
 import { Button, TextField } from '../ui'
 
@@ -14,8 +14,16 @@ export default function Gate() {
     e.preventDefault()
     if (!value.trim() || busy) return
     setBusy(true)
-    const role = await unlock(value.trim())
-    setBusy(false)
+    let role: Role | null = null
+    try {
+      role = await unlock(value.trim())
+    } catch {
+      // The vault files were unreachable rather than the word being wrong. Without
+      // this the rejection escapes and `busy` never clears, leaving the button
+      // spinning for good; the shared error line at least invites another try.
+    } finally {
+      setBusy(false)
+    }
     if (role === 'live') {
       trackGoal('login_success')
     } else if (!role) {

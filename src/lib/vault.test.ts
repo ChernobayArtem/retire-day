@@ -118,21 +118,23 @@ async function importVault() {
   return import('./vault')
 }
 
+async function serveVault(input: string) {
+  const url = String(input)
+  if (url.endsWith('manifest.json')) {
+    return new Response(JSON.stringify(vault.manifest), {
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
+  if (url.endsWith('content.bin')) {
+    return new Response(vault.content as unknown as BodyInit)
+  }
+  throw new Error(`unexpected fetch: ${url}`)
+}
+
 beforeEach(async () => {
   localStorage.removeItem(SESSION_KEY)
   vault = await buildVault()
-  vi.stubGlobal('fetch', async (input: string) => {
-    const url = String(input)
-    if (url.endsWith('manifest.json')) {
-      return new Response(JSON.stringify(vault.manifest), {
-        headers: { 'Content-Type': 'application/json' },
-      })
-    }
-    if (url.endsWith('content.bin')) {
-      return new Response(vault.content as unknown as BodyInit)
-    }
-    throw new Error(`unexpected fetch: ${url}`)
-  })
+  vi.stubGlobal('fetch', serveVault)
 })
 
 describe('unlock', () => {
@@ -183,6 +185,39 @@ describe('resume', () => {
     const { resume, dayByNumber } = await importVault()
     await resume()
     expect(dayByNumber(1)).toBeUndefined()
+  })
+
+  it('keeps the session when the vault files are unreachable', async () => {
+    // A network blip must not cost her the stored key: the next load should
+    // resume without the password. Only a key that cannot open the vault is a
+    // reason to forget it.
+    const first = await importVault()
+    await first.unlock(LIVE_PASSWORD)
+    const savedBefore = localStorage.getItem(SESSION_KEY)
+
+    vi.stubGlobal('fetch', async () => {
+      throw new TypeError('network down')
+    })
+    const offline = await importVault()
+    await offline.resume()
+    expect(offline.dayByNumber(1)).toBeUndefined()
+    expect(localStorage.getItem(SESSION_KEY)).toBe(savedBefore)
+  })
+
+  it('resumes normally once the files are reachable again', async () => {
+    const first = await importVault()
+    await first.unlock(LIVE_PASSWORD)
+
+    vi.stubGlobal('fetch', async () => {
+      throw new TypeError('network down')
+    })
+    await (await importVault()).resume()
+
+    // Restore the working transport and try again, as a later launch would.
+    vi.stubGlobal('fetch', serveVault)
+    const back = await importVault()
+    await back.resume()
+    expect(back.dayByNumber(1)).toMatchObject({ day: 1 })
   })
 
   it('fails closed and clears a damaged session rather than half-opening', async () => {

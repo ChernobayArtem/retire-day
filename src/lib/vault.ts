@@ -44,6 +44,23 @@ function set(next: Partial<VaultState>) {
 
 const subtle = () => globalThis.crypto.subtle
 
+/**
+ * The vault files could not be fetched — offline, a bad gateway, a deploy in
+ * flight. Distinct from a key that cannot open them: the session is still good
+ * and must survive, so this is never a reason to forget it.
+ */
+class VaultUnavailableError extends Error {
+  // Own field rather than `cause`: the project's lib target is ES2020, where
+  // Error has no cause.
+  readonly reason: unknown
+
+  constructor(reason: unknown) {
+    super('vault files are unreachable')
+    this.name = 'VaultUnavailableError'
+    this.reason = reason
+  }
+}
+
 function b64ToBytes(b64: string) {
   const bin = atob(b64)
   const out = new Uint8Array(bin.length)
@@ -58,9 +75,13 @@ function bytesToB64(bytes: Uint8Array): string {
 
 async function getManifest(): Promise<Manifest> {
   if (!manifest) {
-    manifest = (await (
-      await fetch(`${BASE}vault/manifest.json`, { cache: 'force-cache' })
-    ).json()) as Manifest
+    try {
+      const res = await fetch(`${BASE}vault/manifest.json`, { cache: 'force-cache' })
+      if (!res.ok) throw new Error(`manifest ${res.status}`)
+      manifest = (await res.json()) as Manifest
+    } catch (cause) {
+      throw new VaultUnavailableError(cause)
+    }
   }
   return manifest
 }
@@ -80,7 +101,14 @@ async function deriveKEK(pw: string, salt: BufferSource, iter: number): Promise<
 
 async function loadContent(key: CryptoKey): Promise<DayDef[]> {
   const m = await getManifest()
-  const ct = await (await fetch(`${BASE}vault/content.bin`, { cache: 'force-cache' })).arrayBuffer()
+  let ct: ArrayBuffer
+  try {
+    const res = await fetch(`${BASE}vault/content.bin`, { cache: 'force-cache' })
+    if (!res.ok) throw new Error(`content ${res.status}`)
+    ct = await res.arrayBuffer()
+  } catch (cause) {
+    throw new VaultUnavailableError(cause)
+  }
   const plain = await subtle().decrypt({ name: 'AES-GCM', iv: b64ToBytes(m.content.iv) }, key, ct)
   return JSON.parse(new TextDecoder().decode(plain)) as DayDef[]
 }
@@ -138,11 +166,18 @@ export async function resume(): Promise<void> {
     ])
     const days = await loadContent(cek)
     set({ status: 'ready', role: saved.role, days })
-  } catch {
-    try {
-      localStorage.removeItem(SESSION_KEY)
-    } catch {
-      /* ignore */
+  } catch (error) {
+    // Forget the session only when the stored key itself cannot open this vault.
+    // If the files were simply unreachable, the key is still good: dropping it
+    // here would send her back to the password screen over a network blip, and
+    // the next load would have worked.
+    if (!(error instanceof VaultUnavailableError)) {
+      cek = null
+      try {
+        localStorage.removeItem(SESSION_KEY)
+      } catch {
+        /* ignore */
+      }
     }
     set({ status: 'locked' })
   }
