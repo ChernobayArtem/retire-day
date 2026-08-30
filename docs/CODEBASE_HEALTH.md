@@ -23,7 +23,7 @@ closed.
 | CI/CD                        | Good        | GitHub Actions builds and deploys to Pages on push to `main`                            |
 | Linting                      | Added       | ESLint (flat config) with typescript-eslint, react-hooks, react-refresh, jsx-a11y       |
 | Formatting                   | Added       | Prettier + EditorConfig, aligned to the existing no-semicolon, single-quote style       |
-| Unit tests                   | Added       | Vitest over the date, progress, journey and vault-unlock logic (`npm run test` counts)  |
+| Unit tests                   | Added       | Vitest over dates, progress, journey, vault unlock, Russian wrapping and the day schema |
 
 ## What is enforced now
 
@@ -38,7 +38,14 @@ closed.
 5. `tsc` type-check, then `vite build`, then the sensitive-content audit.
 
 Dependency installs require `legacy-peer-deps` (pinned in `.npmrc`), or CI's
-`npm ci` fails and no deploy lands.
+`npm ci` fails and no deploy lands. The conflict is specific and worth knowing
+before anyone tidies that file away: `eslint-plugin-jsx-a11y@6.10.2` declares
+support for ESLint `^3 || … || ^9`, and the project runs ESLint 10. The plugin
+works today — the accessibility rules fire and the audits agree with them — but
+it runs on a major it was never tested against. The real fixes are to wait for a
+jsx-a11y release that accepts ESLint 10, or to pin ESLint to 9; `legacy-peer-deps`
+only silences the installer. Check with `npm ls eslint`, which prints the mismatch
+verbatim.
 
 ESLint is calibrated for a first adoption: genuinely broken code is an error,
 while opinionated new React rules and accessibility findings on the existing
