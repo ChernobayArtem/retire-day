@@ -1,9 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import appSource from '../App.tsx?raw'
-import homeSource from '../components/Home.tsx?raw'
-import gateSource from '../components/Gate.tsx?raw'
-import archiveSource from '../components/SurpriseArchive.tsx?raw'
+// Discovered, not listed. A hand-written list of call sites is a hole waiting to
+// open: the first version of this test named four files and missed five.
+const SOURCES = import.meta.glob('../**/*.{ts,tsx}', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>
 
 /**
  * Analytics is the only channel that carries anything off the device, so what it
@@ -17,12 +20,10 @@ import archiveSource from '../components/SurpriseArchive.tsx?raw'
  * the privacy claim stays a fact instead of an intention.
  */
 
-const CALL_SITES: Array<[string, string]> = [
-  ['App.tsx', appSource],
-  ['Home.tsx', homeSource],
-  ['Gate.tsx', gateSource],
-  ['SurpriseArchive.tsx', archiveSource],
-]
+const CALL_SITES: Array<[string, string]> = Object.entries(SOURCES)
+  .filter(([path]) => !path.includes('.test.') && !path.endsWith('/analytics.ts'))
+  .filter(([, source]) => /\b(?:trackView|trackGoal)\s*\(/.test(source))
+  .map(([path, source]) => [path.replace('../', 'src/'), source])
 
 /** Fields on a day that hold something a person wrote or chose. */
 const CONTENT_FIELDS = [
@@ -62,14 +63,17 @@ function analyticsArguments(source: string): string[] {
 }
 
 describe('analytics carries no personal content', () => {
-  it('finds the call sites it claims to guard', () => {
-    // Guards against the regex silently matching nothing and passing forever.
+  it('finds every file that calls analytics', () => {
+    // Guards against the glob or the regex silently matching nothing and passing
+    // forever. Nine files call analytics today; the floor is deliberately close
+    // so that losing a whole file's coverage is visible rather than quiet.
+    expect(CALL_SITES.length).toBeGreaterThanOrEqual(9)
     const total = CALL_SITES.reduce((n, [, src]) => n + analyticsArguments(src).length, 0)
-    expect(total).toBeGreaterThan(5)
+    expect(total).toBeGreaterThan(10)
   })
 
-  for (const [name, source] of CALL_SITES) {
-    it(`sends no content-bearing field from ${name}`, () => {
+  it('sends no content-bearing field from any call site', () => {
+    for (const [name, source] of CALL_SITES) {
       for (const args of analyticsArguments(source)) {
         for (const field of CONTENT_FIELDS) {
           expect(
@@ -78,12 +82,14 @@ describe('analytics carries no personal content', () => {
           ).toBe(false)
         }
       }
-    })
-  }
+    }
+  })
 
   it('keeps the day view keyed by number rather than by its title', () => {
     // `День ${day}` is safe; the day's own title is not.
-    const dayView = analyticsArguments(homeSource).find((args) => args.includes('day-'))
+    const home = CALL_SITES.find(([path]) => path.endsWith('Home.tsx'))
+    expect(home, 'Home.tsx should call analytics').toBeDefined()
+    const dayView = analyticsArguments(home![1]).find((args) => args.includes('day-'))
     expect(dayView).toBeDefined()
     expect(dayView).not.toMatch(/\.title/)
   })
