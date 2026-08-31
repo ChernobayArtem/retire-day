@@ -61,6 +61,15 @@ class VaultUnavailableError extends Error {
   }
 }
 
+/**
+ * True when unlocking failed because the vault files could not be fetched rather
+ * than because the word was wrong. The gate needs to tell those apart: one is the
+ * person's mistake, the other is not.
+ */
+export function isVaultUnavailable(error: unknown): boolean {
+  return error instanceof VaultUnavailableError
+}
+
 function b64ToBytes(b64: string) {
   const bin = atob(b64)
   const out = new Uint8Array(bin.length)
