@@ -263,6 +263,16 @@ describe('a broken environment is not a wrong password', () => {
     await expect(unlock(LIVE_PASSWORD)).rejects.toThrow()
   })
 
+  it('reports a damaged iteration count instead of rejecting the word', async () => {
+    // PBKDF2 raises OperationError for `iterations: 0` — the very name a failed
+    // decrypt uses — so a corrupted count once read as a wrong password.
+    const manifest = vault.manifest as { iter: number }
+    manifest.iter = 0
+
+    const { unlock } = await importVault()
+    await expect(unlock(LIVE_PASSWORD)).rejects.toThrow(/manifest is unusable/)
+  })
+
   it('keeps the session when the browser cannot do the work', async () => {
     const first = await importVault()
     await first.unlock(LIVE_PASSWORD)

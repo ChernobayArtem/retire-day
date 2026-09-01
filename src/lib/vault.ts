@@ -129,8 +129,26 @@ async function getManifest(): Promise<Manifest> {
     } catch (cause) {
       throw new VaultUnavailableError(cause)
     }
+    requireUsableManifest(manifest)
   }
   return manifest
+}
+
+/**
+ * A damaged manifest must announce itself rather than be discovered later as a
+ * failing decrypt: `iterations: 0` raises the very same `OperationError` a wrong
+ * password does, so a corrupted count would otherwise read as a rejected word.
+ */
+function requireUsableManifest(m: Manifest): void {
+  const bad = (why: string) => new VaultEnvironmentError(`vault manifest is unusable: ${why}`)
+  if (!Number.isInteger(m.iter) || m.iter < 1) throw bad('iteration count')
+  if (!Array.isArray(m.wraps) || m.wraps.length === 0) throw bad('no password wraps')
+  for (const w of m.wraps) {
+    if (typeof w?.salt !== 'string' || typeof w?.iv !== 'string' || typeof w?.ct !== 'string') {
+      throw bad(`wrap for role ${String(w?.role)}`)
+    }
+  }
+  if (typeof m.content?.iv !== 'string') throw bad('content iv')
 }
 
 async function deriveKEK(pw: string, salt: BufferSource, iter: number): Promise<CryptoKey> {
@@ -167,22 +185,22 @@ export async function unlock(password: string): Promise<Role | null> {
   let cekRaw: ArrayBuffer | null = null
   let role: Role | null = null
   for (const w of m.wraps) {
+    // Deriving the key and decoding the wrap sit OUTSIDE the catch on purpose.
+    // Neither can fail because a word was wrong, and `OperationError` does not
+    // distinguish them from one that was: PBKDF2 raises exactly that name for a
+    // damaged iteration count. Only the decrypt below may be answered with
+    // "try the next wrap".
+    const kek = await deriveKEK(password, b64ToBytes(w.salt), m.iter)
+    const iv = b64ToBytes(w.iv)
+    const wrapped = b64ToBytes(w.ct)
     try {
-      const kek = await deriveKEK(password, b64ToBytes(w.salt), m.iter)
-      cekRaw = await subtle().decrypt(
-        { name: 'AES-GCM', iv: b64ToBytes(w.iv) },
-        kek,
-        b64ToBytes(w.ct),
-      )
-      role = w.role
-      break
+      cekRaw = await subtle().decrypt({ name: 'AES-GCM', iv }, kek, wrapped)
     } catch (error) {
-      // Only a failed decrypt means this wrap's password was wrong. Swallowing
-      // everything here is how a broken environment used to be reported as a
-      // wrong word: on plain http `crypto.subtle` is absent, importKey throws,
-      // and the loop quietly turned that into "try another password".
       if (!isDecryptionFailure(error)) throw error
+      continue
     }
+    role = w.role
+    break
   }
   if (!cekRaw || !role) return null
   cek = await subtle().importKey('raw', cekRaw, { name: 'AES-GCM' }, true, ['decrypt'])
