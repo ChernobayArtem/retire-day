@@ -22,18 +22,20 @@ identifiers.
 - Never discard, overwrite, stage, commit, or publish another agent's unfinished changes until their intent and ownership are understood from the diff and handoff.
 - Complete work should normally end in a focused verified commit only when that matches the user's current Git instructions. If the user asks to accumulate changes or explicitly says not to commit, preserve the working tree, record that instruction in `.agent/HANDOFF.md`, and do not commit until the user changes it. If work must stop unfinished, update the same handoff with exact verification status and next action, without secrets or personal content.
 
-## Product roadmap (internal, local)
+## This project is finished
 
-The forward-looking backlog — turning this personal gift into a product other
-couples can send — lives in `roadmap/` (gitignored: the repository is public and
-this is internal planning, handled like `.agent/` and `local-content/`).
-`roadmap/board.json` is the machine-readable source of truth: `columns` (each with
-a status `tone`) and `cards` (title plus note, assigned to a column). When the user
-asks what is in the backlog or in progress, read that file rather than relying on
-chat memory; when they ask you to change the backlog, edit `board.json` there. The
-board opens as a local, native AppKit + WebKit macOS app (`roadmap/Роадмап.app`)
-that reads and writes `board.json` directly; nothing under `roadmap/` may be
-published to the public repository.
+The 29-day calendar ended on 29 August 2026 and the app is installed on the
+recipient's device. Treat this repository as **frozen**: it exists to keep that
+one installation working at `https://chernobayartem.github.io/retire-day/`
+forever. Change it only when the user asks for a change here in the current
+task, and hold the compatibility identifiers — the `/retire-day/` base path and
+the `retire-day:*` storage keys — exactly as they are.
+
+Product work continues elsewhere. The roadmap board that used to live in
+`roadmap/` moved on 1 September 2026 to the private product repository
+`ChernobayArtem/reday` (locally `~/Developer/reday`), where the backlog is
+tracked in git rather than gitignored. Do not recreate it here, and do not
+answer questions about the plan from chat memory — read that repository.
 
 ## Design judgement
 
