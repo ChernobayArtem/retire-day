@@ -229,6 +229,55 @@ describe('resume', () => {
   })
 })
 
+describe('a broken environment is not a wrong password', () => {
+  /** Runs `fn` with crypto.subtle missing, as it is over plain http on a LAN. */
+  async function withoutSubtle<T>(fn: () => Promise<T>): Promise<T> {
+    const real = globalThis.crypto
+    // Keep getRandomValues so anything else in the run still works; only the
+    // part a secure context gates is taken away.
+    vi.stubGlobal('crypto', { getRandomValues: real.getRandomValues.bind(real) })
+    try {
+      return await fn()
+    } finally {
+      vi.stubGlobal('crypto', real)
+    }
+  }
+
+  it('reports a missing crypto.subtle instead of rejecting the word', async () => {
+    // The wrap loop used to swallow this and return null, which the gate showed
+    // as "wrong password" — the exact confusion that cost an evening of testing.
+    const { unlock } = await importVault()
+    await withoutSubtle(async () => {
+      await expect(unlock(LIVE_PASSWORD)).rejects.toThrow(/crypto\.subtle/)
+    })
+  })
+
+  it('reports damaged manifest data instead of rejecting the word', async () => {
+    // A truncated download or a bad deploy can leave a wrap unreadable. The loop
+    // that tries each password used to swallow that too and return null, so
+    // corrupt data and a mistyped word were indistinguishable on screen.
+    const manifest = vault.manifest as { wraps: { salt: string }[] }
+    manifest.wraps[0].salt = 'not-valid-base64!!'
+
+    const { unlock } = await importVault()
+    await expect(unlock(LIVE_PASSWORD)).rejects.toThrow()
+  })
+
+  it('keeps the session when the browser cannot do the work', async () => {
+    const first = await importVault()
+    await first.unlock(LIVE_PASSWORD)
+    const savedBefore = localStorage.getItem(SESSION_KEY)
+
+    const { resume, dayByNumber } = await importVault()
+    await withoutSubtle(async () => {
+      await resume()
+    })
+    expect(dayByNumber(1)).toBeUndefined()
+    // The stored key is fine; the page was simply opened where it cannot be used.
+    expect(localStorage.getItem(SESSION_KEY)).toBe(savedBefore)
+  })
+})
+
 describe('logout', () => {
   it('drops the content and the stored session', async () => {
     const { unlock, logout, dayByNumber } = await importVault()

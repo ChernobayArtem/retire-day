@@ -2073,3 +2073,9 @@
   line-height: var(--ui-line-height-body);
   color: var(--color-semantic-text-secondary);
 }
+
+/* The gate's message is a live region and stays mounted so a screen reader
+   announces it when it fills. Empty, it must not push the card around. */
+.gate__err:empty {
+  margin: 0;
+}

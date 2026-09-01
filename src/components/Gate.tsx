@@ -5,13 +5,16 @@ import { isVaultUnavailable, unlock, type Role } from '../lib/vault'
 import { trackGoal } from '../lib/analytics'
 import { Button, TextField } from '../ui'
 
-/** A wrong word is the person's mistake; an unreachable vault is not. Saying the
- *  same thing for both sends someone hunting for a typo that is not there. */
-type Failure = null | 'password' | 'unavailable'
+/** A wrong word is the person's mistake; the other two are not. Saying the same
+ *  thing for all of them sends someone hunting for a typo that is not there —
+ *  and advising "check your internet" for a fault that has nothing to do with
+ *  the network sends them somewhere just as useless. */
+type Failure = null | 'password' | 'unavailable' | 'unknown'
 
 const FAILURE_TEXT: Record<Exclude<Failure, null>, string> = {
   password: 'Не-а, попробуй ещё 😼',
   unavailable: 'Не получилось загрузить. Проверь интернет и попробуй ещё раз',
+  unknown: 'Не получилось войти. Попробуй ещё раз',
 }
 
 export default function Gate() {
@@ -22,26 +25,31 @@ export default function Gate() {
   async function submit(e: React.FormEvent) {
     e.preventDefault()
     if (!value.trim() || busy) return
+    // Drop the previous answer before asking again, so a stale line is never read
+    // as the verdict on this attempt.
+    setFailure(null)
     setBusy(true)
     let role: Role | null = null
-    let unreachable = false
+    let thrown: Failure = null
     try {
       role = await unlock(value.trim())
     } catch (error) {
       // Anything thrown lands here rather than escaping: without the finally below
-      // `busy` never clears and the button spins for good. A non-network throw is
-      // reported the same way on purpose — from this side of the screen it is
-      // equally "not your fault, try again".
-      unreachable = true
-      if (!isVaultUnavailable(error)) console.error('Не удалось открыть сейф', error)
+      // `busy` never clears and the button spins for good.
+      if (isVaultUnavailable(error)) {
+        thrown = 'unavailable'
+      } else {
+        thrown = 'unknown'
+        console.error('Не удалось открыть сейф', error)
+      }
     } finally {
       setBusy(false)
     }
     if (role === 'live') {
       trackGoal('login_success')
-    } else if (unreachable) {
+    } else if (thrown) {
       // Keep what was typed: the word may well have been right.
-      setFailure('unavailable')
+      setFailure(thrown)
     } else if (!role) {
       setFailure('password')
       setValue('')
@@ -60,11 +68,11 @@ export default function Gate() {
         <form className="gate__form" onSubmit={submit}>
           {/* eslint-disable jsx-a11y/no-autofocus -- single-field gate screen: focusing the only input on mount is the intended behaviour, not a disorienting focus jump */}
           <TextField
-            className={failure ? 'gate__field gate__field--error' : 'gate__field'}
+            className={failure === 'password' ? 'gate__field gate__field--error' : 'gate__field'}
             inputClassName="gate__input ym-disable-keys ym-disable-clickmap"
             aria-label="Секретное слово"
-            aria-invalid={failure ? true : undefined}
-            aria-describedby={failure ? 'gate-error' : undefined}
+            aria-invalid={failure === 'password' ? true : undefined}
+            aria-describedby={failure === 'password' ? 'gate-error' : undefined}
             value={value}
             onChange={(e) => {
               setValue(e.target.value)
@@ -90,11 +98,11 @@ export default function Gate() {
             Войти
           </Button>
         </form>
-        {failure && (
-          <p className="gate__err" id="gate-error">
-            {FAILURE_TEXT[failure]}
-          </p>
-        )}
+        {/* Always mounted: a live region added together with its text is
+            unreliably announced. `:empty` keeps it from taking space. */}
+        <p className="gate__err" id="gate-error" role="status">
+          {failure ? FAILURE_TEXT[failure] : ''}
+        </p>
       </div>
     </div>
   )

@@ -70,6 +70,44 @@ export function isVaultUnavailable(error: unknown): boolean {
   return error instanceof VaultUnavailableError
 }
 
+/**
+ * A wrong password shows up as a failed AES-GCM decrypt and nothing else. Any
+ * other throw is an environment or data problem and must not be mistaken for it.
+ */
+function isDecryptionFailure(error: unknown): boolean {
+  return error instanceof Error && error.name === 'OperationError'
+}
+
+/**
+ * The browser cannot do the work at all — no WebCrypto. Like an unreachable
+ * vault this says nothing about the stored key, so the session must survive it.
+ */
+class VaultEnvironmentError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'VaultEnvironmentError'
+  }
+}
+
+/**
+ * `crypto.subtle` exists only in a secure context: https, or localhost. Over
+ * plain http on a LAN address the browser withholds it, and without this guard
+ * the absence surfaces as a rejected password — which is what it looked like
+ * from the outside for an entire evening of testing.
+ */
+function requireSubtle(): void {
+  if (!globalThis.crypto?.subtle) {
+    throw new VaultEnvironmentError(
+      'crypto.subtle is unavailable: the page must be served over https or from localhost',
+    )
+  }
+}
+
+/** Neither the network nor the browser is the stored key's fault. */
+function isNotTheKeysFault(error: unknown): boolean {
+  return error instanceof VaultUnavailableError || error instanceof VaultEnvironmentError
+}
+
 function b64ToBytes(b64: string) {
   const bin = atob(b64)
   const out = new Uint8Array(bin.length)
@@ -124,6 +162,7 @@ async function loadContent(key: CryptoKey): Promise<DayDef[]> {
 
 /** Try the entered password against every wrapped key. Returns the unlocked role on success. */
 export async function unlock(password: string): Promise<Role | null> {
+  requireSubtle()
   const m = await getManifest()
   let cekRaw: ArrayBuffer | null = null
   let role: Role | null = null
@@ -137,8 +176,12 @@ export async function unlock(password: string): Promise<Role | null> {
       )
       role = w.role
       break
-    } catch {
-      /* wrong password for this wrap — try the next */
+    } catch (error) {
+      // Only a failed decrypt means this wrap's password was wrong. Swallowing
+      // everything here is how a broken environment used to be reported as a
+      // wrong word: on plain http `crypto.subtle` is absent, importKey throws,
+      // and the loop quietly turned that into "try another password".
+      if (!isDecryptionFailure(error)) throw error
     }
   }
   if (!cekRaw || !role) return null
@@ -170,6 +213,7 @@ export async function resume(): Promise<void> {
     return
   }
   try {
+    requireSubtle()
     cek = await subtle().importKey('raw', b64ToBytes(saved.cek), { name: 'AES-GCM' }, true, [
       'decrypt',
     ])
@@ -177,10 +221,10 @@ export async function resume(): Promise<void> {
     set({ status: 'ready', role: saved.role, days })
   } catch (error) {
     // Forget the session only when the stored key itself cannot open this vault.
-    // If the files were simply unreachable, the key is still good: dropping it
-    // here would send her back to the password screen over a network blip, and
-    // the next load would have worked.
-    if (!(error instanceof VaultUnavailableError)) {
+    // Unreachable files or a browser without WebCrypto say nothing about the key:
+    // dropping it for either would cost the password over a network blip or a
+    // page opened on the wrong origin, and the next proper load would have worked.
+    if (!isNotTheKeysFault(error)) {
       cek = null
       try {
         localStorage.removeItem(SESSION_KEY)
