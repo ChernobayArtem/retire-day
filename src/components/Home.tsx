@@ -61,7 +61,7 @@ function previewMedia(def: DayDef): string[] {
 }
 
 export default function Home({ testMode }: Props) {
-  const [realNow, setRealNow] = useState<Date>(() => getNow(null))
+  const [realNow, setRealNow] = useState<Date>(() => getNow())
   // The test account starts on the finale and can walk the countdown; the live
   // account always follows the real date.
   const [simNow, setSimNow] = useState<Date>(() => getTestNow())
@@ -87,7 +87,7 @@ export default function Home({ testMode }: Props) {
 
     function refreshDate() {
       const wallClockNow = new Date()
-      const current = getNow(null)
+      const current = getNow()
       setRealNow(current)
 
       window.clearTimeout(midnightTimer)

@@ -4,12 +4,12 @@ export type DayState = 'past' | 'today' | 'future'
 
 const MS_PER_DAY = 86400000
 
-/** Current local date at midnight, honoring an optional test override (YYYY-MM-DD). */
-export function getNow(override?: string | null): Date {
-  if (override) {
-    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(override)
-    if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]))
-  }
+/**
+ * Current local date at midnight. It takes no override: the test account moves
+ * through the countdown with the visible date control, so there is no URL that
+ * can silently change what day the app thinks it is.
+ */
+export function getNow(): Date {
   const d = new Date()
   return new Date(d.getFullYear(), d.getMonth(), d.getDate())
 }

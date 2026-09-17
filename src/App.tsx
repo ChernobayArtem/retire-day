@@ -27,7 +27,7 @@ export default function App() {
       identifyAudience(role === 'live' ? 'primary' : 'tester')
     }
     if (status === 'ready' && role === 'live') {
-      const now = getNow(null)
+      const now = getNow()
       const postFinale = isAfterTarget(now)
       trackView(postFinale ? 'new-chapter' : 'calendar', postFinale ? 'Новая глава' : 'Календарь')
       trackAppOpen()
@@ -38,7 +38,7 @@ export default function App() {
     if (status !== 'ready' || role !== 'live') return
 
     function recordVisibleLaunch() {
-      if (document.visibilityState === 'visible') recordJourneyAppOpen(getNow(null))
+      if (document.visibilityState === 'visible') recordJourneyAppOpen(getNow())
     }
 
     recordVisibleLaunch()

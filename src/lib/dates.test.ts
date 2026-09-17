@@ -19,18 +19,14 @@ const d = (iso: string) => {
 }
 
 describe('getNow', () => {
-  it('parses a valid YYYY-MM-DD override to local midnight', () => {
-    const now = getNow('2026-08-10')
-    expect(now.getFullYear()).toBe(2026)
-    expect(now.getMonth()).toBe(7)
-    expect(now.getDate()).toBe(10)
+  it('reports today at local midnight', () => {
+    const now = getNow()
+    const today = new Date()
+    expect(now.getFullYear()).toBe(today.getFullYear())
+    expect(now.getMonth()).toBe(today.getMonth())
+    expect(now.getDate()).toBe(today.getDate())
     expect(now.getHours()).toBe(0)
-  })
-
-  it('falls back to today at midnight when the override is missing or malformed', () => {
-    expect(getNow('not-a-date').getHours()).toBe(0)
-    expect(getNow(null)).toBeInstanceOf(Date)
-    expect(getNow(null).getHours()).toBe(0)
+    expect(now.getMinutes()).toBe(0)
   })
 })
 
