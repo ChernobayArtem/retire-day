@@ -14,6 +14,20 @@ export function getNow(override?: string | null): Date {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate())
 }
 
+/**
+ * The owner's test account always starts on the finale instead of following
+ * the wall clock. Date QA is performed with the visible test controls so a
+ * stale URL can never change the account's starting point.
+ */
+export function getTestNow(): Date {
+  return dayDate(TARGET_DAY)
+}
+
+/** Opened progress never makes a future day look available after rewinding. */
+export function isDayVisiblyOpened(opened: boolean, state: DayState): boolean {
+  return opened && state !== 'future'
+}
+
 export function dayDate(day: number): Date {
   return new Date(YEAR, MONTH_INDEX, day)
 }

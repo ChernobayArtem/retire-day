@@ -1,5 +1,5 @@
 import type { DayDef } from '../content/days'
-import type { DayState } from '../lib/dates'
+import { isDayVisiblyOpened, type DayState } from '../lib/dates'
 import { calendarEmoji } from '../lib/dayCategories'
 
 interface Props {
@@ -7,14 +7,14 @@ interface Props {
   state: DayState
   opened: boolean
   def?: DayDef
-  /** In test mode every day is openable, so nothing is shown as locked. */
-  testMode?: boolean
   onOpen: (day: number) => void
 }
 
-export default function DayCell({ day, state, opened, def, testMode = false, onOpen }: Props) {
-  const locked = state === 'future' && !testMode
-  const cls = ['cell', `cell--${state}`, opened ? 'cell--opened' : ''].filter(Boolean).join(' ')
+export default function DayCell({ day, state, opened, def, onOpen }: Props) {
+  const locked = state === 'future'
+  const cls = ['cell', `cell--${state}`, isDayVisiblyOpened(opened, state) ? 'cell--opened' : '']
+    .filter(Boolean)
+    .join(' ')
   const calendarIcon = def?.day === 28 ? 'day-28.png' : def?.cert && def.icon ? def.icon : undefined
 
   const label = locked

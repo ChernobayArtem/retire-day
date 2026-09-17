@@ -63,6 +63,5 @@ export default function App() {
     )
   }
 
-  const dateOverride = testMode ? query.get('date') : null
-  return <Home testMode={testMode} dateOverride={dateOverride} />
+  return <Home testMode={testMode} />
 }

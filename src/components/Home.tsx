@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { DayDef } from '../content/days'
 import {
   getNow,
+  getTestNow,
   daysUntilTarget,
   stateForDay,
   diffDays,
@@ -35,7 +36,6 @@ interface Active {
 
 interface Props {
   testMode: boolean
-  dateOverride: string | null
 }
 
 function pad2(n: number): string {
@@ -60,10 +60,11 @@ function previewMedia(def: DayDef): string[] {
   ].filter((path): path is string => !!path)
 }
 
-export default function Home({ testMode, dateOverride }: Props) {
+export default function Home({ testMode }: Props) {
   const [realNow, setRealNow] = useState<Date>(() => getNow(null))
-  // The test account can walk the countdown; the live account always uses today.
-  const [simNow, setSimNow] = useState<Date>(() => getNow(dateOverride))
+  // The test account starts on the finale and can walk the countdown; the live
+  // account always follows the real date.
+  const [simNow, setSimNow] = useState<Date>(() => getTestNow())
   const now = testMode ? simNow : realNow
 
   const { opened } = useStore()
@@ -134,7 +135,9 @@ export default function Home({ testMode, dateOverride }: Props) {
 
   function handleOpen(day: number, source: JourneyDaySource = 'calendar') {
     const dayState = stateForDay(day, now)
-    const locked = dayState === 'future' && !testMode
+    // Test mode changes the simulated date, not the reveal rule. Moving the
+    // bottom date control forward is what releases the next day.
+    const locked = dayState === 'future'
     setActive({ day, locked })
     if (!locked) {
       markOpened(day)
@@ -229,12 +232,7 @@ export default function Home({ testMode, dateOverride }: Props) {
 
               <section className="calbox">
                 <h1 className="calbox__title">{MONTH_TITLE}</h1>
-                <Calendar
-                  now={now}
-                  opened={opened}
-                  testMode={testMode}
-                  onOpen={(day) => handleOpen(day, 'calendar')}
-                />
+                <Calendar now={now} opened={opened} onOpen={(day) => handleOpen(day, 'calendar')} />
               </section>
 
               <SceneStage day={active?.day ?? (passed || 1)} />

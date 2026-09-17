@@ -6,6 +6,8 @@ import {
   daysUntilTarget,
   diffDays,
   getNow,
+  getTestNow,
+  isDayVisiblyOpened,
   isAfterTarget,
   newChapterPeriod,
   stateForDay,
@@ -29,6 +31,24 @@ describe('getNow', () => {
     expect(getNow('not-a-date').getHours()).toBe(0)
     expect(getNow(null)).toBeInstanceOf(Date)
     expect(getNow(null).getHours()).toBe(0)
+  })
+})
+
+describe('getTestNow', () => {
+  it('starts the test account on the finale instead of the wall-clock date', () => {
+    const now = getTestNow()
+    expect(now.getFullYear()).toBe(2026)
+    expect(now.getMonth()).toBe(7)
+    expect(now.getDate()).toBe(29)
+  })
+})
+
+describe('isDayVisiblyOpened', () => {
+  it('hides persisted opened styling while a rewound day is still in the future', () => {
+    expect(isDayVisiblyOpened(true, 'future')).toBe(false)
+    expect(isDayVisiblyOpened(true, 'today')).toBe(true)
+    expect(isDayVisiblyOpened(true, 'past')).toBe(true)
+    expect(isDayVisiblyOpened(false, 'past')).toBe(false)
   })
 })
 
@@ -64,6 +84,11 @@ describe('stateForDay', () => {
     expect(stateForDay(5, now)).toBe('past')
     expect(stateForDay(10, now)).toBe('today')
     expect(stateForDay(15, now)).toBe('future')
+  })
+
+  it('releases the next test day only after the simulated date moves forward', () => {
+    expect(stateForDay(21, d('2026-08-20'))).toBe('future')
+    expect(stateForDay(21, d('2026-08-21'))).toBe('today')
   })
 })
 

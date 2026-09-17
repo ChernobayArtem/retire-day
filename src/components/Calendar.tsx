@@ -7,11 +7,10 @@ const WEEKDAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
 interface Props {
   now: Date
   opened: number[]
-  testMode?: boolean
   onOpen: (day: number) => void
 }
 
-export default function Calendar({ now, opened, testMode = false, onOpen }: Props) {
+export default function Calendar({ now, opened, onOpen }: Props) {
   const cells = buildGrid()
   return (
     <div className="cal">
@@ -33,7 +32,6 @@ export default function Calendar({ now, opened, testMode = false, onOpen }: Prop
               state={state}
               opened={opened.includes(d)}
               def={dayByNumber(d)}
-              testMode={testMode}
               onOpen={onOpen}
             />
           )
